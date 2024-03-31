@@ -152,7 +152,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
     private void bVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVoltarActionPerformed
         Login login = new Login();
         login.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_bVoltarActionPerformed
 
     private void bFeitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFeitoActionPerformed

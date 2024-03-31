@@ -175,7 +175,7 @@ public class Login extends javax.swing.JFrame {
     private void bCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCadastroActionPerformed
         CadastroFuncionario cadastro = new CadastroFuncionario();
         cadastro.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_bCadastroActionPerformed
 
     /**

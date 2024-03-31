@@ -8,7 +8,7 @@ public class Conn {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             // O meu database chama teste, ajustem o de vcs nessa linha
-            con = DriverManager.getConnection("jdbc:mysql://localhost/teste?user=root&password="); 
+            con = DriverManager.getConnection("jdbc:mysql://localhost/biblioteca?user=root&password="); 
             //System.out.println("Conexão estabelecida com sucesso.");
         } catch (ClassNotFoundException ex) {
            // System.out.println("Driver do Banco não encontrado.");
