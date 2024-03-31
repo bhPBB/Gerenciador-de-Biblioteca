@@ -1,6 +1,6 @@
 package ClassesTeste;
 
-import IntertfacesCRUD.ICRUDCliente;
+import InterfacesCRUD.ICRUDCliente;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -14,9 +14,9 @@ import IntertfacesCRUD.ICRUDCliente;
 public class ClienteTeste implements ICRUDCliente {
     private String CPF, nome, cidade, estado;
     private int numEmprestimos;
-    boolean caloteiro;
+    private boolean caloteiro;
 
-    private ClienteTeste(String CPF, String nome, String cidade, String estado) {
+    public ClienteTeste(String CPF, String nome, String cidade, String estado) {
         this.CPF = CPF;
         this.nome = nome;
         this.cidade = cidade;
@@ -26,13 +26,7 @@ public class ClienteTeste implements ICRUDCliente {
         this.numEmprestimos = 0;
         this.caloteiro = false;
     }
-    
-    @Override
-    public ICRUDCliente criarCliente(String CPF, String nome, String cidade, String estado)
-    {
-        return new ClienteTeste(CPF, nome, cidade, estado);
-    }
-    
+  
     @Override
     public void deletarCliente(ICRUDCliente cliente)
     {

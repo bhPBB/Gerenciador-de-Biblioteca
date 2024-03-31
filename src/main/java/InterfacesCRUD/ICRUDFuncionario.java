@@ -2,15 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package IntertfacesCRUD;
+package InterfacesCRUD;
 
 /**
  *
  * @author bruno
  */
 public interface ICRUDFuncionario {
-    //criar e deletar cliente
-    public ICRUDFuncionario criarFuncionario(String CPF, String nome, String senha);
+    //Deletar funcionario
     public void deletarFuncionario(ICRUDFuncionario funcionario);
     
     //Getter Id

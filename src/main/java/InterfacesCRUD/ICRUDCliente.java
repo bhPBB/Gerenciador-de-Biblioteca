@@ -2,15 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package IntertfacesCRUD;
+package InterfacesCRUD;
 
 /**
  *
  * @author bruno
  */
 public interface ICRUDCliente {
-    //criar e deletar cliente
-    public ICRUDCliente criarCliente(String CPF, String nome, String cidade, String estado);
+    //deletar cliente
     public void deletarCliente(ICRUDCliente cliente);
     
     //Getter e Setter CPF
