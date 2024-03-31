@@ -1,9 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package gerenciadorbiblioteca;
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -26,7 +20,9 @@ public class CadastroFuncionario extends javax.swing.JFrame {
      * Creates new form CadastroFuncionario
      */
     public CadastroFuncionario() {
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
