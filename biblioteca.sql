@@ -56,7 +56,7 @@ CREATE TABLE `cliente` (
   `NOME` varchar(70) DEFAULT NULL,
   `NUM_LIVROS_EMPRESTADOS` int(11) DEFAULT NULL,
   `CALOTEIRO` tinyint(1) DEFAULT NULL,
-  `ID_FUNCIONARIO` int(11) DEFAULT NULL
+  `ID_FUNCIONARIO` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -68,7 +68,7 @@ CREATE TABLE `cliente` (
 CREATE TABLE `emprestimo` (
   `ID_LIVRO` int(11) DEFAULT NULL,
   `ID_CLIENTE` int(11) DEFAULT NULL,
-  `ID_FUNCIONARIO` int(11) DEFAULT NULL,
+  `ID_FUNCIONARIO` varchar(50) DEFAULT NULL,
   `DATA_EMPRESTIMO` date DEFAULT NULL,
   `DATA_DEVOLUCAO` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -92,7 +92,7 @@ CREATE TABLE `estado` (
 
 CREATE TABLE `funcionario` (
   `CPF` int(11) DEFAULT NULL,
-  `ID` int(11) NOT NULL,
+  `EMAIL` varchar(50) NOT NULL,
   `NOME` varchar(70) DEFAULT NULL,
   `SENHA` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -118,7 +118,7 @@ CREATE TABLE `livro` (
   `ID` int(11) NOT NULL,
   `DESCRICAO` varchar(50) DEFAULT NULL,
   `QTD_ESTOQUE` int(11) DEFAULT NULL,
-  `FUNCIONARIO` int(11) DEFAULT NULL
+  `ID_FUNCIONARIO` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -165,7 +165,7 @@ ALTER TABLE `cidade`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `FUNCIONARIO` (`ID_FUNCIONARIO`);
+  ADD KEY `ID_FUNCIONARIO` (`ID_FUNCIONARIO`);
 
 --
 -- Índices de tabela `emprestimo`
@@ -185,7 +185,7 @@ ALTER TABLE `estado`
 -- Índices de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`EMAIL`);
 
 --
 -- Índices de tabela `genero`
@@ -198,7 +198,7 @@ ALTER TABLE `genero`
 --
 ALTER TABLE `livro`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `FUNCIONARIO` (`FUNCIONARIO`);
+  ADD KEY `ID_FUNCIONARIO` (`ID_FUNCIONARIO`);
 
 --
 -- Índices de tabela `livros_autores`
@@ -243,12 +243,6 @@ ALTER TABLE `estado`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `funcionario`
---
-ALTER TABLE `funcionario`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de tabela `genero`
 --
 ALTER TABLE `genero`
@@ -274,7 +268,7 @@ ALTER TABLE `cidade`
 -- Restrições para tabelas `cliente`
 --
 ALTER TABLE `cliente`
-  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`ID_FUNCIONARIO`) REFERENCES `funcionario` (`ID`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`ID_FUNCIONARIO`) REFERENCES `funcionario` (`EMAIL`) ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `emprestimo`
@@ -282,13 +276,13 @@ ALTER TABLE `cliente`
 ALTER TABLE `emprestimo`
   ADD CONSTRAINT `emprestimo_ibfk_1` FOREIGN KEY (`ID_LIVRO`) REFERENCES `livro` (`ID`) ON UPDATE CASCADE,
   ADD CONSTRAINT `emprestimo_ibfk_2` FOREIGN KEY (`ID_CLIENTE`) REFERENCES `cliente` (`ID`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `emprestimo_ibfk_3` FOREIGN KEY (`ID_FUNCIONARIO`) REFERENCES `funcionario` (`ID`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `emprestimo_ibfk_3` FOREIGN KEY (`ID_FUNCIONARIO`) REFERENCES `funcionario` (`EMAIL`) ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `livro`
 --
 ALTER TABLE `livro`
-  ADD CONSTRAINT `livro_ibfk_1` FOREIGN KEY (`FUNCIONARIO`) REFERENCES `funcionario` (`ID`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `livro_ibfk_1` FOREIGN KEY (`ID_FUNCIONARIO`) REFERENCES `funcionario` (`EMAIL`) ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `livros_autores`
