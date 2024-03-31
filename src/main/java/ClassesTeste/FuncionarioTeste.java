@@ -15,7 +15,7 @@ public class FuncionarioTeste implements ICRUDFuncionario {
     private final int id;
     private String CPF, nome, senha;
 
-    private FuncionarioTeste(String CPF, String nome, String senha) {
+    public FuncionarioTeste(String CPF, String nome, String senha) {
         this.CPF = CPF;
         this.nome = nome;
         this.senha = senha;
@@ -24,7 +24,12 @@ public class FuncionarioTeste implements ICRUDFuncionario {
         FuncionarioTeste.ultimoId++;
         this.id = ultimoId;
     }
-
+    
+    //Metodo para o teste da função getId funcionar
+    public static void resetarUltimoId() {
+        ultimoId = 0;
+    }
+    
     @Override
     public void deletarFuncionario(ICRUDFuncionario funcionario) {
         //Nessa classe esse método não faz nada, mas nas classes de verdade, vai apagar o funcionário do banco de dados.

@@ -27,6 +27,11 @@ public class LivroTeste implements ICRUDLivro {
         LivroTeste.ultimoId++;
         this.id = ultimoId;
     }
+    
+    //Método necessário para o teste de getId
+    public static void resetarUltimoId() {
+        ultimoId = 0;
+    }
 
     @Override
     public void deletarLivro(ICRUDLivro livro) {
