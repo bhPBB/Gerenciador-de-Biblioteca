@@ -8,6 +8,7 @@ Conn.class
 module-info.class
 InterfacesCRUD\ICRUDFuncionario.class
 CadastroFuncionario$3.class
+Funcionario.class
 com\mycompany\gerenciadordebiblioteca\SecondaryController.class
 Login$1.class
 ClassesTeste\LivroTeste.class

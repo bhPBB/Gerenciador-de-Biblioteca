@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 31/03/2024 às 22:18
+-- Tempo de geração: 31/03/2024 às 22:54
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -56,7 +56,9 @@ CREATE TABLE `cliente` (
   `NOME` varchar(70) DEFAULT NULL,
   `NUM_LIVROS_EMPRESTADOS` int(11) DEFAULT NULL,
   `CALOTEIRO` tinyint(1) DEFAULT NULL,
-  `ID_FUNCIONARIO` varchar(50) DEFAULT NULL
+  `ID_FUNCIONARIO` varchar(50) DEFAULT NULL,
+  `CIDADE` int(11) DEFAULT NULL,
+  `ESTADO` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -165,7 +167,9 @@ ALTER TABLE `cidade`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `ID_FUNCIONARIO` (`ID_FUNCIONARIO`);
+  ADD KEY `ID_FUNCIONARIO` (`ID_FUNCIONARIO`),
+  ADD KEY `CIDADE` (`CIDADE`),
+  ADD KEY `ESTADO` (`ESTADO`);
 
 --
 -- Índices de tabela `emprestimo`
@@ -268,7 +272,9 @@ ALTER TABLE `cidade`
 -- Restrições para tabelas `cliente`
 --
 ALTER TABLE `cliente`
-  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`ID_FUNCIONARIO`) REFERENCES `funcionario` (`EMAIL`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`ID_FUNCIONARIO`) REFERENCES `funcionario` (`EMAIL`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `cliente_ibfk_2` FOREIGN KEY (`CIDADE`) REFERENCES `cidade` (`ID`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `cliente_ibfk_3` FOREIGN KEY (`ESTADO`) REFERENCES `estado` (`ID`) ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `emprestimo`
