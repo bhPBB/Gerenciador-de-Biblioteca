@@ -3,12 +3,12 @@ Banco/Login.class
 Banco/CadastroFuncionario$3.class
 ClassesTeste/ClienteTeste.class
 InterfacesCRUD/ICRUDCliente.class
-com/mycompany/gerenciadordebiblioteca/CadastrarLivroController.class
 InterfacesCRUD/ICRUDFuncionario.class
-com/mycompany/gerenciadordebiblioteca/App.class
+GerenciadorDeBiblioteca/App.class
 ClassesTeste/FuncionarioTeste.class
 module-info.class
 Banco/CadastroFuncionario.class
+Funcionario.class
 Banco/Login$3.class
 Banco/Conn.class
 Banco/CadastroFuncionario$2.class
@@ -16,3 +16,4 @@ InterfacesCRUD/ICRUDLivro.class
 ClassesTeste/LivroTeste.class
 Banco/CadastroFuncionario$1.class
 Banco/Login$2.class
+GerenciadorDeBiblioteca/CadastrarLivroController.class
