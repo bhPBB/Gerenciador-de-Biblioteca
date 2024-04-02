@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 31/03/2024 às 22:54
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Tempo de geração: 03/04/2024 às 01:26
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -51,12 +51,11 @@ CREATE TABLE `cidade` (
 --
 
 CREATE TABLE `cliente` (
-  `CPF` int(11) DEFAULT NULL,
-  `ID` int(11) NOT NULL,
+  `CPF` int(11) NOT NULL,
   `NOME` varchar(70) DEFAULT NULL,
   `NUM_LIVROS_EMPRESTADOS` int(11) DEFAULT NULL,
   `CALOTEIRO` tinyint(1) DEFAULT NULL,
-  `ID_FUNCIONARIO` varchar(50) DEFAULT NULL,
+  `ID_FUNCIONARIO` int(11) DEFAULT NULL,
   `CIDADE` int(11) DEFAULT NULL,
   `ESTADO` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -70,7 +69,7 @@ CREATE TABLE `cliente` (
 CREATE TABLE `emprestimo` (
   `ID_LIVRO` int(11) DEFAULT NULL,
   `ID_CLIENTE` int(11) DEFAULT NULL,
-  `ID_FUNCIONARIO` varchar(50) DEFAULT NULL,
+  `ID_FUNCIONARIO` int(11) DEFAULT NULL,
   `DATA_EMPRESTIMO` date DEFAULT NULL,
   `DATA_DEVOLUCAO` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -93,10 +92,10 @@ CREATE TABLE `estado` (
 --
 
 CREATE TABLE `funcionario` (
-  `CPF` int(11) DEFAULT NULL,
-  `EMAIL` varchar(50) NOT NULL,
+  `CPF` int(11) NOT NULL,
+  `EMAIL` varchar(50) DEFAULT NULL,
   `NOME` varchar(70) DEFAULT NULL,
-  `SENHA` varchar(20) DEFAULT NULL
+  `senha` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -120,7 +119,7 @@ CREATE TABLE `livro` (
   `ID` int(11) NOT NULL,
   `DESCRICAO` varchar(50) DEFAULT NULL,
   `QTD_ESTOQUE` int(11) DEFAULT NULL,
-  `ID_FUNCIONARIO` varchar(50) DEFAULT NULL
+  `ID_FUNCIONARIO` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -166,7 +165,7 @@ ALTER TABLE `cidade`
 -- Índices de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`ID`),
+  ADD PRIMARY KEY (`CPF`),
   ADD KEY `ID_FUNCIONARIO` (`ID_FUNCIONARIO`),
   ADD KEY `CIDADE` (`CIDADE`),
   ADD KEY `ESTADO` (`ESTADO`);
@@ -189,7 +188,7 @@ ALTER TABLE `estado`
 -- Índices de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  ADD PRIMARY KEY (`EMAIL`);
+  ADD PRIMARY KEY (`CPF`);
 
 --
 -- Índices de tabela `genero`
@@ -235,12 +234,6 @@ ALTER TABLE `cidade`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `cliente`
---
-ALTER TABLE `cliente`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de tabela `estado`
 --
 ALTER TABLE `estado`
@@ -272,7 +265,7 @@ ALTER TABLE `cidade`
 -- Restrições para tabelas `cliente`
 --
 ALTER TABLE `cliente`
-  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`ID_FUNCIONARIO`) REFERENCES `funcionario` (`EMAIL`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`ID_FUNCIONARIO`) REFERENCES `funcionario` (`CPF`) ON UPDATE CASCADE,
   ADD CONSTRAINT `cliente_ibfk_2` FOREIGN KEY (`CIDADE`) REFERENCES `cidade` (`ID`) ON UPDATE CASCADE,
   ADD CONSTRAINT `cliente_ibfk_3` FOREIGN KEY (`ESTADO`) REFERENCES `estado` (`ID`) ON UPDATE CASCADE;
 
@@ -281,14 +274,14 @@ ALTER TABLE `cliente`
 --
 ALTER TABLE `emprestimo`
   ADD CONSTRAINT `emprestimo_ibfk_1` FOREIGN KEY (`ID_LIVRO`) REFERENCES `livro` (`ID`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `emprestimo_ibfk_2` FOREIGN KEY (`ID_CLIENTE`) REFERENCES `cliente` (`ID`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `emprestimo_ibfk_3` FOREIGN KEY (`ID_FUNCIONARIO`) REFERENCES `funcionario` (`EMAIL`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `emprestimo_ibfk_2` FOREIGN KEY (`ID_CLIENTE`) REFERENCES `cliente` (`CPF`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `emprestimo_ibfk_3` FOREIGN KEY (`ID_FUNCIONARIO`) REFERENCES `funcionario` (`CPF`) ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `livro`
 --
 ALTER TABLE `livro`
-  ADD CONSTRAINT `livro_ibfk_1` FOREIGN KEY (`ID_FUNCIONARIO`) REFERENCES `funcionario` (`EMAIL`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `livro_ibfk_1` FOREIGN KEY (`ID_FUNCIONARIO`) REFERENCES `funcionario` (`CPF`) ON UPDATE CASCADE;
 
 --
 -- Restrições para tabelas `livros_autores`
