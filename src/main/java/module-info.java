@@ -5,6 +5,7 @@ module com.mycompany.gerenciadordebiblioteca {
     requires java.desktop;
     requires java.base;
     
-    opens GerenciadorDeBiblioteca to javafx.fxml;
-    exports GerenciadorDeBiblioteca;
+    opens com.mycompany.gerenciadordebiblioteca to javafx.fxml;
+    exports com.mycompany.gerenciadordebiblioteca;
+    
 }
