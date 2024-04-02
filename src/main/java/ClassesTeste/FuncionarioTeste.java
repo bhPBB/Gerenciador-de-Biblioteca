@@ -13,12 +13,13 @@ import InterfacesCRUD.ICRUDFuncionario;
 public class FuncionarioTeste implements ICRUDFuncionario {
     private static int ultimoId = 0;
     private final int id;
-    private String CPF, nome, senha;
+    private String CPF, nome, senha, email;
 
-    public FuncionarioTeste(String CPF, String nome, String senha) {
+    public FuncionarioTeste(String CPF, String nome, String email, String senha) {
         this.CPF = CPF;
         this.nome = nome;
         this.senha = senha;
+        this.email = email;
         
         // O id é atualizado automaticamente
         FuncionarioTeste.ultimoId++;

@@ -1,3 +1,4 @@
+/home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/com/mycompany/gerenciadordebiblioteca/CadastrarClienteController.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/module-info.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/Modelos/Funcionario.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/InterfacesCRUD/ICRUDFuncionario.java
@@ -10,4 +11,5 @@
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/InterfacesCRUD/ICRUDLivro.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/InterfacesCRUD/ICRUDCliente.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/Banco/Conn.java
+/home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/com/mycompany/gerenciadordebiblioteca/CadastrarFuncionarioController.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/ClassesTeste/LivroTeste.java

@@ -24,7 +24,7 @@ public class FuncionarioTesteTest {
         // Sem esse reset, o teste de GetId não funciona.
         FuncionarioTeste.resetarUltimoId();
         
-        f = new FuncionarioTeste("555.555.555-55", "João", "12345");
+        f = new FuncionarioTeste("555.555.555-55", "João", "exemplo", "12345");
     }
 
 //    Não vou testar a função deletar
@@ -40,7 +40,7 @@ public class FuncionarioTesteTest {
 
         assertTrue(f.getId() == 1);
         
-        var f2 = new FuncionarioTeste("xxx.xxx.xxx-xx", "Lucas", "12345");
+        var f2 = new FuncionarioTeste("xxx.xxx.xxx-xx", "Lucas", "exemplo", "12345");
         
         assertTrue(f2.getId() == 2);
     }
