@@ -2,10 +2,15 @@ package Banco;
 
 import java.sql.*;
 
-public class DataBase {
+public class Database {
     //Para facilitar em usos futuros decidi colocar em variaveis
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DADOSDOBANCO = "jdbc:mysql://localhost/biblioteca?user=root&password=";
+    private static final String SERVER = "localhost";
+    private static final String PORTA = "";
+    private static final String DATABASE = "biblioteca";
+    private static final String USUARIO = "root";
+    private static final String SENHA = "";
+    private static final String URL = "jdbc:mysql://" + SERVER + ":" + PORTA + "/"+ DATABASE;
     private static Connection con = null;
     
     //Throws porque ele nao precisa lidar com a excecao, passa para quem
@@ -15,15 +20,16 @@ public class DataBase {
         try{
             Class.forName(DRIVER);
         } catch (ClassNotFoundException ex) {
-            System.out.println("Driver do Banco não encontrado.");
+            System.out.println("Driver do Banco nao encontrado.");
             //ex.printStackTrace();
             throw ex;
     }
         //Tenta conexao com o banco
         try{
-            con = DriverManager.getConnection(DADOSDOBANCO);
+            con = DriverManager.getConnection(URL, USUARIO, SENHA);
         } catch (SQLException ex) {
             System.out.println("Erro ao conectar ao banco de dados: " + ex.getMessage());
+            System.out.println(URL);
             //ex.printStackTrace();
             throw ex;
         }  
