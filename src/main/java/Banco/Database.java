@@ -5,12 +5,13 @@ import java.sql.*;
 public class Database {
     //Para facilitar em usos futuros decidi colocar em variaveis
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String SGBD = "mysql";
     private static final String SERVER = "localhost";
     private static final String PORTA = "";
     private static final String DATABASE = "biblioteca";
     private static final String USUARIO = "root";
     private static final String SENHA = "";
-    private static final String URL = "jdbc:mysql://" + SERVER + ":" + PORTA + "/"+ DATABASE;
+    private static final String URL = "jdbc:" + SGBD + "://" + SERVER + ":" + PORTA + "/"+ DATABASE;
     private static Connection con = null;
     
     //Throws porque ele nao precisa lidar com a excecao, passa para quem
