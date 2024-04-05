@@ -8,12 +8,12 @@ Banco\Login$1.class
 com\mycompany\gerenciadordebiblioteca\CadastrarLivroController.class
 ClassesTeste\FuncionarioTeste.class
 com\mycompany\gerenciadordebiblioteca\App.class
-Banco\Main.class
 Banco\CadastroFuncionario$2.class
 Banco\Database.class
 Banco\Login.class
 InterfacesCRUD\ICRUDCliente.class
 Banco\CadastroFuncionario.class
+Banco\main.class
 ClassesTeste\ClienteTeste.class
 Banco\Login$3.class
 InterfacesCRUD\ICRUDFuncionario.class
