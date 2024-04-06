@@ -167,9 +167,9 @@ public class Login extends javax.swing.JFrame {
                 hexString.append(hex);
             }
             return hexString.toString();
-        } catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException ex) {
             // Caso o algoritmo não seja encontrado
-            e.printStackTrace();
+            ex.printStackTrace();
             return null;
         }
     }

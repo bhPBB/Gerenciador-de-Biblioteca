@@ -5,10 +5,9 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -73,7 +72,13 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         bFeito.setText("Feito");
         bFeito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bFeitoActionPerformed(evt);
+                try {
+                    bFeitoActionPerformed(evt);
+                } catch (SQLException ex) {
+                    Logger.getLogger(CadastroFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(CadastroFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 
@@ -157,15 +162,13 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_bVoltarActionPerformed
 
-    private void bFeitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFeitoActionPerformed
-        Connection con = Conn.connectToDatabase();
-        if (con != null) {
+    private void bFeitoActionPerformed(java.awt.event.ActionEvent evt) throws SQLException, ClassNotFoundException{//GEN-FIRST:event_bFeitoActionPerformed
             // Executar a inserção no banco de dados
-            String query = "INSERT INTO FUNCIONARIO (nome, cpf, email, senha) VALUES (?, ?, ?, ?)";
             String nome = textNome.getText();
             String cpf = textCpf.getText();
             String email = textEmail.getText();
             String senha = new String(textSenha.getPassword());
+            String crypto = encrypt(senha);
             if(textNome.getText().isEmpty() || textCpf.getText().isEmpty() || textEmail.getText().isEmpty() || senha.isEmpty()){
                 JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
                 
@@ -173,35 +176,15 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Este email já foi cadastrado.", "Erro", JOptionPane.ERROR_MESSAGE);
             }else{
                 try {
-                    PreparedStatement stmt = con.prepareStatement(query);
-                    stmt.setString(1, nome);
-                    stmt.setString(2, cpf);
-                    stmt.setString(3, email);
-                    stmt.setString(4, encrypt(senha));
-                    int rowsAffected = stmt.executeUpdate();
+                    String query = "INSERT INTO FUNCIONARIO (nome, cpf, email, senha) VALUES ('" + nome + "','" + cpf + "','" + email + "','" + crypto + "')";
+                    Database.executarQuery(query);
 
-                    if (rowsAffected > 0) {
-                        JOptionPane.showMessageDialog(null, "Retorne à página de login", "Funcionário cadastrado com sucesso.",  JOptionPane.INFORMATION_MESSAGE);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Erro ao cadastrar funcionário.", "Erro", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                    stmt.close();
-                } catch (SQLException ex) {
+                } catch (SQLException ex) { 
                     JOptionPane.showMessageDialog(null, "Erro ao executar a inserção: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-                } finally {
-                    // Fechar a conexão após o uso
-                    try {
-                        con.close();
-                    } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(null, "Erro ao fechar a conexão: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-                    }
+                    throw ex;
                 }
             }   
-        } else {
-            JOptionPane.showMessageDialog(null, "Não foi possível obter coneção com o banco de dados. ", "Erro", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_bFeitoActionPerformed
 
     private String encrypt(String senha){
         try {
@@ -216,34 +199,25 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 hexString.append(hex);
             }
             return hexString.toString();
-        } catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException ex) {
             // Caso o algoritmo não seja encontrado
-            e.printStackTrace();
+            ex.printStackTrace();
             return null;
         }
     }
     
-    private boolean verificaEmailDuplicado(String email) {
-    Connection con = Conn.connectToDatabase();
-    String query = "SELECT EMAIL FROM FUNCIONARIO WHERE EMAIL = ?";
+    private boolean verificaEmailDuplicado(String email) throws ClassNotFoundException {
+    String query = "SELECT EMAIL FROM FUNCIONARIO WHERE EMAIL =" + "'" + email +"'";
+    System.out.println(query);
     try {
-        PreparedStatement stmt = con.prepareStatement(query);
-        stmt.setString(1, email); // Atribui o valor de email ao primeiro parâmetro (?)
-        ResultSet rs = stmt.executeQuery();
+        ResultSet rs = Database.executarSelect(query);
         int rowCount = 0;
         while (rs.next()) {
-            rowCount++;
+            rowCount++; 
         }
-        stmt.close();
         return rowCount > 0; // Retorna verdadeiro se rowCount for maior que zero (encontrou emails duplicados)
     } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Erro.", "Erro", JOptionPane.ERROR_MESSAGE);
-    } finally{
-        try {
-            con.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao fechar a conexão: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-        }
+        JOptionPane.showMessageDialog(null, "Erro verificar email duplicado: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
     }
     return false;
 }

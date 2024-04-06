@@ -1,6 +1,7 @@
 package Banco;
 
 import java.sql.*;
+import javax.sql.rowset.*;
 
 public class Database {
     //Para facilitar em usos futuros decidi colocar em variaveis
@@ -51,8 +52,8 @@ public class Database {
     public static ResultSet executarSelect(String queryStmt) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         ResultSet resultSet = null;
-        //CachedRowSet crs = null;
-                
+        CachedRowSet crs = null;
+     
         //CachedRowSet eh como se fosse um ResultSet, mas desconectado do banco,
         //no momento nao se faz necessario. Por precaucao deixarei o codigo pronto
         
@@ -64,8 +65,8 @@ public class Database {
         resultSet = stmt.executeQuery(queryStmt);
         
         //Recebe o resultado e transforma em cache para ser usado
-        //crs = new CachedRowSetImpl();
-        //crs.populate(resultSet);
+        crs = RowSetProvider.newFactory().createCachedRowSet();
+        crs.populate(resultSet);
     
         }catch (SQLException ex){
             System.out.println("Ocorreu um problema ao tentar executar o Select: " + ex);
@@ -81,7 +82,7 @@ public class Database {
             desconectar();
         }
         //Retorna o resultado para manipulacao
-        return resultSet;
+        return crs;
     }
     
     public static void executarQuery(String queryStmt) throws SQLException, ClassNotFoundException {
