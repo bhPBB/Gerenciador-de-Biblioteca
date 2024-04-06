@@ -126,7 +126,7 @@ public class Login extends javax.swing.JFrame {
         String email = textEmail.getText();
         String senha = new String(textSenha.getPassword());
 
-        String query = "SELECT EMAIL, SENHA FROM FUNCIONARIO WHERE EMAIL = '" + email + "'";
+        String query = "SELECT SENHA FROM FUNCIONARIO WHERE EMAIL = '" + email + "'";
         try {
             ResultSet rs = Database.executarSelect(query);
             if (rs.next()) { // Verifica se encontrou um registro
