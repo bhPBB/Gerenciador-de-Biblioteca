@@ -2,10 +2,9 @@ package Banco;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -124,15 +123,12 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLoginActionPerformed
-        Connection con = Conn.connectToDatabase();
-    if(con != null){
-        String query = "SELECT SENHA FROM FUNCIONARIO WHERE EMAIL = ?";
         String email = textEmail.getText();
         String senha = new String(textSenha.getPassword());
+
+        String query = "SELECT EMAIL, SENHA FROM FUNCIONARIO WHERE EMAIL = '" + email + "'";
         try {
-            PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setString(1, email);
-            ResultSet rs = stmt.executeQuery();
+            ResultSet rs = Database.executarSelect(query);
             if (rs.next()) { // Verifica se encontrou um registro
                 String senhaDoBanco = rs.getString("SENHA");
                 if (encrypt(senha).equals(senhaDoBanco)) {
@@ -148,10 +144,10 @@ public class Login extends javax.swing.JFrame {
             }
         } catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Erro ao executar o login: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao executar o query: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
-    } else {
-        JOptionPane.showMessageDialog(null, "Não foi possível obter conexão com o banco de dados.", "Erro", JOptionPane.ERROR_MESSAGE);
-    }
+    
     }//GEN-LAST:event_bLoginActionPerformed
 
     private String encrypt(String senha){

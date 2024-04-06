@@ -178,7 +178,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 try {
                     String query = "INSERT INTO FUNCIONARIO (nome, cpf, email, senha) VALUES ('" + nome + "','" + cpf + "','" + email + "','" + crypto + "')";
                     Database.executarQuery(query);
-
+                    JOptionPane.showMessageDialog(null, "Retorne à página de login", "Funcionário cadastrado com sucesso.",  JOptionPane.INFORMATION_MESSAGE);
                 } catch (SQLException ex) { 
                     JOptionPane.showMessageDialog(null, "Erro ao executar a inserção: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                     throw ex;
