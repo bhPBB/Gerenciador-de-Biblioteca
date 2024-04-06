@@ -6,6 +6,7 @@ InterfacesCRUD\ICRUDCliente.class
 Banco\CadastroFuncionario.class
 ClassesTeste\ClienteTeste.class
 Banco\CadastroFuncionario$1.class
+Banco\CadastroLivro.class
 Banco\Login$2.class
 Banco\Conn.class
 Banco\Login$3.class
