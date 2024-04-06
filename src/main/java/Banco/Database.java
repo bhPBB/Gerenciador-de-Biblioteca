@@ -5,13 +5,13 @@ import javax.sql.rowset.*;
 
 public class Database {
     //Para facilitar em usos futuros decidi colocar em variaveis
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String SGBD = "mysql";
+    private static final String DRIVER = "org.postgresql.Driver";
+    private static final String SGBD = "postgresql";
     private static final String SERVER = "localhost";
-    private static final String PORTA = "";
+    private static final String PORTA = "5432";
     private static final String DATABASE = "biblioteca";
-    private static final String USUARIO = "root";
-    private static final String SENHA = "";
+    private static final String USUARIO = "postgres";
+    private static final String SENHA = "123";
     private static final String URL = "jdbc:" + SGBD + "://" + SERVER + ":" + PORTA + "/"+ DATABASE;
     private static Connection con = null;
     
