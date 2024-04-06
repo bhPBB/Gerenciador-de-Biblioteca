@@ -4,9 +4,9 @@ public class Funcionario {
     private String email;
     private String nome;
     private String senha;
-    private int cpf;
+    private String cpf;
 
-    public Funcionario(String email, String nome, String senha, int cpf) {
+    public Funcionario(String cpf, String nome, String email, String senha) {
         this.email = email;
         this.nome = nome;
         this.senha = senha;
@@ -25,7 +25,7 @@ public class Funcionario {
         return senha;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
     
