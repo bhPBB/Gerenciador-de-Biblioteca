@@ -208,7 +208,6 @@ public class CadastroFuncionario extends javax.swing.JFrame {
     
     private boolean verificaEmailDuplicado(String email) throws ClassNotFoundException {
     String query = "SELECT EMAIL FROM FUNCIONARIO WHERE EMAIL =" + "'" + email +"'";
-    System.out.println(query);
     try {
         ResultSet rs = Database.executarSelect(query);
         int rowCount = 0;
