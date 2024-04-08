@@ -30,4 +30,23 @@ public class CadastrarFuncionarioController {
             ex.printStackTrace();
         }
     }
+    @FXML
+    private void irPara(ActionEvent e) throws IOException {
+        
+        var tela = "listarFuncionarios";
+        
+        try {
+            App.mudarDeTela(e, tela);
+        }
+        catch (IOException ex) {
+            throw new IOException("Tela não encontrada: " + tela);
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    @FXML
+    private void cadastar(ActionEvent e) throws IOException {
+        
+    }
 }
