@@ -1,8 +1,11 @@
 package Controllers;
 
 import Banco.Database;
+import Modelos.Funcionario;
+
 import javafx.fxml.Initializable;
 import java.net.URL;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -39,6 +42,8 @@ public class CadastrarClienteController implements Initializable{
     
     @FXML
     private Label successLabel;
+
+    private Funcionario funcionario = Funcionario.getFuncionario("", "", "");
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -92,7 +97,8 @@ public class CadastrarClienteController implements Initializable{
             }else{
                 try {
                     Database.executarQuery("INSERT INTO cliente (cpf, nome, estado, cidade"
-                            + ") VALUES ('" + inputCPF + "','" + inputNome + "','" + inputEstado.getValue() + "','" + inputCidade + "'");
+                            + ", id_funcionario) VALUES ('" + inputCPF + "','" + inputNome + "','" + inputEstado.getValue() + 
+                            "','" + inputCidade + "','" + funcionario.getCpf() + "')");
                     successLabel.setText("Cliente cadastrado com sucesso.");
                 } catch (SQLException | ClassNotFoundException ex) { 
                     errorLabel.setText(ex.getMessage());
