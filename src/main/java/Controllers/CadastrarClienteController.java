@@ -59,7 +59,7 @@ public class CadastrarClienteController implements Initializable{
     void setCidade(String estado){
         inputCidade.getItems().clear();
         try {
-                ResultSet rs = Database.executarSelect("SELECT descricao FROM cidade WHERE estado = '" + estado + "'");
+                ResultSet rs = Database.executarSelect("SELECT descricao FROM cidade WHERE estado = (SELECT id FROM estado WHERE descricao = '" + estado + "')");
                 while(rs.next())
                     inputCidade.getItems().add(rs.getString("descricao"));
             } catch (SQLException | ClassNotFoundException ex) {
@@ -92,7 +92,7 @@ public class CadastrarClienteController implements Initializable{
             }else{
                 try {
                     Database.executarQuery("INSERT INTO cliente (cpf, nome, estado, cidade"
-                            + "id_funcionario) VALUES ('" + inputCPF + "','" + inputNome + "','" + inputEstado.getValue() + "','" + inputCidade + "'");
+                            + ") VALUES ('" + inputCPF + "','" + inputNome + "','" + inputEstado.getValue() + "','" + inputCidade + "'");
                     successLabel.setText("Cliente cadastrado com sucesso.");
                 } catch (SQLException | ClassNotFoundException ex) { 
                     errorLabel.setText(ex.getMessage());

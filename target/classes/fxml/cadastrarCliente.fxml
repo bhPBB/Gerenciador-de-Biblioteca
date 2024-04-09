@@ -51,12 +51,7 @@
                   <Font name="Chilanka Regular" size="16.0" />
                </font>
             </Label>
-            <Label alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="75.0" text="Senha:" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
-               <font>
-                  <Font name="Chilanka Regular" size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="InputCPF" prefHeight="46.0" promptText="CPF" styleClass="text-field" stylesheets="@cadastrarCliente.css" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <TextField fx:id="inputCPF" prefHeight="46.0" promptText="CPF" styleClass="text-field" stylesheets="@cadastrarCliente.css" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -68,17 +63,6 @@
                </opaqueInsets>
             </TextField>
             <TextField fx:id="inputEmail" prefHeight="46.0" promptText="E-mail" styleClass="text-field" stylesheets="@cadastrarCliente.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Chilanka Regular" size="22.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets right="15.0" />
-               </GridPane.margin>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </TextField>
-            <TextField fx:id="inputSenha" prefHeight="46.0" promptText="Senha" styleClass="text-field" stylesheets="@cadastrarCliente.css" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
