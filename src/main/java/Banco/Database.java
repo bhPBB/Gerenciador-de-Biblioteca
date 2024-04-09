@@ -22,17 +22,12 @@ public class Database {
         try{
             Class.forName(DRIVER);
         } catch (ClassNotFoundException ex) {
-            System.out.println("Driver do Banco nao encontrado.");
-            //ex.printStackTrace();
             throw ex;
     }
         //Tenta conexao com o banco
         try{
             con = DriverManager.getConnection(URL, USUARIO, SENHA);
         } catch (SQLException ex) {
-            System.out.println("Erro ao conectar ao banco de dados: " + ex.getMessage());
-            System.out.println(URL);
-            //ex.printStackTrace();
             throw ex;
         }  
         

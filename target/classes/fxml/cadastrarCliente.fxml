@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CadastrarFuncionarioController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CadastrarClienteController">
     <stylesheets>
         <URL value="@cadastrarFuncionario.css" />
     </stylesheets>
@@ -37,10 +38,10 @@
          <children>
             <Label alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="75.0" text="CPF:">
                <font>
-                  <Font name="Chilanka Regular" size="16.0" />
+                  <Font size="16.0" />
                </font>
             </Label>
-            <Label alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="75.0" text="Foto:" GridPane.rowIndex="4">
+            <Label alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="75.0" text="Estado:" GridPane.rowIndex="4">
                <font>
                   <Font name="Chilanka Regular" size="16.0" />
                </font>
@@ -55,7 +56,7 @@
                   <Font name="Chilanka Regular" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="InputCPF" prefHeight="46.0" promptText="CPF" styleClass="text-field" stylesheets="@cadastrarFuncionario.css" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <TextField fx:id="InputCPF" prefHeight="46.0" promptText="CPF" styleClass="text-field" stylesheets="@cadastrarCliente.css" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -66,7 +67,7 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextField fx:id="inputFoto" prefHeight="46.0" promptText="Foto" styleClass="text-field" stylesheets="@cadastrarFuncionario.css" GridPane.halignment="LEFT" GridPane.rowIndex="5">
+            <TextField fx:id="inputEmail" prefHeight="46.0" promptText="E-mail" styleClass="text-field" stylesheets="@cadastrarCliente.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -77,18 +78,7 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextField fx:id="inputEmail" prefHeight="46.0" promptText="E-mail" styleClass="text-field" stylesheets="@cadastrarFuncionario.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Chilanka Regular" size="22.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets right="15.0" />
-               </GridPane.margin>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </TextField>
-            <TextField fx:id="inputSenha" prefHeight="46.0" promptText="Senha" styleClass="text-field" stylesheets="@cadastrarFuncionario.css" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+            <TextField fx:id="inputSenha" prefHeight="46.0" promptText="Senha" styleClass="text-field" stylesheets="@cadastrarCliente.css" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -104,7 +94,7 @@
                   <Font name="Chilanka Regular" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="inputNome" prefHeight="46.0" promptText="Nome" styleClass="text-field" stylesheets="@cadastrarFuncionario.css" GridPane.rowIndex="3" GridPane.valignment="TOP">
+            <TextField fx:id="inputNome" prefHeight="46.0" promptText="Nome" styleClass="text-field" stylesheets="@cadastrarCliente.css" GridPane.rowIndex="3" GridPane.valignment="TOP">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -115,9 +105,16 @@
                   <Insets right="15.0" />
                </GridPane.margin>
             </TextField>
+            <Label alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="75.0" text="Cidade:" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Chilanka Regular" size="16.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="inputEstado" onAction="#selecionarEstado" prefHeight="47.0" prefWidth="188.0" stylesheets="@cadastrarCliente.css" GridPane.rowIndex="5" GridPane.valignment="TOP" />
+            <ComboBox fx:id="inputCidade" prefHeight="47.0" prefWidth="188.0" stylesheets="@cadastrarCliente.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <Button fx:id="cadastrarFuncionario" alignment="CENTER" layoutX="1040.0" layoutY="660.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="193.0" text="Cadastrar">
+      <Button fx:id="cadastrar" alignment="CENTER" layoutX="1040.0" layoutY="660.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="46.0" prefWidth="193.0" text="Cadastrar">
          <font>
             <Font name="DejaVu Sans Bold" size="22.0" />
          </font>
@@ -127,5 +124,15 @@
             <Font name="DejaVu Sans Bold" size="22.0" />
          </font>
       </Button>
+      <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="705.0" layoutY="555.0" prefHeight="100.0" prefWidth="549.0" textFill="RED">
+         <font>
+            <Font name="Chilanka Regular" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="successLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="705.0" layoutY="555.0" prefHeight="100.0" prefWidth="549.0" textFill="#27ff00">
+         <font>
+            <Font name="Chilanka Regular" size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
