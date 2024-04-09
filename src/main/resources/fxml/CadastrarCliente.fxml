@@ -108,12 +108,7 @@
             <Font name="DejaVu Sans Bold" size="22.0" />
          </font>
       </Button>
-      <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="705.0" layoutY="555.0" prefHeight="100.0" prefWidth="549.0" textFill="RED">
-         <font>
-            <Font name="Chilanka Regular" size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="successLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="705.0" layoutY="555.0" prefHeight="100.0" prefWidth="549.0" textFill="#27ff00">
+      <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="705.0" layoutY="555.0" prefHeight="100.0" prefWidth="549.0" textFill="RED">
          <font>
             <Font name="Chilanka Regular" size="16.0" />
          </font>
