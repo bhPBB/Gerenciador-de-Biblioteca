@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 
 public class CadastrarClienteController implements Initializable{
 
@@ -38,10 +39,7 @@ public class CadastrarClienteController implements Initializable{
     private TextField inputNome;
 
     @FXML
-    private Label errorLabel;
-    
-    @FXML
-    private Label successLabel;
+    private Label messageLabel;
 
     private Funcionario funcionario = Funcionario.getFuncionario("", "", "");
     
@@ -52,7 +50,8 @@ public class CadastrarClienteController implements Initializable{
             while(rs.next())
                 inputEstado.getItems().add(rs.getString("descricao"));
         } catch (SQLException | ClassNotFoundException ex) {
-            errorLabel.setText(ex.getMessage());
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText(ex.getMessage());
         }
     }   
     
@@ -68,7 +67,8 @@ public class CadastrarClienteController implements Initializable{
                 while(rs.next())
                     inputCidade.getItems().add(rs.getString("descricao"));
             } catch (SQLException | ClassNotFoundException ex) {
-                errorLabel.setText(ex.getMessage());
+                messageLabel.setTextFill(Color.color(1, 0, 0));
+                messageLabel.setText(ex.getMessage());
             }
         }
     
@@ -82,7 +82,8 @@ public class CadastrarClienteController implements Initializable{
             }
             return rowCount > 0;
         } catch (SQLException | ClassNotFoundException ex) {
-            errorLabel.setText(ex.getMessage());
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText(ex.getMessage());
         }
         return false;
     }
@@ -91,17 +92,21 @@ public class CadastrarClienteController implements Initializable{
     void cadastrar(ActionEvent event) {
             if(inputCPF.getText().isEmpty() || inputEmail.getText().isEmpty() ||
                     inputNome.getText().isEmpty() || inputEstado.getValue() == null || inputCidade.getValue() == null){
-                errorLabel.setText("Por favor, preencha todos os campos.");   
+                messageLabel.setTextFill(Color.color(1, 0, 0));
+                messageLabel.setText("Por favor, preencha todos os campos.");   
             }else if(verificaCPF(inputCPF.getText())){
-                errorLabel.setText("Este cliente já foi cadastrado.");
+                messageLabel.setTextFill(Color.color(1, 0, 0));
+                messageLabel.setText("Este cliente já foi cadastrado.");
             }else{
                 try {
                     Database.executarQuery("INSERT INTO cliente (cpf, nome, estado, cidade"
                             + ", id_funcionario) VALUES ('" + inputCPF + "','" + inputNome + "','" + inputEstado.getValue() + 
                             "','" + inputCidade + "','" + funcionario.getCpf() + "')");
-                    successLabel.setText("Cliente cadastrado com sucesso.");
+                    messageLabel.setTextFill(Color.color(0, 1, 0));
+                    messageLabel.setText("Cliente cadastrado com sucesso.");
                 } catch (SQLException | ClassNotFoundException ex) { 
-                    errorLabel.setText(ex.getMessage());
+                    messageLabel.setTextFill(Color.color(1, 0, 0));
+                    messageLabel.setText(ex.getMessage());
                 }
             }
     }
