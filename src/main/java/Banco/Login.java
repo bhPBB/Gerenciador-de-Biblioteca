@@ -1,5 +1,6 @@
 package Banco;
 
+import Modelos.Funcionario;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
@@ -126,13 +127,15 @@ public class Login extends javax.swing.JFrame {
         String email = textEmail.getText();
         String senha = new String(textSenha.getPassword());
 
-        String query = "SELECT SENHA FROM FUNCIONARIO WHERE EMAIL = '" + email + "'";
+        String query = "SELECT SENHA, CPF FROM FUNCIONARIO WHERE EMAIL = '" + email + "'";
         try {
             ResultSet rs = Database.executarSelect(query);
             if (rs.next()) { // Verifica se encontrou um registro
                 String senhaDoBanco = rs.getString("SENHA");
+                String cpf = rs.getString("CPF");
                 if (encrypt(senha).equals(senhaDoBanco)) {
                     // A senha está correta, pode liberar o acesso ao software
+                    Funcionario.getFuncionario(cpf, inputNome.getText(), inputEmail.getText());
                     JOptionPane.showMessageDialog(null, "Login aceito.", "Suceso!!!", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     // A senha está incorreta
