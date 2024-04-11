@@ -2,6 +2,8 @@ package Controllers;
 
 import Banco.Database;
 import Modelos.Funcionario;
+import com.mycompany.gerenciadordebiblioteca.App;
+import java.io.IOException;
 
 import javafx.fxml.Initializable;
 import java.net.URL;
@@ -9,6 +11,8 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -116,4 +120,14 @@ public class CadastrarClienteController implements Initializable{
 
     }
 
+    @FXML
+    void logout(ActionEvent event) throws IOException {
+        if(Funcionario.logout() == null)
+                App.mudarDeTela(event, "login");
+        
+        else{
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText("Não foi possível fazer o Logout.");
+        }
+    }
 }

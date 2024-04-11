@@ -1,29 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controllers;
 
 import Banco.Database;
+import Modelos.Funcionario;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import InterfacesCRUD.ICRUDFuncionario;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
-/**
- *
- * @author bruno
- */
 public class CadastrarFuncionarioController {
     @FXML
     private TextField inputCPF;
@@ -122,4 +112,14 @@ public class CadastrarFuncionarioController {
     }
     return false;
 }
+    @FXML
+    void logout(ActionEvent event) throws IOException {
+        if(Funcionario.logout() == null)
+                App.mudarDeTela(event, "login");
+        
+        else{
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText("Não foi possível fazer o Logout.");
+        }
+    }
 }
