@@ -2,15 +2,6 @@ package ClassesTeste;
 
 import InterfacesCRUD.ICRUDCliente;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
-/**
- *
- * @author bruno
- */
 public class ClienteTeste implements ICRUDCliente {
     private String CPF, nome, cidade, estado;
     private int numEmprestimos;

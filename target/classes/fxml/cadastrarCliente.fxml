@@ -113,5 +113,6 @@
             <Font name="Chilanka Regular" size="16.0" />
          </font>
       </Label>
+      <Button layoutX="181.0" layoutY="267.0" mnemonicParsing="false" onAction="#logout" text="Button" />
    </children>
 </AnchorPane>

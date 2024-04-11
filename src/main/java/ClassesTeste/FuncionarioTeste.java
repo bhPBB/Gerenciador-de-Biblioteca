@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ClassesTeste;
 
 import InterfacesCRUD.ICRUDFuncionario;
 
-/**
- *
- * @author bruno
- */
 public class FuncionarioTeste implements ICRUDFuncionario {
     private static int ultimoId = 0;
     private final int id;

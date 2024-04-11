@@ -11,9 +11,6 @@ import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 
-/**
- * JavaFX App
- */
 public class App extends Application {
 
     private static Scene scene;
@@ -33,7 +30,7 @@ public class App extends Application {
         return fxmlLoader.load();
     }
     
-    public static void mudarDeTela(ActionEvent e, String tela) throws IOException {
+    public static void mudarDeTela(ActionEvent e, String tela) throws IOException{
         try {
         root = loadFXML(tela);
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -42,10 +39,10 @@ public class App extends Application {
         stage.show();
         } 
         catch (IOException ex) {
-            throw new IOException("Tela não encontrada: " + tela);
+            throw ex;
         }
         catch (Exception ex) {
-            ex.printStackTrace();
+            throw ex;
         }
     }
 

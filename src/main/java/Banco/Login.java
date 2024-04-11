@@ -8,15 +8,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Vinícius
- */
+
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login
-     */
+
     public Login() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         initComponents();

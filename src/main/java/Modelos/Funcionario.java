@@ -1,6 +1,6 @@
 package Modelos;
 
-public final class Funcionario {
+public class Funcionario {
     private String email;
     private String nome;
     private String cpf;
@@ -19,6 +19,11 @@ public final class Funcionario {
         return instance;
     }
 
+    public static Funcionario logout(){
+        instance = null;
+        return instance;
+    }
+    
     public String getEmail() {
         return email;
     }
