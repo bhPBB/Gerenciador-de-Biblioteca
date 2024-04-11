@@ -135,7 +135,7 @@ public class Login extends javax.swing.JFrame {
                 String cpf = rs.getString("CPF");
                 if (encrypt(senha).equals(senhaDoBanco)) {
                     // A senha está correta, pode liberar o acesso ao software
-                    Funcionario.getFuncionario(cpf, inputNome.getText(), inputEmail.getText());
+                    //Funcionario.getFuncionario(cpf, inputNome.getText(), inputEmail.getText());
                     JOptionPane.showMessageDialog(null, "Login aceito.", "Suceso!!!", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     // A senha está incorreta

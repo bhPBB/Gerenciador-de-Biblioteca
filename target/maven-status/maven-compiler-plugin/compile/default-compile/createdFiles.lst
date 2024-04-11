@@ -1,6 +1,7 @@
 Modelos\Funcionario.class
 Controllers\CardListarLivroController.class
 Controllers\CardListarFuncionarioController.class
+Controllers\LoginController.class
 Banco\CadastroFuncionario$1.class
 Banco\CadastroLivro.class
 Banco\Login$2.class

@@ -94,8 +94,8 @@
                   <Font name="Chilanka Regular" size="16.0" />
                </font>
             </Label>
-            <ComboBox fx:id="inputEstado" onAction="#selecionarEstado" prefHeight="47.0" prefWidth="188.0" stylesheets="@cadastrarCliente.css" GridPane.rowIndex="5" GridPane.valignment="TOP" />
-            <ComboBox fx:id="inputCidade" prefHeight="47.0" prefWidth="188.0" stylesheets="@cadastrarCliente.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ComboBox fx:id="inputEstado" onAction="#selecionarEstado" prefHeight="47.0" prefWidth="188.0" promptText="Selecione" stylesheets="@cadastrarCliente.css" GridPane.rowIndex="5" GridPane.valignment="TOP" />
+            <ComboBox fx:id="inputCidade" prefHeight="47.0" prefWidth="188.0" promptText="Selecione" stylesheets="@cadastrarCliente.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
       <Button fx:id="cadastrar" alignment="CENTER" layoutX="1040.0" layoutY="660.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="46.0" prefWidth="193.0" text="Cadastrar">
