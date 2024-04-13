@@ -104,8 +104,9 @@ public class CadastrarClienteController implements Initializable{
             }else{
                 try {
                     Database.executarQuery("INSERT INTO cliente (cpf, nome, estado, cidade"
-                            + ", id_funcionario) VALUES ('" + inputCPF + "','" + inputNome + "','" + inputEstado.getValue() + 
-                            "','" + inputCidade + "','" + funcionario.getCpf() + "')");
+                    + ", id_funcionario) VALUES ('" + inputCPF.getText() + "','" + inputNome.getText() + "',"
+                    + "(SELECT id FROM estado WHERE descricao = '" + inputEstado.getValue() +
+                    "'),(SELECT id FROM cidade WHERE descricao = '" + inputCidade.getValue() + "'),'" + funcionario.getCpf() + "')");
                     messageLabel.setTextFill(Color.color(0, 1, 0));
                     messageLabel.setText("Cliente cadastrado com sucesso.");
                 } catch (SQLException | ClassNotFoundException ex) { 

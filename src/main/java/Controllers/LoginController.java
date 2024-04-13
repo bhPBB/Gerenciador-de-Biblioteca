@@ -67,12 +67,12 @@ public class LoginController {
                 } else {
                     // A senha está incorreta
                     messageLabel.setTextFill(Color.color(1, 0, 0));
-                    messageLabel.setText("Senha incorreta.");
+                    messageLabel.setText("Usuário ou senha incorretos.");
                 }
             } else {
                 // Não encontrou um registro com o email fornecido
                 messageLabel.setTextFill(Color.color(1, 0, 0));
-                messageLabel.setText("Usuário não encontrado.");
+                messageLabel.setText("Usuário ou senha incorretos.");
             }
         } catch (SQLException | ClassNotFoundException ex) { 
                     messageLabel.setTextFill(Color.color(1, 0, 0));
