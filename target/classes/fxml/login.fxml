@@ -6,7 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -24,7 +24,7 @@
       </Label>
       <AnchorPane layoutX="442.0" layoutY="96.0" prefHeight="479.0" prefWidth="412.0" styleClass="back-grid" stylesheets="@login.css">
          <effect>
-            <BoxBlur />
+            <GaussianBlur radius="21.25" />
          </effect>
       </AnchorPane>
       <GridPane layoutX="442.0" layoutY="96.0" prefHeight="479.0" prefWidth="412.0" styleClass="grid-form" stylesheets="@login.css">
@@ -78,7 +78,7 @@
                   <Font name="DejaVu Sans Bold" size="36.0" />
                </font>
                <GridPane.margin>
-                  <Insets top="5.0" />
+                  <Insets top="15.0" />
                </GridPane.margin>
             </Label>
             <ImageView blendMode="OVERLAY" fitHeight="28.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
@@ -102,7 +102,7 @@
                   <Image url="@../Imagens/user-regular-40.png" />
                </image>
                <GridPane.margin>
-                  <Insets top="5.0" />
+                  <Insets top="15.0" />
                </GridPane.margin>
             </ImageView>
          </children>

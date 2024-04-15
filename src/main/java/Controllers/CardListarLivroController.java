@@ -1,17 +1,39 @@
 package Controllers;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
-public class CardListarLivroController implements Initializable {
+public class CardListarLivroController {
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    @FXML
+    private Label autor;
+
+    @FXML
+    private ImageView deletar;
+
+    @FXML
+    private ImageView editar;
+
+    @FXML
+    private Label genero;
+
+    @FXML
+    private ImageView imagem;
+
+    @FXML
+    private Label qtdEstoque;
+
+    @FXML
+    private Label titulo;
     
+    @FXML
+    private void criarCard(String titulo, String autor, String genero, int qtdEstoque, String imagemCaminho) {
+        this.autor.setText(autor);
+        this.genero.setText(genero);
+        this.titulo.setText(titulo);
+        this.qtdEstoque.setText(String.valueOf(qtdEstoque));
+        this.imagem.setImage(new Image(imagemCaminho));
+    }
 }
