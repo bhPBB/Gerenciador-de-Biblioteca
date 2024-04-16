@@ -50,7 +50,9 @@ public class CadastrarClienteController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            ResultSet rs = Database.executarSelect("SELECT descricao FROM estado");
+            String query = "SELECT descricao FROM estado";
+            
+            ResultSet rs = Database.executarSelect(query);
             while(rs.next())
                 inputEstado.getItems().add(rs.getString("descricao"));
         } catch (SQLException | ClassNotFoundException ex) {
@@ -94,26 +96,34 @@ public class CadastrarClienteController implements Initializable{
     //FALTA O ID_FUNCIONARIO
     @FXML
     void cadastrar(ActionEvent event) {
-            if(inputCPF.getText().isEmpty() || inputEmail.getText().isEmpty() ||
-                    inputNome.getText().isEmpty() || inputEstado.getValue() == null || inputCidade.getValue() == null){
+        String cpf = inputCPF.getText();
+        String email = inputEmail.getText();
+        String nome = inputNome.getText();
+        String estado = inputEstado.getValue();
+        String cidade = inputCidade.getValue();
+        
+        if(cpf.isEmpty() || email.isEmpty() || nome.isEmpty() || 
+                estado == null || cidade == null){
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText("Por favor, preencha todos os campos.");   
+        }else if(verificaCPF(cpf)){
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText("Este cliente já foi cadastrado.");
+        }else{
+            try {
+                String query = "INSERT INTO cliente (cpf, nome, estado, cidade"
+                + ", id_funcionario) VALUES ('" + cpf + "','" + nome + "',"
+                + "(SELECT id FROM estado WHERE descricao = '" + estado +
+                "'),(SELECT id FROM cidade WHERE descricao = '" + cidade + "'),'" + funcionario.getCpf() + "')";
+
+                Database.executarQuery(query);
+                messageLabel.setTextFill(Color.color(0, 1, 0));
+                messageLabel.setText("Cliente cadastrado com sucesso.");
+            } catch (SQLException | ClassNotFoundException ex) { 
                 messageLabel.setTextFill(Color.color(1, 0, 0));
-                messageLabel.setText("Por favor, preencha todos os campos.");   
-            }else if(verificaCPF(inputCPF.getText())){
-                messageLabel.setTextFill(Color.color(1, 0, 0));
-                messageLabel.setText("Este cliente já foi cadastrado.");
-            }else{
-                try {
-                    Database.executarQuery("INSERT INTO cliente (cpf, nome, estado, cidade"
-                    + ", id_funcionario) VALUES ('" + inputCPF.getText() + "','" + inputNome.getText() + "',"
-                    + "(SELECT id FROM estado WHERE descricao = '" + inputEstado.getValue() +
-                    "'),(SELECT id FROM cidade WHERE descricao = '" + inputCidade.getValue() + "'),'" + funcionario.getCpf() + "')");
-                    messageLabel.setTextFill(Color.color(0, 1, 0));
-                    messageLabel.setText("Cliente cadastrado com sucesso.");
-                } catch (SQLException | ClassNotFoundException ex) { 
-                    messageLabel.setTextFill(Color.color(1, 0, 0));
-                    messageLabel.setText(ex.getMessage());
-                }
+                messageLabel.setText(ex.getMessage());
             }
+        }
     }
    
     @FXML
