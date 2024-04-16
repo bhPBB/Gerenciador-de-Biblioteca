@@ -115,7 +115,7 @@
                   <Font name="Chilanka Regular" size="16.0" />
                </font>
             </Label>
-            <Button fx:id="cadastrarFuncionario" alignment="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="185.0" styleClass="botao" stylesheets="@cadastrarLivro.css" text="Cadastrar" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Button fx:id="cadastrarLivro" alignment="CENTER" mnemonicParsing="false" onAction="#cadastrar" prefHeight="46.0" prefWidth="185.0" styleClass="botao" stylesheets="@cadastrarLivro.css" text="Cadastrar" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <font>
                   <Font name="DejaVu Sans Bold" size="22.0" />
                </font>
@@ -127,7 +127,7 @@
             <Font name="DejaVu Sans Bold" size="22.0" />
          </font>
       </Button>
-      <Label fx:id="msgErro" layoutX="732.0" layoutY="597.0" prefHeight="111.0" prefWidth="233.0" textFill="RED">
+      <Label fx:id="messageLabel" layoutX="737.0" layoutY="555.0" prefHeight="111.0" prefWidth="456.0" textFill="RED">
          <font>
             <Font name="Chilanka Regular" size="16.0" />
          </font>
