@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 public class ListarLivrosController implements Initializable {
@@ -43,7 +44,7 @@ public class ListarLivrosController implements Initializable {
 
     @FXML
     void pesquisar(ActionEvent event) {
-
+        // a implementar.
     }
 
     @Override
@@ -52,10 +53,28 @@ public class ListarLivrosController implements Initializable {
         {
             var fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/cardListarLivro.fxml"));
             
-            try {
-                var card = fxmlLoader.load();
-                /* continuar daqui */
-            } catch (IOException ex) {
+            try 
+            {
+                //Cria um card
+                AnchorPane card = fxmlLoader.load();
+                
+                //Pega o controller dos cards
+                CardListarLivroController cardController = fxmlLoader.getController();
+                
+                //Passa os dados
+                cardController.criarCard(
+                        "Teste", 
+                        "Teste", 
+                        "Teste", 
+                        4, 
+                        "Imagens/capa-livro-teste.jpg"
+                );
+                
+                //Insere os cards no container
+                cardContainer.getChildren().add(card);
+            } 
+            catch (IOException ex) 
+            {
                 System.out.println("Erro ao carregar os cards.");
             }
             

@@ -11,27 +11,27 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CadastrarFuncionarioController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CadastrarLivroController">
     <stylesheets>
-        <URL value="@cadastrarFuncionario.css" />
+        <URL value="@cadastrarLivro.css" />
     </stylesheets>
    <children>
-      <Label layoutX="131.0" layoutY="28.0" text="Cadastrar Livro">
+      <Label layoutX="274.0" layoutY="28.0" text="Cadastrar Livro">
          <font>
             <Font name="DejaVu Sans Bold" size="42.0" />
          </font>
       </Label>
-      <GridPane layoutX="765.0" layoutY="79.0" prefHeight="450.0" prefWidth="400.0">
+      <GridPane layoutX="765.0" layoutY="194.0" prefHeight="332.0" prefWidth="400.0">
         <columnConstraints>
           <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" valignment="BOTTOM" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" valignment="TOP" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" valignment="BOTTOM" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
@@ -55,7 +55,7 @@
                   <Font name="Chilanka Regular" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="inputTitulo" prefHeight="46.0" promptText="Título" styleClass="text-field" stylesheets="@cadastrarFuncionario.css" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <TextField fx:id="inputTitulo" prefHeight="46.0" promptText="Título" styleClass="inputs" stylesheets="@cadastrarLivro.css" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -66,7 +66,7 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextField fx:id="inputGenero" prefHeight="46.0" promptText="Genero" styleClass="text-field" stylesheets="@cadastrarFuncionario.css" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+            <TextField fx:id="inputGenero" prefHeight="46.0" promptText="Genero" styleClass="inputs" stylesheets="@cadastrarLivro.css" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -77,7 +77,7 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextField fx:id="inputAutor" prefHeight="46.0" promptText="Autor" styleClass="text-field" stylesheets="@cadastrarFuncionario.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="inputAutor" prefHeight="46.0" promptText="Autor" styleClass="inputs" stylesheets="@cadastrarLivro.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -88,7 +88,7 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextField fx:id="inputFoto" prefHeight="46.0" promptText="Foto" styleClass="text-field" stylesheets="@cadastrarFuncionario.css" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+            <TextField fx:id="inputFoto" prefHeight="46.0" promptText="Foto" styleClass="inputs" stylesheets="@cadastrarLivro.css" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -99,7 +99,7 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextField fx:id="inputQtdEstoque" prefHeight="46.0" promptText="Qtd. em Estoque" styleClass="text-field" stylesheets="@cadastrarFuncionario.css" GridPane.rowIndex="5">
+            <TextField fx:id="inputQtdEstoque" prefHeight="46.0" promptText="Qtd. em Estoque" styleClass="inputs" stylesheets="@cadastrarLivro.css" GridPane.rowIndex="5">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -115,14 +115,14 @@
                   <Font name="Chilanka Regular" size="16.0" />
                </font>
             </Label>
+            <Button fx:id="cadastrarFuncionario" alignment="CENTER" mnemonicParsing="false" prefHeight="46.0" prefWidth="185.0" styleClass="botao" stylesheets="@cadastrarLivro.css" text="Cadastrar" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="22.0" />
+               </font>
+            </Button>
          </children>
       </GridPane>
-      <Button fx:id="cadastrarFuncionario" alignment="CENTER" layoutX="1038.0" layoutY="652.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="193.0" text="Cadastrar">
-         <font>
-            <Font name="DejaVu Sans Bold" size="22.0" />
-         </font>
-      </Button>
-      <Button alignment="CENTER" layoutX="14.0" layoutY="28.0" mnemonicParsing="false" onAction="#voltar" prefHeight="46.0" prefWidth="104.0" text="Voltar" textFill="RED">
+      <Button alignment="CENTER" layoutX="1165.0" layoutY="31.0" mnemonicParsing="false" onAction="#irPara" prefHeight="46.0" prefWidth="47.0" styleClass="botao" text="&lt;-" textFill="RED">
          <font>
             <Font name="DejaVu Sans Bold" size="22.0" />
          </font>

@@ -1,6 +1,7 @@
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/Controllers/CadastrarLivroController.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/Modelos/Funcionario.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/InterfacesCRUD/ICRUDFuncionario.java
+/home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/Controllers/ListarLivrosController.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/Modelos/Livro.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/Controllers/CardListarLivroController.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/com/mycompany/gerenciadordebiblioteca/App.java

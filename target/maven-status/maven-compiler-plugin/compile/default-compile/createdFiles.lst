@@ -1,5 +1,4 @@
 Banco/CadastroFuncionario$3.class
-Controllers/ListarLivrosControlller.class
 Controllers/CardListarClienteController.class
 Controllers/CardListarLivroController.class
 Modelos/Funcionario.class
@@ -14,6 +13,7 @@ ClassesTeste/LivroTeste.class
 Controllers/CadastrarFuncionarioController.class
 Banco/CadastroLivro.class
 Banco/Database.class
+Controllers/ListarLivrosController.class
 Controllers/LoginController.class
 Banco/CadastroFuncionario$2.class
 Banco/Login$2.class

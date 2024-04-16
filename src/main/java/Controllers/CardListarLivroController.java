@@ -29,7 +29,7 @@ public class CardListarLivroController {
     private Label titulo;
     
     @FXML
-    private void criarCard(String titulo, String autor, String genero, int qtdEstoque, String imagemCaminho) {
+    public void criarCard(String titulo, String autor, String genero, int qtdEstoque, String imagemCaminho) {
         this.autor.setText(autor);
         this.genero.setText(genero);
         this.titulo.setText(titulo);
