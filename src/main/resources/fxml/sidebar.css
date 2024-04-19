@@ -1,0 +1,23 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+.labels {
+    -fx-text-fill: linear-gradient(to top, #F7BA2C, #EA5459);
+}
+.label_pagina_atual_e_select {
+    -fx-background-color: white;
+    -fx-border-radius: 40px;
+    -fx-text-fill: transparent;
+}
+.background {
+    -fx-background-color: linear-gradient(to top, #F7BA2C, #EA5459);
+    /*-fx-border-radius: 40px;*/
+    -fx-text-fill: white;
+}
+.label_especial {
+    -fx-background-color: rgba(0,0,0, .25);
+}
