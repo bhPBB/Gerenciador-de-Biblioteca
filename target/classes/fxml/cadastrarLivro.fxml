@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -137,6 +136,23 @@
             <Font name="Chilanka Regular" size="16.0" />
          </font>
       </Label>
+      <Label layoutX="240.0" prefHeight="80.0" prefWidth="340.0" styleClass="titulo" stylesheets="@headers.css" text="Cadastrar Livro" textAlignment="CENTER">
+         <font>
+            <Font name="DejaVu Sans Bold" size="33.0" />
+         </font>
+         <padding>
+            <Insets left="25.0" />
+         </padding>
+      </Label>
+      <AnchorPane layoutX="1200.0" prefHeight="80.0" prefWidth="80.0" styleClass="background-botao" stylesheets="@headers.css">
+         <children>
+            <Button fx:id="voltarParaLista" alignment="CENTER" mnemonicParsing="false" onAction="#irParaLista" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 0px; -fx-border-color: transparent;" styleClass="botao" stylesheets="@headers.css" text="&lt;-">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="32.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
       <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="240.0" styleClass="background">
          <stylesheets>
             <URL value="@sidebar.css" />
@@ -144,7 +160,7 @@
          <children>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="720.0" prefWidth="240.0">
                <children>
-                  <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" prefWidth="240.0" style="-fx-text-fill: white;" styleClass="label_especial" stylesheets="@sidebar.css" text="GDB" textAlignment="CENTER">
+                  <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" prefWidth="240.0" styleClass="label_especial" stylesheets="@sidebar.css" text="GDB" textAlignment="CENTER">
                      <font>
                         <Font name="DejaVu Sans Bold" size="33.0" />
                      </font>
@@ -166,92 +182,75 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label fx:id="painel" onMouseClicked="#irPara" onMouseDragged="#mudarCor" prefHeight="86.0" prefWidth="240.0" style="-fx-text-fill: white;" stylesheets="@sidebar.css" text="Painel">
+                        <Button fx:id="sidebarPainel" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Painel" GridPane.halignment="CENTER">
                            <font>
                               <Font name="Chilanka Regular" size="19.0" />
                            </font>
                            <padding>
                               <Insets left="25.0" />
                            </padding>
-                        </Label>
-                        <Label fx:id="emprestimosAtivos" onMouseClicked="#irPara" onMouseDragged="#mudarCor" prefHeight="90.0" prefWidth="322.0" style="-fx-text-fill: white;" stylesheets="@sidebar.css" text="Empréstimos Ativos" GridPane.rowIndex="1">
-                           <font>
-                              <Font name="Chilanka Regular" size="19.0" />
-                           </font>
+                        </Button>
+                        <Button fx:id="sidebarLivros" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="side-bar-ativo" stylesheets="@sidebar.css" text="Livros" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                            <padding>
                               <Insets left="25.0" />
                            </padding>
-                        </Label>
-                        <Label fx:id="livros" onMouseClicked="#irPara" onMouseDragged="#mudarCor" prefHeight="83.0" prefWidth="322.0" style="-fx-text-fill: white;" stylesheets="@sidebar.css" text="Livros" GridPane.rowIndex="2">
                            <font>
                               <Font name="Chilanka Regular" size="19.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="sidebarEmprestimosAtivos" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Empréstimos Ativos" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <padding>
                               <Insets left="25.0" />
                            </padding>
-                        </Label>
-                        <Label fx:id="cliente" onMouseClicked="#irPara" onMouseDragged="#mudarCor" prefHeight="78.0" prefWidth="322.0" style="-fx-text-fill: white;" stylesheets="@sidebar.css" text="Clientes" GridPane.rowIndex="3">
                            <font>
                               <Font name="Chilanka Regular" size="19.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="sidebarClientes" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Clientes" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                            <padding>
                               <Insets left="25.0" />
                            </padding>
-                        </Label>
-                        <Label fx:id="funcionarios" onMouseClicked="#irPara" onMouseDragged="#mudarCor" prefHeight="90.0" prefWidth="322.0" style="-fx-text-fill: white;" stylesheets="@sidebar.css" text="Funcionários" GridPane.rowIndex="4">
                            <font>
                               <Font name="Chilanka Regular" size="19.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="sidebarFuncionarios" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Funcionários" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                            <padding>
                               <Insets left="25.0" />
                            </padding>
-                        </Label>
-                        <Label fx:id="autores" onMouseClicked="#irPara" onMouseDragged="#mudarCor" prefHeight="75.0" prefWidth="322.0" style="-fx-text-fill: white;" stylesheets="@sidebar.css" text="Autores" GridPane.rowIndex="5">
                            <font>
                               <Font name="Chilanka Regular" size="19.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="sidebarAutores" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Autores" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                            <padding>
                               <Insets left="25.0" />
                            </padding>
-                        </Label>
-                        <Label fx:id="generos" onMouseClicked="#irPara" onMouseDragged="#mudarCor" prefHeight="96.0" prefWidth="322.0" style="-fx-text-fill: white;" stylesheets="@sidebar.css" text="Gêneros" GridPane.rowIndex="6">
                            <font>
                               <Font name="Chilanka Regular" size="19.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="sidebarGeneros" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Gêneros" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                            <padding>
                               <Insets left="25.0" />
                            </padding>
-                        </Label>
+                           <font>
+                              <Font name="Chilanka Regular" size="19.0" />
+                           </font>
+                        </Button>
                      </children>
                   </GridPane>
-                  <Label fx:id="usuario" minHeight="-Infinity" onMouseClicked="#irPara" onMouseDragged="#mudarCor" prefHeight="80.0" prefWidth="240.0" style="-fx-text-fill: white;" styleClass="label_especial" stylesheets="@sidebar.css" text="Usuário" textAlignment="CENTER">
-                     <font>
-                        <Font name="DejaVu Sans Bold" size="23.0" />
-                     </font>
+                  <Button fx:id="sidebarUsuario" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="81.0" prefWidth="244.0" style="-fx-background-radius: 0px;" styleClass="label_especial" stylesheets="@sidebar.css" text="Usuário">
                      <padding>
                         <Insets left="25.0" />
                      </padding>
-                  </Label>
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="23.0" />
+                     </font>
+                  </Button>
                </children>
             </VBox>
          </children>
       </AnchorPane>
-      <HBox layoutX="240.0" prefHeight="80.0" prefWidth="1040.0">
-         <children>
-            <Label prefHeight="80.0" prefWidth="340.0" styleClass="titulo" stylesheets="@headers.css" text="Cadastrar Livro" textAlignment="CENTER">
-               <font>
-                  <Font name="DejaVu Sans Bold" size="33.0" />
-               </font>
-               <padding>
-                  <Insets left="25.0" />
-               </padding>
-            </Label>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#irPara" prefHeight="80.0" prefWidth="80.0" styleClass="botao" stylesheets="@headers.css" text="&lt;-" translateX="620.0">
-               <font>
-                  <Font name="DejaVu Sans Bold" size="32.0" />
-               </font>
-            </Button>
-         </children>
-      </HBox>
    </children>
 </AnchorPane>

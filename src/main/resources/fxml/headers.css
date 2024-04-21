@@ -31,7 +31,7 @@
     -fx-border-style: solid;
     -fx-background-radius: 0px;*/
 
-    /*-fx-background-color: rgba(0,0,0, .25);*/
+    -fx-background-color: transparent;
     -fx-text-fill: white;
     -fx-text-alignment: left;
     /*-fx-alignment: left;*/
@@ -39,8 +39,8 @@
 .botao-ativo {
     fx-background-color: rgba(255, 255, 255, .90);
     -fx-text-fill: linear-gradient(to bottom, #EA5459, #F7BA2C);
-    -fx-background-radius: 40px;
-    -fx-alignment: left;
+    /*-fx-background-radius: 40px;*/
+    -fx-alignment: center-left;
 }
 .background-botao {
     -fx-background-color: linear-gradient(to left, #EA5459, #F7BA2C);

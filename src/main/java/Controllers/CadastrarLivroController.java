@@ -20,7 +20,7 @@ import javafx.scene.paint.Color;
 
 public class CadastrarLivroController {
 
-    @FXML
+   @FXML
     private Button cadastrarLivro;
 
     @FXML
@@ -45,6 +45,9 @@ public class CadastrarLivroController {
     private Label inputNome1;
 
     @FXML
+    private Label inputNome11;
+
+    @FXML
     private TextField inputQtdEstoque;
 
     @FXML
@@ -54,6 +57,30 @@ public class CadastrarLivroController {
     private Label messageLabel;
 
     @FXML
+    private Button sidebarAutores;
+
+    @FXML
+    private Button sidebarClientes;
+
+    @FXML
+    private Button sidebarEmprestimosAtivos;
+
+    @FXML
+    private Button sidebarFuncionarios;
+
+    @FXML
+    private Button sidebarGeneros;
+
+    @FXML
+    private Button sidebarLivros;
+
+    @FXML
+    private Button sidebarPainel;
+
+    @FXML
+    private Button sidebarUsuario;
+
+@FXML
     private Button voltarParaLista;
     
      private Funcionario funcionario = Funcionario.getFuncionario("", "", "");
@@ -113,7 +140,7 @@ public class CadastrarLivroController {
 
     
     @FXML
-    void irPara(ActionEvent event) {
+    void irParaLista(ActionEvent event) {
         try {
             App.mudarDeTela(event, "listarLivros");
         }
@@ -132,13 +159,25 @@ public class CadastrarLivroController {
         var n = (Node) event.getSource();
         
         switch (n.getId()) {
+            case "cadastrarLivro":
             case "voltarParaLista":
                 n.getStyleClass().remove("botao");
                 n.getStyleClass().add("botao-ativo");
                 break;
-                
-            default:
+            
+            case "sidebarUsuario":
+            {
+                n.getStyleClass().remove("label_especial");
+                n.getStyleClass().add("login-ativo");
                 break;
+
+            }                   
+            
+            default:
+            {
+                n.getStyleClass().remove("buttons");                    
+                n.getStyleClass().add("side-bar-ativo");
+            }
         }
     }
     
@@ -147,13 +186,88 @@ public class CadastrarLivroController {
         var n = (Node) event.getSource();
         
         switch (n.getId()) {
+            case "cadastrarLivro":
             case "voltarParaLista":
                 n.getStyleClass().remove("botao-ativo");
                 n.getStyleClass().add("botao");
                 break;
-                
-            default:
+          
+            case "sidebarUsuario":
+            {
+                n.getStyleClass().remove("login-ativo");
+                n.getStyleClass().add("label_especial");
                 break;
+
+            }                   
+            
+            default:
+            {
+                n.getStyleClass().remove("side-bar-ativo");
+                n.getStyleClass().add("buttons");
+            }
+        }
+    }
+    
+    @FXML
+    void irPara(ActionEvent e) {
+        
+        Node n = (Node) e.getSource();
+        
+        try 
+        {   
+            switch (n.getId()) 
+            {
+                case "sidebarAutores":
+                {
+                    App.mudarDeTela(e, "listarAutores");
+                    break;
+                }
+                case "sidebarClientes":
+                {
+                    App.mudarDeTela(e, "listarClientes");
+                    break;
+                }   
+                case "sidebarEmprestimosAtivos":
+                {
+                    App.mudarDeTela(e, "listarEmprestimosAtivos");
+                    break;
+                }
+                case "sidebarFuncionarios":
+                {
+                    App.mudarDeTela(e, "listarFuncionarios");
+                    break;
+                }
+                case "sidebarGeneros":
+                {
+                    App.mudarDeTela(e, "listarGeneros");
+                    break;
+                }
+                case "sidebarLivros":
+                {
+                    App.mudarDeTela(e, "listarLivros");
+                    break;
+                }
+                case "sidebarPainel":
+                {
+                    App.mudarDeTela(e, "dashboard");
+                    break;
+                }
+                case "sidebarUsuario":
+                {
+                    App.mudarDeTela(e, "usuario");
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+        catch (IOException ex)
+        {
+            System.out.println("Erro, tela não encontrada.");
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Erro desconhecido: " + ex.getMessage());
         }
     }
 }

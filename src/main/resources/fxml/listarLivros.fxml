@@ -4,10 +4,10 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -17,7 +17,6 @@
         <URL value="@listarLivros.css" />
     </stylesheets>
    <children>
-      <HBox fx:id="cardContainer" layoutX="340.0" layoutY="401.0" prefHeight="291.0" prefWidth="916.0" />
       <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="240.0" styleClass="background">
          <stylesheets>
             <URL value="@sidebar.css" />
@@ -47,14 +46,6 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button fx:id="sidebarPainel" mnemonicParsing="false" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Painel" GridPane.halignment="CENTER">
-                           <font>
-                              <Font name="Chilanka Regular" size="19.0" />
-                           </font>
-                           <padding>
-                              <Insets left="25.0" />
-                           </padding>
-                        </Button>
                         <Button fx:id="sidebarLivros" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="side-bar-ativo" stylesheets="@sidebar.css" text="Livros" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                            <padding>
                               <Insets left="25.0" />
@@ -103,6 +94,14 @@
                               <Font name="Chilanka Regular" size="19.0" />
                            </font>
                         </Button>
+                        <Button fx:id="sidebarPainel" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Painel" GridPane.halignment="CENTER">
+                           <font>
+                              <Font name="Chilanka Regular" size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                        </Button>
                      </children>
                   </GridPane>
                   <Button fx:id="sidebarUsuario" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="81.0" prefWidth="244.0" style="-fx-background-radius: 0px;" styleClass="label_especial" stylesheets="@sidebar.css" text="Usuário">
@@ -119,7 +118,7 @@
       </AnchorPane>
       <AnchorPane layoutX="1200.0" prefHeight="80.0" prefWidth="80.0" styleClass="background-botao" stylesheets="@headers.css">
          <children>
-            <Button fx:id="irParaCadastro" alignment="CENTER" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="80.0" prefWidth="80.0" styleClass="botao" stylesheets="@headers.css" text="+">
+            <Button fx:id="irParaCadastro" alignment="CENTER" mnemonicParsing="false" onAction="#irParaCadastro" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="80.0" prefWidth="80.0" styleClass="botao" stylesheets="@headers.css" text="+">
                <font>
                   <Font name="DejaVu Sans Bold" size="38.0" />
                </font>
@@ -134,5 +133,14 @@
             <Insets left="25.0" />
          </padding>
       </Label>
+      <ScrollPane layoutX="276.0" layoutY="111.0" prefHeight="583.0" prefWidth="968.0">
+         <content>
+            <GridPane fx:id="containerLivros">
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

@@ -15,21 +15,40 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 public class ListarLivrosController implements Initializable {
 
     @FXML
-    private HBox cardContainer;
+    private GridPane containerLivros;
 
     @FXML
     private Button irParaCadastro;
 
     @FXML
-    private TextField pesquisar;
+    private Button sidebarAutores;
 
     @FXML
-    private Button pesquisarButton;
+    private Button sidebarClientes;
+
+    @FXML
+    private Button sidebarEmprestimosAtivos;
+
+    @FXML
+    private Button sidebarFuncionarios;
+
+    @FXML
+    private Button sidebarGeneros;
+
+    @FXML
+    private Button sidebarLivros;
+
+    @FXML
+    private Button sidebarPainel;
+
+    @FXML
+    private Button sidebarUsuario;
 
     @FXML
     void irParaCadastro(ActionEvent event) {
@@ -51,7 +70,7 @@ public class ListarLivrosController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        for(int i = 0; i < 4; i++) 
+        for(int i = 0; i < 9; i++) 
         {
             var fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/cardListarLivro.fxml"));
             
@@ -73,7 +92,7 @@ public class ListarLivrosController implements Initializable {
                 );
                 
                 //Insere os cards no container
-                cardContainer.getChildren().add(card);
+                containerLivros.getChildren().add(card);
             } 
             catch (IOException ex) 
             {
@@ -92,14 +111,109 @@ public class ListarLivrosController implements Initializable {
                 n.getStyleClass().remove("botao");
                 n.getStyleClass().add("botao-ativo");
                 break;
-            default:
+            
+            case "sidebarUsuario":
+            {
+                n.getStyleClass().remove("label_especial");
+                n.getStyleClass().add("login-ativo");
                 break;
+
+            }                   
+            
+            default:
+            {
+                n.getStyleClass().remove("buttons");                    
+                n.getStyleClass().add("side-bar-ativo");
+            }
         }
     }
 
     @FXML
     void setPadrao(MouseEvent event) {
         var n = (Node) event.getSource();
+        
+        switch (n.getId()) {
+            case "irParaCadastro":
+                n.getStyleClass().remove("botao-ativo");
+                n.getStyleClass().add("botao");
+                break;
+            
+             case "sidebarUsuario":
+            {
+                n.getStyleClass().remove("login-ativo");
+                n.getStyleClass().add("label_especial");
+                break;
+
+            }                   
+            
+            default:
+            {
+                n.getStyleClass().remove("side-bar-ativo");
+                n.getStyleClass().add("buttons");
+            }
+        }
     }
 
+    @FXML
+    void irPara(ActionEvent e) {
+        
+        Node n = (Node) e.getSource();
+        
+        try 
+        {   
+            switch (n.getId()) 
+            {
+                case "sidebarAutores":
+                {
+                    App.mudarDeTela(e, "listarAutores");
+                    break;
+                }
+                case "sidebarClientes":
+                {
+                    App.mudarDeTela(e, "listarClientes");
+                    break;
+                }   
+                case "sidebarEmprestimosAtivos":
+                {
+                    App.mudarDeTela(e, "listarEmprestimosAtivos");
+                    break;
+                }
+                case "sidebarFuncionarios":
+                {
+                    App.mudarDeTela(e, "listarFuncionarios");
+                    break;
+                }
+                case "sidebarGeneros":
+                {
+                    App.mudarDeTela(e, "listarGeneros");
+                    break;
+                }
+//                case "sidebarLivros":
+//                {
+//                    App.mudarDeTela(e, "listarLivros");
+//                    break;
+//                }
+                case "sidebarPainel":
+                {
+                    App.mudarDeTela(e, "dashboard");
+                    break;
+                }
+                case "sidebarUsuario":
+                {
+                    App.mudarDeTela(e, "usuario");
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+        catch (IOException ex)
+        {
+            System.out.println("Erro, tela não encontrada.");
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Erro desconhecido: " + ex.getMessage());
+        }
+    }
 }
