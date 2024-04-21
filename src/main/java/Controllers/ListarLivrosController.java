@@ -10,8 +10,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
@@ -38,7 +40,7 @@ public class ListarLivrosController implements Initializable {
             System.out.println("A tela \"cadastrarLivro\" não foi encontrada.");
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Erro desconhecido: " + e.getMessage());
         }
     }
 
@@ -46,7 +48,7 @@ public class ListarLivrosController implements Initializable {
     void pesquisar(ActionEvent event) {
         // a implementar.
     }
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         for(int i = 0; i < 4; i++) 
@@ -79,6 +81,25 @@ public class ListarLivrosController implements Initializable {
             }
             
         }
+    }
+    
+    @FXML
+    void setAtivo(MouseEvent event) {
+        var n = (Node) event.getSource();
+        
+        switch (n.getId()) {
+            case "irParaCadastro":
+                n.getStyleClass().remove("botao");
+                n.getStyleClass().add("botao-ativo");
+                break;
+            default:
+                break;
+        }
+    }
+
+    @FXML
+    void setPadrao(MouseEvent event) {
+        var n = (Node) event.getSource();
     }
 
 }

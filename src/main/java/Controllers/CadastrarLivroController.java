@@ -10,10 +10,12 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 public class CadastrarLivroController {
@@ -51,6 +53,9 @@ public class CadastrarLivroController {
     @FXML
     private Label messageLabel;
 
+    @FXML
+    private Button voltarParaLista;
+    
      private Funcionario funcionario = Funcionario.getFuncionario("", "", "");
     
     public void initialize(URL url, ResourceBundle rb) {
@@ -121,5 +126,34 @@ public class CadastrarLivroController {
             messageLabel.setText(ex.getMessage());
         }
     }
-
+    
+    @FXML
+    void setAtivo(MouseEvent event) {
+        var n = (Node) event.getSource();
+        
+        switch (n.getId()) {
+            case "voltarParaLista":
+                n.getStyleClass().remove("botao");
+                n.getStyleClass().add("botao-ativo");
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    @FXML
+    void setPadrao(MouseEvent event) {
+        var n = (Node) event.getSource();
+        
+        switch (n.getId()) {
+            case "voltarParaLista":
+                n.getStyleClass().remove("botao-ativo");
+                n.getStyleClass().add("botao");
+                break;
+                
+            default:
+                break;
+        }
+    }
 }

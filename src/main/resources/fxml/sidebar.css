@@ -31,12 +31,7 @@
 .side-bar-ativo {
     -fx-background-color: rgba(255, 255, 255, .90);
     -fx-text-fill: linear-gradient(to bottom, #EA5459, #F7BA2C);
-    /*-fx-text-fill:white;*/
     -fx-background-radius: 40px;
-    /*-fx-border-width: 2px;*/
-    /*-fx-border-color: linear-gradient(to right, #EA5459, #F7BA2C);*/
-    /*-fx-border-style: solid;*/
-    /*-fx-border-radius: 20px;*/
     -fx-alignment: left;
 }
 .login-ativo {

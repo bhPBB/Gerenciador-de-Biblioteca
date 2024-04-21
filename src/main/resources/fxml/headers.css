@@ -6,26 +6,43 @@
 
 }
 .titulo {
-    /*-fx-text-fill: linear-gradient(to left, #F7BA2C, #EA5459);*/
+/*    -fx-text-fill: linear-gradient(to left, #F7BA2C, #EA5459);
     -fx-background-color: linear-gradient(to left, #F7BA2C, #EA5459);
-    /*-fx-background-radius: 40px;*/
+    -fx-background-radius: 40px;
     -fx-text-fill: white;
-    /*-fx-text-fill: #EA5459;*/
+    -fx-text-fill: #EA5459;
     -fx-border-width: 2px;
     -fx-border-color: linear-gradient(to left, #EA5459, #F7BA2C);
     -fx-border-style: solid;
-    /*-fx-border-radius: 40px;*/
+    -fx-border-radius: 40px;*/
+
+    -fx-text-fill: linear-gradient(to left, #F7BA2C, #EA5459);
 }
 .botao {
-    -fx-background-color: linear-gradient(to right, #F7BA2C, #EA5459);
+/*    -fx-background-color: linear-gradient(to right, #F7BA2C, #EA5459);
     -fx-border-radius: 0px;
-    /*-fx-border-width: 4px;*/
-    /*-fx-border-color: white;*/
-    /*-fx-border-color: linear-gradient(to top, #F7BA2C, #EA5459);*/
-    /*-fx-border-style: solid;*/
+    -fx-border-width: 4px;
+    -fx-border-color: white;
+    -fx-border-color: linear-gradient(to top, #F7BA2C, #EA5459);
+    -fx-border-style: solid;
     -fx-text-fill: white;
     -fx-border-width: 2px;
     -fx-border-color: linear-gradient(to right, #EA5459, #F7BA2C);
     -fx-border-style: solid;
-    -fx-background-radius: 0px;
+    -fx-background-radius: 0px;*/
+
+    /*-fx-background-color: rgba(0,0,0, .25);*/
+    -fx-text-fill: white;
+    -fx-text-alignment: left;
+    /*-fx-alignment: left;*/
+}
+.botao-ativo {
+    fx-background-color: rgba(255, 255, 255, .90);
+    -fx-text-fill: linear-gradient(to bottom, #EA5459, #F7BA2C);
+    -fx-background-radius: 40px;
+    -fx-alignment: left;
+}
+.background-botao {
+    -fx-background-color: linear-gradient(to left, #EA5459, #F7BA2C);
+    -fx-text-fill: white;
 }
