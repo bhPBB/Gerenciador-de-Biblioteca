@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DashboardController">
+    <stylesheets>
+        <URL value="@dashboard.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="240.0" styleClass="background">
+         <stylesheets>
+            <URL value="@sidebar.css" />
+         </stylesheets>
+         <children>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="720.0" prefWidth="240.0">
+               <children>
+                  <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" prefWidth="240.0" styleClass="label_especial" stylesheets="@sidebar.css" text="GDB" textAlignment="CENTER">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="33.0" />
+                     </font>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </Label>
+                  <GridPane layoutX="360.0" prefHeight="562.0" prefWidth="240.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label fx:id="sidebarPainel" onMouseClicked="#irPara" onMouseDragged="#mudarCor" prefHeight="60.0" prefWidth="214.0" styleClass="side-bar-ativo" stylesheets="@sidebar.css" text="Painel" GridPane.halignment="CENTER">
+                           <font>
+                              <Font name="Chilanka Regular" size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="sidebarEmprestimosAtivos" onMouseClicked="#irPara" onMouseDragged="#mudarCor" prefHeight="60.0" prefWidth="214.0" styleClass="labels" stylesheets="@sidebar.css" text="Empréstimos Ativos" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Chilanka Regular" size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="sidebarLivros" onMouseClicked="#irPara" onMouseDragged="#mudarCor" prefHeight="60.0" prefWidth="214.0" styleClass="labels" stylesheets="@sidebar.css" text="Livros" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Chilanka Regular" size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="sidebarClientes" onMouseClicked="#irPara" onMouseDragged="#mudarCor" prefHeight="60.0" prefWidth="214.0" styleClass="labels" stylesheets="@sidebar.css" text="Clientes" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Chilanka Regular" size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="sidebarFuncionarios" onMouseClicked="#irPara" onMouseDragged="#mudarCor" prefHeight="60.0" prefWidth="214.0" styleClass="labels" stylesheets="@sidebar.css" text="Funcionários" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="Chilanka Regular" size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="sidebarAutores" onMouseClicked="#irPara" onMouseDragged="#mudarCor" prefHeight="60.0" prefWidth="214.0" styleClass="labels" stylesheets="@sidebar.css" text="Autores" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="Chilanka Regular" size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="sidebarGeneros" onMouseClicked="#irPara" onMouseDragged="#mudarCor" prefHeight="60.0" prefWidth="214.0" styleClass="labels" stylesheets="@sidebar.css" text="Gêneros" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="Chilanka Regular" size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <Label fx:id="siderbarUsuario" minHeight="-Infinity" onMouseClicked="#irPara" onMouseDragged="#mudarCor" prefHeight="80.0" prefWidth="240.0" styleClass="label_especial" stylesheets="@sidebar.css" text="Usuário" textAlignment="CENTER">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="23.0" />
+                     </font>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="760.0" layoutY="263.0" prefHeight="192.0" prefWidth="207.0" styleClass="boxes_5" stylesheets="@dashboard.css">
+         <children>
+            <VBox prefHeight="192.0" prefWidth="207.0">
+               <children>
+                  <Label fx:id="qtdGeneros" prefHeight="131.0" prefWidth="207.0" text="0">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="43.0" />
+                     </font>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label prefHeight="127.0" prefWidth="207.0" text="Gêneros Disponíveis" wrapText="true">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="22.0" />
+                     </font>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1009.0" layoutY="263.0" prefHeight="192.0" prefWidth="207.0" styleClass="boxes_4" stylesheets="@dashboard.css">
+         <children>
+            <VBox prefHeight="192.0" prefWidth="207.0">
+               <children>
+                  <Label fx:id="qtdAutores" alignment="CENTER_RIGHT" prefHeight="131.0" prefWidth="207.0" style="-fx-text-fill: white;" text="0" textAlignment="JUSTIFY">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="43.0" />
+                     </font>
+                     <padding>
+                        <Insets right="15.0" />
+                     </padding>
+                  </Label>
+                  <Label alignment="CENTER_RIGHT" prefHeight="127.0" prefWidth="207.0" style="-fx-text-fill: white;" text="Autores Registrados " textAlignment="RIGHT" wrapText="true">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="22.0" />
+                     </font>
+                     <padding>
+                        <Insets right="15.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1009.0" layoutY="487.0" prefHeight="192.0" prefWidth="207.0" style="-fx-background-color: white;" styleClass="boxes" stylesheets="@dashboard.css">
+         <children>
+            <VBox prefHeight="192.0" prefWidth="207.0">
+               <children>
+                  <Label prefHeight="127.0" prefWidth="207.0" text="Livros Cadastrados " textAlignment="RIGHT" wrapText="true">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="22.0" />
+                     </font>
+                     <padding>
+                        <Insets right="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="qtdLivros" alignment="CENTER_RIGHT" prefHeight="131.0" prefWidth="207.0" text="0">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="43.0" />
+                     </font>
+                     <padding>
+                        <Insets right="15.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="760.0" layoutY="487.0" prefHeight="192.0" prefWidth="207.0" styleClass="boxes_6" stylesheets="@dashboard.css">
+         <children>
+            <VBox prefHeight="192.0" prefWidth="207.0">
+               <children>
+                  <Label prefHeight="127.0" prefWidth="207.0" style="-fx-text-fill: white;" text="Clientes com Registro" wrapText="true">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="22.0" />
+                     </font>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="qtdClientes" prefHeight="131.0" prefWidth="207.0" style="-fx-text-fill: white;" text="0" textAlignment="JUSTIFY">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="43.0" />
+                     </font>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="277.0" layoutY="487.0" prefHeight="192.0" prefWidth="456.0" styleClass="boxes_8" stylesheets="@dashboard.css">
+         <children>
+            <HBox prefHeight="192.0" prefWidth="456.0">
+               <children>
+                  <Label fx:id="qtdEmprestimosAtivos" alignment="CENTER" graphicTextGap="0.0" prefHeight="192.0" prefWidth="193.0" style="-fx-text-fill: white;" text="0" textAlignment="CENTER" textFill="#bf9e9e">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="63.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="192.0" prefWidth="320.0" style="-fx-text-fill: white;" text="Empréstimos Ativos" textAlignment="CENTER" textFill="#bf9e9e" wrapText="true">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="28.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="269.0" layoutY="40.0" minHeight="-Infinity" prefHeight="415.0" prefWidth="460.0" styleClass="boxes_7" stylesheets="@dashboard.css">
+         <children>
+            <VBox prefHeight="415.0" prefWidth="460.0">
+               <children>
+                  <Label fx:id="qtdEmprestimosVencidos" alignment="TOP_LEFT" graphicTextGap="0.0" prefHeight="286.0" prefWidth="460.0" text="0" textAlignment="CENTER">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="95.0" />
+                     </font>
+                     <padding>
+                        <Insets left="25.0" top="15.0" />
+                     </padding>
+                  </Label>
+                  <Label alignment="BOTTOM_RIGHT" prefHeight="241.0" prefWidth="460.0" text="Empréstimos Vencidos no Momento " textAlignment="RIGHT" wrapText="true">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="38.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="15.0" right="15.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="760.0" layoutY="40.0" prefHeight="192.0" prefWidth="456.0" styleClass="boxes_2" stylesheets="@dashboard.css">
+         <children>
+            <HBox prefHeight="192.0" prefWidth="456.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="192.0" prefWidth="320.0" style="-fx-text-fill: white;" text="Empréstimos Concluídos neste Mês " textAlignment="CENTER" textFill="#bf9e9e" wrapText="true">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="28.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="qtdEmprestimosMes" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="192.0" prefWidth="239.0" style="-fx-text-fill: white;" text="0" textAlignment="CENTER" textFill="#bf9e9e">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="63.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
