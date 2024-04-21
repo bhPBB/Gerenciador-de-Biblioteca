@@ -6,16 +6,22 @@
 
 }
 .inputs {
-    -fx-border-width: 2px;
+/*    -fx-border-width: 2px;
     -fx-border-style: solid;
     -fx-border-color: black;
+    -fx-border-radius: 40px;*/
+    -fx-border-width: 2px;
+    -fx-border-color: linear-gradient(to left, #EA5459, #F7BA2C);
+    -fx-border-style: solid;
     -fx-border-radius: 40px;
     -fx-padding: 0px 10px; 
 }
 .botao{
+    -fx-background-color: linear-gradient(to right, #F7BA2C, #EA5459);
+    -fx-background-radius: 40px;
+    -fx-text-fill: white;
     -fx-border-width: 2px;
+    -fx-border-color: linear-gradient(to left, #EA5459, #F7BA2C);
     -fx-border-style: solid;
-    -fx-border-color: red;
     -fx-border-radius: 40px;
-    -fx-text-fill: red;
 }

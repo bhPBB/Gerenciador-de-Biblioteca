@@ -2,10 +2,14 @@ package Controllers;
 
 import Banco.Database;
 import Modelos.Funcionario;
+import com.mycompany.gerenciadordebiblioteca.App;
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -64,6 +68,16 @@ public class LoginController {
                     Funcionario.getFuncionario(rs.getString("CPF"), rs.getString("NOME"), email);
                     messageLabel.setTextFill(Color.color(0, 1, 0));
                     messageLabel.setText("Login aceito.");
+                    try {
+                        // Redireciona o usuário para o dashboard
+                        App.mudarDeTela(event, "dashboard");
+                    } catch (IOException ex) {
+                        messageLabel.setTextFill(Color.color(1, 0, 0));
+                        messageLabel.setText("Erro ao mudar de tela: \'dashboard\' não encontrada.");
+                    } catch (Exception ex) {
+                        messageLabel.setTextFill(Color.color(1, 0, 0));
+                        messageLabel.setText(ex.getMessage());
+                    }
                 } else {
                     // A senha está incorreta
                     messageLabel.setTextFill(Color.color(1, 0, 0));
