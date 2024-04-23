@@ -49,6 +49,8 @@ public class ListarLivrosController implements Initializable {
     @FXML
     private Button sidebarUsuario;
 
+    private static final int QTDCOLUNA = 3;
+    
     @FXML
     void irParaCadastro(ActionEvent event) {
         try {
@@ -99,7 +101,7 @@ public class ListarLivrosController implements Initializable {
                 //Insere os cards no container
                 containerLivros.add(card, col, lin);
                 col++;
-                if(col == 3){
+                if(col == QTDCOLUNA){
                     lin++;
                     col = 0;
                 }
