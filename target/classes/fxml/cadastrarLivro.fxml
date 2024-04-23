@@ -105,14 +105,6 @@
                   <Insets left="15.0" />
                </GridPane.margin>
             </Label>
-            <Button fx:id="cadastrarLivro" alignment="CENTER" mnemonicParsing="false" onAction="#cadastrar" prefHeight="46.0" prefWidth="185.0" styleClass="botao" stylesheets="@cadastrarLivro.css" text="Cadastrar" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <font>
-                  <Font name="DejaVu Sans Bold" size="22.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="15.0" right="15.0" />
-               </GridPane.margin>
-            </Button>
             <ComboBox fx:id="inputAutor" prefHeight="46.0" prefWidth="185.0" promptText="Autor" styleClass="inputs" stylesheets="@cadastrarLivro.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="15.0" right="15.0" />
@@ -129,6 +121,11 @@
                   <Insets left="15.0" />
                </GridPane.margin>
             </Label>
+            <Button fx:id="cadastrarLivro" alignment="CENTER" mnemonicParsing="false" onAction="#cadastrar" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="46.0" prefWidth="185.0" styleClass="botao" stylesheets="@cadastrarLivro.css" text="Cadastrar" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="22.0" />
+               </font>
+            </Button>
          </children>
       </GridPane>
       <Label fx:id="messageLabel" layoutX="737.0" layoutY="555.0" prefHeight="111.0" prefWidth="456.0" textFill="RED">
@@ -252,5 +249,6 @@
             </VBox>
          </children>
       </AnchorPane>
+      <AnchorPane layoutX="745.0" layoutY="555.0" prefHeight="45.0" prefWidth="185.0" />
    </children>
 </AnchorPane>

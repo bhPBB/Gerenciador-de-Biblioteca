@@ -4,24 +4,23 @@ import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+
 
 public class ListarLivrosController implements Initializable {
 
     @FXML
-    private GridPane containerLivros;
+    private ScrollPane scrollPane;
 
     @FXML
     private Button irParaCadastro;
@@ -70,7 +69,13 @@ public class ListarLivrosController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        for(int i = 0; i < 9; i++) 
+        GridPane containerLivros = new GridPane();
+        containerLivros.setPadding(new Insets(10));
+        containerLivros.setHgap(90);
+        containerLivros.setVgap(90);
+        
+        int col = 0, lin = 0; 
+        for(int i = 0; i < 13; i++) 
         {
             var fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/cardListarLivro.fxml"));
             
@@ -84,15 +89,20 @@ public class ListarLivrosController implements Initializable {
                 
                 //Passa os dados
                 cardController.criarCard(
-                        "Teste", 
-                        "Teste", 
-                        "Teste", 
+                        "Teste" + (i+1), 
+                        "Teste" + (i+1), 
+                        "Teste" + (i+1), 
                         4, 
                         "Imagens/capa-livro-teste.jpg"
                 );
                 
                 //Insere os cards no container
-                containerLivros.getChildren().add(card);
+                containerLivros.add(card, col, lin);
+                col++;
+                if(col == 3){
+                    lin++;
+                    col = 0;
+                }
             } 
             catch (IOException ex) 
             {
@@ -100,6 +110,7 @@ public class ListarLivrosController implements Initializable {
             }
             
         }
+        scrollPane.setContent(containerLivros);
     }
     
     @FXML

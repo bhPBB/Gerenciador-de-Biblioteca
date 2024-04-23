@@ -1,0 +1,16 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+.adicionar {
+    /*-fx-background-color: linear-gradient(to top, #F7BA2C, #EA5459);*/
+    -fx-border-radius: 20px;
+    -fx-border-width: 4px;
+    /*-fx-border-color: white;*/
+    -fx-border-color: linear-gradient(to top, #F7BA2C, #EA5459);
+    -fx-border-style: solid;
+    /*-fx-text-fill: white;*/
+}

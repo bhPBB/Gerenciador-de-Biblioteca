@@ -133,14 +133,6 @@
             <Insets left="25.0" />
          </padding>
       </Label>
-      <ScrollPane layoutX="276.0" layoutY="111.0" prefHeight="583.0" prefWidth="968.0">
-         <content>
-            <GridPane fx:id="containerLivros">
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-            </GridPane>
-         </content>
-      </ScrollPane>
+      <ScrollPane fx:id="scrollPane" layoutX="276.0" layoutY="111.0" prefHeight="583.0" prefWidth="968.0" />
    </children>
 </AnchorPane>
