@@ -97,7 +97,7 @@ public class DashboardController {
                 }
 //                case "sidebarPainel":
 //                {
-//                    App.mudarDeTela(e, "dashboard");
+//                    App.mudarDeTela("dashboard");
 //                    break;
 //                }
                 case "sidebarUsuario":

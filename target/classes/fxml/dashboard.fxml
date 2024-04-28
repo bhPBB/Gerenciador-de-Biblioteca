@@ -47,7 +47,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button fx:id="sidebarPainel" mnemonicParsing="false" onMousePressed="#waiting" onMouseReleased="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="side-bar-ativo" stylesheets="@sidebar.css" text="Painel" GridPane.halignment="CENTER">
+                        <Button fx:id="sidebarPainel" mnemonicParsing="false" onMousePressed="#waiting" prefHeight="60.0" prefWidth="214.0" styleClass="side-bar-ativo" stylesheets="@sidebar.css" text="Painel" GridPane.halignment="CENTER">
                            <font>
                               <Font name="Chilanka Regular" size="19.0" />
                            </font>
@@ -58,7 +58,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="sidebarLivros" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" onMousePressed="#waiting" onMouseReleased="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Livros" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                        <Button fx:id="sidebarLivros" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" onMousePressed="#waiting" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Livros" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                            <padding>
                               <Insets left="25.0" />
                            </padding>
@@ -69,7 +69,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="sidebarEmprestimosAtivos" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" onMousePressed="#waiting" onMouseReleased="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Empréstimos Ativos" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                        <Button fx:id="sidebarEmprestimosAtivos" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" onMousePressed="#waiting" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Empréstimos Ativos" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <padding>
                               <Insets left="25.0" />
                            </padding>
@@ -80,7 +80,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="sidebarClientes" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" onMousePressed="#waiting" onMouseReleased="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Clientes" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                        <Button fx:id="sidebarClientes" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" onMousePressed="#waiting" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Clientes" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                            <padding>
                               <Insets left="25.0" />
                            </padding>
@@ -91,7 +91,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="sidebarFuncionarios" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" onMousePressed="#waiting" onMouseReleased="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Funcionários" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                        <Button fx:id="sidebarFuncionarios" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" onMousePressed="#waiting" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Funcionários" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                            <padding>
                               <Insets left="25.0" />
                            </padding>
@@ -102,7 +102,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="sidebarAutores" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" onMousePressed="#waiting" onMouseReleased="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Autores" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                        <Button fx:id="sidebarAutores" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" onMousePressed="#waiting" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Autores" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                            <padding>
                               <Insets left="25.0" />
                            </padding>
@@ -113,7 +113,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="sidebarGeneros" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" onMousePressed="#waiting" onMouseReleased="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Gêneros" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                        <Button fx:id="sidebarGeneros" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" onMousePressed="#waiting" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Gêneros" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                            <padding>
                               <Insets left="25.0" />
                            </padding>
@@ -126,7 +126,7 @@
                         </Button>
                      </children>
                   </GridPane>
-                  <Button fx:id="sidebarUsuario" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" onMousePressed="#waiting" onMouseReleased="#setPadrao" prefHeight="81.0" prefWidth="244.0" style="-fx-background-radius: 0px;" styleClass="label_especial" stylesheets="@sidebar.css" text="Usuário">
+                  <Button fx:id="sidebarUsuario" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" onMousePressed="#waiting" prefHeight="81.0" prefWidth="244.0" style="-fx-background-radius: 0px;" styleClass="label_especial" stylesheets="@sidebar.css" text="Usuário">
                      <padding>
                         <Insets left="25.0" />
                      </padding>
