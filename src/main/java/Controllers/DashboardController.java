@@ -118,6 +118,11 @@ public class DashboardController {
             System.out.println("Erro desconhecido: " + ex.getMessage());
         }
     }
+    
+    @FXML
+    void waiting(MouseEvent event) {
+        App.setCursorCarregando(event);
+    }
 
     @FXML
     void setAtivo(MouseEvent event) {

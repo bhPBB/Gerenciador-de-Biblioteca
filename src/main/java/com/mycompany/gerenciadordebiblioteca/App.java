@@ -60,6 +60,10 @@ public class App extends Application {
         var n = (Node) event.getSource();
         n.setCursor(Cursor.DEFAULT);
     }
+    public static void setCursorCarregando(MouseEvent event) {
+        var n = (Node) event.getSource();
+        n.setCursor(Cursor.WAIT);
+    }
     
     public static void trocarEstilo(MouseEvent event, String estiloAnterior, String estiloNovo) {
         var n = (Node) event.getSource();
@@ -70,5 +74,4 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
-
 }
