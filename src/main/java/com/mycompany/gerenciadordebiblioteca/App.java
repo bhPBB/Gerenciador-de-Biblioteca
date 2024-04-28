@@ -8,8 +8,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import javafx.event.ActionEvent;
-import javafx.scene.Node;
+
+import javafx.scene.image.Image;
 
 public class App extends Application {
 
@@ -20,6 +20,8 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("login"));
+        stage.setTitle("Gerenciador de Biblioteca");
+        stage.getIcons().add(new Image(App.class.getResourceAsStream("/Imagens/icon1.png")));
         stage.setScene(scene);
         stage.show();
         App.stage = stage;
