@@ -8,12 +8,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 
 
@@ -75,6 +78,7 @@ public class ListarLivrosController implements Initializable {
         containerLivros.setPadding(new Insets(10));
         containerLivros.setHgap(90);
         containerLivros.setVgap(90);
+        containerLivros.setAlignment(Pos.CENTER);
         
         int col = 0, lin = 0; 
         for(int i = 0; i < 13; i++) 
@@ -95,7 +99,6 @@ public class ListarLivrosController implements Initializable {
                         4,
                         "/Imagens/capa-livro-teste.jpg"
                 );
-                
                 //Insere os cards no container
                 containerLivros.add(card, col, lin);
                 col++;
@@ -111,6 +114,8 @@ public class ListarLivrosController implements Initializable {
             
         }
         scrollPane.setContent(containerLivros);
+        scrollPane.setFitToHeight(true);
+        scrollPane.setFitToWidth(true);
     }
     
     @FXML
