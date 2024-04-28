@@ -132,7 +132,7 @@ public class CadastrarClienteController implements Initializable{
     @FXML
     void logout(ActionEvent event) throws IOException {
         if(Funcionario.logout() == null)
-                App.mudarDeTela(event, "login");
+                App.mudarDeTela("login");
         
         else{
             messageLabel.setTextFill(Color.color(1, 0, 0));

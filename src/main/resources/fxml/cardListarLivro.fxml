@@ -2,6 +2,7 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,12 +12,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="340.0" prefWidth="220.0" styleClass="card-borda" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CardListarLivroController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="340.0" prefWidth="220.0" styleClass="card-borda" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CardListarLivroController">
     <stylesheets>
         <URL value="@cardListarLivro.css" />
     </stylesheets>
    <children>
-      <ImageView fx:id="imagem" fitHeight="183.0" fitWidth="224.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imagem" fitHeight="168.0" fitWidth="195.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" />
       <GridPane layoutY="179.0" prefHeight="136.0" prefWidth="220.0">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -80,4 +81,7 @@
          </padding>
       </GridPane>
    </children>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
 </AnchorPane>

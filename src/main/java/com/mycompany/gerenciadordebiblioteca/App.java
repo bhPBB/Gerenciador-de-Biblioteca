@@ -22,6 +22,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("login"));
         stage.setScene(scene);
         stage.show();
+        App.stage = stage;
     }
     
     private static Parent loadFXML(String fxml) throws IOException {
@@ -30,10 +31,10 @@ public class App extends Application {
         return fxmlLoader.load();
     }
     
-    public static void mudarDeTela(ActionEvent e, String tela) throws IOException{
+    public static void mudarDeTela(String tela) throws IOException{
         try {
         root = loadFXML(tela);
-        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+//        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

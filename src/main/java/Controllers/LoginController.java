@@ -8,14 +8,14 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
@@ -42,6 +42,13 @@ public class LoginController {
     }
     
     @FXML
+    void enter(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            login();
+        }
+    }
+    
+    @FXML
     void sublinhado(MouseEvent event) {
         semCadastro.setTextFill(Color.color(0.050980392156862744, 0.2549019607843137, 0.48627450980392156));
         semCadastro.setUnderline(true);
@@ -54,7 +61,7 @@ public class LoginController {
     }
     
     @FXML
-    void login(ActionEvent event) {
+    void login() {
         String email = inputEmail.getText();
         String senha = inputSenha.getText();
 
@@ -66,14 +73,9 @@ public class LoginController {
                 if (encrypt(senha).equals(senhaDoBanco)) {
                     // A senha está correta, pode liberar o acesso ao software
                     Funcionario.getFuncionario(rs.getString("CPF"), rs.getString("NOME"), email);
-                    messageLabel.setTextFill(Color.color(0, 1, 0));
-                    messageLabel.setText("Login aceito.");
                     try {
                         // Redireciona o usuário para o dashboard
-                        App.mudarDeTela(event, "dashboard");
-                    } catch (IOException ex) {
-                        messageLabel.setTextFill(Color.color(1, 0, 0));
-                        messageLabel.setText("Erro ao mudar de tela: \'dashboard\' não encontrada.");
+                        App.mudarDeTela("dashboard");
                     } catch (Exception ex) {
                         messageLabel.setTextFill(Color.color(1, 0, 0));
                         messageLabel.setText(ex.getMessage());

@@ -32,7 +32,7 @@ public class CadastrarFuncionarioController {
         var tela = "listarFuncionarios";
         
         try {
-            App.mudarDeTela(e, tela);
+            App.mudarDeTela(tela);
         }
         catch (IOException ex) {
             throw new IOException("Tela não encontrada: " + tela);
@@ -115,7 +115,7 @@ public class CadastrarFuncionarioController {
     @FXML
     void logout(ActionEvent event) throws IOException {
         if(Funcionario.logout() == null)
-                App.mudarDeTela(event, "login");
+                App.mudarDeTela("login");
         
         else{
             messageLabel.setTextFill(Color.color(1, 0, 0));

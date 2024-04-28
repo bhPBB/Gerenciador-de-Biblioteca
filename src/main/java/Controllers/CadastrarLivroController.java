@@ -142,7 +142,7 @@ public class CadastrarLivroController {
     @FXML
     void irParaLista(ActionEvent event) {
         try {
-            App.mudarDeTela(event, "listarLivros");
+            App.mudarDeTela("listarLivros");
         }
         catch (IOException ex) {
             messageLabel.setTextFill(Color.color(1, 0, 0));
@@ -219,42 +219,42 @@ public class CadastrarLivroController {
             {
                 case "sidebarAutores":
                 {
-                    App.mudarDeTela(e, "listarAutores");
+                    App.mudarDeTela("listarAutores");
                     break;
                 }
                 case "sidebarClientes":
                 {
-                    App.mudarDeTela(e, "listarClientes");
+                    App.mudarDeTela("listarClientes");
                     break;
                 }   
                 case "sidebarEmprestimosAtivos":
                 {
-                    App.mudarDeTela(e, "listarEmprestimosAtivos");
+                    App.mudarDeTela("listarEmprestimosAtivos");
                     break;
                 }
                 case "sidebarFuncionarios":
                 {
-                    App.mudarDeTela(e, "listarFuncionarios");
+                    App.mudarDeTela("listarFuncionarios");
                     break;
                 }
                 case "sidebarGeneros":
                 {
-                    App.mudarDeTela(e, "listarGeneros");
+                    App.mudarDeTela("listarGeneros");
                     break;
                 }
                 case "sidebarLivros":
                 {
-                    App.mudarDeTela(e, "listarLivros");
+                    App.mudarDeTela("listarLivros");
                     break;
                 }
                 case "sidebarPainel":
                 {
-                    App.mudarDeTela(e, "dashboard");
+                    App.mudarDeTela("dashboard");
                     break;
                 }
                 case "sidebarUsuario":
                 {
-                    App.mudarDeTela(e, "usuario");
+                    App.mudarDeTela("usuario");
                     break;
                 }
                 default:

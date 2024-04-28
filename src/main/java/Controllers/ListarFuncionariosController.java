@@ -27,7 +27,7 @@ public class ListarFuncionariosController {
         var tela = "cadastrarFuncionario";
         
         try {
-            App.mudarDeTela(e, tela);
+            App.mudarDeTela(tela);
         }
         catch (IOException ex) {
             throw new IOException("Tela não encontrada: " + tela);
