@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.net.URL;
 
 import javafx.scene.image.Image;
+import javafx.scene.Cursor;
+import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 
 public class App extends Application {
 
@@ -48,7 +51,22 @@ public class App extends Application {
             throw ex;
         }
     }
-
+    
+    public static void setCursorMaozinha(MouseEvent event) {
+        var n = (Node) event.getSource();
+        n.setCursor(Cursor.HAND);
+    }
+    public static void setCursorPadrao(MouseEvent event) {
+        var n = (Node) event.getSource();
+        n.setCursor(Cursor.DEFAULT);
+    }
+    
+    public static void trocarEstilo(MouseEvent event, String estiloAnterior, String estiloNovo) {
+        var n = (Node) event.getSource();
+        n.getStyleClass().remove(estiloAnterior);
+        n.getStyleClass().add(estiloNovo);
+    }
+    
     public static void main(String[] args) {
         launch();
     }

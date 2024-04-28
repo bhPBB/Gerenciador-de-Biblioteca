@@ -91,11 +91,9 @@ public class ListarLivrosController implements Initializable {
                 
                 //Passa os dados
                 cardController.criarCard(
-                        "Teste" + (i+1), 
-                        "Teste" + (i+1), 
-                        "Teste" + (i+1), 
-                        4, 
-                        "Imagens/capa-livro-teste.jpg"
+                        "Teste" + (i+1),  
+                        4,
+                        "/Imagens/capa-livro-teste.jpg"
                 );
                 
                 //Insere os cards no container
