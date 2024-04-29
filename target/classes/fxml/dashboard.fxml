@@ -47,7 +47,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button fx:id="sidebarPainel" mnemonicParsing="false" onMousePressed="#waiting" prefHeight="60.0" prefWidth="214.0" styleClass="side-bar-ativo" stylesheets="@sidebar.css" text="Painel" GridPane.halignment="CENTER">
+                        <Button fx:id="sidebarPainel" mnemonicParsing="false" prefHeight="60.0" prefWidth="214.0" styleClass="side-bar-ativo" stylesheets="@sidebar.css" text="Painel" GridPane.halignment="CENTER">
                            <font>
                               <Font name="Chilanka Regular" size="19.0" />
                            </font>
