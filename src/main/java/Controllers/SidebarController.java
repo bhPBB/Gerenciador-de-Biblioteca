@@ -207,14 +207,14 @@ public class SidebarController implements Initializable {
         telasLinks.put("usuario", sidebarUsuario);
         
         //deixa o link da tela atual com estilo de botão ativo
-        if(telaAtual.equals("usuario")) {
-            telasLinks.get(telaAtual).getStyleClass().remove(ESTILO_USUARIO_PADRAO);
-            telasLinks.get(telaAtual).getStyleClass().add(ESTILO_USUARIO_ATIVO);
-        }
-        else {
-            telasLinks.get(telaAtual).getStyleClass().remove(ESTILO_SIDEBAR_PADRAO);
-            telasLinks.get(telaAtual).getStyleClass().add(ESTILO_SIDEBAR_ATIVO);
-        }
+//        if(telaAtual.equals("usuario")) {
+//            telasLinks.get(telaAtual).getStyleClass().remove(ESTILO_USUARIO_PADRAO);
+//            telasLinks.get(telaAtual).getStyleClass().add(ESTILO_USUARIO_ATIVO);
+//        }
+//        else {
+//            telasLinks.get(telaAtual).getStyleClass().remove(ESTILO_SIDEBAR_PADRAO);
+//            telasLinks.get(telaAtual).getStyleClass().add(ESTILO_SIDEBAR_ATIVO);
+//        }
             
     }
     
