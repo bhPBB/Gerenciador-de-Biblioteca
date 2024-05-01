@@ -32,7 +32,7 @@ public class CadastrarFuncionarioController {
         var tela = "listarFuncionarios";
         
         try {
-            App.mudarDeTela(tela);
+            App.mudarDeTela("login");
         }
         catch (IOException ex) {
             throw new IOException("Tela não encontrada: " + tela);
@@ -42,7 +42,7 @@ public class CadastrarFuncionarioController {
         }
     }
     @FXML
-    private void cadastrar(ActionEvent e){
+    private void cadastrar(ActionEvent e) throws IOException{
       // Executar a inserção no banco de dados
         String nome = inputNome.getText();
         String cpf = inputCPF.getText();
@@ -65,7 +65,7 @@ public class CadastrarFuncionarioController {
                     
                     Database.executarQuery(query);
                     messageLabel.setTextFill(Color.color(0, 1, 0));
-                    messageLabel.setText( "Retorne à página de login, funcionário cadastrado com sucesso.");
+                    App.mudarDeTela("login");
                 } catch (SQLException | ClassNotFoundException ex) {
                     messageLabel.setTextFill(Color.color(1, 0, 0));
                     messageLabel.setText(ex.getMessage());

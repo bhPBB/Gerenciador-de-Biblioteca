@@ -37,8 +37,8 @@ public class LoginController {
     private Label semCadastro;
 
     @FXML
-    void irParaCadastro(MouseEvent event) {
-
+    void irParaCadastro() throws IOException {
+            App.mudarDeTela("cadastrarFuncionario");
     }
     
     @FXML
@@ -76,7 +76,8 @@ public class LoginController {
                     try {
                         // Redireciona o usuário para o dashboard
                         App.mudarDeTela("dashboard");
-                    } catch (Exception ex) {
+                        
+                    } catch (IOException ex) {
                         messageLabel.setTextFill(Color.color(1, 0, 0));
                         messageLabel.setText(ex.getMessage());
                     }

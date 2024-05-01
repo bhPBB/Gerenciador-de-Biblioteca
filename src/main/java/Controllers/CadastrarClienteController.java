@@ -125,8 +125,8 @@ public class CadastrarClienteController implements Initializable{
     }
    
     @FXML
-    void voltar(ActionEvent event) {
-
+    void voltar(ActionEvent event) throws IOException {
+        App.mudarDeTela("login");
     }
 
     @FXML
