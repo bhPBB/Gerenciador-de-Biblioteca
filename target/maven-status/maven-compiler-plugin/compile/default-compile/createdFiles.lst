@@ -37,6 +37,7 @@ Banco\Login$2.class
 com\mycompany\crud2\ClienteUpdate$3.class
 com\mycompany\crud2\GeneroUpdate$3.class
 Banco\Login$1.class
+Controllers\ListarClienteController.class
 com\mycompany\crud2\LivroRead$3.class
 Controllers\BotaoHeaderController.class
 com\mycompany\crud2\AutorDelete$1.class

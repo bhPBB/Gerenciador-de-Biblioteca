@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ListarClienteController">
+    <stylesheets>
+        <URL value="@listarLivros.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="240.0" styleClass="background">
+         <stylesheets>
+            <URL value="@sidebar.css" />
+         </stylesheets>
+         <children>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="720.0" prefWidth="240.0">
+               <children>
+                  <Label maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" prefWidth="240.0" styleClass="label_especial" stylesheets="@sidebar.css" text="GDB" textAlignment="CENTER">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="33.0" />
+                     </font>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </Label>
+                  <GridPane layoutX="360.0" prefHeight="562.0" prefWidth="240.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button fx:id="sidebarLivros" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Livros" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                           <font>
+                              <Font name="Chilanka Regular" size="19.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="sidebarEmprestimosAtivos" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Empréstimos Ativos" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                           <font>
+                              <Font name="Chilanka Regular" size="19.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="sidebarClientes" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="side-bar-ativo" stylesheets="@sidebar.css" text="Clientes" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                           <font>
+                              <Font name="Chilanka Regular" size="19.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="sidebarFuncionarios" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Funcionários" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                           <font>
+                              <Font name="Chilanka Regular" size="19.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="sidebarAutores" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Autores" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                           <font>
+                              <Font name="Chilanka Regular" size="19.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="sidebarGeneros" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Gêneros" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                           <font>
+                              <Font name="Chilanka Regular" size="19.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="sidebarPainel" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Painel" GridPane.halignment="CENTER">
+                           <font>
+                              <Font name="Chilanka Regular" size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                        </Button>
+                     </children>
+                  </GridPane>
+                  <Button fx:id="sidebarUsuario" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="81.0" prefWidth="244.0" style="-fx-background-radius: 0px;" styleClass="label_especial" stylesheets="@sidebar.css" text="Usuário">
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="23.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1200.0" prefHeight="80.0" prefWidth="80.0" styleClass="background-botao" stylesheets="@headers.css">
+         <children>
+            <Button fx:id="irParaCadastro" alignment="CENTER" mnemonicParsing="false" onAction="#irParaCadastro" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="80.0" prefWidth="80.0" styleClass="botao" stylesheets="@headers.css" text="+">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="38.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Label layoutX="240.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" prefWidth="405.0" styleClass="titulo" stylesheets="@headers.css" text="Clientes Cadastrados" textAlignment="CENTER">
+         <font>
+            <Font name="DejaVu Sans Bold" size="33.0" />
+         </font>
+         <padding>
+            <Insets left="25.0" />
+         </padding>
+      </Label>
+      <ScrollPane fx:id="scrollPane" layoutX="276.0" layoutY="111.0" prefHeight="583.0" prefWidth="968.0" />
+   </children>
+</AnchorPane>

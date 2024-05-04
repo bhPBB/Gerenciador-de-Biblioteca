@@ -13,7 +13,7 @@
         <URL value="@cardListarCliente.css" />
     </stylesheets>
    <children>
-      <ImageView fx:id="foto" fitHeight="160.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="foto" fitHeight="160.0" fitWidth="220.0" pickOnBounds="true" />
       <Label fx:id="nome" layoutX="12.0" layoutY="210.0" prefHeight="66.0" prefWidth="196.0" text="Nome">
          <font>
             <Font name="Chilanka Regular" size="22.0" />

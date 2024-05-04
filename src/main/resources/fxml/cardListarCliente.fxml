@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="340.0" prefWidth="220.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CardListarClienteController">
+<AnchorPane id="AnchorPane" prefHeight="340.0" prefWidth="220.0" styleClass="card-borda" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CardListarClienteController">
     <stylesheets>
         <URL value="@cardListarCliente.css" />
     </stylesheets>
    <children>
-      <ImageView fx:id="foto" fitHeight="160.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="foto" fitHeight="160.0" fitWidth="220.0" pickOnBounds="true" styleClass="card-borda" />
       <Label fx:id="nome" layoutX="12.0" layoutY="210.0" prefHeight="66.0" prefWidth="196.0" text="Nome">
          <font>
             <Font name="Chilanka Regular" size="22.0" />
