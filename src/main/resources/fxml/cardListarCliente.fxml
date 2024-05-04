@@ -13,7 +13,6 @@
         <URL value="@cardListarCliente.css" />
     </stylesheets>
    <children>
-      <ImageView fx:id="foto" fitHeight="160.0" fitWidth="220.0" pickOnBounds="true" styleClass="card-borda" />
       <Label fx:id="nome" layoutX="12.0" layoutY="210.0" prefHeight="66.0" prefWidth="196.0" text="Nome">
          <font>
             <Font name="Chilanka Regular" size="22.0" />
@@ -30,5 +29,6 @@
          </image>
       </ImageView>
       <Button layoutX="139.0" layoutY="304.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent;" />
+      <ImageView fx:id="foto" fitHeight="209.0" fitWidth="195.0" layoutX="13.0" layoutY="14.0" pickOnBounds="true" />
    </children>
 </AnchorPane>
