@@ -10,10 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -21,49 +18,12 @@ import javafx.scene.layout.GridPane;
 public class ListarLivrosController implements Initializable {
 
     @FXML
+    private AnchorPane background;
+
+    @FXML
     private ScrollPane scrollPane;
 
-    @FXML
-    private Button irParaCadastro;
-
-    @FXML
-    private Button sidebarAutores;
-
-    @FXML
-    private Button sidebarClientes;
-
-    @FXML
-    private Button sidebarEmprestimosAtivos;
-
-    @FXML
-    private Button sidebarFuncionarios;
-
-    @FXML
-    private Button sidebarGeneros;
-
-    @FXML
-    private Button sidebarLivros;
-
-    @FXML
-    private Button sidebarPainel;
-
-    @FXML
-    private Button sidebarUsuario;
-
     private static final int QTDCOLUNA = 3;
-    
-    @FXML
-    void irParaCadastro(ActionEvent event) {
-        try {
-            App.mudarDeTela("cadastrarLivro");
-        }
-        catch (IOException e) {
-            System.out.println("A tela \"cadastrarLivro\" não foi encontrada.");
-        }
-        catch (Exception e) {
-            System.out.println("Erro desconhecido: " + e.getMessage());
-        }
-    }
 
     @FXML
     void pesquisar(ActionEvent event) {
@@ -72,6 +32,25 @@ public class ListarLivrosController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        try
+        {
+            //Carrega a sidebar e o header
+            App.inicialzarSidebarHeader(
+                    "listarLivros", 
+                    "Livros Cadastrados", 
+                    "+", 
+                    "cadastrarLivro", 
+                    background
+            );
+        }
+        catch (IOException ex)
+        {
+            var msg = "Erro ao carregar a sideber e/ou header: " + ex.getMessage();
+            System.out.println(msg);
+        }
+        
+        
+        //Carrega os cards dos livros
         GridPane containerLivros = new GridPane();
         containerLivros.setPadding(new Insets(10));
         containerLivros.setHgap(90);
@@ -109,125 +88,9 @@ public class ListarLivrosController implements Initializable {
             {
                 System.out.println("Erro ao carregar os cards.");
             }
-            
         }
         scrollPane.setContent(containerLivros);
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);
-    }
-    
-    @FXML
-    void setAtivo(MouseEvent event) {
-        var n = (Node) event.getSource();
-        
-        switch (n.getId()) {
-            case "irParaCadastro":
-                n.getStyleClass().remove("botao");
-                n.getStyleClass().add("botao-ativo");
-                break;
-            
-            case "sidebarUsuario":
-            {
-                n.getStyleClass().remove("label_especial");
-                n.getStyleClass().add("login-ativo");
-                break;
-
-            }                   
-            
-            default:
-            {
-                n.getStyleClass().remove("buttons");                    
-                n.getStyleClass().add("side-bar-ativo");
-            }
-        }
-    }
-
-    @FXML
-    void setPadrao(MouseEvent event) {
-        var n = (Node) event.getSource();
-        
-        switch (n.getId()) {
-            case "irParaCadastro":
-                n.getStyleClass().remove("botao-ativo");
-                n.getStyleClass().add("botao");
-                break;
-            
-             case "sidebarUsuario":
-            {
-                n.getStyleClass().remove("login-ativo");
-                n.getStyleClass().add("label_especial");
-                break;
-
-            }                   
-            
-            default:
-            {
-                n.getStyleClass().remove("side-bar-ativo");
-                n.getStyleClass().add("buttons");
-            }
-        }
-    }
-
-    @FXML
-    void irPara(ActionEvent e) {
-        
-        Node n = (Node) e.getSource();
-        
-        try 
-        {   
-            switch (n.getId()) 
-            {
-                case "sidebarAutores":
-                {
-                    App.mudarDeTela("listarAutores");
-                    break;
-                }
-                case "sidebarClientes":
-                {
-                    App.mudarDeTela("listarClientes");
-                    break;
-                }   
-                case "sidebarEmprestimosAtivos":
-                {
-                    App.mudarDeTela("listarEmprestimosAtivos");
-                    break;
-                }
-                case "sidebarFuncionarios":
-                {
-                    App.mudarDeTela("listarFuncionarios");
-                    break;
-                }
-                case "sidebarGeneros":
-                {
-                    App.mudarDeTela("listarGeneros");
-                    break;
-                }
-//                case "sidebarLivros":
-//                {
-//                    App.mudarDeTela(e, "listarLivros");
-//                    break;
-//                }
-                case "sidebarPainel":
-                {
-                    App.mudarDeTela("dashboard");
-                    break;
-                }
-                case "sidebarUsuario":
-                {
-                    App.mudarDeTela("usuario");
-                    break;
-                }
-                default:
-                    break;
-            }
-        }
-        catch (IOException ex)
-        {
-            System.out.println("Erro, tela não encontrada.");
-        }
-        catch (Exception ex)
-        {
-            System.out.println("Erro desconhecido: " + ex.getMessage());
-        }
     }
 }
