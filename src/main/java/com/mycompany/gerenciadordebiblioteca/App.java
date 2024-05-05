@@ -68,6 +68,15 @@ public class App extends Application {
     }
     
     public static void inicialzarSidebarHeader(String telaAtual, String TituloTela, String textoBotao, String telaBotao, AnchorPane backgroundTela) throws IOException {
+        
+        inicializarSidebar(telaAtual, backgroundTela);
+        
+        inicializarTituloHeader(TituloTela, backgroundTela);
+        
+        inicializarBotaoHeader(textoBotao, telaBotao, backgroundTela);
+    }
+    
+    public static void inicializarSidebar(String telaAtual, AnchorPane backgroundTela) throws IOException {
         //Carrega a sidebar    
         var sidebarLoader = new FXMLLoader(App.class.getResource("/fxml/sidebar.fxml"));
         AnchorPane anchorSideBar = sidebarLoader.load();
@@ -76,9 +85,23 @@ public class App extends Application {
         sc.inicializar(telaAtual);
         
         backgroundTela.getChildren().add(anchorSideBar);
-            
+    }
+    
+    public static void inicializarTituloHeader(String titulo, AnchorPane backgroundTela) throws IOException {
+         //Define o título da página 
+        var tituloLoader = new FXMLLoader(App.class.getResource("/fxml/tituloHeader.fxml"));
+        AnchorPane anchorTituloTela = tituloLoader.load();
+        
+        TituloHeaderController tc = tituloLoader.getController();
+        tc.setTitulo(titulo);
+        
+        anchorTituloTela.setLayoutX(240);
+        backgroundTela.getChildren().add(anchorTituloTela);
+    }
+    
+     public static void inicializarBotaoHeader(String textoBotao, String telaBotao, AnchorPane backgroundTela) throws IOException {
         //Carrega o botao do header
-         var botaoHeaderLoader = new FXMLLoader(App.class.getResource("/fxml/botaoHeader.fxml"));
+        var botaoHeaderLoader = new FXMLLoader(App.class.getResource("/fxml/botaoHeader.fxml"));
         AnchorPane anchorBotaoHeader = botaoHeaderLoader.load();
 
         BotaoHeaderController bc = botaoHeaderLoader.getController();
@@ -86,18 +109,8 @@ public class App extends Application {
         
         anchorBotaoHeader.setLayoutX(1200);
         backgroundTela.getChildren().add(anchorBotaoHeader);
-        
-        //Define o título da página 
-        var tituloLoader = new FXMLLoader(App.class.getResource("/fxml/tituloHeader.fxml"));
-        AnchorPane anchorTituloTela = tituloLoader.load();
-        
-        TituloHeaderController tc = tituloLoader.getController();
-        tc.setTitulo(TituloTela);
-        
-        anchorTituloTela.setLayoutX(240);
-        backgroundTela.getChildren().add(anchorTituloTela);
     }
-    
+     
     public static void main(String[] args) {
         launch();
     }

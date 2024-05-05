@@ -40,7 +40,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="sidebarLivros" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="side-bar-ativo" stylesheets="@sidebar.css" text="Livros" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                  <Button fx:id="sidebarLivros" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="60.0" prefWidth="214.0" styleClass="buttons" stylesheets="@sidebar.css" text="Livros" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                      <padding>
                         <Insets left="25.0" />
                      </padding>
