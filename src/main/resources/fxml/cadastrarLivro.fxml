@@ -21,8 +21,8 @@
    <children>
       <GridPane layoutX="439.0" layoutY="192.0" prefHeight="336.0" prefWidth="642.0">
         <columnConstraints>
-          <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="344.0" minWidth="10.0" prefWidth="321.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="321.0" minWidth="10.0" prefWidth="321.0" />
+          <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" valignment="BOTTOM" vgrow="SOMETIMES" />
@@ -57,7 +57,7 @@
                   <Insets left="15.0" />
                </GridPane.margin>
             </Label>
-            <Label alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="75.0" text="Imagem:" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <Label alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="75.0" text="Foto:" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <font>
                   <Font name="Chilanka Regular" size="16.0" />
                </font>
@@ -66,6 +66,17 @@
                </GridPane.margin>
             </Label>
             <TextField fx:id="inputTitulo" prefHeight="46.0" prefWidth="185.0" promptText="Título" styleClass="inputs" stylesheets="@cadastrarLivro.css" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Chilanka Regular" size="22.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="15.0" right="15.0" />
+               </GridPane.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </TextField>
+            <TextField fx:id="inputFoto" prefHeight="46.0" promptText="Foto" styleClass="inputs" stylesheets="@cadastrarLivro.css" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -115,23 +126,7 @@
                <font>
                   <Font name="DejaVu Sans Bold" size="22.0" />
                </font>
-               <GridPane.margin>
-                  <Insets left="14.0" />
-               </GridPane.margin>
             </Button>
-            <Button fx:id="inputImagem" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#escolherImagem" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="46.0" prefWidth="229.0" style="-fx-background-color: transparent; -fx-text-fill: black;" styleClass="botao" stylesheets="@cadastrarLivro.css" text="Escolher imagem⬆" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
-               <font>
-                  <Font name="DejaVu Sans Bold" size="22.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="14.0" />
-               </GridPane.margin>
-            </Button>
-            <Label fx:id="nomeImagem" contentDisplay="CENTER" prefHeight="40.0" prefWidth="321.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-               <font>
-                  <Font name="Chilanka Regular" size="16.0" />
-               </font>
-            </Label>
          </children>
       </GridPane>
       <Label fx:id="messageLabel" layoutX="737.0" layoutY="555.0" prefHeight="111.0" prefWidth="456.0" textFill="RED">
