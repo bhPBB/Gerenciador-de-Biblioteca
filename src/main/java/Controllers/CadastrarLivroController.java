@@ -141,9 +141,9 @@ public class CadastrarLivroController {
             messageLabel.setText("Por favor, preencha todos os campos.");
 
         }else try {
-                String query = "INSERT INTO livro (descricao, qtd_estoque, id_funcionario, imagem) VALUES ('" + titulo + "'," + qtd + ",'" + funcionario.getCpf() + "'," + imagem + ")";
+                String query = "INSERT INTO livro (descricao, qtd_estoque, id_funcionario, imagem) VALUES ('" + titulo + "'," + qtd + ",'" + funcionario.getCpf() + "','" + imagem +"')";
                 Database.executarQuery(query);
-                query = ("INSERT INTO livros_autores(id_livro, id_autor) VALUES ((SELECT id FROM livro "
+                query = ("INSERT INTO livros_autores(id_livro, id_autor) VALUES ((SELECT id FROM livro ";
                         + "WHERE descricao = '" + titulo +"'),(SELECT id FROM autor WHERE nome = '" + autor + "'))");
                 Database.executarQuery(query);
                 query = ("INSERT INTO livros_generos(id_livro, id_genero) VALUES ((SELECT id FROM livro "

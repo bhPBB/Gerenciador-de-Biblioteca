@@ -25,4 +25,5 @@
     -fx-border-color: linear-gradient(to left, #EA5459, #F7BA2C);
     -fx-border-style: solid;
     -fx-border-radius: 40px;
+    -fx-padding: 0px 10px;
 }
