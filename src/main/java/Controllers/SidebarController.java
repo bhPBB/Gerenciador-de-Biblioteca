@@ -2,18 +2,14 @@ package Controllers;
 
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
-import java.net.URL;
 import java.util.HashMap;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
-public class SidebarController implements Initializable {
+public class SidebarController {
 
     @FXML
     private Button sidebarAutores;
@@ -57,12 +53,8 @@ public class SidebarController implements Initializable {
             ID_SIDEBAR_PAINEL = "sidebarPainel",
             ID_SIDEBAR_USUARIO = "sidebarUsuario";
    
-    private HashMap<String, Button> telasLinks = new HashMap<>();
-
-    public void setTelaAtual(String tela) {
-        telaAtual = tela;
-    }
-   
+    private HashMap<String, Button> telasLinks;
+    
     @FXML
     void setAtivo(MouseEvent event) {
         App.setCursorMaozinha(event);
@@ -179,8 +171,11 @@ public class SidebarController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void inicializar(String telaAtual) {
+        this.telaAtual = telaAtual;
+        
+        telasLinks = new HashMap<>();
+        
         telasLinks.put("listarAutores", sidebarAutores);
         telasLinks.put("cadastrarAutor", sidebarAutores);
         
@@ -207,14 +202,17 @@ public class SidebarController implements Initializable {
         telasLinks.put("usuario", sidebarUsuario);
         
         //deixa o link da tela atual com estilo de botão ativo
-//        if(telaAtual.equals("usuario")) {
-//            telasLinks.get(telaAtual).getStyleClass().remove(ESTILO_USUARIO_PADRAO);
-//            telasLinks.get(telaAtual).getStyleClass().add(ESTILO_USUARIO_ATIVO);
-//        }
-//        else {
-//            telasLinks.get(telaAtual).getStyleClass().remove(ESTILO_SIDEBAR_PADRAO);
-//            telasLinks.get(telaAtual).getStyleClass().add(ESTILO_SIDEBAR_ATIVO);
-//        }
+        if(this.telaAtual != null && telaAtual.equals("usuario")) {
+            telasLinks.get(telaAtual).getStyleClass().remove(ESTILO_USUARIO_PADRAO);
+            telasLinks.get(telaAtual).getStyleClass().add(ESTILO_USUARIO_ATIVO);
+        }
+        else if(this.telaAtual == null) {
+            System.out.println("Erro: telaAtual é null.");
+        }
+        else {
+            telasLinks.get(telaAtual).getStyleClass().remove(ESTILO_SIDEBAR_PADRAO);
+            telasLinks.get(telaAtual).getStyleClass().add(ESTILO_SIDEBAR_ATIVO);
+        }
             
     }
     

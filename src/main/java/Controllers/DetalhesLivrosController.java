@@ -4,6 +4,8 @@
  */
 package Controllers;
 
+import com.google.common.io.Resources;
+import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -48,37 +50,37 @@ public class DetalhesLivrosController implements Initializable {
 
     @FXML
     void cursorMaozinha(MouseEvent event) {
-
+        App.setCursorMaozinha(event);
     }
 
     @FXML
     void cursorPadrao(MouseEvent event) {
-
+        App.setCursorPadrao(event);
     }
 
     @FXML
     void editar(ActionEvent event) {
-
+        // A implementar
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Inicializando a sidebar
-            
+    // Inicializando a sidebar
         try 
-        {    
-            var fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/sidebar.fxml"));
-            
-            AnchorPane anchorSideBar = fxmlLoader.load();
-            
-            background.getChildren().add(anchorSideBar);
+        { 
+            App.inicialzarSidebarHeader(
+                    "detalhesLivros", 
+                    "Detalhes", 
+                    "<-", 
+                    "listarLivros", 
+                    background
+            );
         } 
         catch (IOException ex) 
         {
-            System.out.println("Erro ao carregar a sidebar: " + ex.getMessage());
-        }
+            var msg = "Erro ao carregar a sidebar e/ou o header: " + ex.getMessage();
             
-    }    
-    
+            System.out.println(msg);
+        }
+    }
 }

@@ -17,6 +17,14 @@
         <URL value="@listarLivros.css" />
     </stylesheets>
    <children>
+      <Label layoutX="240.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" prefWidth="405.0" styleClass="titulo" stylesheets="@headers.css" text="Livros Cadastrados" textAlignment="CENTER">
+         <font>
+            <Font name="DejaVu Sans Bold" size="33.0" />
+         </font>
+         <padding>
+            <Insets left="25.0" />
+         </padding>
+      </Label>
       <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="240.0" styleClass="background">
          <stylesheets>
             <URL value="@sidebar.css" />
@@ -125,14 +133,6 @@
             </Button>
          </children>
       </AnchorPane>
-      <Label layoutX="240.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" prefWidth="405.0" styleClass="titulo" stylesheets="@headers.css" text="Livros Cadastrados" textAlignment="CENTER">
-         <font>
-            <Font name="DejaVu Sans Bold" size="33.0" />
-         </font>
-         <padding>
-            <Insets left="25.0" />
-         </padding>
-      </Label>
       <ScrollPane fx:id="scrollPane" layoutX="276.0" layoutY="111.0" prefHeight="583.0" prefWidth="968.0" />
    </children>
 </AnchorPane>
