@@ -18,9 +18,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
-public class CadastrarClienteController implements Initializable{
+public class CadastrarClienteController{
 
     @FXML
     private TextField inputCPF;
@@ -44,9 +46,8 @@ public class CadastrarClienteController implements Initializable{
     private Label messageLabel;
 
     private Funcionario funcionario = Funcionario.getFuncionario("", "", "");
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+
+    public void initialize() {
         try {
             String query = "SELECT descricao FROM estado";
             
@@ -91,9 +92,16 @@ public class CadastrarClienteController implements Initializable{
         }
         return false;
     }
-    //FALTA O ID_FUNCIONARIO
+
     @FXML
-    void cadastrar(ActionEvent event) {
+    void enter(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            cadastrar();
+        }
+    }
+    
+    @FXML
+    void cadastrar() {
         String cpf = inputCPF.getText();
         String email = inputEmail.getText();
         String nome = inputNome.getText();
@@ -125,12 +133,12 @@ public class CadastrarClienteController implements Initializable{
     }
    
     @FXML
-    void voltar(ActionEvent event) throws IOException {
+    void voltar() throws IOException {
         App.mudarDeTela("login");
     }
 
     @FXML
-    void logout(ActionEvent event) throws IOException {
+    void logout() throws IOException {
         if(Funcionario.logout() == null)
                 App.mudarDeTela("login");
         

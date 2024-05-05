@@ -3,6 +3,7 @@ package Controllers;
 import Banco.Database;
 import Modelos.Funcionario;
 import com.mycompany.gerenciadordebiblioteca.App;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -15,8 +16,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class CadastrarLivroController {
 
@@ -33,20 +38,17 @@ public class CadastrarLivroController {
     private Label inputEmail;
 
     @FXML
-    private TextField inputFoto;
+    private Button inputImagem;
 
     @FXML
     private ComboBox<String> inputGenero;
 
     @FXML
-    private Label inputNome;
+    private Label nomeImagem;
 
     @FXML
-    private Label inputNome1;
-
-    @FXML
-    private Label inputNome11;
-
+    private byte[] imagem;
+    
     @FXML
     private TextField inputQtdEstoque;
 
@@ -79,13 +81,13 @@ public class CadastrarLivroController {
 
     @FXML
     private Button sidebarUsuario;
-
+    
 @FXML
     private Button voltarParaLista;
     
-     private Funcionario funcionario = Funcionario.getFuncionario("", "", "");
+    private Funcionario funcionario = Funcionario.getFuncionario("", "", "");
     
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize() {
         try {
             String query = "SELECT descricao FROM genero";
             
@@ -109,20 +111,37 @@ public class CadastrarLivroController {
     }   
      
     @FXML
-    private void cadastrar(ActionEvent e){
+    private void escolherImagem(){
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(new ExtensionFilter("Imagens", "*.png", "*.jpg", "*.jpeg"));
+        File arquivoImagem = fc.showOpenDialog(null);
+        if (arquivoImagem != null){
+            nomeImagem.setText(arquivoImagem.getName());
+            imagem = new byte[(int) arquivoImagem.length()];
+        }
+    }
+    
+    @FXML
+    void enter(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            cadastrar();
+        }
+    }
+    
+    @FXML
+    private void cadastrar(){
       // Executar a inserção no banco de dados
         String titulo = inputTitulo.getText();
         String autor = inputAutor.getValue();
         String genero = inputGenero.getValue();
-        String foto = inputFoto.getText();
         String qtd = inputQtdEstoque.getText();
 
-        if(titulo.isEmpty() || qtd.isEmpty() || foto.isEmpty() || autor == null || genero == null){
+        if(titulo.isEmpty() || qtd.isEmpty() || imagem == null || autor == null || genero == null){
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Por favor, preencha todos os campos.");
 
         }else try {
-                String query = "INSERT INTO livro (descricao, qtd_estoque, id_funcionario) VALUES ('" + titulo + "'," + qtd + ",'" + funcionario.getCpf() + "')";
+                String query = "INSERT INTO livro (descricao, qtd_estoque, id_funcionario, imagem) VALUES ('" + titulo + "'," + qtd + ",'" + funcionario.getCpf() + "'," + imagem + ")";
                 Database.executarQuery(query);
                 query = ("INSERT INTO livros_autores(id_livro, id_autor) VALUES ((SELECT id FROM livro "
                         + "WHERE descricao = '" + titulo +"'),(SELECT id FROM autor WHERE nome = '" + autor + "'))");
@@ -140,7 +159,7 @@ public class CadastrarLivroController {
 
     
     @FXML
-    void irParaLista(ActionEvent event) {
+    void irParaLista() {
         try {
             App.mudarDeTela("listarLivros");
         }

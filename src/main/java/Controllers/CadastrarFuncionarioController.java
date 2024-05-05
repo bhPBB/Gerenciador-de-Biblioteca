@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
 public class CadastrarFuncionarioController {
@@ -41,8 +43,16 @@ public class CadastrarFuncionarioController {
             ex.printStackTrace();
         }
     }
+    
     @FXML
-    private void cadastrar(ActionEvent e) throws IOException{
+    void enter(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+            cadastrar();
+        }
+    }
+    
+    @FXML
+    private void cadastrar() throws IOException{
       // Executar a inserção no banco de dados
         String nome = inputNome.getText();
         String cpf = inputCPF.getText();
