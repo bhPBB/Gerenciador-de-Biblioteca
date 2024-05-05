@@ -9,8 +9,8 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -23,7 +23,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
-public class CadastrarLivroController {
+public class CadastrarLivroController implements Initializable{
 
     @FXML
     private AnchorPane background;
@@ -54,6 +54,7 @@ public class CadastrarLivroController {
 
     private Funcionario funcionario = Funcionario.getFuncionario("", "", "");
     
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         try 

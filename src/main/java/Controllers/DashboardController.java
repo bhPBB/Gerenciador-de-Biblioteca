@@ -2,39 +2,20 @@ package Controllers;
 
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
-import javafx.event.ActionEvent;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
 
-public class DashboardController {
-  
-    @FXML
-    private Button sidebarAutores;
-
-    @FXML
-    private Button sidebarClientes;
+public class DashboardController implements Initializable {
 
     @FXML
-    private Button sidebarEmprestimosAtivos;
-
-    @FXML
-    private Button sidebarFuncionarios;
-
-    @FXML
-    private Button sidebarGeneros;
-
-    @FXML
-    private Button sidebarLivros;
-
-    @FXML
-    private Button sidebarPainel;
-
-    @FXML
-    private Button siderbarUsuario;
-
+    private AnchorPane background;
+    
     @FXML
     private Label qtdAutores;
 
@@ -57,125 +38,20 @@ public class DashboardController {
     private Label qtdLivros;
     
     @FXML
-    void irPara(ActionEvent e) {
-        
-        Node n = (Node) e.getSource();
-        
-        try 
-        {   
-            switch (n.getId()) 
-            {
-                case "sidebarAutores":
-                {
-                    App.mudarDeTela("listarAutores");
-                    break;
-                }
-                case "sidebarClientes":
-                {
-                    App.mudarDeTela("listarClientes");
-                    break;
-                }   
-                case "sidebarEmprestimosAtivos":
-                {
-                    App.mudarDeTela("listarEmprestimosAtivos");
-                    break;
-                }
-                case "sidebarFuncionarios":
-                {
-                    App.mudarDeTela("listarFuncionarios");
-                    break;
-                }
-                case "sidebarGeneros":
-                {
-                    App.mudarDeTela("listarGeneros");
-                    break;
-                }
-                case "sidebarLivros":
-                {
-                    App.mudarDeTela("listarLivros");
-                    break;
-                }
-//                case "sidebarPainel":
-//                {
-//                    App.mudarDeTela("dashboard");
-//                    break;
-//                }
-                case "sidebarUsuario":
-                {
-                    App.mudarDeTela("usuario");
-                    break;
-                }
-                default:
-                    break;
-            }
-        }
-        catch (IOException ex)
-        {
-            System.out.println("Erro, tela não encontrada.");
-        }
-        catch (Exception ex)
-        {
-            System.out.println("Erro desconhecido: " + ex.getMessage());
-        }
-    }
-    
-    @FXML
     void waiting(MouseEvent event) {
         App.setCursorCarregando(event);
     }
 
-    @FXML
-    void setAtivo(MouseEvent event) {
-        
-        Node n = (Node) event.getSource();
-        
-        try 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        try
         {
-            switch (n.getId()) {
-                case "sidebarUsuario":
-                {
-                    n.getStyleClass().remove("label_especial");
-                    n.getStyleClass().add("login-ativo");
-                    break;
-
-                }                   
-                default:
-                {
-                    n.getStyleClass().remove("buttons");                    
-                    n.getStyleClass().add("side-bar-ativo");
-                }
-            }
+            App.inicializarSidebar("dashboard", background);
         }
-        catch (Exception ex)
+        catch (IOException ex)
         {
-            System.out.println("Erro desconhecido: " + ex.getMessage());
-        }
-    }
-    @FXML
-    void setPadrao(MouseEvent event) {
-        
-        Node n = (Node) event.getSource();
-        
-        try 
-        {
-            switch (n.getId()) {
-                case "sidebarUsuario":
-                {
-                    n.getStyleClass().remove("login-ativo");
-                    n.getStyleClass().add("label_especial");
-                    break;
-
-                }                   
-                default:
-                {
-                    n.getStyleClass().remove("side-bar-ativo");
-                    n.getStyleClass().add("buttons");
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            System.out.println("Erro desconhecido: " + ex.getMessage());
+            var msg = "Erro ao carregar sidebar: " + ex.getMessage();
+            System.out.println(msg);
         }
     }
 }
