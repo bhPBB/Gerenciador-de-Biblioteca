@@ -180,7 +180,7 @@ public class SidebarController {
         telasLinks.put("cadastrarAutor", sidebarAutores);
         
         telasLinks.put("listarClientes", sidebarClientes);
-        telasLinks.put("cadastarCliente", sidebarClientes);
+        telasLinks.put("cadastrarCliente", sidebarClientes);
         telasLinks.put("detalhesClientes", sidebarClientes);
        
         telasLinks.put("listarEmprestimosAtivos", sidebarEmprestimosAtivos);

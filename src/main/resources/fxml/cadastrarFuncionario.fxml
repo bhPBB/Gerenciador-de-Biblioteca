@@ -11,28 +11,24 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CadastrarFuncionarioController">
+<AnchorPane id="AnchorPane" fx:id="background" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CadastrarFuncionarioController">
     <stylesheets>
         <URL value="@cadastrarFuncionario.css" />
     </stylesheets>
    <children>
-      <Label layoutX="491.0" layoutY="43.0" text="Cadastrar Funcionário">
-         <font>
-            <Font name="DejaVu Sans Bold" size="30.0" />
-         </font>
-      </Label>
-      <GridPane layoutX="765.0" layoutY="79.0" prefHeight="289.0" prefWidth="400.0">
+      <GridPane layoutX="439.0" layoutY="192.0" prefHeight="336.0" prefWidth="642.0">
         <columnConstraints>
           <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" valignment="BOTTOM" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" valignment="TOP" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
@@ -56,7 +52,7 @@
                   <Font name="Chilanka Regular" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="inputCPF" prefHeight="46.0" promptText="CPF" styleClass="text-field" stylesheets="@cadastrarFuncionario.css" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <TextField fx:id="inputCPF" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="46.0" prefWidth="231.0" promptText="CPF" styleClass="inputs" stylesheets="@cadastrarLivro.css" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -67,7 +63,7 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextField fx:id="inputNome" prefHeight="46.0" prefWidth="181.0" promptText="Nome" styleClass="text-field" stylesheets="@cadastrarFuncionario.css" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+            <TextField fx:id="inputNome" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="46.0" prefWidth="274.0" promptText="Nome" styleClass="inputs" stylesheets="@cadastrarLivro.css" GridPane.halignment="LEFT" GridPane.rowIndex="3">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -78,7 +74,7 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextField fx:id="inputEmail" prefHeight="46.0" promptText="E-mail" styleClass="text-field" stylesheets="@cadastrarFuncionario.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="inputEmail" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="46.0" prefWidth="209.0" promptText="E-mail" styleClass="inputs" stylesheets="@cadastrarLivro.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -89,80 +85,30 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <PasswordField fx:id="inputSenha" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="52.0" prefWidth="187.0" promptText="Senha" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES">
+            <PasswordField fx:id="inputSenha" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="46.0" prefWidth="262.0" promptText="Senha" styleClass="inputs" stylesheets="@cadastrarLivro.css" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES">
                <font>
-                  <Font name="Consolas" size="22.0" />
+                  <Font name="Chilanka Regular" size="22.0" />
                </font>
             </PasswordField>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#cadastrar" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="46.0" prefWidth="185.0" styleClass="botao" stylesheets="@cadastrarLivro.css" text="Cadastrar" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="22.0" />
+               </font>
+            </Button>
+            <Label fx:id="inputNome11" alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="203.0" text="Cadastrar" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Chilanka Regular" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="inputNome111" alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="203.0" text="Foto:" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Chilanka Regular" size="16.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
-      <Button fx:id="cadastrarFuncionario" alignment="CENTER" layoutX="1040.0" layoutY="660.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="46.0" prefWidth="193.0" text="Cadastrar">
-         <font>
-            <Font name="DejaVu Sans Bold" size="22.0" />
-         </font>
-      </Button>
-      <Button alignment="CENTER" layoutX="227.0" layoutY="38.0" mnemonicParsing="false" onAction="#irPara" prefHeight="46.0" prefWidth="104.0" text="Voltar" textFill="RED">
-         <font>
-            <Font name="DejaVu Sans Bold" size="22.0" />
-         </font>
-      </Button>
       <Separator layoutX="193.0" orientation="VERTICAL" prefHeight="720.0" prefWidth="15.0" />
-      <VBox fx:id="sidebar" prefHeight="720.0" prefWidth="193.0" style="-fx-border-color: rgb(0,0,0); -fx-background-color: rgb(255,255,255);" styleClass="side-bar">
-         <children>
-            <GridPane prefHeight="583.0" prefWidth="193.0">
-              <columnConstraints>
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button fx:id="sideBarDashoard" alignment="CENTER" mnemonicParsing="false" onAction="#irPara" prefHeight="46.0" prefWidth="290.0" text="Dashboard" textAlignment="CENTER">
-                     <font>
-                        <Font name="Chilanka Regular" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="sideBarLivros" alignment="CENTER" mnemonicParsing="false" onAction="#irPara" prefHeight="46.0" prefWidth="362.0" text="Livros" textAlignment="CENTER" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Chilanka Regular" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="sideBarEmprestimos" alignment="CENTER" mnemonicParsing="false" onAction="#irPara" prefHeight="46.0" prefWidth="289.0" text="Empréstimos Ativos" textAlignment="CENTER" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Chilanka Regular" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="sideBarFuncionarios" alignment="CENTER" mnemonicParsing="false" onAction="#irPara" prefHeight="46.0" prefWidth="372.0" text="Funcionários" textAlignment="CENTER" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="Chilanka Regular" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="sideBarGeneros" alignment="CENTER" mnemonicParsing="false" onAction="#irPara" prefHeight="46.0" prefWidth="215.0" text="Gêneros" textAlignment="CENTER" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="Chilanka Regular" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="sideBarAutores" alignment="CENTER" mnemonicParsing="false" onAction="#irPara" prefHeight="46.0" prefWidth="191.0" text="Autores" textAlignment="CENTER" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="Chilanka Regular" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="sideBarClientes" alignment="CENTER" mnemonicParsing="false" onAction="#irPara" prefHeight="46.0" prefWidth="331.0" text="Clientes" textAlignment="CENTER" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="Chilanka Regular" size="18.0" />
-                     </font>
-                  </Button>
-               </children>
-            </GridPane>
-         </children>
-      </VBox>
-      <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="765.0" layoutY="470.0" prefHeight="100.0" prefWidth="400.0" textFill="#27ff00">
+      <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="737.0" layoutY="555.0" prefHeight="111.0" prefWidth="456.0" textFill="#27ff00">
          <font>
             <Font name="Chilanka Regular" size="16.0" />
          </font>

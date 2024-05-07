@@ -22,6 +22,7 @@ com/mycompany/crud2/ClienteRead.class
 Banco/Conn.class
 com/mycompany/crud2/LivroCreate$2.class
 ClassesTeste/LivroTeste.class
+Controllers/antesTemp.class
 com/mycompany/crud2/GeneroCreate$2.class
 Banco/CadastroLivro.class
 com/mycompany/crud2/ClienteDelete$1.class
@@ -62,7 +63,6 @@ com/mycompany/crud2/GeneroDelete.class
 Modelos/Funcionario.class
 com/mycompany/crud2/FuncionarioUpdate$4.class
 com/mycompany/crud2/LivroCreate$1.class
-Controllers/ListarClienteController.class
 com/mycompany/crud2/FuncionarioUpdate$1.class
 com/mycompany/crud2/AutorUpdate$1.class
 com/mycompany/crud2/FuncionarioDelete$1.class
@@ -91,6 +91,7 @@ com/mycompany/crud2/ClienteCreate$1.class
 com/mycompany/crud2/GeneroDelete$2.class
 Controllers/LoginController.class
 com/mycompany/crud2/LivroRead.class
+Controllers/ListarClientesController.class
 Banco/CadastroFuncionario$2.class
 com/mycompany/crud2/LivroRead$2.class
 com/mycompany/crud2/GeneroUpdate$1.class

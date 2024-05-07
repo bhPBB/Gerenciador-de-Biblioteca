@@ -4,44 +4,58 @@ import Banco.Database;
 import Modelos.Funcionario;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
+import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
-public class CadastrarFuncionarioController {
+public class CadastrarFuncionarioController implements Initializable {
+    
+    @FXML
+    private AnchorPane background;
+
     @FXML
     private TextField inputCPF;
-    @FXML
-    private TextField inputNome;
+
     @FXML
     private TextField inputEmail;
+
     @FXML
-    private TextField inputSenha;
+    private TextField inputNome;
+
+    @FXML
+    private Label inputNome11;
+
+    @FXML
+    private Label inputNome111;
+
+    @FXML
+    private PasswordField inputSenha;
+
     @FXML
     private Label messageLabel;
-   
+
     @FXML
-    private void irPara(ActionEvent e) throws IOException {
-        
-        var tela = "listarFuncionarios";
-        
-        try {
-            App.mudarDeTela("login");
-        }
-        catch (IOException ex) {
-            throw new IOException("Tela não encontrada: " + tela);
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-        }
+    void setAtivo(MouseEvent event) {
+        App.setCursorMaozinha(event);
+    }
+
+    @FXML
+    void setPadrao(MouseEvent event) {
+        App.setCursorPadrao(event);
     }
     
     @FXML
@@ -130,6 +144,26 @@ public class CadastrarFuncionarioController {
         else{
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Não foi possível fazer o Logout.");
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        try
+        {
+            //Carrega a sidebar e o header
+            App.inicialzarSidebarHeader(
+                    "listarFuncionarios", 
+                    "Cadastrar Funcionário", 
+                    "<-", 
+                    "listarFuncionarios", 
+                    background
+            );
+        }
+        catch (IOException ex)
+        {
+            var msg = "Erro ao carregar a sideber e/ou header: " + ex.getMessage();
+            System.out.println(msg);
         }
     }
 }

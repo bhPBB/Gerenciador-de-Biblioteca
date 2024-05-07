@@ -20,15 +20,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
 public class CadastrarClienteController{
 
     @FXML
-    private TextField inputCPF;
+    private AnchorPane background;
 
     @FXML
     private Button cadastrar;
+
+    @FXML
+    private TextField inputCPF;
 
     @FXML
     private ComboBox<String> inputCidade;
@@ -45,9 +50,27 @@ public class CadastrarClienteController{
     @FXML
     private Label messageLabel;
 
+
     private Funcionario funcionario = Funcionario.getFuncionario("", "", "");
 
     public void initialize() {
+         try
+        {
+            //Carrega a sidebar e o header
+            App.inicialzarSidebarHeader(
+                    "cadastrarCliente", 
+                    "Cadastrar Cliente", 
+                    "<-", 
+                    "listarClientes", 
+                    background
+            );
+        }
+        catch (IOException ex)
+        {
+            var msg = "Erro ao carregar a sideber e/ou header: " + ex.getMessage();
+            System.out.println(msg);
+        }
+        
         try {
             String query = "SELECT descricao FROM estado";
             
@@ -133,10 +156,15 @@ public class CadastrarClienteController{
     }
    
     @FXML
-    void voltar() throws IOException {
-        App.mudarDeTela("login");
+    void setPadrao(MouseEvent e) {
+        App.setCursorPadrao(e);
+    } 
+    
+    @FXML
+    void setAtivo(MouseEvent e) {
+        App.setCursorMaozinha(e);
     }
-
+    
     @FXML
     void logout() throws IOException {
         if(Funcionario.logout() == null)

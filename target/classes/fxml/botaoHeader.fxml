@@ -8,7 +8,7 @@
    <children>
       <Button fx:id="irPara" alignment="CENTER" mnemonicParsing="false" onAction="#voltar" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="80.0" prefWidth="80.0" styleClass="botao" stylesheets="@headers.css" text="+">
          <font>
-            <Font name="DejaVu Sans Bold" size="28.0" />
+            <Font name="DejaVu Sans Bold" size="26.0" />
          </font>
       </Button>
    </children>
