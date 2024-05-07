@@ -9,8 +9,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,7 +33,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
-public class antesTemp {
+public class Testes {
 
    @FXML
     private Button cadastrarLivro;
@@ -116,6 +121,29 @@ public class antesTemp {
             ResultSet rs = Database.executarSelect(query);
             while(rs.next())
                 inputAutor.getItems().add(rs.getString("nome"));
+        } catch (SQLException | ClassNotFoundException ex) {
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText(ex.getMessage());
+        }
+        
+        try {
+            String query = "SELECT dataTeste FROM teste where id = 1";
+            
+            ResultSet rs = Database.executarSelect(query);
+            if(rs.next()){
+                Date dataBanco = rs.getDate("dataTeste");
+                LocalDate dataHoje = LocalDate.now();
+                long dias = ChronoUnit.DAYS.between(dataBanco.toLocalDate(), dataHoje);
+                System.out.println(dias);
+                
+                if(dias >= 0){
+                    System.out.println(dias + " dia(s) restante(s)");
+                }else{
+                    System.out.println(dias + " dia(s) atrasado");
+                }
+                
+            }
+                
         } catch (SQLException | ClassNotFoundException ex) {
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText(ex.getMessage());
