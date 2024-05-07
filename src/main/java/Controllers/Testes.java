@@ -158,7 +158,6 @@ public class Testes {
         if (arquivoImagem != null){
             nomeImagem.setText(arquivoImagem.getName());
             imagem = Files.readAllBytes(arquivoImagem.toPath());
-            
         }
     }
     
