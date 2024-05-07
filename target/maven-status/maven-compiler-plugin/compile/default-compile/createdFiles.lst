@@ -18,6 +18,7 @@ Banco/CadastroFuncionario.class
 com/mycompany/crud2/AutorUpdate.class
 com/mycompany/crud2/ClienteCreate$2.class
 Controllers/CadastrarLivroController.class
+Controllers/ListarGenerosController.class
 com/mycompany/crud2/ClienteRead.class
 Banco/Conn.class
 com/mycompany/crud2/LivroCreate$2.class
@@ -31,6 +32,7 @@ Banco/Database.class
 com/mycompany/crud2/FuncionarioUpdate$3.class
 com/mycompany/crud2/AutorUpdate$3.class
 com/mycompany/crud2/LivroDelete.class
+Controllers/EmprestimosAtivosController.class
 Controllers/ListarLivrosController.class
 com/mycompany/crud2/AutorCreate.class
 com/mycompany/crud2/LivroDelete$2.class
@@ -48,6 +50,7 @@ com/mycompany/crud2/FuncionarioCreate$1.class
 InterfacesCRUD/ICRUDFuncionario.class
 com/mycompany/crud2/GeneroCreate$1.class
 com/mycompany/crud2/AutorCreate$1.class
+Controllers/ListarAutoresController.class
 com/mycompany/gerenciadordebiblioteca/App.class
 Controllers/DashboardController.class
 com/mycompany/crud2/LivroUpdate.class

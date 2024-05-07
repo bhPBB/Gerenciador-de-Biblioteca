@@ -3,6 +3,7 @@
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/ClassesTeste/FuncionarioTeste.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/crud2/AutorRead.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/Controllers/BotaoHeaderController.java
+/home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/Controllers/ListarGenerosController.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/Controllers/ListarClientesController.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/crud2/FuncionarioDelete.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/Banco/Conn.java
@@ -22,6 +23,7 @@
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/Controllers/HeaderListaController.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/Modelos/Funcionario.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/Controllers/ListarLivrosController.java
+/home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/Controllers/ListarAutoresController.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/crud2/LivroCreate.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/Banco/Login.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/crud2/ClienteUpdate.java
@@ -45,6 +47,7 @@
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/Controllers/CardListarClienteController.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/crud2/ClienteCreate.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/Controllers/TituloHeaderController.java
+/home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/Controllers/EmprestimosAtivosController.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/crud2/LivroDelete.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/ClassesTeste/LivroTeste.java
 /home/bruno/NetBeansProjects/GerenciadorDeBiblioteca/src/main/java/crud2/ClienteRead.java
