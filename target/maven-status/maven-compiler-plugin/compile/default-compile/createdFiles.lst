@@ -101,6 +101,7 @@ Controllers\Testes.class
 com\mycompany\crud2\FuncionarioDelete.class
 com\mycompany\gerenciadordebiblioteca\App.class
 Controllers\CardListarClienteController.class
+Controllers\EmprestimosAtivosController$1.class
 Controllers\ListarAutoresController.class
 com\mycompany\crud2\LivroUpdate.class
 Controllers\CadastrarClienteController.class
