@@ -48,16 +48,19 @@ public class CadastrarFuncionarioController implements Initializable {
     @FXML
     private Label messageLabel;
 
+    // Método chamado quando o mouse passa por cima de um elemento
     @FXML
     void setAtivo(MouseEvent event) {
         App.setCursorMaozinha(event);
     }
 
+    // Método chamado quando o mouse sai de cima de um elemento
     @FXML
     void setPadrao(MouseEvent event) {
         App.setCursorPadrao(event);
     }
     
+    // Método chamado quando a tecla Enter é pressionada
     @FXML
     void enter(KeyEvent event) throws IOException {
         if (event.getCode() == KeyCode.ENTER) {
@@ -65,6 +68,7 @@ public class CadastrarFuncionarioController implements Initializable {
         }
     }
     
+    // Método chamado quando o botão de cadastro é clicado
     @FXML
     private void cadastrar() throws IOException{
       // Executar a inserção no banco de dados
@@ -73,6 +77,7 @@ public class CadastrarFuncionarioController implements Initializable {
         String email = inputEmail.getText();
         String senha = inputSenha.getText();
        
+        //Verifica se os campos não estão vazios
         if(nome.isEmpty() || cpf.isEmpty() || email.isEmpty() || senha.isEmpty()){
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Por favor, preencha todos os campos.");
@@ -101,7 +106,8 @@ public class CadastrarFuncionarioController implements Initializable {
         }
     }
     
-      private String encrypt(String senha){
+    // Método para criptografar a senha utilizando SHA-256
+    private String encrypt(String senha){
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] encodedHash = digest.digest(senha.getBytes());
@@ -122,20 +128,23 @@ public class CadastrarFuncionarioController implements Initializable {
         }
     }
     
-     private boolean verificaEmailDuplicado(String email) throws ClassNotFoundException {
-    String query = "SELECT EMAIL FROM FUNCIONARIO WHERE EMAIL =" + "'" + email +"'";
-    try {
-        ResultSet rs = Database.executarSelect(query);
-        int rowCount = 0;
-        while (rs.next()) {
-            rowCount++; 
+    // Método para verificar se o email já está cadastrado no banco de dados
+    private boolean verificaEmailDuplicado(String email) throws ClassNotFoundException {
+        String query = "SELECT EMAIL FROM FUNCIONARIO WHERE EMAIL =" + "'" + email +"'";
+        try {
+            ResultSet rs = Database.executarSelect(query);
+            int rowCount = 0;
+            while (rs.next()) {
+                rowCount++; 
+            }
+            return rowCount > 0; // Retorna verdadeiro se rowCount for maior que zero (encontrou emails duplicados)
+        } catch (SQLException ex) {
+            messageLabel.setText("Erro verificar email duplicado: " + ex.getMessage());
         }
-        return rowCount > 0; // Retorna verdadeiro se rowCount for maior que zero (encontrou emails duplicados)
-    } catch (SQLException ex) {
-        messageLabel.setText("Erro verificar email duplicado: " + ex.getMessage());
+        return false;
     }
-    return false;
-}
+    
+    // Método chamado quando o botão de logout é clicado
     @FXML
     void logout(ActionEvent event) throws IOException {
         if(Funcionario.logout() == null)

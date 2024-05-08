@@ -50,7 +50,7 @@ public class CadastrarClienteController{
     @FXML
     private Label messageLabel;
 
-
+    // Funcionário logado que está realizando o cadastro
     private Funcionario funcionario = Funcionario.getFuncionario("", "", "");
 
     public void initialize() {
@@ -73,21 +73,24 @@ public class CadastrarClienteController{
         
         try {
             String query = "SELECT descricao FROM estado";
-            
+            // Carrega os estados disponíveis no banco
             ResultSet rs = Database.executarSelect(query);
             while(rs.next())
                 inputEstado.getItems().add(rs.getString("descricao"));
         } catch (SQLException | ClassNotFoundException ex) {
+            // Em caso de erro
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText(ex.getMessage());
         }
     }   
     
+    // Método chamado quando um estado é selecionado
     @FXML
     void selecionarEstado(ActionEvent event) {
         setCidade(inputEstado.getValue());
     }
     
+    // Define as cidades disponíveis para o estado selecionado
     void setCidade(String estado){
         inputCidade.getItems().clear();
         try {
@@ -100,6 +103,7 @@ public class CadastrarClienteController{
             }
         }
     
+    // Verifica se o CPF já foi cadastrado anteriormente
     private boolean verificaCPF(String cpf){
         String query = "SELECT cpf FROM cliente WHERE cpf = '" + cpf + "'";
         try {
@@ -116,6 +120,7 @@ public class CadastrarClienteController{
         return false;
     }
 
+    // Método chamado caso a tecla Enter é pressionada
     @FXML
     void enter(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
@@ -123,6 +128,7 @@ public class CadastrarClienteController{
         }
     }
     
+    // Método chamado quando o botão de cadastro é clicado
     @FXML
     void cadastrar() {
         String cpf = inputCPF.getText();
@@ -140,6 +146,7 @@ public class CadastrarClienteController{
             messageLabel.setText("Este cliente já foi cadastrado.");
         }else{
             try {
+                // Insere o novo cliente no banco de dados
                 String query = "INSERT INTO cliente (cpf, nome, estado, cidade"
                 + ", id_funcionario) VALUES ('" + cpf + "','" + nome + "',"
                 + "(SELECT id FROM estado WHERE descricao = '" + estado +
@@ -149,24 +156,29 @@ public class CadastrarClienteController{
                 messageLabel.setTextFill(Color.color(0, 1, 0));
                 messageLabel.setText("Cliente cadastrado com sucesso.");
             } catch (SQLException | ClassNotFoundException ex) { 
+                // Em caso de erro, exibe a mensagem de erro na label
                 messageLabel.setTextFill(Color.color(1, 0, 0));
                 messageLabel.setText(ex.getMessage());
             }
         }
     }
    
+    // Define o cursor como o cursor padrão quando o mouse sai de cima do elemento
     @FXML
     void setPadrao(MouseEvent e) {
         App.setCursorPadrao(e);
     } 
     
+    // Define o cursor como uma mãozinha quando o mouse passa por cima do elemento
     @FXML
     void setAtivo(MouseEvent e) {
         App.setCursorMaozinha(e);
     }
     
+    // Realiza o logout do funcionário
     @FXML
     void logout() throws IOException {
+        // Verifica se o logout foi realizado com sucesso
         if(Funcionario.logout() == null)
                 App.mudarDeTela("login");
         
