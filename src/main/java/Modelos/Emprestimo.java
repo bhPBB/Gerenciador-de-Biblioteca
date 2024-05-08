@@ -1,18 +1,29 @@
 package Modelos;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Emprestimo {
-    private String id;
-    private String descricao;
-    private String estado;
+    private final StringProperty id = new SimpleStringProperty();
+    private final StringProperty descricao = new SimpleStringProperty();
+    private final StringProperty estado = new SimpleStringProperty();
 
     public Emprestimo(String id, String descricao, String estado) {
-        this.id = id;
-        this.descricao = descricao;
-        this.estado = estado;
+        this.id.set(id);
+        this.descricao.set(descricao);
+        this.estado.set(estado);
     }
-    
-    String getId(){
-        return this.id;
+
+    public String getId() {
+        return id.getValue();
+    }
+
+    public String getDescricao() {
+        return descricao.getValue();
+    }
+
+    public String getEstado() {
+        return estado.getValue();
     }
 
 }

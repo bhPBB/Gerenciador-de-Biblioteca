@@ -58,7 +58,8 @@ public class EmprestimosAtivosController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-          try
+        carregarTabela();
+        try
         {
             //Carrega a sidebar e o header
             App.inicialzarSidebarHeader(
@@ -74,18 +75,28 @@ public class EmprestimosAtivosController implements Initializable {
             var msg = "Erro ao carregar a sideber e/ou header: " + ex.getMessage();
             System.out.println(msg);
         }
-          
+
+    }    
+
+    private void carregarTabela() {
+        linha.clear();
         try {
             String query = "SELECT * FROM cidade";
             ResultSet rs = Database.executarSelect(query);
             while(rs.next()){
-                //Emprestimo emp = new Emprestimo(rs.getString("id"), rs.getString("descricao"), rs.getString("estado"));
-                //linha.add(emp);
+                linha.add(new Emprestimo(rs.getString("id"), 
+                        rs.getString("descricao"), 
+                        rs.getString("estado")));    
             }
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex);
         }
+        
+        colunaLivro.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colunaCliente.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        colunaFuncionario.setCellValueFactory(new PropertyValueFactory<>("estado"));
         emprestimos.setItems(linha);
-    }    
+    }
+
     
 }

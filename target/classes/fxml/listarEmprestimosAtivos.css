@@ -1,0 +1,15 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+.atrasado{
+    -fx-fill: red;
+}
+
+.aberto{
+    -fx-fill: green;
+}
