@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -13,12 +12,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="background" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CadastrarFuncionarioController">
+<AnchorPane id="AnchorPane" fx:id="background" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CadastrarFuncionarioLoginController">
     <stylesheets>
         <URL value="@cadastrarFuncionario.css" />
     </stylesheets>
    <children>
-      <GridPane layoutX="439.0" layoutY="192.0" prefHeight="336.0" prefWidth="642.0">
+      <GridPane layoutX="351.0" layoutY="192.0" prefHeight="336.0" prefWidth="642.0">
         <columnConstraints>
           <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -95,12 +94,17 @@
                   <Font name="DejaVu Sans Bold" size="22.0" />
                </font>
             </Button>
-            <Label alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="203.0" text="Cadastrar" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Label fx:id="inputNome11" alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="203.0" text="Cadastrar" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font name="Chilanka Regular" size="16.0" />
                </font>
             </Label>
-            <Label alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="203.0" text="Foto:" GridPane.rowIndex="4">
+            <Label fx:id="inputNome111" alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="203.0" text="Foto:" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Chilanka Regular" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="nomeImagem" contentDisplay="CENTER" prefHeight="40.0" prefWidth="322.0" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
                <font>
                   <Font name="Chilanka Regular" size="16.0" />
                </font>
@@ -110,14 +114,8 @@
                   <Font name="DejaVu Sans Bold" size="22.0" />
                </font>
             </Button>
-            <Label fx:id="nomeImagem" contentDisplay="CENTER" prefHeight="40.0" prefWidth="322.0" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
-               <font>
-                  <Font name="Chilanka Regular" size="16.0" />
-               </font>
-            </Label>
          </children>
       </GridPane>
-      <Separator layoutX="193.0" orientation="VERTICAL" prefHeight="720.0" prefWidth="15.0" />
       <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="737.0" layoutY="555.0" prefHeight="111.0" prefWidth="456.0" textFill="#27ff00">
          <font>
             <Font name="Chilanka Regular" size="16.0" />

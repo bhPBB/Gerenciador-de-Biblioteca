@@ -26,7 +26,7 @@ public class App extends Application {
     
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("dashboard"));
+        scene = new Scene(loadFXML("login"));
         stage.setTitle("Gerenciador de Biblioteca");
         stage.getIcons().add(new Image(App.class.getResourceAsStream("/Imagens/icon1.png")));
         stage.setScene(scene);

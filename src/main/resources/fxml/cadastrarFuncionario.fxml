@@ -95,12 +95,22 @@
                   <Font name="DejaVu Sans Bold" size="22.0" />
                </font>
             </Button>
-            <Label fx:id="inputNome11" alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="203.0" text="Cadastrar" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Label alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="203.0" text="Cadastrar" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font name="Chilanka Regular" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="inputNome111" alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="203.0" text="Foto:" GridPane.rowIndex="4">
+            <Label alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="203.0" text="Foto:" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Chilanka Regular" size="16.0" />
+               </font>
+            </Label>
+            <Button fx:id="inputImagem" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#escolherImagem" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="46.0" prefWidth="229.0" style="-fx-background-color: transparent; -fx-text-fill: black;" styleClass="botao" stylesheets="@cadastrarFuncionario.css" text="Escolher imagem⬆" GridPane.rowIndex="5">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="22.0" />
+               </font>
+            </Button>
+            <Label fx:id="nomeImagem" contentDisplay="CENTER" prefHeight="40.0" prefWidth="322.0" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
                <font>
                   <Font name="Chilanka Regular" size="16.0" />
                </font>

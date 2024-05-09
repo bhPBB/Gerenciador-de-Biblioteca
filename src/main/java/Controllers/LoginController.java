@@ -38,7 +38,7 @@ public class LoginController {
 
     @FXML
     void irParaCadastro() throws IOException {
-            App.mudarDeTela("cadastrarFuncionario");
+            App.mudarDeTela("cadastrarFuncionarioLogin");
     }
     
     @FXML

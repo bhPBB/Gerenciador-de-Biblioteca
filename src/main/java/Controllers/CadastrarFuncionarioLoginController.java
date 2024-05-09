@@ -5,15 +5,12 @@ import Modelos.Funcionario;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -25,7 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
-public class CadastrarFuncionarioController implements Initializable {
+public class CadastrarFuncionarioLoginController{
     
 
     @FXML
@@ -173,26 +170,6 @@ public class CadastrarFuncionarioController implements Initializable {
         else{
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Não foi possível fazer o Logout.");
-        }
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        try
-        {
-            //Carrega a sidebar e o header
-            App.inicialzarSidebarHeader(
-                    "listarFuncionarios", 
-                    "Cadastrar Funcionário", 
-                    "<-", 
-                    "listarFuncionarios", 
-                    background
-            );
-        }
-        catch (IOException ex)
-        {
-            var msg = "Erro ao carregar a sideber e/ou header: " + ex.getMessage();
-            System.out.println(msg);
         }
     }
 }
