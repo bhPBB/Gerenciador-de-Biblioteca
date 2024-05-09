@@ -76,6 +76,7 @@ Banco\Login.class
 Controllers\CadastrarFuncionarioLoginController.class
 com\mycompany\crud2\ClienteRead$3.class
 com\mycompany\crud2\FuncionarioCreate$2.class
+Controllers\CadastrarEmprestimosController.class
 com\mycompany\crud2\GeneroUpdate$2.class
 com\mycompany\crud2\GeneroRead.class
 com\mycompany\crud2\AutorUpdate$1.class
