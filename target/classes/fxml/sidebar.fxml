@@ -98,13 +98,13 @@
                   </Button>
                </children>
             </GridPane>
-            <Button fx:id="sidebarUsuario" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="81.0" prefWidth="244.0" style="-fx-background-radius: 0px;" styleClass="label_especial" stylesheets="@sidebar.css" text="Usuário">
-               <padding>
-                  <Insets left="25.0" />
-               </padding>
+            <Button fx:id="sidebarUsuario" mnemonicParsing="false" onAction="#irPara" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="81.0" prefWidth="244.0" style="-fx-background-radius: 0px;" styleClass="label_especial" stylesheets="@sidebar.css" text="Sair ❌">
                <font>
                   <Font name="DejaVu Sans Bold" size="23.0" />
                </font>
+               <padding>
+                  <Insets left="25.0" />
+               </padding>
             </Button>
          </children>
       </VBox>

@@ -147,7 +147,8 @@ public class SidebarController {
                 }
                 case ID_SIDEBAR_USUARIO:
                 {
-                    App.mudarDeTela( "usuario");
+                    logout();
+                    //App.mudarDeTela( "usuario");
                     break;
                 }
                 default:
