@@ -55,59 +55,51 @@ public class SidebarController {
    
     private HashMap<String, Button> telasLinks;
     
-    @FXML
-    public void setAtivo(MouseEvent event) {
-        App.setCursorMaozinha(event);
+    public void inicializar(String telaAtual) {
+        this.telaAtual = telaAtual;
+        
+        telasLinks = new HashMap<>();
+        
+        telasLinks.put("listarAutores", sidebarAutores);
+        telasLinks.put("cadastrarAutor", sidebarAutores);
+        
+        telasLinks.put("listarClientes", sidebarClientes);
+        telasLinks.put("cadastrarCliente", sidebarClientes);
+        telasLinks.put("detalhesClientes", sidebarClientes);
        
-        var n = (Node)event.getSource();
+        telasLinks.put("listarEmprestimosAtivos", sidebarEmprestimosAtivos);
+        telasLinks.put("concederEmprestimo", sidebarEmprestimosAtivos);
         
-        switch (n.getId()) 
-        {    
-            case ID_SIDEBAR_USUARIO:
-            {
-                App.trocarEstilo(event, 
-                        ESTILO_USUARIO_PADRAO, 
-                        ESTILO_USUARIO_ATIVO
-                );
-                break;
-
-            }                   
-            default:
-            {
-               App.trocarEstilo(event, 
-                       ESTILO_SIDEBAR_PADRAO, 
-                       ESTILO_SIDEBAR_ATIVO
-               );
-            }
+        telasLinks.put("listarFuncionarios", sidebarFuncionarios);
+        telasLinks.put("cadastrarFuncionario", sidebarFuncionarios);
+        telasLinks.put("detalhesFuncionarios", sidebarFuncionarios);
+        
+        telasLinks.put("listarGeneros", sidebarGeneros);
+        telasLinks.put("cadastrarGenero", sidebarGeneros);
+        
+        telasLinks.put("listarLivros", sidebarLivros);
+        telasLinks.put("cadastrarLivro", sidebarLivros);
+        telasLinks.put("detalhesLivros", sidebarLivros);
+        
+        telasLinks.put("dashboard", sidebarPainel);
+        
+        telasLinks.put("usuario", sidebarUsuario);
+        
+        //deixa o link da tela atual com estilo de botão ativo
+        if(this.telaAtual != null && telaAtual.equals("usuario")) {
+            telasLinks.get(telaAtual).getStyleClass().remove(ESTILO_USUARIO_PADRAO);
+            telasLinks.get(telaAtual).getStyleClass().add(ESTILO_USUARIO_ATIVO);
         }
-    }
-
-    @FXML
-    public void setPadrao(MouseEvent event) {
-        App.setCursorPadrao(event);
-        
-        var n = (Node) event.getSource();
-        
-        switch (n.getId()) {
-             case ID_SIDEBAR_USUARIO:
-            {
-                App.trocarEstilo(event, 
-                        ESTILO_USUARIO_ATIVO, 
-                        ESTILO_USUARIO_PADRAO
-                );
-                break;
-
-            }                            
-            default:
-            {
-                App.trocarEstilo(event, 
-                        ESTILO_SIDEBAR_ATIVO, 
-                        ESTILO_SIDEBAR_PADRAO
-                );
-            }
+        else if(this.telaAtual == null) {
+            System.out.println("Erro: telaAtual é null.");
         }
+        else {
+            telasLinks.get(telaAtual).getStyleClass().remove(ESTILO_SIDEBAR_PADRAO);
+            telasLinks.get(telaAtual).getStyleClass().add(ESTILO_SIDEBAR_ATIVO);
+        }
+            
     }
-
+    
     @FXML
     public void irPara(ActionEvent e) {
         
@@ -170,51 +162,58 @@ public class SidebarController {
             System.out.println("Erro desconhecido: " + ex.getMessage());
         }
     }
-
-    public void inicializar(String telaAtual) {
-        this.telaAtual = telaAtual;
-        
-        telasLinks = new HashMap<>();
-        
-        telasLinks.put("listarAutores", sidebarAutores);
-        telasLinks.put("cadastrarAutor", sidebarAutores);
-        
-        telasLinks.put("listarClientes", sidebarClientes);
-        telasLinks.put("cadastrarCliente", sidebarClientes);
-        telasLinks.put("detalhesClientes", sidebarClientes);
+    
+    @FXML
+    public void setAtivo(MouseEvent event) {
+        App.setCursorMaozinha(event);
        
-        telasLinks.put("listarEmprestimosAtivos", sidebarEmprestimosAtivos);
-        telasLinks.put("concederEmprestimo", sidebarEmprestimosAtivos);
+        var n = (Node)event.getSource();
         
-        telasLinks.put("listarFuncionarios", sidebarFuncionarios);
-        telasLinks.put("cadastrarFuncionario", sidebarFuncionarios);
-        telasLinks.put("detalhesFuncionarios", sidebarFuncionarios);
-        
-        telasLinks.put("listarGeneros", sidebarGeneros);
-        telasLinks.put("cadastrarGenero", sidebarGeneros);
-        
-        telasLinks.put("listarLivros", sidebarLivros);
-        telasLinks.put("cadastrarLivro", sidebarLivros);
-        telasLinks.put("detalhesLivros", sidebarLivros);
-        
-        telasLinks.put("dashboard", sidebarPainel);
-        
-        telasLinks.put("usuario", sidebarUsuario);
-        
-        //deixa o link da tela atual com estilo de botão ativo
-        if(this.telaAtual != null && telaAtual.equals("usuario")) {
-            telasLinks.get(telaAtual).getStyleClass().remove(ESTILO_USUARIO_PADRAO);
-            telasLinks.get(telaAtual).getStyleClass().add(ESTILO_USUARIO_ATIVO);
+        switch (n.getId()) 
+        {    
+            case ID_SIDEBAR_USUARIO:
+            {
+                App.trocarEstilo(event, 
+                        ESTILO_USUARIO_PADRAO, 
+                        ESTILO_USUARIO_ATIVO
+                );
+                break;
+
+            }                   
+            default:
+            {
+               App.trocarEstilo(event, 
+                       ESTILO_SIDEBAR_PADRAO, 
+                       ESTILO_SIDEBAR_ATIVO
+               );
+            }
         }
-        else if(this.telaAtual == null) {
-            System.out.println("Erro: telaAtual é null.");
-        }
-        else {
-            telasLinks.get(telaAtual).getStyleClass().remove(ESTILO_SIDEBAR_PADRAO);
-            telasLinks.get(telaAtual).getStyleClass().add(ESTILO_SIDEBAR_ATIVO);
-        }
-            
     }
-    
-    
+
+    @FXML
+    public void setPadrao(MouseEvent event) {
+        App.setCursorPadrao(event);
+        
+        var n = (Node) event.getSource();
+        
+        switch (n.getId()) {
+             case ID_SIDEBAR_USUARIO:
+            {
+                App.trocarEstilo(event, 
+                        ESTILO_USUARIO_ATIVO, 
+                        ESTILO_USUARIO_PADRAO
+                );
+                break;
+
+            }                            
+            default:
+            {
+                App.trocarEstilo(event, 
+                        ESTILO_SIDEBAR_ATIVO, 
+                        ESTILO_SIDEBAR_PADRAO
+                );
+            }
+        }
+    }
+ 
 }

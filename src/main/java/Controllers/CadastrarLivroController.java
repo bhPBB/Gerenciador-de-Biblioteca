@@ -94,39 +94,7 @@ public class CadastrarLivroController implements Initializable{
         }
     }   
 
-    //Método que permite apenas o uso de números no campo Qtd_Estoque
-    private void apenasNumeros(KeyEvent event) {
-        TextField inputTexto = (TextField) event.getSource();
-        int finalDoCampo = inputTexto.getCaretPosition()+1;
 
-        String texto = inputTexto.getText();
-        if (!texto.matches("\\d*")) {
-            event.consume();
-            inputTexto.setText(texto.replaceAll("[^\\d]", ""));
-        }
-        
-        inputTexto.positionCaret(finalDoCampo);
-    }
-    
-    // Método chamado quando o botão para escolher a imagem é clicado
-    @FXML
-    private void escolherImagem(){
-        FileChooser fc = new FileChooser();
-        fc.getExtensionFilters().add(new ExtensionFilter("Imagens", "*.png", "*.jpg", "*.jpeg"));
-        File arquivoImagem = fc.showOpenDialog(null);
-        if (arquivoImagem != null){
-            nomeImagem.setText(arquivoImagem.getName());
-            imagem = new byte[(int) arquivoImagem.length()];
-        }
-    }
-    
-    // Método chamado quando a tecla Enter é pressionada
-    @FXML
-    private void enter(KeyEvent event) {
-        if (event.getCode() == KeyCode.ENTER) {
-            cadastrar();
-        }
-    }
     
     // Método chamado quando o botão de cadastro é clicado
     @FXML
@@ -164,6 +132,52 @@ public class CadastrarLivroController implements Initializable{
                 messageLabel.setTextFill(Color.color(1, 0, 0));
                 messageLabel.setText(ex.getMessage());
             }
+    }
+    
+    //Método que permite apenas o uso de números no campo Qtd_Estoque
+    private void apenasNumeros(KeyEvent event) {
+        TextField inputTexto = (TextField) event.getSource();
+        int finalDoCampo = inputTexto.getCaretPosition()+1;
+
+        String texto = inputTexto.getText();
+        if (!texto.matches("\\d*")) {
+            event.consume();
+            inputTexto.setText(texto.replaceAll("[^\\d]", ""));
+        }
+        
+        inputTexto.positionCaret(finalDoCampo);
+    }
+    
+    // Método chamado quando o botão para escolher a imagem é clicado
+    @FXML
+    private void escolherImagem(){
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(new ExtensionFilter("Imagens", "*.png", "*.jpg", "*.jpeg"));
+        File arquivoImagem = fc.showOpenDialog(null);
+        if (arquivoImagem != null){
+            nomeImagem.setText(arquivoImagem.getName());
+            imagem = new byte[(int) arquivoImagem.length()];
+        }
+    }
+    
+        // Método chamado quando o botão de logout é clicado
+    @FXML
+    private void logout() throws IOException {
+        if(Funcionario.logout() == null)
+                App.mudarDeTela("login");
+        
+        else{
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText("Não foi possível fazer o Logout.");
+        }
+    }
+    
+    // Método chamado quando a tecla Enter é pressionada
+    @FXML
+    private void enter(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            cadastrar();
+        }
     }
     
     // Método chamado quando o mouse passa por cima de um elemento

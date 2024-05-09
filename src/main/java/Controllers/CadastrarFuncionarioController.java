@@ -55,24 +55,24 @@ public class CadastrarFuncionarioController implements Initializable {
 
     @FXML
     private Label messageLabel;
-
-    // Método chamado quando o mouse passa por cima de um elemento
-    @FXML
-    private void setAtivo(MouseEvent event) {
-        App.setCursorMaozinha(event);
-    }
-
-    // Método chamado quando o mouse sai de cima de um elemento
-    @FXML
-    private void setPadrao(MouseEvent event) {
-        App.setCursorPadrao(event);
-    }
     
-    // Método chamado quando a tecla Enter é pressionada
-    @FXML
-    private void enter(KeyEvent event) throws IOException {
-        if (event.getCode() == KeyCode.ENTER) {
-            cadastrar();
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        try
+        {
+            //Carrega a sidebar e o header
+            App.inicialzarSidebarHeader(
+                    "listarFuncionarios", 
+                    "Cadastrar Funcionário", 
+                    "<-", 
+                    "listarFuncionarios", 
+                    background
+            );
+        }
+        catch (IOException ex)
+        {
+            var msg = "Erro ao carregar a sideber e/ou header: " + ex.getMessage();
+            System.out.println(msg);
         }
     }
     
@@ -166,7 +166,7 @@ public class CadastrarFuncionarioController implements Initializable {
     
     // Método chamado quando o botão de logout é clicado
     @FXML
-    private void logout(ActionEvent event) throws IOException {
+    private void logout() throws IOException {
         if(Funcionario.logout() == null)
                 App.mudarDeTela("login");
         
@@ -176,23 +176,24 @@ public class CadastrarFuncionarioController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        try
-        {
-            //Carrega a sidebar e o header
-            App.inicialzarSidebarHeader(
-                    "listarFuncionarios", 
-                    "Cadastrar Funcionário", 
-                    "<-", 
-                    "listarFuncionarios", 
-                    background
-            );
-        }
-        catch (IOException ex)
-        {
-            var msg = "Erro ao carregar a sideber e/ou header: " + ex.getMessage();
-            System.out.println(msg);
+    // Método chamado quando o mouse passa por cima de um elemento
+    @FXML
+    private void setAtivo(MouseEvent event) {
+        App.setCursorMaozinha(event);
+    }
+
+    // Método chamado quando o mouse sai de cima de um elemento
+    @FXML
+    private void setPadrao(MouseEvent event) {
+        App.setCursorPadrao(event);
+    }
+    
+    // Método chamado quando a tecla Enter é pressionada
+    @FXML
+    private void enter(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+            cadastrar();
         }
     }
+    
 }

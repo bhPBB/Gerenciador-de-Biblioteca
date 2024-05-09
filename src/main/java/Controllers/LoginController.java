@@ -35,30 +35,6 @@ public class LoginController {
     
     @FXML
     private Label semCadastro;
-
-    @FXML
-    private void irParaCadastro() throws IOException {
-            App.mudarDeTela("cadastrarFuncionarioLogin");
-    }
-    
-    @FXML
-    private void enter(KeyEvent event) {
-        if (event.getCode() == KeyCode.ENTER) {
-            login();
-        }
-    }
-    
-    @FXML
-    private void sublinhado(MouseEvent event) {
-        semCadastro.setTextFill(Color.color(0.050980392156862744, 0.2549019607843137, 0.48627450980392156));
-        semCadastro.setUnderline(true);
-    }
-
-    @FXML
-    private void tirarSublinhado(MouseEvent event) {
-        semCadastro.setTextFill(Color.color(0, 0.4470588235294118, 1));
-        semCadastro.setUnderline(false);
-    }
     
     @FXML
     private void login() {
@@ -118,4 +94,27 @@ public class LoginController {
         }
     }
 
+    @FXML
+    private void irParaCadastro() throws IOException {
+            App.mudarDeTela("cadastrarFuncionarioLogin");
+    }
+    
+    @FXML
+    private void enter(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            login();
+        }
+    }
+    
+    @FXML
+    private void sublinhado(MouseEvent event) {
+        semCadastro.setTextFill(Color.color(0.050980392156862744, 0.2549019607843137, 0.48627450980392156));
+        semCadastro.setUnderline(true);
+    }
+
+    @FXML
+    private void tirarSublinhado(MouseEvent event) {
+        semCadastro.setTextFill(Color.color(0, 0.4470588235294118, 1));
+        semCadastro.setUnderline(false);
+    }
 }

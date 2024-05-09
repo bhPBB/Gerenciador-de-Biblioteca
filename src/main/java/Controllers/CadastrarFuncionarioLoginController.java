@@ -53,25 +53,6 @@ public class CadastrarFuncionarioLoginController{
     @FXML
     private Label messageLabel;
 
-    // Método chamado quando o mouse passa por cima de um elemento
-    @FXML
-    private void setAtivo(MouseEvent event) {
-        App.setCursorMaozinha(event);
-    }
-
-    // Método chamado quando o mouse sai de cima de um elemento
-    @FXML
-    private void setPadrao(MouseEvent event) {
-        App.setCursorPadrao(event);
-    }
-    
-    // Método chamado quando a tecla Enter é pressionada
-    @FXML
-    private void enter(KeyEvent event) throws IOException {
-        if (event.getCode() == KeyCode.ENTER) {
-            cadastrar();
-        }
-    }
     
     // Método chamado quando o botão de cadastro é clicado
     @FXML
@@ -163,13 +144,33 @@ public class CadastrarFuncionarioLoginController{
     
     // Método chamado quando o botão de logout é clicado
     @FXML
-    private void logout(ActionEvent event) throws IOException {
+    private void logout() throws IOException {
         if(Funcionario.logout() == null)
                 App.mudarDeTela("login");
         
         else{
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Não foi possível fazer o Logout.");
+        }
+    }
+    
+    // Método chamado quando o mouse passa por cima de um elemento
+    @FXML
+    private void setAtivo(MouseEvent event) {
+        App.setCursorMaozinha(event);
+    }
+
+    // Método chamado quando o mouse sai de cima de um elemento
+    @FXML
+    private void setPadrao(MouseEvent event) {
+        App.setCursorPadrao(event);
+    }
+    
+    // Método chamado quando a tecla Enter é pressionada
+    @FXML
+    private void enter(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+            cadastrar();
         }
     }
 }
