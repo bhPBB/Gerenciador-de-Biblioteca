@@ -63,7 +63,7 @@ public class DashboardController implements Initializable {
             
             ResultSet rs = Database.executarSelect(query);
             
-            if(rs != null){
+            if(rs.next()){
                 qtdClientes.setText(rs.getString("cliente"));
                 qtdEmprestimosMes.setText(rs.getString("emprestimo_mes"));
                 qtdEmprestimosAtivos.setText(rs.getString("emprestimo_ativo"));
