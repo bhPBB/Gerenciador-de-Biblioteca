@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="background" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" stylesheets="@cadastrar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CadastrarClienteController">
+<AnchorPane id="AnchorPane" fx:id="background" onKeyPressed="#enter" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" stylesheets="@cadastrar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CadastrarClienteController">
    <children>
       <GridPane layoutX="439.0" layoutY="192.0" prefHeight="336.0" prefWidth="642.0">
         <columnConstraints>
@@ -35,7 +35,7 @@
                   <Font name="Chilanka Regular" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="inputCPF" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" promptText="CPF" styleClass="inputs" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <TextField fx:id="inputCPF" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#formatarCPF" prefHeight="46.0" promptText="CPF" styleClass="inputs" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -86,7 +86,7 @@
                   <Insets left="30.0" />
                </GridPane.margin>
             </Button>
-            <TextField fx:id="inputCEP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" promptText="CEP" styleClass="inputs" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+            <TextField fx:id="inputCEP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#formatarCEP" prefHeight="46.0" promptText="CEP" styleClass="inputs" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>

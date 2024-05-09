@@ -70,31 +70,6 @@ public class CadastrarClienteController{
 
     }   
     
-    // Verifica se o CPF já foi cadastrado anteriormente
-    private boolean verificaCPF(String cpf){
-        String query = "SELECT cpf FROM cliente WHERE cpf = '" + cpf + "'";
-        try {
-            ResultSet rs = Database.executarSelect(query);
-            int rowCount = 0;
-            while (rs.next()) {
-                rowCount++; 
-            }
-            return rowCount > 0;
-        } catch (SQLException | ClassNotFoundException ex) {
-            messageLabel.setTextFill(Color.color(1, 0, 0));
-            messageLabel.setText(ex.getMessage());
-        }
-        return false;
-    }
-
-    // Método chamado caso a tecla Enter é pressionada
-    @FXML
-    private void enter(KeyEvent event) {
-        if (event.getCode() == KeyCode.ENTER) {
-            cadastrar();
-        }
-    }
-    
     // Método chamado quando o botão de cadastro é clicado
     @FXML
     private void cadastrar() {
@@ -127,16 +102,21 @@ public class CadastrarClienteController{
         }
     }
    
-    // Define o cursor como o cursor padrão quando o mouse sai de cima do elemento
-    @FXML
-    private void setPadrao(MouseEvent e) {
-        App.setCursorPadrao(e);
-    } 
-    
-    // Define o cursor como uma mãozinha quando o mouse passa por cima do elemento
-    @FXML
-    private void setAtivo(MouseEvent e) {
-        App.setCursorMaozinha(e);
+    // Verifica se o CPF já foi cadastrado anteriormente
+    private boolean verificaCPF(String cpf){
+        String query = "SELECT cpf FROM cliente WHERE cpf = '" + cpf + "'";
+        try {
+            ResultSet rs = Database.executarSelect(query);
+            int rowCount = 0;
+            while (rs.next()) {
+                rowCount++; 
+            }
+            return rowCount > 0;
+        } catch (SQLException | ClassNotFoundException ex) {
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText(ex.getMessage());
+        }
+        return false;
     }
     
     // Realiza o logout do funcionário
@@ -150,5 +130,73 @@ public class CadastrarClienteController{
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Não foi possível fazer o Logout.");
         }
+    }
+    
+    //Método que formata o CPF
+    @FXML
+    private void formatarCPF(KeyEvent event) {
+        TextField inputTexto = (TextField) event.getSource();
+        int finalDoCampo = inputTexto.getCaretPosition()+1;
+
+        apenasNumeros(event, inputTexto);
+        formatarCampo(inputTexto, "(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4");
+        limitarTamanho(inputTexto, 14);
+        
+        inputTexto.positionCaret(finalDoCampo);
+    }
+    
+    //Método que formata o CEP
+    @FXML
+    private void formatarCEP(KeyEvent event) {
+        TextField inputTexto = (TextField) event.getSource();
+        int finalDoCampo = inputTexto.getCaretPosition()+1;
+        
+        apenasNumeros(event, inputTexto);
+        formatarCampo(inputTexto, "(\\d{5})(\\d{3})", "$1-$2");
+        limitarTamanho(inputTexto, 9);
+        
+        inputTexto.positionCaret(finalDoCampo);
+    }
+    
+    private void apenasNumeros(KeyEvent event, TextField campoParaTirarLetras){
+        String texto = campoParaTirarLetras.getText();
+        if (!texto.matches("\\d*")) {
+            event.consume();
+            campoParaTirarLetras.setText(texto.replaceAll("[^\\d]", ""));
+        }
+    }
+
+    private void formatarCampo(TextField campoParaFormatar, String comando, String formatacao){
+        String textoFormatado = campoParaFormatar.getText();
+        textoFormatado = textoFormatado.replaceAll(comando, formatacao);
+        campoParaFormatar.setText(textoFormatado);
+    }
+
+    private void limitarTamanho(TextField campoParaLimitar, int tamanho){
+        campoParaLimitar.textProperty().addListener((ov, textoAntigo, textoAtual) -> {
+            if (textoAtual.length() > tamanho) {
+                campoParaLimitar.setText(textoAntigo);
+            }
+        });
+    }
+    
+    // Método chamado caso a tecla Enter é pressionada
+    @FXML
+    private void enter(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            cadastrar();
+        }
+    }
+    
+    // Define o cursor como o cursor padrão quando o mouse sai de cima do elemento
+    @FXML
+    private void setPadrao(MouseEvent e) {
+        App.setCursorPadrao(e);
+    } 
+    
+    // Define o cursor como uma mãozinha quando o mouse passa por cima do elemento
+    @FXML
+    private void setAtivo(MouseEvent e) {
+        App.setCursorMaozinha(e);
     }
 }
