@@ -18,11 +18,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
-/**
- * FXML Controller class
- *
- * @author bruno
- */
 public class EmprestimosAtivosController implements Initializable {
 
     @FXML
