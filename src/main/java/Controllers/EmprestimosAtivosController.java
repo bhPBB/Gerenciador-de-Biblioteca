@@ -24,7 +24,7 @@ public class EmprestimosAtivosController implements Initializable {
     private AnchorPane background;
 
     @FXML
-    private TableView<Emprestimo> emprestimos; // mudar isso para 'Emprestimo'  
+    private TableView<Emprestimo> emprestimos; 
     
     @FXML
     private ObservableList<Emprestimo> linha = FXCollections.observableArrayList();
