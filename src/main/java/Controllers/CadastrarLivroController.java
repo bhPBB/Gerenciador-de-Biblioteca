@@ -96,17 +96,24 @@ public class CadastrarLivroController implements Initializable{
 
     //Método que permite apenas o uso de números no campo Qtd_Estoque
     @FXML
-        void apenasNumeros(KeyEvent event) {
-            TextField campoQtd = (TextField) event.getSource();
-            String qtd = campoQtd.getText();
-            int finalDoCampo = campoQtd.getCaretPosition();
+    private void apenasNumeros(KeyEvent event) {
+        TextField campoQtd = (TextField) event.getSource();
+        String qtd = campoQtd.getText();
+        int finalDoCampo = campoQtd.getCaretPosition()+1;
 
-            if (!qtd.matches("\\d*")) {
-                event.consume();
-                campoQtd.setText(qtd.replaceAll("[^\\d]", ""));
-                campoQtd.positionCaret(finalDoCampo);
-            }
+        if (!qtd.matches("\\d*")) {
+            event.consume();
+            campoQtd.setText(qtd.replaceAll("[^\\d]", ""));
         }
+        formatarCampo(campoQtd);
+        campoQtd.positionCaret(finalDoCampo);
+    }
+    
+    private void formatarCampo(TextField campoParaFormatar){
+        String textoFormatado = campoParaFormatar.getText();
+        textoFormatado = textoFormatado.replaceAll("(\\d{5})(\\d{3})", "$1-$2");
+        campoParaFormatar.setText(textoFormatado);
+    }
     
     // Método chamado quando o botão para escolher a imagem é clicado
     @FXML
