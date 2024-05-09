@@ -52,7 +52,6 @@ public class CadastrarFuncionarioLoginController{
 
     @FXML
     private Label messageLabel;
-
     
     // Método chamado quando o botão de cadastro é clicado
     @FXML

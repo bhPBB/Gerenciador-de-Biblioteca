@@ -35,11 +35,6 @@ public class DashboardController implements Initializable {
 
     @FXML
     private Label qtdLivros;
-    
-    @FXML
-    private void waiting(MouseEvent event) {
-        App.setCursorCarregando(event);
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

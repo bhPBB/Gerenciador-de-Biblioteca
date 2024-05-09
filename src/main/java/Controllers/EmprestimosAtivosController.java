@@ -50,8 +50,7 @@ public class EmprestimosAtivosController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        carregarTabela();
-        
+
         try
         {
             //Carrega a sidebar e o header
@@ -68,7 +67,8 @@ public class EmprestimosAtivosController implements Initializable {
             var msg = "Erro ao carregar a sideber e/ou header: " + ex.getMessage();
             System.out.println(msg);
         }
-
+        
+        carregarTabela(); 
     }    
 
     private void carregarTabela() {
