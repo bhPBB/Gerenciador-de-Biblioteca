@@ -37,7 +37,7 @@ public class DashboardController implements Initializable {
     private Label qtdLivros;
     
     @FXML
-    void waiting(MouseEvent event) {
+    private void waiting(MouseEvent event) {
         App.setCursorCarregando(event);
     }
 

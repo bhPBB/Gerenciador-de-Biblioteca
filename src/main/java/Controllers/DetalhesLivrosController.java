@@ -49,17 +49,17 @@ public class DetalhesLivrosController implements Initializable {
     private Label labelTitulo;
 
     @FXML
-    void cursorMaozinha(MouseEvent event) {
+    private void cursorMaozinha(MouseEvent event) {
         App.setCursorMaozinha(event);
     }
 
     @FXML
-    void cursorPadrao(MouseEvent event) {
+    private void cursorPadrao(MouseEvent event) {
         App.setCursorPadrao(event);
     }
 
     @FXML
-    void editar(ActionEvent event) {
+    public void editar(ActionEvent event) {
         // A implementar
     }
 

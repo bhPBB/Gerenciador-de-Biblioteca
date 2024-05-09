@@ -46,12 +46,12 @@ public class CardListarLivroController {
     }
     
     @FXML
-    void deletar(ActionEvent event) {
+    public void deletar(ActionEvent event) {
         // a implementar
     }
 
     @FXML
-    void info(ActionEvent event) {
+    public void info(ActionEvent event) {
         try
         {
             App.mudarDeTela("detalhesLivros");
@@ -62,12 +62,12 @@ public class CardListarLivroController {
         }
     }
     @FXML
-    void cursorMaozinha(MouseEvent event) {
+    private void cursorMaozinha(MouseEvent event) {
        App.setCursorMaozinha(event);
     }
 
     @FXML
-    void cursorPadrao(MouseEvent event) {
+    private void cursorPadrao(MouseEvent event) {
         App.setCursorPadrao(event);
     }
 }

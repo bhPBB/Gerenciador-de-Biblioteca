@@ -37,31 +37,31 @@ public class LoginController {
     private Label semCadastro;
 
     @FXML
-    void irParaCadastro() throws IOException {
+    private void irParaCadastro() throws IOException {
             App.mudarDeTela("cadastrarFuncionarioLogin");
     }
     
     @FXML
-    void enter(KeyEvent event) {
+    private void enter(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
             login();
         }
     }
     
     @FXML
-    void sublinhado(MouseEvent event) {
+    private void sublinhado(MouseEvent event) {
         semCadastro.setTextFill(Color.color(0.050980392156862744, 0.2549019607843137, 0.48627450980392156));
         semCadastro.setUnderline(true);
     }
 
     @FXML
-    void tirarSublinhado(MouseEvent event) {
+    private void tirarSublinhado(MouseEvent event) {
         semCadastro.setTextFill(Color.color(0, 0.4470588235294118, 1));
         semCadastro.setUnderline(false);
     }
     
     @FXML
-    void login() {
+    private void login() {
         String email = inputEmail.getText();
         String senha = inputSenha.getText();
 

@@ -56,7 +56,7 @@ public class SidebarController {
     private HashMap<String, Button> telasLinks;
     
     @FXML
-    void setAtivo(MouseEvent event) {
+    public void setAtivo(MouseEvent event) {
         App.setCursorMaozinha(event);
        
         var n = (Node)event.getSource();
@@ -83,7 +83,7 @@ public class SidebarController {
     }
 
     @FXML
-    void setPadrao(MouseEvent event) {
+    public void setPadrao(MouseEvent event) {
         App.setCursorPadrao(event);
         
         var n = (Node) event.getSource();
@@ -109,7 +109,7 @@ public class SidebarController {
     }
 
     @FXML
-    void irPara(ActionEvent e) {
+    public void irPara(ActionEvent e) {
         
         Node n = (Node) e.getSource();
         

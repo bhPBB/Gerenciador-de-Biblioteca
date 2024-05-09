@@ -58,19 +58,19 @@ public class CadastrarFuncionarioController implements Initializable {
 
     // Método chamado quando o mouse passa por cima de um elemento
     @FXML
-    void setAtivo(MouseEvent event) {
+    private void setAtivo(MouseEvent event) {
         App.setCursorMaozinha(event);
     }
 
     // Método chamado quando o mouse sai de cima de um elemento
     @FXML
-    void setPadrao(MouseEvent event) {
+    private void setPadrao(MouseEvent event) {
         App.setCursorPadrao(event);
     }
     
     // Método chamado quando a tecla Enter é pressionada
     @FXML
-    void enter(KeyEvent event) throws IOException {
+    private void enter(KeyEvent event) throws IOException {
         if (event.getCode() == KeyCode.ENTER) {
             cadastrar();
         }
@@ -166,7 +166,7 @@ public class CadastrarFuncionarioController implements Initializable {
     
     // Método chamado quando o botão de logout é clicado
     @FXML
-    void logout(ActionEvent event) throws IOException {
+    private void logout(ActionEvent event) throws IOException {
         if(Funcionario.logout() == null)
                 App.mudarDeTela("login");
         

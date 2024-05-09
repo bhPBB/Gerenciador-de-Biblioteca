@@ -31,7 +31,7 @@ public class BotaoHeaderController {
     
     // Evento quando o mouse passa por cima do botão
     @FXML
-    void setAtivo(MouseEvent event) { 
+    public void setAtivo(MouseEvent event) { 
         // Altera o cursor para a forma de mãozinha
         App.setCursorMaozinha(event); 
 
@@ -41,7 +41,7 @@ public class BotaoHeaderController {
 
     // Evento quando o mouse sai de cima do botão
     @FXML
-    void setPadrao(MouseEvent event) {
+    private void setPadrao(MouseEvent event) {
         // Altera o cursor para o cursor padrão
         App.setCursorPadrao(event);
         
@@ -51,7 +51,7 @@ public class BotaoHeaderController {
 
     // Evento quando o botão é clicado para voltar à tela anterior
     @FXML
-    void voltar(ActionEvent event) {
+    public void voltar(ActionEvent event) {
         try {
             // Chama o método para mudar para a tela de destino
             App.mudarDeTela(irParaOnde);

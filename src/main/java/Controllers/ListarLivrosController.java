@@ -26,7 +26,7 @@ public class ListarLivrosController implements Initializable {
     private static final int QTDCOLUNA = 3;
 
     @FXML
-    void pesquisar(ActionEvent event) {
+    public void pesquisar(ActionEvent event) {
         // a implementar.
     }
     

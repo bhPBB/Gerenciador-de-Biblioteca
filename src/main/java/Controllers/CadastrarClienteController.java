@@ -89,7 +89,7 @@ public class CadastrarClienteController{
 
     // Método chamado caso a tecla Enter é pressionada
     @FXML
-    void enter(KeyEvent event) {
+    private void enter(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
             cadastrar();
         }
@@ -97,7 +97,7 @@ public class CadastrarClienteController{
     
     // Método chamado quando o botão de cadastro é clicado
     @FXML
-    void cadastrar() {
+    private void cadastrar() {
         String cpf = inputCPF.getText();
         String email = inputEmail.getText();
         String nome = inputNome.getText();
@@ -129,19 +129,19 @@ public class CadastrarClienteController{
    
     // Define o cursor como o cursor padrão quando o mouse sai de cima do elemento
     @FXML
-    void setPadrao(MouseEvent e) {
+    private void setPadrao(MouseEvent e) {
         App.setCursorPadrao(e);
     } 
     
     // Define o cursor como uma mãozinha quando o mouse passa por cima do elemento
     @FXML
-    void setAtivo(MouseEvent e) {
+    private void setAtivo(MouseEvent e) {
         App.setCursorMaozinha(e);
     }
     
     // Realiza o logout do funcionário
     @FXML
-    void logout() throws IOException {
+    private void logout() throws IOException {
         // Verifica se o logout foi realizado com sucesso
         if(Funcionario.logout() == null)
                 App.mudarDeTela("login");
