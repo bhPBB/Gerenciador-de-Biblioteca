@@ -36,17 +36,14 @@ public class CadastrarClienteController{
     private TextField inputCPF;
 
     @FXML
-    private ComboBox<String> inputCidade;
-
-    @FXML
     private TextField inputEmail;
-
-    @FXML
-    private ComboBox<String> inputEstado;
 
     @FXML
     private TextField inputNome;
 
+    @FXML
+    private TextField inputCEP;
+    
     @FXML
     private Label messageLabel;
 
@@ -70,38 +67,8 @@ public class CadastrarClienteController{
             var msg = "Erro ao carregar a sideber e/ou header: " + ex.getMessage();
             System.out.println(msg);
         }
-        
-        try {
-            String query = "SELECT descricao FROM estado";
-            // Carrega os estados disponíveis no banco
-            ResultSet rs = Database.executarSelect(query);
-            while(rs.next())
-                inputEstado.getItems().add(rs.getString("descricao"));
-        } catch (SQLException | ClassNotFoundException ex) {
-            // Em caso de erro
-            messageLabel.setTextFill(Color.color(1, 0, 0));
-            messageLabel.setText(ex.getMessage());
-        }
+
     }   
-    
-    // Método chamado quando um estado é selecionado
-    @FXML
-    void selecionarEstado(ActionEvent event) {
-        setCidade(inputEstado.getValue());
-    }
-    
-    // Define as cidades disponíveis para o estado selecionado
-    void setCidade(String estado){
-        inputCidade.getItems().clear();
-        try {
-                ResultSet rs = Database.executarSelect("SELECT descricao FROM cidade WHERE estado = (SELECT id FROM estado WHERE descricao = '" + estado + "')");
-                while(rs.next())
-                    inputCidade.getItems().add(rs.getString("descricao"));
-            } catch (SQLException | ClassNotFoundException ex) {
-                messageLabel.setTextFill(Color.color(1, 0, 0));
-                messageLabel.setText(ex.getMessage());
-            }
-        }
     
     // Verifica se o CPF já foi cadastrado anteriormente
     private boolean verificaCPF(String cpf){
@@ -134,11 +101,9 @@ public class CadastrarClienteController{
         String cpf = inputCPF.getText();
         String email = inputEmail.getText();
         String nome = inputNome.getText();
-        String estado = inputEstado.getValue();
-        String cidade = inputCidade.getValue();
+        String cep = inputCEP.getText();
         
-        if(cpf.isEmpty() || email.isEmpty() || nome.isEmpty() || 
-                estado == null || cidade == null){
+        if(cpf.isEmpty() || email.isEmpty() || nome.isEmpty() || cep.isEmpty()){
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Por favor, preencha todos os campos.");   
         }else if(verificaCPF(cpf)){
@@ -147,10 +112,9 @@ public class CadastrarClienteController{
         }else{
             try {
                 // Insere o novo cliente no banco de dados
-                String query = "INSERT INTO cliente (cpf, nome, estado, cidade"
-                + ", id_funcionario) VALUES ('" + cpf + "','" + nome + "',"
-                + "(SELECT id FROM estado WHERE descricao = '" + estado +
-                "'),(SELECT id FROM cidade WHERE descricao = '" + cidade + "'),'" + funcionario.getCpf() + "')";
+                String query = "INSERT INTO cliente (cpf, nome, cep"
+                + ", id_funcionario) VALUES ('" + cpf + "','" + nome + "','"
+                +  cep + "','" + funcionario.getCpf() + "')";
 
                 Database.executarQuery(query);
                 messageLabel.setTextFill(Color.color(0, 1, 0));
