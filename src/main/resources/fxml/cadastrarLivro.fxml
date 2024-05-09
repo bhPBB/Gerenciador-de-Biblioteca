@@ -92,7 +92,7 @@
                   <Insets left="14.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="inputQtdEstoque" maxWidth="-Infinity" prefHeight="46.0" promptText="Qtd. em Estoque" styleClass="inputs" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <TextField fx:id="inputQtdEstoque" maxWidth="-Infinity" onKeyTyped="#apenasNumeros" prefHeight="46.0" promptText="Qtd. em Estoque" styleClass="inputs" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
