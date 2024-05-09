@@ -93,8 +93,6 @@ public class CadastrarLivroController implements Initializable{
             System.out.println(msg);
         }
     }   
-
-
     
     // Método chamado quando o botão de cadastro é clicado
     @FXML
@@ -157,18 +155,6 @@ public class CadastrarLivroController implements Initializable{
         if (arquivoImagem != null){
             nomeImagem.setText(arquivoImagem.getName());
             imagem = new byte[(int) arquivoImagem.length()];
-        }
-    }
-    
-        // Método chamado quando o botão de logout é clicado
-    @FXML
-    private void logout() throws IOException {
-        if(Funcionario.logout() == null)
-                App.mudarDeTela("login");
-        
-        else{
-            messageLabel.setTextFill(Color.color(1, 0, 0));
-            messageLabel.setText("Não foi possível fazer o Logout.");
         }
     }
     

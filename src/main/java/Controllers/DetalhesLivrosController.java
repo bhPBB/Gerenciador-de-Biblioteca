@@ -39,21 +39,6 @@ public class DetalhesLivrosController implements Initializable {
     @FXML
     private Label labelTitulo;
 
-    @FXML
-    private void cursorMaozinha(MouseEvent event) {
-        App.setCursorMaozinha(event);
-    }
-
-    @FXML
-    private void cursorPadrao(MouseEvent event) {
-        App.setCursorPadrao(event);
-    }
-
-    @FXML
-    public void editar(ActionEvent event) {
-        // A implementar
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     // Inicializando a sidebar
@@ -73,5 +58,20 @@ public class DetalhesLivrosController implements Initializable {
             
             System.out.println(msg);
         }
+    }
+    
+    @FXML
+    private void cursorMaozinha(MouseEvent event) {
+        App.setCursorMaozinha(event);
+    }
+
+    @FXML
+    private void cursorPadrao(MouseEvent event) {
+        App.setCursorPadrao(event);
+    }
+
+    @FXML
+    public void editar(ActionEvent event) {
+        // A implementar
     }
 }

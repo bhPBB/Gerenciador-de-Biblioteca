@@ -51,6 +51,7 @@ public class EmprestimosAtivosController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         carregarTabela();
+        
         try
         {
             //Carrega a sidebar e o header
@@ -98,6 +99,7 @@ public class EmprestimosAtivosController implements Initializable {
         colunaDataEmprestimo.setCellValueFactory(new PropertyValueFactory<>("dataEmprestimo"));
         colunaDataDevolucao.setCellValueFactory(new PropertyValueFactory<>("dataDevolucao"));
         colunaStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        
         mudarCor();
         
         emprestimos.setItems(linha);

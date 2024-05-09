@@ -119,19 +119,6 @@ public class CadastrarClienteController{
         return false;
     }
     
-    // Realiza o logout do funcionário
-    @FXML
-    private void logout() throws IOException {
-        // Verifica se o logout foi realizado com sucesso
-        if(Funcionario.logout() == null)
-                App.mudarDeTela("login");
-        
-        else{
-            messageLabel.setTextFill(Color.color(1, 0, 0));
-            messageLabel.setText("Não foi possível fazer o Logout.");
-        }
-    }
-    
     //Método que formata o CPF
     @FXML
     private void formatarCPF(KeyEvent event) {

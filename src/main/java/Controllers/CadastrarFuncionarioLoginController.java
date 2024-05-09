@@ -142,18 +142,6 @@ public class CadastrarFuncionarioLoginController{
         }
     }
     
-    // Método chamado quando o botão de logout é clicado
-    @FXML
-    private void logout() throws IOException {
-        if(Funcionario.logout() == null)
-                App.mudarDeTela("login");
-        
-        else{
-            messageLabel.setTextFill(Color.color(1, 0, 0));
-            messageLabel.setText("Não foi possível fazer o Logout.");
-        }
-    }
-    
     // Método chamado quando o mouse passa por cima de um elemento
     @FXML
     private void setAtivo(MouseEvent event) {

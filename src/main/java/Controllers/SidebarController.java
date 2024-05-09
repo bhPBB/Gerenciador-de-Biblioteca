@@ -1,5 +1,6 @@
 package Controllers;
 
+import Modelos.Funcionario;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
 import java.util.HashMap;
@@ -161,6 +162,13 @@ public class SidebarController {
         {
             System.out.println("Erro desconhecido: " + ex.getMessage());
         }
+    }
+    
+    // Realiza o logout do usuário
+    @FXML
+    private void logout() throws IOException {
+        if(Funcionario.logout() == null)
+                App.mudarDeTela("login");
     }
     
     @FXML
