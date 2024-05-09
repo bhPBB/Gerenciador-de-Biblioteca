@@ -47,7 +47,7 @@
                   <Font name="Chilanka Regular" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="inputCPF" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="46.0" prefWidth="231.0" promptText="CPF" styleClass="inputs" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <TextField fx:id="inputCPF" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="46.0" promptText="CPF" styleClass="inputs" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -58,7 +58,7 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextField fx:id="inputNome" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="46.0" prefWidth="274.0" promptText="Nome" styleClass="inputs" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+            <TextField fx:id="inputNome" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="46.0" promptText="Nome" styleClass="inputs" GridPane.halignment="LEFT" GridPane.rowIndex="3">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -69,7 +69,7 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextField fx:id="inputEmail" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="46.0" prefWidth="209.0" promptText="E-mail" styleClass="inputs" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="inputEmail" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="46.0" promptText="E-mail" styleClass="inputs" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -80,21 +80,19 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <PasswordField fx:id="inputSenha" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="46.0" prefWidth="262.0" promptText="Senha" styleClass="inputs" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES">
+            <PasswordField fx:id="inputSenha" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="46.0" promptText="Senha" styleClass="inputs" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
             </PasswordField>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#cadastrar" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="46.0" prefWidth="185.0" styleClass="botao" text="Cadastrar" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#cadastrar" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="46.0" prefWidth="185.0" styleClass="botao" text="Cadastrar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                <font>
                   <Font name="DejaVu Sans Bold" size="22.0" />
                </font>
+               <GridPane.margin>
+                  <Insets left="30.0" />
+               </GridPane.margin>
             </Button>
-            <Label fx:id="inputNome11" alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="203.0" text="Cadastrar" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <font>
-                  <Font name="Chilanka Regular" size="16.0" />
-               </font>
-            </Label>
             <Label fx:id="inputNome111" alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="203.0" text="Foto:" GridPane.rowIndex="4">
                <font>
                   <Font name="Chilanka Regular" size="16.0" />
