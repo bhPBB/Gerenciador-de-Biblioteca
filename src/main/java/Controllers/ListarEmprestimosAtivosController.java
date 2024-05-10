@@ -93,6 +93,7 @@ public class ListarEmprestimosAtivosController implements Initializable {
             System.out.println(ex);
         }
         
+        // Define as propriedades das colunas da tabela
         colunaLivro.setCellValueFactory(new PropertyValueFactory<>("livro"));
         colunaCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
         colunaFuncionario.setCellValueFactory(new PropertyValueFactory<>("funcionario"));
@@ -102,10 +103,12 @@ public class ListarEmprestimosAtivosController implements Initializable {
         
         mudarCor();
         
+        // Define os itens da tabela
         emprestimos.setItems(linha);
         
     }
 
+    // Método para mudar a cor das linhas com empréstimos vencidos
     private void mudarCor() {
         emprestimos.setRowFactory(row -> {
             return new TableRow<Emprestimo>() {

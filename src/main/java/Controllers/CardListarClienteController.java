@@ -19,13 +19,15 @@ public class CardListarClienteController {
     @FXML
     private Label nome;
 
+    // Método para criar e exibir um card com as informações do cliente
     @FXML
     public void criarCard(String nome, String imagemCaminho) {
-        
+        // Define o nome do cliente no label
         this.nome.setText(nome);
         
         try
         {
+            // Carrega a imagem do cliente
             this.foto.setImage(new Image(getClass().getResourceAsStream(imagemCaminho)));
         }
         catch (NullPointerException e)

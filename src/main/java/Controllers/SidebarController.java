@@ -36,15 +36,15 @@ public class SidebarController {
     @FXML
     private Button sidebarUsuario;
     
-    private String telaAtual;
-    
-    private final String 
+    // Estilos para botões
+    private static final String 
             ESTILO_USUARIO_PADRAO = "label_especial",
             ESTILO_USUARIO_ATIVO = "login-ativo",
             ESTILO_SIDEBAR_PADRAO = "buttons",
             ESTILO_SIDEBAR_ATIVO = "side-bar-ativo";
     
-    private final String
+    // IDs dos botões da barra lateral
+    private static final String
             ID_SIDEBAR_AUTORES = "sidebarAutores",
             ID_SIDEBAR_CLIENTES = "sidebarClientes",
             ID_SIDEBAR_EMPRESTIMOS = "sidebarEmprestimosAtivos",
@@ -54,13 +54,23 @@ public class SidebarController {
             ID_SIDEBAR_PAINEL = "sidebarPainel",
             ID_SIDEBAR_USUARIO = "sidebarUsuario";
    
+    private String telaAtual;
     private HashMap<String, Button> telasLinks;
     
+    // Inicializa a barra lateral
     public void inicializar(String telaAtual) {
         this.telaAtual = telaAtual;
-        
         telasLinks = new HashMap<>();
         
+        // Mapeia os botões de acordo com as telas
+        mapearBotoes();
+        
+        // Define o estilo dos botões com base na tela atual
+        definirEstiloBotoes();
+    }
+    
+    // Mapeia os botões às suas respectivas telas
+    private void mapearBotoes() {
         telasLinks.put("listarAutores", sidebarAutores);
         telasLinks.put("cadastrarAutor", sidebarAutores);
         
@@ -85,82 +95,58 @@ public class SidebarController {
         telasLinks.put("dashboard", sidebarPainel);
         
         telasLinks.put("usuario", sidebarUsuario);
-        
-        //deixa o link da tela atual com estilo de botão ativo
+    }
+    
+    // Define o estilo dos botões com base na tela atual
+    private void definirEstiloBotoes() {
         if(this.telaAtual != null && telaAtual.equals("usuario")) {
             telasLinks.get(telaAtual).getStyleClass().remove(ESTILO_USUARIO_PADRAO);
             telasLinks.get(telaAtual).getStyleClass().add(ESTILO_USUARIO_ATIVO);
-        }
-        else if(this.telaAtual == null) {
+        } else if(this.telaAtual == null) {
             System.out.println("Erro: telaAtual é null.");
-        }
-        else {
+        } else {
             telasLinks.get(telaAtual).getStyleClass().remove(ESTILO_SIDEBAR_PADRAO);
             telasLinks.get(telaAtual).getStyleClass().add(ESTILO_SIDEBAR_ATIVO);
         }
-            
     }
     
+    // Navega para a tela correspondente ao botão clicado
     @FXML
     public void irPara(ActionEvent e) {
-        
         Node n = (Node) e.getSource();
         
-        try 
-        {   
-            switch (n.getId()) 
-            {
+        try {   
+            switch (n.getId()) {
                 case ID_SIDEBAR_AUTORES:
-                {
-                    App.mudarDeTela( "listarAutores");
+                    App.mudarDeTela("listarAutores");
                     break;
-                }
                 case ID_SIDEBAR_CLIENTES:
-                {
-                    App.mudarDeTela( "listarClientes");
+                    App.mudarDeTela("listarClientes");
                     break;
-                }   
                 case ID_SIDEBAR_EMPRESTIMOS:
-                {
-                    App.mudarDeTela( "listarEmprestimosAtivos");
+                    App.mudarDeTela("listarEmprestimosAtivos");
                     break;
-                }
                 case ID_SIDEBAR_FUNCIONARIOS:
-                {
-                    App.mudarDeTela( "listarFuncionarios");
+                    App.mudarDeTela("listarFuncionarios");
                     break;
-                }
                 case ID_SIDEBAR_GENEROS:
-                {
-                    App.mudarDeTela( "listarGeneros");
+                    App.mudarDeTela("listarGeneros");
                     break;
-                }
                 case ID_SIDEBAR_LIVROS:
-                {
-                    App.mudarDeTela( "listarLivros");
+                    App.mudarDeTela("listarLivros");
                     break;
-                }
                 case ID_SIDEBAR_PAINEL:
-                {
-                    App.mudarDeTela( "dashboard");
+                    App.mudarDeTela("dashboard");
                     break;
-                }
                 case ID_SIDEBAR_USUARIO:
-                {
                     logout();
-                    //App.mudarDeTela( "usuario");
                     break;
-                }
                 default:
                     break;
             }
-        }
-        catch (IOException ex)
-        {
+        } catch (IOException ex) {
             System.out.println("Erro, tela não encontrada.");
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             System.out.println("Erro desconhecido: " + ex.getMessage());
         }
     }
@@ -172,57 +158,35 @@ public class SidebarController {
                 App.mudarDeTela("login");
     }
     
+    // Define o estilo do botão como ativo ao passar o mouse sobre ele
     @FXML
     public void setAtivo(MouseEvent event) {
         App.setCursorMaozinha(event);
-       
-        var n = (Node)event.getSource();
+        Node n = (Node)event.getSource();
         
-        switch (n.getId()) 
-        {    
+        switch (n.getId()) {
             case ID_SIDEBAR_USUARIO:
-            {
-                App.trocarEstilo(event, 
-                        ESTILO_USUARIO_PADRAO, 
-                        ESTILO_USUARIO_ATIVO
-                );
+                App.trocarEstilo(event, ESTILO_USUARIO_PADRAO, ESTILO_USUARIO_ATIVO);
                 break;
-
-            }                   
             default:
-            {
-               App.trocarEstilo(event, 
-                       ESTILO_SIDEBAR_PADRAO, 
-                       ESTILO_SIDEBAR_ATIVO
-               );
-            }
+                App.trocarEstilo(event, ESTILO_SIDEBAR_PADRAO, ESTILO_SIDEBAR_ATIVO);
+                break;
         }
     }
 
+    // Define o estilo do botão como padrão ao remover o mouse dele
     @FXML
     public void setPadrao(MouseEvent event) {
         App.setCursorPadrao(event);
-        
-        var n = (Node) event.getSource();
+        Node n = (Node) event.getSource();
         
         switch (n.getId()) {
-             case ID_SIDEBAR_USUARIO:
-            {
-                App.trocarEstilo(event, 
-                        ESTILO_USUARIO_ATIVO, 
-                        ESTILO_USUARIO_PADRAO
-                );
+            case ID_SIDEBAR_USUARIO:
+                App.trocarEstilo(event, ESTILO_USUARIO_ATIVO, ESTILO_USUARIO_PADRAO);
                 break;
-
-            }                            
             default:
-            {
-                App.trocarEstilo(event, 
-                        ESTILO_SIDEBAR_ATIVO, 
-                        ESTILO_SIDEBAR_PADRAO
-                );
-            }
+                App.trocarEstilo(event, ESTILO_SIDEBAR_ATIVO, ESTILO_SIDEBAR_PADRAO);
+                break;
         }
     }
- 
 }

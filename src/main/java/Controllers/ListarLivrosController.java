@@ -89,6 +89,7 @@ public class ListarLivrosController implements Initializable {
                 System.out.println("Erro ao carregar os cards.");
             }
         }
+        // Define o conteúdo do ScrollPane como o container de livros
         scrollPane.setContent(containerLivros);
         scrollPane.setFitToHeight(true);
         scrollPane.setFitToWidth(true);

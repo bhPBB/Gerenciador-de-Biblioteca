@@ -17,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class DashboardController implements Initializable {
 
+    // Componentes visuais do painel de dashboard
     @FXML
     private AnchorPane background;
     
@@ -41,6 +42,8 @@ public class DashboardController implements Initializable {
     @FXML
     private Label qtdGeneros;
 
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
@@ -63,6 +66,7 @@ public class DashboardController implements Initializable {
             
             ResultSet rs = Database.executarSelect(query);
             
+            // Se houver um resultado, atualiza os campos do dashboard com as informações
             if(rs.next()){
                 qtdClientes.setText(rs.getString("cliente"));
                 qtdEmprestimosMes.setText(rs.getString("emprestimo_mes"));
