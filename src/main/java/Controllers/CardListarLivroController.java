@@ -2,14 +2,18 @@ package Controllers;
 
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
+import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 public class CardListarLivroController {
 
@@ -28,6 +32,8 @@ public class CardListarLivroController {
     @FXML
     private Label titulo;
 
+    private Modelos.Livro modelo;
+    
     @FXML
     public void criarCard(String titulo, int qtdEstoque, String imagemCaminho) {
         
@@ -54,7 +60,29 @@ public class CardListarLivroController {
     public void info(ActionEvent event) {
         try
         {
-            App.mudarDeTela("detalhesLivros");
+            //App.mudarDeTela("detalhesLivros");
+            
+            //Pega o fxml
+            URL fxmlUrl = getClass().getResource("/fxml/detalhesLivros.fxml");
+            FXMLLoader fxmlLoader = new FXMLLoader(fxmlUrl);
+            AnchorPane fxml = fxmlLoader.load();
+            
+            //Passa as informações ao controller
+            if(modelo != null)
+            {
+                DetalhesLivrosController c = fxmlLoader.getController();
+                c.getLabelTitulo().setText(modelo.getNome());
+                c.getLabelQtdEstoque().setText(String.valueOf(modelo.getQtde()));
+            }
+            else
+            {
+                System.out.println("ERRO: O modelo está vazio.");
+            }
+            
+            //Renderiza a view
+            Scene cena = new Scene(fxml);
+            App.getStage().setScene(cena);
+            App.getStage().show();
         }
         catch (IOException ex)
         {

@@ -38,7 +38,7 @@ public class DetalhesLivrosController implements Initializable {
 
     @FXML
     private Label labelTitulo;
-
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     // Inicializando a sidebar
@@ -73,5 +73,26 @@ public class DetalhesLivrosController implements Initializable {
     @FXML
     public void editar(ActionEvent event) {
         // A implementar
+    }
+    
+    //Getters pra passagem de parâmetros
+    public ImageView getImagemCapaLivro() {
+        return imagemCapaLivro;
+    }
+
+    public Label getLabelAutor() {
+        return labelAutor;
+    }
+
+    public Label getLabelGenero() {
+        return labelGenero;
+    }
+
+    public Label getLabelQtdEstoque() {
+        return labelQtdEstoque;
+    }
+
+    public Label getLabelTitulo() {
+        return labelTitulo;
     }
 }
