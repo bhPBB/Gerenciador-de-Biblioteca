@@ -4,14 +4,11 @@ import Banco.Database;
 import Modelos.Genero;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -94,17 +91,15 @@ public class ListarGenerosController{
     private void pesquisar(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
             String pesquisa = inputPesquisar.getText();
+            String query;
             
             if(!pesquisa.isEmpty()){
-            String query = "SELECT * FROM genero WHERE LOWER(descricao) LIKE LOWER('%" + pesquisa + "%')";
-
-            carregarTabela(query);
+                query = "SELECT * FROM genero WHERE LOWER(descricao) LIKE LOWER('%" + pesquisa + "%')";
             }
             else{
-            String query = "SELECT * FROM genero";
-
-            carregarTabela(query);
+                query = "SELECT * FROM genero";
             }
+            carregarTabela(query);
         }
     }
     

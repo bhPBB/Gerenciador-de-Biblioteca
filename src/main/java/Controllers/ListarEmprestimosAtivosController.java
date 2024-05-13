@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -26,7 +27,10 @@ public class ListarEmprestimosAtivosController {
 
     @FXML
     private AnchorPane background;
-
+    
+    @FXML
+    private TextField inputPesquisar;
+    
     @FXML
     private TableView<Emprestimo> emprestimos; 
     
@@ -128,21 +132,38 @@ public class ListarEmprestimosAtivosController {
                         if (emprestimo.getStatus().contains("dia(s) atrasado")) {
                             setStyle("-fx-background-color: rgb(246, 167, 162);");
                         } else {
-                            setStyle("");
+                            setStyle(" ");
                         }
+                    } else{
+                        setStyle(" ");
                     }
                 }
             };
         });
     }
 
-    @FXML
+   @FXML
     private void pesquisar(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
-            //TODO
-            //inputPesquisar.getText();
-            //carregarTabela(query);
+            String pesquisa = inputPesquisar.getText();
+            String query;
+            
+            if(!pesquisa.isEmpty()){
+                query = "SELECT descricao AS livro, cliente.nome AS cliente, funcionario.nome AS funcionario, \n" +
+                "data_emprestimo, data_devolucao FROM emprestimo INNER JOIN livro ON \n" +
+                "emprestimo.id_livro = livro.id INNER JOIN cliente ON emprestimo.id_cliente = \n" +
+                "cliente.cpf INNER JOIN funcionario ON emprestimo.id_funcionario = funcionario.cpf \n" +
+                "WHERE status LIKE 'Em aberto' AND (LOWER(descricao) LIKE LOWER('%" + pesquisa + "%') OR LOWER(\n" +
+                "cliente.nome) LIKE LOWER('%" + pesquisa + "%') OR LOWER(funcionario.nome) LIKE \n" +
+                "LOWER('%" + pesquisa + "%'))";
+            }
+            else{
+                query = "SELECT descricao AS livro, cliente.nome AS cliente, funcionario.nome AS funcionario, data_emprestimo, data_devolucao \n" +
+                "FROM emprestimo INNER JOIN livro ON emprestimo.id_livro = livro.id INNER JOIN \n" +
+                "cliente ON emprestimo.id_cliente = cliente.cpf INNER JOIN funcionario ON\n" +
+                "emprestimo.id_funcionario = funcionario.cpf WHERE status LIKE 'Em aberto'";
+            }
+            carregarTabela(query);
         }
     }
-    
 }
