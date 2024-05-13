@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="background" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" stylesheets="@cadastrar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CadastrarFuncionarioController">
+<AnchorPane id="AnchorPane" fx:id="background" onKeyPressed="#enter" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" stylesheets="@cadastrar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CadastrarEmprestimoController">
    <children>
-      <GridPane layoutX="501.0" layoutY="164.0" prefHeight="393.0" prefWidth="278.0">
+      <GridPane layoutX="566.0" layoutY="164.0" prefHeight="393.0" prefWidth="278.0">
         <columnConstraints>
           <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -38,43 +37,23 @@
                   <Font name="Chilanka Regular" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="inputCPF" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="49.0" prefWidth="254.0" promptText="Livro" styleClass="inputs" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Chilanka Regular" size="22.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </TextField>
-            <TextField fx:id="inputEmail" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="49.0" prefWidth="254.0" promptText="Cliente" styleClass="inputs" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-               <font>
-                  <Font name="Chilanka Regular" size="22.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </TextField>
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#cadastrar" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="49.0" prefWidth="254.0" styleClass="botao" text="Cadastrar" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                <font>
                   <Font name="DejaVu Sans Bold" size="22.0" />
                </font>
             </Button>
-            <DatePicker prefHeight="49.0" prefWidth="254.0" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+            <DatePicker fx:id="inputDevolucao" prefHeight="49.0" prefWidth="254.0" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
             <Label alignment="BOTTOM_LEFT" prefHeight="25.0" prefWidth="258.0" text="Data para devolução:" GridPane.rowIndex="4">
                <font>
                   <Font name="Chilanka Regular" size="16.0" />
                </font>
             </Label>
+            <ComboBox fx:id="inputLivro" prefHeight="53.0" prefWidth="271.0" promptText="Selecione o livro" GridPane.rowIndex="1" />
+            <ComboBox fx:id="inputCliente" prefHeight="53.0" prefWidth="271.0" promptText="Selecione o cliente" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Separator layoutX="193.0" orientation="VERTICAL" prefHeight="720.0" prefWidth="15.0" />
-      <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="737.0" layoutY="555.0" prefHeight="111.0" prefWidth="456.0" textFill="#27ff00">
+      <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="747.0" layoutY="565.0" prefHeight="111.0" prefWidth="456.0" textFill="RED">
          <font>
             <Font name="Chilanka Regular" size="16.0" />
          </font>

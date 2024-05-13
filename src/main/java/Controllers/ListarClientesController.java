@@ -15,7 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 
-public class ListarClientesController implements Initializable {
+public class ListarClientesController{
 
     @FXML
     private ScrollPane scrollPane;
@@ -29,9 +29,8 @@ public class ListarClientesController implements Initializable {
     public void pesquisar(ActionEvent event) {
         // a implementar.
     }
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+
+    public void initialize() {
         try
         {
             //Carrega a sidebar e o header

@@ -15,7 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 
-public class ListarLivrosController implements Initializable {
+public class ListarLivrosController{
 
     @FXML
     private AnchorPane background;
@@ -30,8 +30,7 @@ public class ListarLivrosController implements Initializable {
         // a implementar.
     }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize() {
         try
         {
             //Carrega a sidebar e o header

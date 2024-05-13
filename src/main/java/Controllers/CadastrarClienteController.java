@@ -4,18 +4,10 @@ import Banco.Database;
 import Modelos.Funcionario;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
-
-import javafx.fxml.Initializable;
-import java.net.URL;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -123,7 +115,7 @@ public class CadastrarClienteController{
     @FXML
     private void formatarCPF(KeyEvent event) {
         TextField inputTexto = (TextField) event.getSource();
-        int finalDoCampo = inputTexto.getCaretPosition()+1;
+        int finalDoCampo = inputTexto.getCaretPosition()+3;
 
         apenasNumeros(event, inputTexto);
         formatarCampo(inputTexto, "(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4");
@@ -145,6 +137,7 @@ public class CadastrarClienteController{
         inputTexto.positionCaret(finalDoCampo);
     }
     
+    //Permite apenas numeros no campo de texto
     private void apenasNumeros(KeyEvent event, TextField campoParaTirarLetras){
         String texto = campoParaTirarLetras.getText();
         if (!texto.matches("\\d*")) {
@@ -153,12 +146,14 @@ public class CadastrarClienteController{
         }
     }
 
+    //Formata o texto da forma desejada
     private void formatarCampo(TextField campoParaFormatar, String comando, String formatacao){
         String textoFormatado = campoParaFormatar.getText();
         textoFormatado = textoFormatado.replaceAll(comando, formatacao);
         campoParaFormatar.setText(textoFormatado);
     }
 
+    //Limita a quantidade de caracteres
     private void limitarTamanho(TextField campoParaLimitar, int tamanho){
         campoParaLimitar.textProperty().addListener((ov, textoAntigo, textoAtual) -> {
             if (textoAtual.length() > tamanho) {

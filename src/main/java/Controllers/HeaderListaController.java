@@ -1,13 +1,9 @@
 package Controllers;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
 
-public class HeaderListaController implements Initializable {
+public class HeaderListaController{
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize() {
         // TODO
     }    
     

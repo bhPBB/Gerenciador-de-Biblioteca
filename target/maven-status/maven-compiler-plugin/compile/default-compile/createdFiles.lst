@@ -31,6 +31,7 @@ Controllers\ListarEmprestimosAtivosController$1.class
 Controllers\HeaderListaController.class
 com\mycompany\crud2\FuncionarioDelete$1.class
 Controllers\CardListarLivroController.class
+Controllers\CadastrarEmprestimoController.class
 Controllers\ListarClientesController.class
 com\mycompany\crud2\Database.class
 Controllers\LoginController.class
@@ -39,6 +40,7 @@ Banco\Login$2.class
 com\mycompany\crud2\ClienteUpdate$3.class
 com\mycompany\crud2\GeneroUpdate$3.class
 Banco\Login$1.class
+Modelos\Autor.class
 com\mycompany\crud2\LivroRead$3.class
 Controllers\BotaoHeaderController.class
 com\mycompany\crud2\AutorDelete$1.class
@@ -76,12 +78,12 @@ Banco\Login.class
 Controllers\CadastrarFuncionarioLoginController.class
 com\mycompany\crud2\ClienteRead$3.class
 com\mycompany\crud2\FuncionarioCreate$2.class
-Controllers\CadastrarEmprestimosController.class
 com\mycompany\crud2\GeneroUpdate$2.class
 com\mycompany\crud2\GeneroRead.class
 com\mycompany\crud2\AutorUpdate$1.class
 com\mycompany\crud2\FuncionarioRead$3.class
 Banco\Login$3.class
+Modelos\Genero.class
 InterfacesCRUD\ICRUDFuncionario.class
 ClassesTeste\LivroTeste.class
 com\mycompany\crud2\ClienteDelete$1.class

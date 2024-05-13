@@ -23,7 +23,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
-public class CadastrarLivroController implements Initializable{
+public class CadastrarLivroController{
 
     @FXML
     private AnchorPane background;
@@ -56,9 +56,7 @@ public class CadastrarLivroController implements Initializable{
     // Funcionário logado que está cadastrando o livro
     private Funcionario funcionario = Funcionario.getFuncionario("", "", "");
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
+    public void initialize() {
         try 
         {
             // Inicializa a sidebar e o header
@@ -133,17 +131,27 @@ public class CadastrarLivroController implements Initializable{
     }
     
     //Método que permite apenas o uso de números no campo Qtd_Estoque
+    @FXML
     private void apenasNumeros(KeyEvent event) {
         TextField inputTexto = (TextField) event.getSource();
-        int finalDoCampo = inputTexto.getCaretPosition()+1;
+        int finalDoCampo = inputTexto.getCaretPosition();
 
         String texto = inputTexto.getText();
         if (!texto.matches("\\d*")) {
             event.consume();
             inputTexto.setText(texto.replaceAll("[^\\d]", ""));
         }
-        
+        limitarTamanho(inputTexto, 3);
         inputTexto.positionCaret(finalDoCampo);
+    }
+    
+    //Limita a quantidade de caracteres
+    private void limitarTamanho(TextField campoParaLimitar, int tamanho){
+        campoParaLimitar.textProperty().addListener((ov, textoAntigo, textoAtual) -> {
+            if (textoAtual.length() > tamanho) {
+                campoParaLimitar.setText(textoAntigo);
+            }
+        });
     }
     
     // Método chamado quando o botão para escolher a imagem é clicado
@@ -161,7 +169,7 @@ public class CadastrarLivroController implements Initializable{
     // Método chamado quando a tecla Enter é pressionada
     @FXML
     private void enter(KeyEvent event) {
-        if (event.getCode() == KeyCode.ENTER) {
+        if (event.getCode() == KeyCode.ENTER) {         
             cadastrar();
         }
     }

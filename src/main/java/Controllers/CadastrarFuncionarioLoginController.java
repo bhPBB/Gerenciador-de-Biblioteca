@@ -1,11 +1,9 @@
 package Controllers;
 
 import Banco.Database;
-import Modelos.Funcionario;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.File;
 import java.io.IOException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -78,7 +76,6 @@ public class CadastrarFuncionarioLoginController{
                     String query = "INSERT INTO FUNCIONARIO (nome, cpf, email, senha) VALUES ('" + nome + "','" + cpf + "','" + email + "','" + crypto + "')";
                     
                     Database.executarQuery(query);
-                    messageLabel.setTextFill(Color.color(0, 1, 0));
                     App.mudarDeTela("login");
                 } catch (SQLException | ClassNotFoundException ex) {
                     messageLabel.setTextFill(Color.color(1, 0, 0));
@@ -124,6 +121,7 @@ public class CadastrarFuncionarioLoginController{
             }
             return rowCount > 0; // Retorna verdadeiro se rowCount for maior que zero (encontrou emails duplicados)
         } catch (SQLException ex) {
+            messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Erro verificar email duplicado: " + ex.getMessage());
         }
         return false;

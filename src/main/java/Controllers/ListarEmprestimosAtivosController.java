@@ -4,21 +4,24 @@ import Banco.Database;
 import Modelos.Emprestimo;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 
-public class ListarEmprestimosAtivosController implements Initializable {
+public class ListarEmprestimosAtivosController {
 
     @FXML
     private AnchorPane background;
@@ -47,9 +50,7 @@ public class ListarEmprestimosAtivosController implements Initializable {
     @FXML
     private TableColumn<Emprestimo, String> colunaStatus;
 
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize() {
 
         try
         {
@@ -68,17 +69,20 @@ public class ListarEmprestimosAtivosController implements Initializable {
             System.out.println(msg);
         }
         
-        carregarTabela(); 
+        emprestimos.setPlaceholder(new Label("Empréstimos não encontrados!"));
+        
+        String query = "SELECT descricao AS livro, cliente.nome AS cliente, funcionario.nome AS funcionario, data_emprestimo, data_devolucao \n" +
+        "FROM emprestimo INNER JOIN livro ON emprestimo.id_livro = livro.id INNER JOIN \n" +
+        "cliente ON emprestimo.id_cliente = cliente.cpf INNER JOIN funcionario ON\n" +
+        "emprestimo.id_funcionario = funcionario.cpf WHERE status LIKE 'Em aberto'";
+        
+        carregarTabela(query); 
     }    
 
-    private void carregarTabela() {
+    private void carregarTabela(String query) {
         linha.clear();
         
         try {
-            String query = "SELECT descricao AS livro, cliente.nome AS cliente, funcionario.nome AS funcionario, data_emprestimo, data_devolucao \n" +
-            "FROM emprestimo INNER JOIN livro ON emprestimo.id_livro = livro.id INNER JOIN \n" +
-            "cliente ON emprestimo.id_cliente = cliente.cpf INNER JOIN funcionario ON\n" +
-            "emprestimo.id_funcionario = funcionario.cpf WHERE status LIKE 'Em aberto'";
             
             ResultSet rs = Database.executarSelect(query);
             while(rs.next()){
@@ -100,6 +104,10 @@ public class ListarEmprestimosAtivosController implements Initializable {
         colunaDataEmprestimo.setCellValueFactory(new PropertyValueFactory<>("dataEmprestimo"));
         colunaDataDevolucao.setCellValueFactory(new PropertyValueFactory<>("dataDevolucao"));
         colunaStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        
+        colunaDataEmprestimo.setComparator(Comparator.comparing(dateString -> LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
+        colunaDataDevolucao.setComparator(Comparator.comparing(dateString -> LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
+
         
         mudarCor();
         
@@ -127,5 +135,13 @@ public class ListarEmprestimosAtivosController implements Initializable {
         });
     }
 
+    @FXML
+    private void pesquisar(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            //TODO
+            //inputPesquisar.getText();
+            //carregarTabela(query);
+        }
+    }
     
 }

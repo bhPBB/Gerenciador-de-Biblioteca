@@ -13,7 +13,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
-public class ListarFuncionariosController implements Initializable {
+public class ListarFuncionariosController {
     @FXML
     private AnchorPane background;
 
@@ -22,7 +22,7 @@ public class ListarFuncionariosController implements Initializable {
     
     private static final int QTDCOLUNA = 3;
     
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize() {
         try
         {
             //Carrega a sidebar e o header

@@ -11,11 +11,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 
-public class DashboardController implements Initializable {
+public class DashboardController{
 
     // Componentes visuais do painel de dashboard
     @FXML
@@ -42,10 +41,8 @@ public class DashboardController implements Initializable {
     @FXML
     private Label qtdGeneros;
 
-    
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+
+    public void initialize() {
        
         try
         {

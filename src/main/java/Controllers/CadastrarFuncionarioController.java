@@ -1,19 +1,14 @@
 package Controllers;
 
 import Banco.Database;
-import Modelos.Funcionario;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -25,7 +20,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
-public class CadastrarFuncionarioController implements Initializable {
+public class CadastrarFuncionarioController{
     
 
     @FXML
@@ -55,14 +50,13 @@ public class CadastrarFuncionarioController implements Initializable {
 
     @FXML
     private Label messageLabel;
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+
+    public void initialize() {
         try
         {
             //Carrega a sidebar e o header
             App.inicialzarSidebarHeader(
-                    "listarFuncionarios", 
+                    "cadastrarFuncionario", 
                     "Cadastrar Funcionário", 
                     "<-", 
                     "listarFuncionarios", 
@@ -101,7 +95,6 @@ public class CadastrarFuncionarioController implements Initializable {
                     String query = "INSERT INTO FUNCIONARIO (nome, cpf, email, senha) VALUES ('" + nome + "','" + cpf + "','" + email + "','" + crypto + "')";
                     
                     Database.executarQuery(query);
-                    messageLabel.setTextFill(Color.color(0, 1, 0));
                     App.mudarDeTela("login");
                 } catch (SQLException | ClassNotFoundException ex) {
                     messageLabel.setTextFill(Color.color(1, 0, 0));
@@ -147,6 +140,7 @@ public class CadastrarFuncionarioController implements Initializable {
             }
             return rowCount > 0; // Retorna verdadeiro se rowCount for maior que zero (encontrou emails duplicados)
         } catch (SQLException ex) {
+            messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Erro verificar email duplicado: " + ex.getMessage());
         }
         return false;

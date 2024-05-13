@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="background" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" stylesheets="@cadastrar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CadastrarLivroController">
+<AnchorPane id="AnchorPane" fx:id="background" onKeyPressed="#enter" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" stylesheets="@cadastrar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CadastrarLivroController">
    <children>
       <GridPane layoutX="439.0" layoutY="192.0" prefHeight="336.0" prefWidth="642.0">
         <columnConstraints>
@@ -113,13 +113,13 @@
             <ComboBox fx:id="inputAutor" prefHeight="46.0" prefWidth="185.0" promptText="Autor" styleClass="inputs" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP" />
          </children>
       </GridPane>
-      <Label fx:id="messageLabel" layoutX="737.0" layoutY="555.0" prefHeight="111.0" prefWidth="456.0" textFill="RED">
+      <AnchorPane layoutX="745.0" layoutY="555.0" prefHeight="45.0" prefWidth="185.0" />
+      <VBox prefHeight="720.0" prefWidth="240.0" style="-fx-background-color: purple;" />
+      <HBox prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: purple;" translateX="1200.0" />
+      <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="747.0" layoutY="565.0" prefHeight="111.0" prefWidth="456.0" textFill="RED">
          <font>
             <Font name="Chilanka Regular" size="16.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="745.0" layoutY="555.0" prefHeight="45.0" prefWidth="185.0" />
-      <VBox prefHeight="720.0" prefWidth="240.0" style="-fx-background-color: purple;" />
-      <HBox prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: purple;" translateX="1200.0" />
    </children>
 </AnchorPane>
