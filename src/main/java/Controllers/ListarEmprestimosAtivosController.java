@@ -1,6 +1,7 @@
 package Controllers;
 
 import Banco.Database;
+import Modelos.ComparadorDias;
 import Modelos.Emprestimo;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
@@ -107,7 +108,7 @@ public class ListarEmprestimosAtivosController {
         
         colunaDataEmprestimo.setComparator(Comparator.comparing(dateString -> LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
         colunaDataDevolucao.setComparator(Comparator.comparing(dateString -> LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
-
+        colunaStatus.setComparator(new ComparadorDias());
         
         mudarCor();
         

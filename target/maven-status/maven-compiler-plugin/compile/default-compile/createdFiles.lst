@@ -93,6 +93,7 @@ com\mycompany\crud2\GeneroCreate.class
 Modelos\Funcionario.class
 com\mycompany\crud2\AutorRead$2.class
 com\mycompany\crud2\FuncionarioCreate$1.class
+Modelos\ComparadorDias.class
 com\mycompany\crud2\ClienteRead.class
 com\mycompany\crud2\FuncionarioUpdate$4.class
 com\mycompany\crud2\AutorCreate.class
