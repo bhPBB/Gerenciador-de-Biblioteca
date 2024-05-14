@@ -14,6 +14,7 @@ D:\GitHub\Gerenciador-de-Biblioteca\src\main\java\Controllers\ListarFuncionarios
 D:\GitHub\Gerenciador-de-Biblioteca\src\main\java\crud2\GeneroDelete.java
 D:\GitHub\Gerenciador-de-Biblioteca\src\main\java\Controllers\DetalhesLivrosController.java
 D:\GitHub\Gerenciador-de-Biblioteca\src\main\java\crud2\GeneroCreate.java
+D:\GitHub\Gerenciador-de-Biblioteca\src\main\java\Controllers\CadastrarAutorController.java
 D:\GitHub\Gerenciador-de-Biblioteca\src\main\java\Controllers\CadastrarClienteController.java
 D:\GitHub\Gerenciador-de-Biblioteca\src\main\java\crud2\LivroCreate.java
 D:\GitHub\Gerenciador-de-Biblioteca\src\main\java\InterfacesCRUD\ICRUDLivro.java
@@ -55,6 +56,7 @@ D:\GitHub\Gerenciador-de-Biblioteca\src\main\java\Controllers\SidebarController.
 D:\GitHub\Gerenciador-de-Biblioteca\src\main\java\Controllers\LoginController.java
 D:\GitHub\Gerenciador-de-Biblioteca\src\main\java\Modelos\Livro.java
 D:\GitHub\Gerenciador-de-Biblioteca\src\main\java\crud2\FuncionarioDelete.java
+D:\GitHub\Gerenciador-de-Biblioteca\src\main\java\Controllers\CadastrarGeneroController.java
 D:\GitHub\Gerenciador-de-Biblioteca\src\main\java\crud2\AutorUpdate.java
 D:\GitHub\Gerenciador-de-Biblioteca\src\main\java\Modelos\Funcionario.java
 D:\GitHub\Gerenciador-de-Biblioteca\src\main\java\Controllers\ListarGenerosController.java

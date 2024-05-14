@@ -99,6 +99,7 @@ com\mycompany\crud2\FuncionarioUpdate$4.class
 com\mycompany\crud2\AutorCreate.class
 com\mycompany\crud2\LivroDelete.class
 com\mycompany\crud2\AutorCreate$1.class
+Controllers\CadastrarGeneroController.class
 Controllers\ListarLivrosController.class
 com\mycompany\crud2\FuncionarioRead$2.class
 com\mycompany\crud2\GeneroRead$2.class
@@ -106,6 +107,7 @@ Controllers\Testes.class
 com\mycompany\crud2\FuncionarioDelete.class
 com\mycompany\gerenciadordebiblioteca\App.class
 Controllers\CardListarClienteController.class
+Controllers\CadastrarAutorController.class
 Controllers\ListarAutoresController.class
 com\mycompany\crud2\LivroUpdate.class
 Controllers\CadastrarClienteController.class

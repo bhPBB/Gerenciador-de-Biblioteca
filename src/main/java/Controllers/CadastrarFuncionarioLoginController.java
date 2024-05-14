@@ -51,6 +51,21 @@ public class CadastrarFuncionarioLoginController{
     @FXML
     private Label messageLabel;
     
+    public void initialize() {
+         try
+        {
+            //Carrega a sidebar e o header
+            App.inicializarBotaoHeader("<-",
+                    "login", background);
+            App.inicializarTituloHeader("Cadastrar Funcionário", background);
+        }
+        catch (IOException ex)
+        {
+            var msg = "Erro ao carregar a sideber e/ou header: " + ex.getMessage();
+            System.out.println(msg);
+        }
+    }
+    
     // Método chamado quando o botão de cadastro é clicado
     @FXML
     private void cadastrar() throws IOException{
