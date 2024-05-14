@@ -1,8 +1,12 @@
 package Controllers;
 
+import com.mycompany.crud2.Database;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -97,5 +101,41 @@ public class CardListarLivroController {
     @FXML
     private void cursorPadrao(MouseEvent event) {
         App.setCursorPadrao(event);
+    }
+    
+    private String getAutores(int id){
+        ArrayList<String> autores = new ArrayList<>();
+        try {
+            String query = "SELECT nome FROM livros_autores INNER JOIN autor ON livros_autores.id_autor = "
+                    + "autor.id WHERE livros_autores.id_livro = " + id;
+            
+            ResultSet rs = Database.executarSelect(query);
+            
+            while(rs.next()){
+                autores.add(rs.getString("nome"));
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+             System.out.println(ex);
+        }
+        return String.join(", ", autores);
+    }
+    
+        private String getGeneros(int id){
+        ArrayList<String> generos = new ArrayList<>();
+        try {
+            String query = "SELECT descricao FROM livros_generos INNER JOIN genero ON livros_generos.id_genero = "
+                    + "genero.id WHERE livros_generos.id_livro = " + id;
+            
+            ResultSet rs = Database.executarSelect(query);
+            
+            while(rs.next()){
+                generos.add(rs.getString("descricao"));
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+             System.out.println(ex);
+        }
+        return String.join(", ", generos);
     }
 }
