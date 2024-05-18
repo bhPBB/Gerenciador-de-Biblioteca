@@ -1,6 +1,6 @@
 package Controllers;
 
-import com.mycompany.crud2.Database;
+import Banco.Database;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
 import java.net.URL;
