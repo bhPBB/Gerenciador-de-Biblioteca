@@ -89,6 +89,9 @@ public class CadastrarClienteController{
         }else if(verificaCPF(cpf)){
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Este cliente já foi cadastrado.");
+        }else if(verificaEmail(email)){
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText("Email inválido.");
         }else{
             try {
                 // Insere o novo cliente no banco de dados
@@ -122,6 +125,10 @@ public class CadastrarClienteController{
             messageLabel.setText(ex.getMessage());
         }
         return false;
+    }
+    
+    private boolean verificaEmail(String email) {
+        return !(email.contains("@") && email.contains("mail.com"));
     }
     
     // Método chamado quando o botão para escolher a imagem é clicado
@@ -230,4 +237,5 @@ public class CadastrarClienteController{
     private void setAtivo(MouseEvent e) {
         App.setCursorMaozinha(e);
     }
+
 }

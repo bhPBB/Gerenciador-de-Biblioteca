@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="340.0" prefWidth="220.0" styleClass="card-borda" stylesheets="@cardListarFuncionario.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CardListarFuncionarioController">
    <children>
-      <Label fx:id="nome" layoutX="12.0" layoutY="210.0" prefHeight="47.0" prefWidth="196.0" text="Nome">
+      <Label fx:id="nome" layoutX="12.0" layoutY="235.0" prefHeight="32.0" prefWidth="196.0" text="Nome">
          <font>
             <Font name="Chilanka Regular" size="22.0" />
          </font>
@@ -26,7 +26,7 @@
       </ImageView>
       <Button layoutX="139.0" layoutY="304.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" style="-fx-background-color: transparent;" />
       <ImageView fx:id="foto" fitHeight="209.0" fitWidth="195.0" layoutX="13.0" layoutY="14.0" pickOnBounds="true" />
-      <Label fx:id="cpf" layoutX="12.0" layoutY="247.0" prefHeight="47.0" prefWidth="196.0" text="CPF" textFill="#6b6969">
+      <Label fx:id="cpf" layoutX="12.0" layoutY="257.0" prefHeight="47.0" prefWidth="196.0" text="CPF" textFill="#6b6969">
          <font>
             <Font size="14.0" />
          </font>

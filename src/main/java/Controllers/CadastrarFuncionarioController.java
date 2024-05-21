@@ -83,8 +83,14 @@ public class CadastrarFuncionarioController{
         if(nome.isEmpty() || cpf.isEmpty() || email.isEmpty() || senha.isEmpty() || imagem == null){
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Por favor, preencha todos os campos.");
-
-        }else try {
+        }else if(verificaCPF(cpf)){
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText("Este funcionário já foi cadastrado.");
+        }else if(verificaEmail(email)){
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText("Email inválido.");
+        }
+        else try {
             if(verificaEmailDuplicado(email)){
                 messageLabel.setTextFill(Color.color(1, 0, 0));
                 messageLabel.setText("Este email já foi cadastrado.");
@@ -127,6 +133,23 @@ public class CadastrarFuncionarioController{
             messageLabel.setText(ex.getMessage());
             return null;
         }
+    } 
+    
+    // Verifica se o CPF já foi cadastrado anteriormente
+    private boolean verificaCPF(String cpf){
+        String query = "SELECT cpf FROM cliente WHERE cpf = '" + cpf + "'";
+        try {
+            ResultSet rs = Database.executarSelect(query);
+            int rowCount = 0;
+            while (rs.next()) {
+                rowCount++; 
+            }
+            return rowCount > 0;
+        } catch (SQLException | ClassNotFoundException ex) {
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText(ex.getMessage());
+        }
+        return false;
     }
     
     // Método para verificar se o email já está cadastrado no banco de dados
@@ -144,6 +167,10 @@ public class CadastrarFuncionarioController{
             messageLabel.setText("Erro verificar email duplicado: " + ex.getMessage());
         }
         return false;
+    }
+    
+    private boolean verificaEmail(String email) {
+        return !(email.contains("@") && email.contains("mail.com"));
     }
     
     // Método chamado quando o botão para escolher a imagem é clicado
