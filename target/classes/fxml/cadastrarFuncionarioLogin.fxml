@@ -58,7 +58,7 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextField fx:id="inputNome" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="46.0" promptText="Nome" styleClass="inputs" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+            <TextField fx:id="inputNome" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" onKeyTyped="#limitarNomeEmail" prefHeight="46.0" promptText="Nome" styleClass="inputs" GridPane.halignment="LEFT" GridPane.rowIndex="3">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -69,7 +69,7 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextField fx:id="inputEmail" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="46.0" promptText="E-mail" styleClass="inputs" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="inputEmail" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" onKeyTyped="#limitarNomeEmail" prefHeight="46.0" promptText="E-mail" styleClass="inputs" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>

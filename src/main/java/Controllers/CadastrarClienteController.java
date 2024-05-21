@@ -3,12 +3,10 @@ package Controllers;
 import Banco.Database;
 import Modelos.Funcionario;
 import com.mycompany.gerenciadordebiblioteca.App;
+import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 
 public class CadastrarClienteController{
 
@@ -27,6 +26,16 @@ public class CadastrarClienteController{
     @FXML
     private Button cadastrar;
 
+    @FXML
+    private Button inputImagem;
+    
+    @FXML
+    private Label nomeImagem;
+        
+    // Armazena a imagem selecionada
+    @FXML
+    private byte[] imagem;
+    
     @FXML
     private TextField inputCPF;
 
@@ -113,6 +122,18 @@ public class CadastrarClienteController{
             messageLabel.setText(ex.getMessage());
         }
         return false;
+    }
+    
+    // Método chamado quando o botão para escolher a imagem é clicado
+    @FXML
+    private void escolherImagem(){
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imagens", "*.png", "*.jpg", "*.jpeg"));
+        File arquivoImagem = fc.showOpenDialog(null);
+        if (arquivoImagem != null){
+            nomeImagem.setText(arquivoImagem.getName());
+            imagem = new byte[(int) arquivoImagem.length()];
+        }
     }
     
     //Método que formata o CPF
