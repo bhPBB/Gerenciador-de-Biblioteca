@@ -1,13 +1,13 @@
 package Controllers;
 
+import Banco.Database;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
@@ -54,40 +54,49 @@ public class ListarClientesController{
         containerClientes.setVgap(90);
         containerClientes.setAlignment(Pos.CENTER);
         
-        int col = 0, lin = 0; 
-        for(int i = 0; i < 13; i++) 
+        String query = "SELECT nome FROM cliente";
+        
+        try 
         {
-            var fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/cardListarCliente.fxml"));
-            
-            try 
+            ResultSet rs = Database.executarSelect(query);
+
+            int col = 0, lin = 0; 
+            while(rs.next()) 
             {
-                //Cria um card
-                AnchorPane card = fxmlLoader.load();
-                
-                //Pega o controller dos cards
-                CardListarClienteController cardController = fxmlLoader.getController();
-                
-                //Passa os dados
-                cardController.criarCard(
-                        "Teste" + (i+1),  
-                        "/Imagens/capa-livro-teste.jpg"
-                );
-                //Insere os cards no container
-                containerClientes.add(card, col, lin);
-                col++;
-                if(col == QTDCOLUNA){
-                    lin++;
-                    col = 0;
+                var fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/cardListarCliente.fxml"));
+
+                try 
+                {
+                    //Cria um card
+                    AnchorPane card = fxmlLoader.load();
+
+                    //Pega o controller dos cards
+                    CardListarClienteController cardController = fxmlLoader.getController();
+
+                    //Passa os dados
+                    cardController.criarCard(
+                            rs.getString("nome"),  
+                            "/Imagens/capa-livro-teste.jpg"
+                    );
+                    //Insere os cards no container
+                    containerClientes.add(card, col, lin);
+                    col++;
+                    if(col == QTDCOLUNA){
+                        lin++;
+                        col = 0;
+                    }
+                } 
+                catch (IOException ex) 
+                {
+                    System.out.println("Erro ao carregar os cards.");
                 }
-            } 
-            catch (IOException ex) 
-            {
-                System.out.println("Erro ao carregar os cards.");
+                scrollPane.setContent(containerClientes);
+                scrollPane.setFitToHeight(true);
+                scrollPane.setFitToWidth(true);
             }
-            
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
         }
-        scrollPane.setContent(containerClientes);
-        scrollPane.setFitToHeight(true);
-        scrollPane.setFitToWidth(true);
+
     }
 }
