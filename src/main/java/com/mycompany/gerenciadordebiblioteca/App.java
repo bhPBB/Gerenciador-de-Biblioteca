@@ -33,7 +33,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("dashboard"));
         stage.setTitle("Gerenciador de Biblioteca");
-        stage.getIcons().add(new Image(App.class.getResourceAsStream("/Imagens/icon1.png")));
+        stage.getIcons().add(new Image(App.class.getResourceAsStream("/Imagens/icon.png")));
         stage.setScene(scene);
         stage.show();
         App.stage = stage;
