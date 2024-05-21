@@ -153,6 +153,63 @@ public class CadastrarFuncionarioLoginController{
             imagem = new byte[(int) arquivoImagem.length()];
         }
     }
+       
+    //Método que formata o CPF
+    @FXML
+    private void formatarCPF(KeyEvent event) {
+        TextField inputTexto = (TextField) event.getSource();
+        int finalDoCampo = inputTexto.getCaretPosition()+3;
+        
+        apenasNumeros(event, inputTexto);
+        int tamanho = inputTexto.getText().length();
+                
+        if(tamanho > 3 && tamanho < 7){
+            formatarCampo(inputTexto, "(\\d{3})(\\d{" + (tamanho-3) + "})", "$1.$2");
+        }else if(tamanho > 6 && tamanho < 10){
+            formatarCampo(inputTexto, "(\\d{3})(\\d{3})(\\d{" + (tamanho-6) + "})", "$1.$2.$3");
+        }else if(tamanho > 9 && tamanho < 12){
+            formatarCampo(inputTexto, "(\\d{3})(\\d{3})(\\d{3})(\\d{" + (tamanho-9) + "})", "$1.$2.$3-$4");
+        }
+        
+        limitarTamanho(inputTexto, 14);
+        
+        inputTexto.positionCaret(finalDoCampo);
+    }
+    
+    @FXML
+    private void limitarNomeEmail(KeyEvent event) {
+        TextField inputTexto = (TextField) event.getSource();
+        int finalDoCampo = inputTexto.getCaretPosition()+1;
+        
+        limitarTamanho(inputTexto, 50);
+        
+        inputTexto.positionCaret(finalDoCampo);
+    }
+    
+    //Permite apenas numeros no campo de texto
+    private void apenasNumeros(KeyEvent event, TextField campoParaTirarLetras){
+        String texto = campoParaTirarLetras.getText();
+        if (!texto.matches("\\d*")) {
+            event.consume();
+            campoParaTirarLetras.setText(texto.replaceAll("[^\\d]", ""));
+        }
+    }
+
+    //Formata o texto da forma desejada
+    private void formatarCampo(TextField campoParaFormatar, String comando, String formatacao){
+        String textoFormatado = campoParaFormatar.getText();
+        textoFormatado = textoFormatado.replaceAll(comando, formatacao);
+        campoParaFormatar.setText(textoFormatado);
+    }
+
+    //Limita a quantidade de caracteres
+    private void limitarTamanho(TextField campoParaLimitar, int tamanho){
+        campoParaLimitar.textProperty().addListener((ov, textoAntigo, textoAtual) -> {
+            if (textoAtual.length() > tamanho) {
+                campoParaLimitar.setText(textoAntigo);
+            }
+        });
+    }
     
     // Método chamado quando o mouse passa por cima de um elemento
     @FXML

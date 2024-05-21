@@ -6,6 +6,9 @@ import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -65,12 +68,13 @@ public class CadastrarClienteController{
     // Método chamado quando o botão de cadastro é clicado
     @FXML
     private void cadastrar() {
+        
         String cpf = inputCPF.getText();
         String email = inputEmail.getText();
         String nome = inputNome.getText();
         String cep = inputCEP.getText();
         
-        if(cpf.isEmpty() || email.isEmpty() || nome.isEmpty() || cep.isEmpty()){
+        if(cpf.length() < 14 || email.isEmpty() || nome.isEmpty() || cep.length() < 9){
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Por favor, preencha todos os campos.");   
         }else if(verificaCPF(cpf)){
@@ -80,8 +84,8 @@ public class CadastrarClienteController{
             try {
                 // Insere o novo cliente no banco de dados
                 String query = "INSERT INTO cliente (cpf, nome, cep"
-                + ", id_funcionario) VALUES ('" + cpf + "','" + nome + "','"
-                +  cep + "','" + funcionario.getCpf() + "')";
+                + ", id_funcionario, email) VALUES ('" + cpf + "','" + nome + "','"
+                +  cep + "','" + funcionario.getCpf() + "','" + email + "')";
 
                 Database.executarQuery(query);
                 messageLabel.setTextFill(Color.color(0, 1, 0));
@@ -116,9 +120,18 @@ public class CadastrarClienteController{
     private void formatarCPF(KeyEvent event) {
         TextField inputTexto = (TextField) event.getSource();
         int finalDoCampo = inputTexto.getCaretPosition()+3;
-
+        
         apenasNumeros(event, inputTexto);
-        formatarCampo(inputTexto, "(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4");
+        int tamanho = inputTexto.getText().length();
+                
+        if(tamanho > 3 && tamanho < 7){
+            formatarCampo(inputTexto, "(\\d{3})(\\d{" + (tamanho-3) + "})", "$1.$2");
+        }else if(tamanho > 6 && tamanho < 10){
+            formatarCampo(inputTexto, "(\\d{3})(\\d{3})(\\d{" + (tamanho-6) + "})", "$1.$2.$3");
+        }else if(tamanho > 9 && tamanho < 12){
+            formatarCampo(inputTexto, "(\\d{3})(\\d{3})(\\d{3})(\\d{" + (tamanho-9) + "})", "$1.$2.$3-$4");
+        }
+        
         limitarTamanho(inputTexto, 14);
         
         inputTexto.positionCaret(finalDoCampo);
@@ -131,8 +144,23 @@ public class CadastrarClienteController{
         int finalDoCampo = inputTexto.getCaretPosition()+1;
         
         apenasNumeros(event, inputTexto);
-        formatarCampo(inputTexto, "(\\d{5})(\\d{3})", "$1-$2");
+        int tamanho = inputTexto.getText().length();
+        
+        if(tamanho > 5 && tamanho < 9){
+             formatarCampo(inputTexto, "(\\d{5})(\\d{" + (tamanho-5) + "})", "$1-$2");
+        }
+        
         limitarTamanho(inputTexto, 9);
+        
+        inputTexto.positionCaret(finalDoCampo);
+    }
+    
+    @FXML
+    private void limitarNomeEmail(KeyEvent event) {
+        TextField inputTexto = (TextField) event.getSource();
+        int finalDoCampo = inputTexto.getCaretPosition()+1;
+        
+        limitarTamanho(inputTexto, 50);
         
         inputTexto.positionCaret(finalDoCampo);
     }

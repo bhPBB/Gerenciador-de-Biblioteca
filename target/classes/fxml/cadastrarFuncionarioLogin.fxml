@@ -47,7 +47,7 @@
                   <Font name="Chilanka Regular" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="inputCPF" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="46.0" promptText="CPF" styleClass="inputs" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <TextField fx:id="inputCPF" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" onKeyTyped="#formatarCPF" prefHeight="46.0" promptText="000.000.000-00" styleClass="inputs" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
