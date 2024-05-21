@@ -1,8 +1,11 @@
 package Controllers;
 
+import Banco.Database;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,7 +33,7 @@ public class ListarLivrosController{
         // a implementar.
     }
     
-    public void initialize() {
+    public void initialize() throws SQLException, ClassNotFoundException {
         try
         {
             //Carrega a sidebar e o header
@@ -57,9 +60,15 @@ public class ListarLivrosController{
         containerLivros.setAlignment(Pos.CENTER);
         
         int col = 0, lin = 0; 
-        for(int i = 0; i < 13; i++) 
-        {
-            var fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/cardListarLivro.fxml"));
+        
+        String query = "SELECT DESCRICAO, QTD_ESTOQUE FROM LIVRO";
+        try {
+            ResultSet rs = Database.executarSelect(query);
+            // Itera sobre cada linha do ResultSet
+            while (rs.next()) {
+                String livroNome = rs.getString("DESCRICAO");
+                int livroQtd = rs.getInt("QTD_ESTOQUE");
+                var fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/cardListarLivro.fxml"));
             
             try 
             {
@@ -71,9 +80,9 @@ public class ListarLivrosController{
                 
                 //Passa os dados
                 cardController.criarCard(
-                        "Teste" + (i+1),  
-                        4,
-                        "/Imagens/capa-livro-teste.jpg"
+                        livroNome,  
+                        livroQtd
+                       
                 );
                 //Insere os cards no container
                 containerLivros.add(card, col, lin);
@@ -87,6 +96,9 @@ public class ListarLivrosController{
             {
                 System.out.println("Erro ao carregar os cards.");
             }
+            }
+        }catch(SQLException ex){
+            System.out.println("Erro ao executar Result Set");
         }
         // Define o conteúdo do ScrollPane como o container de livros
         scrollPane.setContent(containerLivros);

@@ -2,7 +2,9 @@ package Controllers;
 
 import Banco.Database;
 import com.mycompany.gerenciadordebiblioteca.App;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,20 +41,43 @@ public class CardListarLivroController {
     private Modelos.Livro modelo;
     
     @FXML
-    public void criarCard(String titulo, int qtdEstoque, String imagemCaminho) {
+    public void criarCard(String titulo, int qtdEstoque) {
         
         this.titulo.setText(titulo);
         
         this.qtdEstoque.setText(String.valueOf(qtdEstoque));
         
-        try
-        {
-            this.imagem.setImage(new Image(getClass().getResourceAsStream(imagemCaminho)));
+        try {
+        byte[] imageBytes = pegaImagem(titulo);
+        if (imageBytes != null) {
+            InputStream inputStream = new ByteArrayInputStream(imageBytes);
+            Image image = new Image(inputStream);
+            this.imagem.setImage(image);
+        } else {
+            System.out.println("Nenhuma imagem encontrada para o título: " + titulo);
         }
-        catch (NullPointerException e)
-        {
-            System.out.println("CardListarLivros não conseguiu carregar a imagem da capa do livro");
+    } catch (SQLException | ClassNotFoundException e) {
+        System.out.println("Erro ao recuperar a imagem do banco de dados: " + e.getMessage());
+    } catch (Exception e) {
+        System.out.println("Erro ao definir a imagem no ImageView: " + e.getMessage());
+    }
+    }
+    
+    @FXML
+    private byte[] pegaImagem(String titulo) throws SQLException, ClassNotFoundException{
+        byte[] imagem = null;
+        String query = "SELECT IMAGEM FROM LIVRO WHERE DESCRICAO = '" + titulo + "'";
+        try{
+            ResultSet rs = Database.executarSelect(query);
+            if (rs.next()) {
+                // Recupera a imagem da coluna bytea
+                imagem = rs.getBytes("IMAGEM");
+            }
+        }catch (SQLException e) {
+            // Tratar adequadamente a exceção em um ambiente de produção
+            
         }
+        return imagem;
     }
     
     @FXML

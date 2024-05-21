@@ -4,8 +4,11 @@ import Banco.Database;
 import Modelos.Funcionario;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -95,40 +98,66 @@ public class CadastrarLivroController{
     // Método chamado quando o botão de cadastro é clicado
     @FXML
     private void cadastrar(){
-      // Executar a inserção no banco de dados
-        String titulo = inputTitulo.getText();
+      String titulo = inputTitulo.getText();
         String autor = inputAutor.getValue();
         String genero = inputGenero.getValue();
         String qtd = inputQtdEstoque.getText();
-        //Verifica se todos os campos estão preenchidos
-        if(titulo.isEmpty() || qtd.isEmpty() || imagem == null || autor == null || genero == null){
+
+        // Verifica se todos os campos estão preenchidos
+        if (titulo.isEmpty() || qtd.isEmpty() || imagem == null || autor == null || genero == null) {
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Por favor, preencha todos os campos.");
+        } else {
+            String insertLivroQuery = "INSERT INTO livro (descricao, qtd_estoque, id_funcionario, imagem) VALUES (?, ?, ?, ?)";
+            String insertAutorQuery = "INSERT INTO livros_autores(id_livro, id_autor) VALUES ((SELECT id FROM livro WHERE descricao = ?), (SELECT id FROM autor WHERE nome = ?))";
+            String insertGeneroQuery = "INSERT INTO livros_generos(id_livro, id_genero) VALUES ((SELECT id FROM livro WHERE descricao = ?), (SELECT id FROM genero WHERE descricao = ?))";
 
-        }else try {
-                // Insere o livro no banco de dados
-                String query = "INSERT INTO livro (descricao, qtd_estoque, id_funcionario, imagem) VALUES ('" + titulo + "'," + qtd + ",'" + funcionario.getCpf() + "','" + imagem +"')";
-                Database.executarQuery(query);
-                
-                // Associa o autor ao livro
-                query = ("INSERT INTO livros_autores(id_livro, id_autor) VALUES ((SELECT id FROM livro "
-                        + "WHERE descricao = '" + titulo +"'),(SELECT id FROM autor WHERE nome = '" + autor + "'))");
-                Database.executarQuery(query);
-                
-                // Associa o gênero ao livro
-                query = ("INSERT INTO livros_generos(id_livro, id_genero) VALUES ((SELECT id FROM livro "
-                        + "WHERE descricao = '" + titulo +"'),(SELECT id FROM genero WHERE descricao = '" + genero + "'))");
-                Database.executarQuery(query);
-                
-                
+            Connection connection = null;
+            PreparedStatement psLivro = null;
+            PreparedStatement psAutor = null;
+            PreparedStatement psGenero = null;
+
+            try {
+                connection = Database.getConnection();
+
+                // Inserir livro
+                psLivro = connection.prepareStatement(insertLivroQuery);
+                psLivro.setString(1, titulo);
+                psLivro.setInt(2, Integer.parseInt(qtd));
+                psLivro.setString(3, funcionario.getCpf());
+                psLivro.setBytes(4, imagem);
+                psLivro.executeUpdate();
+
+                // Inserir associação do livro com o autor
+                psAutor = connection.prepareStatement(insertAutorQuery);
+                psAutor.setString(1, titulo);
+                psAutor.setString(2, autor);
+                psAutor.executeUpdate();
+
+                // Inserir associação do livro com o gênero
+                psGenero = connection.prepareStatement(insertGeneroQuery);
+                psGenero.setString(1, titulo);
+                psGenero.setString(2, genero);
+                psGenero.executeUpdate();
+
                 messageLabel.setTextFill(Color.color(0, 1, 0));
-                messageLabel.setText( "Livro cadastrado com sucesso.");
-                
-            } catch (SQLException | ClassNotFoundException ex) {
+                messageLabel.setText("Livro cadastrado com sucesso.");
+            } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
                 messageLabel.setTextFill(Color.color(1, 0, 0));
-                messageLabel.setText(ex.getMessage());
+                messageLabel.setText("Erro ao cadastrar o livro: " + e.getMessage());
+            } finally {
+                try {
+                    if (psLivro != null) psLivro.close();
+                    if (psAutor != null) psAutor.close();
+                    if (psGenero != null) psGenero.close();
+                    Database.desconectar();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
-    }
+        }
+    } 
     
     //Método que permite apenas o uso de números no campo Qtd_Estoque
     @FXML
@@ -158,12 +187,18 @@ public class CadastrarLivroController{
     @FXML
     private void escolherImagem(){
         FileChooser fc = new FileChooser();
-        fc.getExtensionFilters().add(new ExtensionFilter("Imagens", "*.png", "*.jpg", "*.jpeg"));
-        File arquivoImagem = fc.showOpenDialog(null);
-        if (arquivoImagem != null){
-            nomeImagem.setText(arquivoImagem.getName());
-            imagem = new byte[(int) arquivoImagem.length()];
+    fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imagens", "*.png", "*.jpg", "*.jpeg"));
+    File arquivoImagem = fc.showOpenDialog(null);
+    if (arquivoImagem != null) {
+        nomeImagem.setText(arquivoImagem.getName());
+        try (FileInputStream fis = new FileInputStream(arquivoImagem)) {
+            imagem = fis.readAllBytes();
+        } catch (IOException e) {
+            e.printStackTrace();
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText("Erro ao ler a imagem: " + e.getMessage());
         }
+    }
     }
     
     // Método chamado quando a tecla Enter é pressionada
