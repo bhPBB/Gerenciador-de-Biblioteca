@@ -99,13 +99,6 @@ public class Database {
             desconectar();
         }
     }
-    
-    public static Connection getConnection() throws SQLException, ClassNotFoundException {
-    if (con == null || con.isClosed()) {
-        conectar();
-    }
-    return con;
-}
 }
 
 

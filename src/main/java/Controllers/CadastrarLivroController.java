@@ -103,57 +103,32 @@ public class CadastrarLivroController{
         if (titulo.isEmpty() || qtd.isEmpty() || imagem == null || autor == null || genero == null) {
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Por favor, preencha todos os campos.");
-        } else {
-            String insertLivroQuery = "INSERT INTO livro (descricao, qtd_estoque, id_funcionario, imagem) VALUES (?, ?, ?, ?)";
-            String insertAutorQuery = "INSERT INTO livros_autores(id_livro, id_autor) VALUES ((SELECT id FROM livro WHERE descricao = ?), (SELECT id FROM autor WHERE nome = ?))";
-            String insertGeneroQuery = "INSERT INTO livros_generos(id_livro, id_genero) VALUES ((SELECT id FROM livro WHERE descricao = ?), (SELECT id FROM genero WHERE descricao = ?))";
-
-            Connection connection = null;
-            PreparedStatement psLivro = null;
-            PreparedStatement psAutor = null;
-            PreparedStatement psGenero = null;
-
-            try {
-                connection = Database.getConnection();
-
-                //Inserir livro
-                psLivro = connection.prepareStatement(insertLivroQuery);
-                psLivro.setString(1, titulo);
-                psLivro.setInt(2, Integer.parseInt(qtd));
-                psLivro.setString(3, funcionario.getCpf());
-                psLivro.setBytes(4, imagem);
-                psLivro.executeUpdate();
-
-                // Inserir associação do livro com o autor
-                psAutor = connection.prepareStatement(insertAutorQuery);
-                psAutor.setString(1, titulo);
-                psAutor.setString(2, autor);
-                psAutor.executeUpdate();
-
-                // Inserir associação do livro com o gênero
-                psGenero = connection.prepareStatement(insertGeneroQuery);
-                psGenero.setString(1, titulo);
-                psGenero.setString(2, genero);
-                psGenero.executeUpdate();
+        } else try {
+                // Insere o livro no banco de dados
+                String hexImagem = converterParaHex(imagem);
+                
+                String query = "INSERT INTO livro (descricao, qtd_estoque, id_funcionario, imagem) VALUES "
+                        + "('" + titulo + "'," + qtd + ",'" + funcionario.getCpf() + "', decode('" + hexImagem + "', 'hex'))";
+                
+                Database.executarQuery(query);
+                
+                // Associa o autor ao livro
+                query = ("INSERT INTO livros_autores(id_livro, id_autor) VALUES ((SELECT id FROM livro "
+                        + "WHERE descricao = '" + titulo +"'),(SELECT id FROM autor WHERE nome = '" + autor + "'))");
+                Database.executarQuery(query);
+                
+                // Associa o gênero ao livro
+                query = ("INSERT INTO livros_generos(id_livro, id_genero) VALUES ((SELECT id FROM livro "
+                        + "WHERE descricao = '" + titulo +"'),(SELECT id FROM genero WHERE descricao = '" + genero + "'))");
+                Database.executarQuery(query);
 
                 messageLabel.setTextFill(Color.color(0, 1, 0));
                 messageLabel.setText("Livro cadastrado com sucesso.");
-            } catch (SQLException | ClassNotFoundException e) {
-                e.printStackTrace();
+            } catch (SQLException | ClassNotFoundException ex) {
                 messageLabel.setTextFill(Color.color(1, 0, 0));
-                messageLabel.setText("Erro ao cadastrar o livro: " + e.getMessage());
-            } finally {
-                try {
-                    if (psLivro != null) psLivro.close();
-                    if (psAutor != null) psAutor.close();
-                    if (psGenero != null) psGenero.close();
-                    Database.desconectar();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                messageLabel.setText("Erro ao cadastrar o livro: " + ex.getMessage());
             }
         }
-    } 
     
     //Método que permite apenas o uso de números no campo Qtd_Estoque
     @FXML
@@ -189,12 +164,19 @@ public class CadastrarLivroController{
             nomeImagem.setText(arquivoImagem.getName());
             try (FileInputStream fis = new FileInputStream(arquivoImagem)) {
                 imagem = fis.readAllBytes();
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (IOException ex) {
                 messageLabel.setTextFill(Color.color(1, 0, 0));
-                messageLabel.setText("Erro ao ler a imagem: " + e.getMessage());
+                messageLabel.setText("Erro ao ler a imagem: " + ex.getMessage());
             }
         }
+    }
+    
+    private String converterParaHex(byte[] imagem) {
+        StringBuilder hexImagem = new StringBuilder();
+        for (byte b : imagem) {
+            hexImagem.append(String.format("%02X", b));
+        }
+        return hexImagem.toString();
     }
     
     // Método chamado quando a tecla Enter é pressionada

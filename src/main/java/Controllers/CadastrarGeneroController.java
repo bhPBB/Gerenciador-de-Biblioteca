@@ -62,7 +62,7 @@ public class CadastrarGeneroController{
                 Database.executarQuery(query);
                 
                 messageLabel.setTextFill(Color.color(0, 1, 0));
-                messageLabel.setText("Autor cadastrado com sucesso.");
+                messageLabel.setText("Gênero cadastrado com sucesso.");
             } catch (SQLException | ClassNotFoundException ex) {
                 messageLabel.setTextFill(Color.color(1, 0, 0));
                 messageLabel.setText(ex.getMessage());
