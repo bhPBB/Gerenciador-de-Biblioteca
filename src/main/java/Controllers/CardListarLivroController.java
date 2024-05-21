@@ -9,6 +9,8 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,14 +40,19 @@ public class CardListarLivroController {
     @FXML
     private Label titulo;
 
+    @FXML
+    private Label autor;
+
     private Modelos.Livro modelo;
     
     @FXML
-    public void criarCard(String titulo, int qtdEstoque) {
+    public void criarCard(int id, String titulo, int qtdEstoque) {
         
         this.titulo.setText(titulo);
         
-        this.qtdEstoque.setText(String.valueOf(qtdEstoque));
+        this.qtdEstoque.setText("Qtd: " + qtdEstoque);
+        
+        this.autor.setText(getAutores(id));
         
         try {
         byte[] imageBytes = pegaImagem(titulo);
@@ -56,25 +63,23 @@ public class CardListarLivroController {
         } else {
             System.out.println("Nenhuma imagem encontrada para o título: " + titulo);
         }
-    } catch (SQLException | ClassNotFoundException e) {
-        System.out.println("Erro ao recuperar a imagem do banco de dados: " + e.getMessage());
-    } catch (Exception e) {
-        System.out.println("Erro ao definir a imagem no ImageView: " + e.getMessage());
+    } catch (Exception ex) {
+        System.out.println("Erro ao definir a imagem no ImageView: " + ex.getMessage());
     }
     }
     
     @FXML
-    private byte[] pegaImagem(String titulo) throws SQLException, ClassNotFoundException{
+    private byte[] pegaImagem(String titulo){
         byte[] imagem = null;
-        String query = "SELECT IMAGEM FROM LIVRO WHERE DESCRICAO = '" + titulo + "'";
+        String query = "SELECT imagem FROM livro WHERE descricao = '" + titulo + "'";
         try{
             ResultSet rs = Database.executarSelect(query);
             if (rs.next()) {
                 // Recupera a imagem da coluna bytea
-                imagem = rs.getBytes("IMAGEM");
+                imagem = rs.getBytes("imagem");
             }
-        }catch (SQLException e) {
-            // Tratar adequadamente a exceção em um ambiente de produção
+        }catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
             
         }
         return imagem;

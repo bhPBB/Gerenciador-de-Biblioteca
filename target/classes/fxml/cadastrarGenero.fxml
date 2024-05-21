@@ -33,7 +33,7 @@
                   <Font name="DejaVu Sans Bold" size="22.0" />
                </font>
             </Button>
-            <TextField fx:id="inputGenero" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#formatarCPF" prefHeight="46.0" promptText="Gênero" styleClass="inputs" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <TextField fx:id="inputGenero" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" promptText="Gênero" styleClass="inputs" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>

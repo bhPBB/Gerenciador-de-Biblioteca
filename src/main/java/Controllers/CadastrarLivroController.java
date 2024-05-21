@@ -6,14 +6,11 @@ import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -24,7 +21,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 
 public class CadastrarLivroController{
 
@@ -120,7 +116,7 @@ public class CadastrarLivroController{
             try {
                 connection = Database.getConnection();
 
-                // Inserir livro
+                //Inserir livro
                 psLivro = connection.prepareStatement(insertLivroQuery);
                 psLivro.setString(1, titulo);
                 psLivro.setInt(2, Integer.parseInt(qtd));
