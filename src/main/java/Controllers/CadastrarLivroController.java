@@ -187,18 +187,18 @@ public class CadastrarLivroController{
     @FXML
     private void escolherImagem(){
         FileChooser fc = new FileChooser();
-    fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imagens", "*.png", "*.jpg", "*.jpeg"));
-    File arquivoImagem = fc.showOpenDialog(null);
-    if (arquivoImagem != null) {
-        nomeImagem.setText(arquivoImagem.getName());
-        try (FileInputStream fis = new FileInputStream(arquivoImagem)) {
-            imagem = fis.readAllBytes();
-        } catch (IOException e) {
-            e.printStackTrace();
-            messageLabel.setTextFill(Color.color(1, 0, 0));
-            messageLabel.setText("Erro ao ler a imagem: " + e.getMessage());
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imagens", "*.png", "*.jpg", "*.jpeg"));
+        File arquivoImagem = fc.showOpenDialog(null);
+        if (arquivoImagem != null) {
+            nomeImagem.setText(arquivoImagem.getName());
+            try (FileInputStream fis = new FileInputStream(arquivoImagem)) {
+                imagem = fis.readAllBytes();
+            } catch (IOException e) {
+                e.printStackTrace();
+                messageLabel.setTextFill(Color.color(1, 0, 0));
+                messageLabel.setText("Erro ao ler a imagem: " + e.getMessage());
+            }
         }
-    }
     }
     
     // Método chamado quando a tecla Enter é pressionada
