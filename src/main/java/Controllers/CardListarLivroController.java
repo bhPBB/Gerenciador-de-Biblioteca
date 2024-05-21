@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -34,16 +32,21 @@ public class CardListarLivroController {
     private Label qtdEstoque;
 
     @FXML
+    private Label autor;
+
+    @FXML
     private Label titulo;
 
     private Modelos.Livro modelo;
     
     @FXML
-    public void criarCard(String titulo, int qtdEstoque, String imagemCaminho) {
+    public void criarCard(int id, String titulo, int qtdEstoque, String imagemCaminho) {
         
         this.titulo.setText(titulo);
         
-        this.qtdEstoque.setText(String.valueOf(qtdEstoque));
+        this.qtdEstoque.setText("Qtd: " + qtdEstoque);
+        
+        this.autor.setText(getAutores(id));
         
         try
         {

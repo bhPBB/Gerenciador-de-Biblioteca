@@ -5,12 +5,15 @@ import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -21,14 +24,15 @@ public class ListarClientesController{
     private ScrollPane scrollPane;
     
     @FXML
+    private Label naoEncontrado;
+    
+    @FXML
+    private TextField inputPesquisar;
+    
+    @FXML
     private AnchorPane background;
     
     private static final int QTDCOLUNA = 3;
-
-    @FXML
-    public void pesquisar(ActionEvent event) {
-        // a implementar.
-    }
 
     public void initialize() {
         try
@@ -48,23 +52,48 @@ public class ListarClientesController{
             System.out.println(msg);
         }
         
+        String query = "SELECT nome, cpf FROM cliente";
+        
+        carregarTabela(query);
+
+    }
+    
+    @FXML
+    private void pesquisar(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            String pesquisa = inputPesquisar.getText();
+            String query;
+            
+            if(!pesquisa.isEmpty()){
+                query = "SELECT nome, cpf FROM cliente WHERE (LOWER(nome) LIKE "
+                        + "LOWER('%" + pesquisa + "%') OR cpf LIKE '" + pesquisa +"')";
+            }
+            else{
+                query = "SELECT nome, cpf FROM cliente";
+            }
+            carregarTabela(query);
+        }
+    }
+    
+    private void carregarTabela(String query) {
+        scrollPane.setContent(null);
+        scrollPane.setContent(naoEncontrado);
+                
         GridPane containerClientes = new GridPane();
         containerClientes.setPadding(new Insets(10));
         containerClientes.setHgap(90);
         containerClientes.setVgap(90);
         containerClientes.setAlignment(Pos.CENTER);
-        
-        String query = "SELECT nome FROM cliente";
-        
-        try 
+ 
+        try
         {
             ResultSet rs = Database.executarSelect(query);
-
-            int col = 0, lin = 0; 
+            
+            int col = 0, lin = 0;
             while(rs.next()) 
             {
                 var fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/cardListarCliente.fxml"));
-
+                
                 try 
                 {
                     //Cria um card
@@ -75,7 +104,8 @@ public class ListarClientesController{
 
                     //Passa os dados
                     cardController.criarCard(
-                            rs.getString("nome"),  
+                            rs.getString("nome"),
+                            rs.getString("cpf"),  
                             "/Imagens/capa-livro-teste.jpg"
                     );
                     //Insere os cards no container
@@ -85,7 +115,7 @@ public class ListarClientesController{
                         lin++;
                         col = 0;
                     }
-                } 
+                }
                 catch (IOException ex) 
                 {
                     System.out.println("Erro ao carregar os cards.");
@@ -97,6 +127,5 @@ public class ListarClientesController{
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex);
         }
-
     }
 }
