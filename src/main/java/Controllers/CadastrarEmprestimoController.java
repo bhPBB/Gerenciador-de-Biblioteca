@@ -84,14 +84,22 @@ public class CadastrarEmprestimoController{
                 if(rs.next())
                     livro = rs.getString("id");
                 
-                query = "INSERT INTO emprestimo (id_livro, id_cliente, id_funcionario, "
-                        + "data_emprestimo, data_devolucao) VALUES (" + livro + ",'" + cliente +"','" 
-                        + funcionario.getCpf() + "',CURRENT_DATE,'" + devolucao + "')";
+                System.out.println("livro: " + livro);
                 
-                Database.executarQuery(query);
-                
-                messageLabel.setTextFill(Color.color(0, 1, 0));
-                messageLabel.setText("Empréstimo realizado com sucesso.");
+                // Verifica a quantidade de livros no estoque
+                if (verificaQtdLivroEstoque(livro) > 0) {
+                    // Insere o empréstimo no banco de dados
+                    query = "INSERT INTO emprestimo (id_livro, id_cliente, id_funcionario, data_emprestimo, data_devolucao) "
+                          + "VALUES (" + livro + ", '" + cliente + "', '" + funcionario.getCpf() + "', CURRENT_DATE, '" + devolucao + "')";
+                    Database.executarQuery(query);
+                    atualizarQtdLivro(livro);
+
+                    messageLabel.setTextFill(Color.color(0, 1, 0));
+                    messageLabel.setText("Empréstimo realizado com sucesso.");
+                } else {
+                    messageLabel.setTextFill(Color.color(1, 0, 0));
+                    messageLabel.setText("Livro fora de estoque.");
+                }
             } catch (SQLException | ClassNotFoundException ex) {
                 messageLabel.setTextFill(Color.color(1, 0, 0));
                 messageLabel.setText(ex.getMessage());
@@ -99,7 +107,31 @@ public class CadastrarEmprestimoController{
         }
     }
     
+    private void atualizarQtdLivro(String livro){
+        try{
+          String query = "UPDATE LIVRO SET QTD_ESTOQUE = QTD_ESTOQUE - 1 WHERE ID = '" + livro + "'";
+          Database.executarQuery(query);
+        }catch(SQLException | ClassNotFoundException ex){
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText(ex.getMessage());
+        }
+    }
     
+    private int verificaQtdLivroEstoque(String livro){
+        int qtd = 0;
+        try {
+            // Consulta a quantidade em estoque pelo ID do livro
+            String query = "SELECT qtd_estoque FROM livro WHERE id = " + livro;
+            ResultSet rs = Database.executarSelect(query);
+            if (rs.next()) {
+                qtd = rs.getInt("qtd_estoque");
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText(ex.getMessage());
+        }
+        return qtd;
+    }
  
     private void carregarComboBox() {
         try {
