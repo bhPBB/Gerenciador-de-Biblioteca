@@ -98,6 +98,8 @@ public class CadastrarEmprestimoController{
             }
         }
     }
+    
+    
  
     private void carregarComboBox() {
         try {
