@@ -9,13 +9,9 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Cursor;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -55,23 +51,23 @@ public class CardListarLivroController {
         this.autor.setText(getAutores(id));
         
         try {
-        byte[] imageBytes = pegaImagem(titulo);
-        if (imageBytes != null) {
-            InputStream inputStream = new ByteArrayInputStream(imageBytes);
-            Image image = new Image(inputStream);
-            this.imagem.setImage(image);
-        } else {
-            System.out.println("Nenhuma imagem encontrada para o título: " + titulo);
+            byte[] imageBytes = getImagem(id);
+            if (imageBytes != null) {
+                InputStream inputStream = new ByteArrayInputStream(imageBytes);
+                Image image = new Image(inputStream);
+                this.imagem.setImage(image);
+            } else {
+                System.out.println("Nenhuma imagem encontrada para o título: " + titulo);
+            }
+        } catch (Exception ex) {
+            System.out.println("Erro ao definir a imagem no ImageView: " + ex.getMessage());
         }
-    } catch (Exception ex) {
-        System.out.println("Erro ao definir a imagem no ImageView: " + ex.getMessage());
-    }
     }
     
-    @FXML
-    private byte[] pegaImagem(String titulo){
+    private byte[] getImagem(int id){
         byte[] imagem = null;
-        String query = "SELECT imagem FROM livro WHERE descricao = '" + titulo + "'";
+        String query = "SELECT imagem FROM livro WHERE id = " + id;
+        
         try{
             ResultSet rs = Database.executarSelect(query);
             if (rs.next()) {

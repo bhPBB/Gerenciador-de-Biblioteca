@@ -26,7 +26,7 @@
             <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" valignment="TOP" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="25.0" valignment="BOTTOM" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="75.0" text="Título:">
@@ -53,7 +53,7 @@
                   <Insets left="15.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="inputTitulo" maxWidth="-Infinity" prefHeight="46.0" promptText="Título" styleClass="inputs" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <TextField fx:id="inputTitulo" maxWidth="-Infinity" onKeyTyped="#limitarTitulo" prefHeight="46.0" promptText="Título" styleClass="inputs" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -76,7 +76,7 @@
                   <Insets />
                </GridPane.margin>
             </Button>
-            <Button fx:id="cadastrarLivro" alignment="CENTER" mnemonicParsing="false" onAction="#cadastrar" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="46.0" prefWidth="185.0" styleClass="botao" text="Cadastrar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+            <Button fx:id="cadastrarLivro" alignment="CENTER" mnemonicParsing="false" onAction="#cadastrar" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="46.0" prefWidth="185.0" styleClass="botao" text="Cadastrar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="TOP">
                <font>
                   <Font name="DejaVu Sans Bold" size="22.0" />
                </font>
@@ -84,14 +84,6 @@
                   <Insets left="30.0" />
                </GridPane.margin>
             </Button>
-            <Label fx:id="nomeImagem" contentDisplay="CENTER" prefHeight="40.0" prefWidth="322.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <font>
-                  <Font name="Chilanka Regular" size="16.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="14.0" />
-               </GridPane.margin>
-            </Label>
             <TextField fx:id="inputQtdEstoque" maxWidth="-Infinity" onKeyTyped="#apenasNumeros" prefHeight="46.0" promptText="Qtd. em Estoque" styleClass="inputs" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
@@ -100,6 +92,14 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
+            <Label fx:id="nomeImagem" contentDisplay="BOTTOM" prefHeight="40.0" prefWidth="322.0" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Chilanka Regular" size="16.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="14.0" />
+               </GridPane.margin>
+            </Label>
             <Label alignment="BOTTOM_LEFT" prefHeight="46.0" prefWidth="75.0" text="Imagem:" GridPane.rowIndex="4">
                <font>
                   <Font name="Chilanka Regular" size="16.0" />

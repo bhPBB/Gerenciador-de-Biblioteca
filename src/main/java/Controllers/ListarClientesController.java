@@ -105,8 +105,7 @@ public class ListarClientesController{
                     //Passa os dados
                     cardController.criarCard(
                             rs.getString("nome"),
-                            rs.getString("cpf"),  
-                            "/Imagens/capa-livro-teste.jpg"
+                            rs.getString("cpf")
                     );
                     //Insere os cards no container
                     containerClientes.add(card, col, lin);

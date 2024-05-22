@@ -3,6 +3,7 @@ package Controllers;
 import Banco.Database;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import java.security.MessageDigest;
@@ -83,22 +84,23 @@ public class CadastrarFuncionarioController{
         if(nome.isEmpty() || cpf.isEmpty() || email.isEmpty() || senha.isEmpty() || imagem == null){
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Por favor, preencha todos os campos.");
-        }else if(verificaCPF(cpf)){
+        }else if(verificarCPF(cpf)){
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Este funcionário já foi cadastrado.");
-        }else if(verificaEmail(email)){
+        }else if(verificarEmail(email)){
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Email inválido.");
-        }
-        else try {
-            if(verificaEmailDuplicado(email)){
+        }else try {
+            if(verificarEmailDuplicado(email)){
                 messageLabel.setTextFill(Color.color(1, 0, 0));
                 messageLabel.setText("Este email já foi cadastrado.");
             }else{
                 try {
                     String crypto = encrypt(senha);
-                    
-                    String query = "INSERT INTO FUNCIONARIO (nome, cpf, email, senha) VALUES ('" + nome + "','" + cpf + "','" + email + "','" + crypto + "')";
+                    String hexImagem = converterParaHex(imagem);
+                
+                    String query = "INSERT INTO funcionario (nome, cpf, email, senha, foto) VALUES "
+                    + "('" + nome + "','" + cpf + "','" + email + "','" + crypto + "', decode('" + hexImagem + "', 'hex'))";
                     
                     Database.executarQuery(query);
                     App.mudarDeTela("login");
@@ -133,10 +135,10 @@ public class CadastrarFuncionarioController{
             messageLabel.setText(ex.getMessage());
             return null;
         }
-    } 
+    }
     
     // Verifica se o CPF já foi cadastrado anteriormente
-    private boolean verificaCPF(String cpf){
+    private boolean verificarCPF(String cpf){
         String query = "SELECT cpf FROM cliente WHERE cpf = '" + cpf + "'";
         try {
             ResultSet rs = Database.executarSelect(query);
@@ -153,8 +155,8 @@ public class CadastrarFuncionarioController{
     }
     
     // Método para verificar se o email já está cadastrado no banco de dados
-    private boolean verificaEmailDuplicado(String email) throws ClassNotFoundException {
-        String query = "SELECT EMAIL FROM FUNCIONARIO WHERE EMAIL =" + "'" + email +"'";
+    private boolean verificarEmailDuplicado(String email) throws ClassNotFoundException {
+        String query = "SELECT email FROM funcionario WHERE email =" + "'" + email +"'";
         try {
             ResultSet rs = Database.executarSelect(query);
             int rowCount = 0;
@@ -169,7 +171,7 @@ public class CadastrarFuncionarioController{
         return false;
     }
     
-    private boolean verificaEmail(String email) {
+    private boolean verificarEmail(String email) {
         return !(email.contains("@") && email.contains("mail.com"));
     }
     
@@ -179,12 +181,25 @@ public class CadastrarFuncionarioController{
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imagens", "*.png", "*.jpg", "*.jpeg"));
         File arquivoImagem = fc.showOpenDialog(null);
-        if (arquivoImagem != null){
+        if (arquivoImagem != null) {
             nomeImagem.setText(arquivoImagem.getName());
-            imagem = new byte[(int) arquivoImagem.length()];
+            try (FileInputStream fis = new FileInputStream(arquivoImagem)) {
+                imagem = fis.readAllBytes();
+            } catch (IOException ex) {
+                messageLabel.setTextFill(Color.color(1, 0, 0));
+                messageLabel.setText("Erro ao ler a imagem: " + ex.getMessage());
+            }
         }
     }
     
+    private String converterParaHex(byte[] imagem) {
+        StringBuilder hexImagem = new StringBuilder();
+        for (byte b : imagem) {
+            hexImagem.append(String.format("%02X", b));
+        }
+        return hexImagem.toString();
+    }
+       
     //Método que formata o CPF
     @FXML
     private void formatarCPF(KeyEvent event) {
@@ -209,12 +224,8 @@ public class CadastrarFuncionarioController{
     
     @FXML
     private void limitarNomeEmail(KeyEvent event) {
-        TextField inputTexto = (TextField) event.getSource();
-        int finalDoCampo = inputTexto.getCaretPosition()+1;
-        
+        TextField inputTexto = (TextField) event.getSource();  
         limitarTamanho(inputTexto, 50);
-        
-        inputTexto.positionCaret(finalDoCampo);
     }
     
     //Permite apenas numeros no campo de texto
@@ -241,7 +252,7 @@ public class CadastrarFuncionarioController{
             }
         });
     }
-
+    
     // Método chamado quando o mouse passa por cima de um elemento
     @FXML
     private void setAtivo(MouseEvent event) {
@@ -261,5 +272,4 @@ public class CadastrarFuncionarioController{
             cadastrar();
         }
     }
-    
 }

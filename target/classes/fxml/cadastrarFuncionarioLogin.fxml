@@ -102,6 +102,9 @@
                <font>
                   <Font name="Chilanka Regular" size="16.0" />
                </font>
+               <GridPane.margin>
+                  <Insets left="14.0" />
+               </GridPane.margin>
             </Label>
             <Button fx:id="inputImagem" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#escolherImagem" onMouseEntered="#setAtivo" onMouseExited="#setPadrao" prefHeight="46.0" prefWidth="229.0" style="-fx-background-color: transparent; -fx-text-fill: black;" styleClass="botao" text="Escolher imagem⬆" GridPane.rowIndex="5">
                <font>

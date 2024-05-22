@@ -4,6 +4,7 @@ import Banco.Database;
 import Modelos.Funcionario;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -86,18 +87,23 @@ public class CadastrarClienteController{
         if(cpf.length() < 14 || email.isEmpty() || nome.isEmpty() || cep.length() < 9){
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Por favor, preencha todos os campos.");   
-        }else if(verificaCPF(cpf)){
+        }else if(verificarCPF(cpf)){
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Este cliente já foi cadastrado.");
-        }else if(verificaEmail(email)){
+        }else if(verificarEmail(email)){
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Email inválido.");
-        }else{
-            try {
+        }else try {
+            if(verificarEmailDuplicado(email)){
+                messageLabel.setTextFill(Color.color(1, 0, 0));
+                messageLabel.setText("Este email já foi cadastrado.");
+            }else{
+                try {
+                String hexImagem = converterParaHex(imagem);
                 // Insere o novo cliente no banco de dados
                 String query = "INSERT INTO cliente (cpf, nome, cep"
-                + ", id_funcionario, email) VALUES ('" + cpf + "','" + nome + "','"
-                +  cep + "','" + funcionario.getCpf() + "','" + email + "')";
+                + ", id_funcionario, email, foto) VALUES ('" + cpf + "','" + nome + "','"
+                +  cep + "','" + funcionario.getCpf() + "','" + email + "', decode('" + hexImagem + "', 'hex'))";
 
                 Database.executarQuery(query);
                 messageLabel.setTextFill(Color.color(0, 1, 0));
@@ -106,12 +112,16 @@ public class CadastrarClienteController{
                 // Em caso de erro, exibe a mensagem de erro na label
                 messageLabel.setTextFill(Color.color(1, 0, 0));
                 messageLabel.setText(ex.getMessage());
+                }
             }
+        }catch (ClassNotFoundException ex) {
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText(ex.getMessage());
         }
     }
    
     // Verifica se o CPF já foi cadastrado anteriormente
-    private boolean verificaCPF(String cpf){
+    private boolean verificarCPF(String cpf){
         String query = "SELECT cpf FROM cliente WHERE cpf = '" + cpf + "'";
         try {
             ResultSet rs = Database.executarSelect(query);
@@ -127,7 +137,24 @@ public class CadastrarClienteController{
         return false;
     }
     
-    private boolean verificaEmail(String email) {
+    // Método para verificar se o email já está cadastrado no banco de dados
+    private boolean verificarEmailDuplicado(String email) throws ClassNotFoundException {
+        String query = "SELECT email FROM funcionario WHERE email =" + "'" + email +"'";
+        try {
+            ResultSet rs = Database.executarSelect(query);
+            int rowCount = 0;
+            while (rs.next()) {
+                rowCount++; 
+            }
+            return rowCount > 0; // Retorna verdadeiro se rowCount for maior que zero (encontrou emails duplicados)
+        } catch (SQLException ex) {
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText("Erro verificar email duplicado: " + ex.getMessage());
+        }
+        return false;
+    }
+    
+    private boolean verificarEmail(String email) {
         return !(email.contains("@") && email.contains("mail.com"));
     }
     
@@ -137,10 +164,23 @@ public class CadastrarClienteController{
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imagens", "*.png", "*.jpg", "*.jpeg"));
         File arquivoImagem = fc.showOpenDialog(null);
-        if (arquivoImagem != null){
+        if (arquivoImagem != null) {
             nomeImagem.setText(arquivoImagem.getName());
-            imagem = new byte[(int) arquivoImagem.length()];
+            try (FileInputStream fis = new FileInputStream(arquivoImagem)) {
+                imagem = fis.readAllBytes();
+            } catch (IOException ex) {
+                messageLabel.setTextFill(Color.color(1, 0, 0));
+                messageLabel.setText("Erro ao ler a imagem: " + ex.getMessage());
+            }
         }
+    }
+    
+    private String converterParaHex(byte[] imagem) {
+        StringBuilder hexImagem = new StringBuilder();
+        for (byte b : imagem) {
+            hexImagem.append(String.format("%02X", b));
+        }
+        return hexImagem.toString();
     }
     
     //Método que formata o CPF
@@ -185,12 +225,8 @@ public class CadastrarClienteController{
     
     @FXML
     private void limitarNomeEmail(KeyEvent event) {
-        TextField inputTexto = (TextField) event.getSource();
-        int finalDoCampo = inputTexto.getCaretPosition()+1;
-        
+        TextField inputTexto = (TextField) event.getSource();  
         limitarTamanho(inputTexto, 50);
-        
-        inputTexto.positionCaret(finalDoCampo);
     }
     
     //Permite apenas numeros no campo de texto

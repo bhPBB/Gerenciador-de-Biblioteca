@@ -70,6 +70,17 @@ public class CadastrarGeneroController{
         }
     }
     
+    //Limita a quantidade de caracteres
+    @FXML
+    private void limitarTamanho(KeyEvent event){
+        TextField inputTexto = (TextField) event.getSource();
+        inputTexto.textProperty().addListener((ov, textoAntigo, textoAtual) -> {
+            if (textoAtual.length() > 20) {
+                inputTexto.setText(textoAntigo);
+            }
+        });
+    }
+    
     // Método chamado quando o mouse passa por cima de um elemento
     @FXML
     private void setAtivo(MouseEvent event) {

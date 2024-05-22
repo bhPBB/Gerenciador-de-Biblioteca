@@ -6,8 +6,6 @@ import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javafx.fxml.FXML;
@@ -108,7 +106,7 @@ public class CadastrarLivroController{
                 String hexImagem = converterParaHex(imagem);
                 
                 String query = "INSERT INTO livro (descricao, qtd_estoque, id_funcionario, imagem) VALUES "
-                        + "('" + titulo + "'," + qtd + ",'" + funcionario.getCpf() + "', decode('" + hexImagem + "', 'hex'))";
+                + "('" + titulo + "'," + qtd + ",'" + funcionario.getCpf() + "', decode('" + hexImagem + "', 'hex'))";
                 
                 Database.executarQuery(query);
                 
@@ -129,6 +127,12 @@ public class CadastrarLivroController{
                 messageLabel.setText("Erro ao cadastrar o livro: " + ex.getMessage());
             }
         }
+    
+    @FXML
+    private void limitarTitulo(KeyEvent event){
+        TextField inputTexto = (TextField) event.getSource();
+        limitarTamanho(inputTexto, 50);
+    }
     
     //Método que permite apenas o uso de números no campo Qtd_Estoque
     @FXML

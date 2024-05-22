@@ -108,6 +108,9 @@
                <font>
                   <Font name="Chilanka Regular" size="16.0" />
                </font>
+               <GridPane.margin>
+                  <Insets left="14.0" />
+               </GridPane.margin>
             </Label>
          </children>
       </GridPane>

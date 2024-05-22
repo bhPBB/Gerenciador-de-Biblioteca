@@ -29,7 +29,6 @@ Banco\CadastroFuncionario$1.class
 Banco\Login$2.class
 Controllers\CadastrarGeneroController.class
 Controllers\ListarLivrosController.class
-Controllers\Testes.class
 Banco\Login$1.class
 Modelos\Autor.class
 com\mycompany\gerenciadordebiblioteca\App.class
