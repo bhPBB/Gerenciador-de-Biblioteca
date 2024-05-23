@@ -3,15 +3,12 @@ Controllers\CardListarFuncionarioController.class
 Controllers\DashboardController.class
 Controllers\SidebarController.class
 Controllers\TituloHeaderController.class
-ClassesTeste\FuncionarioTeste.class
 Controllers\CadastrarLivroController.class
 Controllers\CadastrarFuncionarioLoginController.class
 Controllers\CadastrarFuncionarioController.class
-ClassesTeste\ClienteTeste.class
 Controllers\DetalhesLivrosController.class
 Modelos\Genero.class
 InterfacesCRUD\ICRUDFuncionario.class
-ClassesTeste\LivroTeste.class
 Controllers\ListarEmprestimosAtivosController$1.class
 Controllers\HeaderListaController.class
 Modelos\Funcionario.class

@@ -49,20 +49,20 @@ public class CardListarFuncionarioController{
     }
     
     private byte[] getFoto(String cpf){
-    byte[] foto = null;
-    String query = "SELECT foto FROM funcionario WHERE cpf LIKE '" + cpf + "'";
+        byte[] foto = null;
+        String query = "SELECT foto FROM funcionario WHERE cpf LIKE '" + cpf + "'";
 
-    try{
-        ResultSet rs = Database.executarSelect(query);
-        if (rs.next()) {
-            // Recupera a imagem da coluna bytea
-            foto = rs.getBytes("foto");
+        try{
+            ResultSet rs = Database.executarSelect(query);
+            if (rs.next()) {
+                // Recupera a imagem da coluna bytea
+                foto = rs.getBytes("foto");
+            }
+        }catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+
         }
-    }catch (SQLException | ClassNotFoundException ex) {
-        System.out.println(ex);
-
+        return foto;
     }
-    return foto;
-}
     
 }

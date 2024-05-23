@@ -1,9 +1,7 @@
 C:\Users\Vinícius\Documents\Gerenciador-de-Biblioteca\src\main\java\Controllers\DetalhesLivrosController.java
 C:\Users\Vinícius\Documents\Gerenciador-de-Biblioteca\src\main\java\Banco\Database.java
 C:\Users\Vinícius\Documents\Gerenciador-de-Biblioteca\src\main\java\Controllers\LoginController.java
-C:\Users\Vinícius\Documents\Gerenciador-de-Biblioteca\src\main\java\ClassesTeste\LivroTeste.java
 C:\Users\Vinícius\Documents\Gerenciador-de-Biblioteca\src\main\java\Controllers\ListarEmprestimosAtivosController.java
-C:\Users\Vinícius\Documents\Gerenciador-de-Biblioteca\src\main\java\ClassesTeste\FuncionarioTeste.java
 C:\Users\Vinícius\Documents\Gerenciador-de-Biblioteca\src\main\java\Controllers\HeaderListaController.java
 C:\Users\Vinícius\Documents\Gerenciador-de-Biblioteca\src\main\java\Controllers\CardListarFuncionarioController.java
 C:\Users\Vinícius\Documents\Gerenciador-de-Biblioteca\src\main\java\Controllers\CadastrarFuncionarioController.java
@@ -31,7 +29,6 @@ C:\Users\Vinícius\Documents\Gerenciador-de-Biblioteca\src\main\java\Controllers
 C:\Users\Vinícius\Documents\Gerenciador-de-Biblioteca\src\main\java\Modelos\ComparadorDias.java
 C:\Users\Vinícius\Documents\Gerenciador-de-Biblioteca\src\main\java\Controllers\ListarLivrosController.java
 C:\Users\Vinícius\Documents\Gerenciador-de-Biblioteca\src\main\java\InterfacesCRUD\ICRUDFuncionario.java
-C:\Users\Vinícius\Documents\Gerenciador-de-Biblioteca\src\main\java\ClassesTeste\ClienteTeste.java
 C:\Users\Vinícius\Documents\Gerenciador-de-Biblioteca\src\main\java\Modelos\Livro.java
 C:\Users\Vinícius\Documents\Gerenciador-de-Biblioteca\src\main\java\Controllers\BotaoHeaderController.java
 C:\Users\Vinícius\Documents\Gerenciador-de-Biblioteca\src\main\java\Controllers\ListarFuncionariosController.java
