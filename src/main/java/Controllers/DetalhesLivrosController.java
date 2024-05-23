@@ -1,20 +1,20 @@
 package Controllers;
 
 import com.mycompany.gerenciadordebiblioteca.App;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
+import java.io.InputStream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 
-public class DetalhesLivrosController{
-    
+public class DetalhesLivrosController {
+
     @FXML
     private AnchorPane background;
    
@@ -36,26 +36,17 @@ public class DetalhesLivrosController{
     @FXML
     private Label labelTitulo;
 
-    public void initialize() {
-    // Inicializando a sidebar
-        try 
-        { 
-            App.inicialzarSidebarHeader(
-                    "detalhesLivros", 
-                    "Detalhes", 
-                    "<-", 
-                    "listarLivros", 
-                    background
-            );
-        } 
-        catch (IOException ex) 
-        {
-            var msg = "Erro ao carregar a sidebar e/ou o header: " + ex.getMessage();
-            
-            System.out.println(msg);
-        }
+    public void initialize() throws IOException {
+        // Inicializando a sidebar
+        App.inicialzarSidebarHeader(
+                "detalhesLivros",
+                "Detalhes",
+                "<-",
+                "listarLivros",
+                background
+        );
     }
-    
+
     @FXML
     private void cursorMaozinha(MouseEvent event) {
         App.setCursorMaozinha(event);
@@ -70,8 +61,22 @@ public class DetalhesLivrosController{
     public void editar(ActionEvent event) {
         // A implementar
     }
-    
-    //Getters pra passagem de parâmetros
+
+    public void setDetalhes(Modelos.Livro livro) {
+        labelTitulo.setText(livro.getNome());
+        labelQtdEstoque.setText(String.valueOf(livro.getQtde()));
+        labelAutor.setText(livro.getAutores());
+        labelGenero.setText(livro.getGeneros());
+
+        byte[] imageBytes = livro.getImagem();
+        if (imageBytes != null) {
+            InputStream inputStream = new ByteArrayInputStream(imageBytes);
+            Image image = new Image(inputStream);
+            imagemCapaLivro.setImage(image);
+        }
+    }
+
+    // Getters pra passagem de parâmetros
     public ImageView getImagemCapaLivro() {
         return imagemCapaLivro;
     }

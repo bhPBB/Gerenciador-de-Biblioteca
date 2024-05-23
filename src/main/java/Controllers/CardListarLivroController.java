@@ -18,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import Modelos.Livro;
 
 public class CardListarLivroController {
 
@@ -39,17 +40,14 @@ public class CardListarLivroController {
     @FXML
     private Label autor;
 
-    private Modelos.Livro modelo;
-    
+    private Livro modelo;
+
     @FXML
     public void criarCard(int id, String titulo, int qtdEstoque) {
-        
         this.titulo.setText(titulo);
-        
         this.qtdEstoque.setText("Qtd: " + qtdEstoque);
-        
         this.autor.setText(getAutores(id));
-        
+
         try {
             byte[] imageBytes = getImagem(id);
             if (imageBytes != null) {
@@ -62,105 +60,108 @@ public class CardListarLivroController {
         } catch (Exception ex) {
             System.out.println("Erro ao definir a imagem no ImageView: " + ex.getMessage());
         }
+
+        // Configure o modelo
+        modelo = new Livro();
+        modelo.setId(id);
+        modelo.setNome(titulo);
+        modelo.setQtde(qtdEstoque);
+        modelo.setAutores(getAutores(id));
+        modelo.setGeneros(getGeneros(id));
+        modelo.setImagem(getImagem(id));
     }
-    
-    private byte[] getImagem(int id){
+
+    private byte[] getImagem(int id) {
         byte[] imagem = null;
         String query = "SELECT imagem FROM livro WHERE id = " + id;
-        
-        try{
+
+        try {
             ResultSet rs = Database.executarSelect(query);
             if (rs.next()) {
-                // Recupera a imagem da coluna bytea
                 imagem = rs.getBytes("imagem");
             }
-        }catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex);
-            
         }
         return imagem;
     }
-    
-    @FXML
-    public void deletar(ActionEvent event) {
-        // a implementar
-    }
 
     @FXML
+    public void deletar(ActionEvent event) {
+        // A implementar
+    }
+
     public void info(ActionEvent event) {
-        try
-        {
-            //App.mudarDeTela("detalhesLivros");
-            
-            //Pega o fxml
+        try {
             URL fxmlUrl = getClass().getResource("/fxml/detalhesLivros.fxml");
+            if (fxmlUrl == null) {
+                System.out.println("ERRO: 'detalhesLivros.fxml' não encontrado.");
+                return;
+            } else {
+                System.out.println("SUCESSO: 'detalhesLivros.fxml' encontrado.");
+            }
             FXMLLoader fxmlLoader = new FXMLLoader(fxmlUrl);
             AnchorPane fxml = fxmlLoader.load();
-            
-            //Passa as informações ao controller
-            if(modelo != null)
-            {
-                DetalhesLivrosController c = fxmlLoader.getController();
-                c.getLabelTitulo().setText(modelo.getNome());
-                c.getLabelQtdEstoque().setText(String.valueOf(modelo.getQtde()));
-            }
-            else
-            {
+
+            // Passa as informações ao controller
+            DetalhesLivrosController c = fxmlLoader.getController();
+            if (modelo != null) {
+                c.setDetalhes(modelo);
+            } else {
                 System.out.println("ERRO: O modelo está vazio.");
             }
-            
-            //Renderiza a view
+
+            // Renderiza a view
             Scene cena = new Scene(fxml);
             App.getStage().setScene(cena);
             App.getStage().show();
-        }
-        catch (IOException ex)
-        {
-            System.out.print("ERRO: 'detalhesLivros' não encontrado.");
-        }
+        } catch (IOException ex) {
+            System.out.print("ERRO: Não foi possível carregar 'detalhesLivros.fxml'. " + ex.getMessage());
     }
+}
+
     @FXML
     private void cursorMaozinha(MouseEvent event) {
-       App.setCursorMaozinha(event);
+        App.setCursorMaozinha(event);
     }
 
     @FXML
     private void cursorPadrao(MouseEvent event) {
         App.setCursorPadrao(event);
     }
-    
-    private String getAutores(int id){
+
+    private String getAutores(int id) {
         ArrayList<String> autores = new ArrayList<>();
         try {
             String query = "SELECT nome FROM livros_autores INNER JOIN autor ON livros_autores.id_autor = "
                     + "autor.id WHERE livros_autores.id_livro = " + id;
-            
+
             ResultSet rs = Database.executarSelect(query);
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 autores.add(rs.getString("nome"));
             }
 
         } catch (SQLException | ClassNotFoundException ex) {
-             System.out.println(ex);
+            System.out.println(ex);
         }
         return String.join(", ", autores);
     }
-    
-        private String getGeneros(int id){
+
+    private String getGeneros(int id) {
         ArrayList<String> generos = new ArrayList<>();
         try {
             String query = "SELECT descricao FROM livros_generos INNER JOIN genero ON livros_generos.id_genero = "
                     + "genero.id WHERE livros_generos.id_livro = " + id;
-            
+
             ResultSet rs = Database.executarSelect(query);
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 generos.add(rs.getString("descricao"));
             }
 
         } catch (SQLException | ClassNotFoundException ex) {
-             System.out.println(ex);
+            System.out.println(ex);
         }
         return String.join(", ", generos);
     }
