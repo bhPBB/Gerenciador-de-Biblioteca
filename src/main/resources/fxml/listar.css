@@ -13,3 +13,7 @@
     -fx-border-style: solid;
     -fx-border-radius: 25px;
 }
+
+.imagem {
+    -fx-alignment: center ;
+}

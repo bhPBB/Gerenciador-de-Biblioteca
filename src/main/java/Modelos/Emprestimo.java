@@ -3,8 +3,11 @@ package Modelos;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.image.Image;
 
 public class Emprestimo {
     private final StringProperty livro = new SimpleStringProperty();
@@ -13,6 +16,8 @@ public class Emprestimo {
     private final StringProperty dataEmprestimo = new SimpleStringProperty();
     private final StringProperty dataDevolucao = new SimpleStringProperty();
     private final StringProperty status = new SimpleStringProperty();
+    private final ObjectProperty<Image> editar = new SimpleObjectProperty();
+    private final ObjectProperty<Image> apagar = new SimpleObjectProperty();
 
     public Emprestimo(String livro, String cliente, String funcionario, LocalDate dataEmprestimo, LocalDate dataDevolucao) {
         this.livro.set(livro);
@@ -21,6 +26,8 @@ public class Emprestimo {
         this.dataEmprestimo.set(setData(dataEmprestimo));
         this.dataDevolucao.set(setData(dataDevolucao));
         this.status.set(setStatus(dataDevolucao));
+        editar.set(new Image(getClass().getResourceAsStream("/Imagens/edit-regular-12.png")));
+        apagar.set(new Image(getClass().getResourceAsStream("/Imagens/trash-regular-12.png")));
     }
 
     public String getLivro() {
@@ -45,6 +52,14 @@ public class Emprestimo {
 
     public String getStatus() {
         return status.getValue();
+    }
+    
+    public Image getEditar() {
+        return editar.getValue();
+    }
+    
+    public Image getApagar() {
+        return apagar.getValue();
     }
 
     private String setStatus(LocalDate dataDevolucao) {

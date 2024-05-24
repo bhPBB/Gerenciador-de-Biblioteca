@@ -1,8 +1,10 @@
+Controllers\ListarEmprestimosAtivosController$3.class
 Modelos\Emprestimo.class
 Controllers\CardListarFuncionarioController.class
 Controllers\DashboardController.class
 Controllers\SidebarController.class
 Controllers\TituloHeaderController.class
+Controllers\ListarGenerosController$1.class
 Controllers\CadastrarLivroController.class
 Controllers\CadastrarFuncionarioLoginController.class
 Controllers\CadastrarFuncionarioController.class
@@ -11,6 +13,7 @@ Modelos\Genero.class
 InterfacesCRUD\ICRUDFuncionario.class
 Controllers\ListarEmprestimosAtivosController$1.class
 Controllers\HeaderListaController.class
+Controllers\ListarGenerosController$2.class
 Modelos\Funcionario.class
 Controllers\CardListarLivroController.class
 Controllers\CadastrarEmprestimoController.class
@@ -19,6 +22,7 @@ Modelos\ComparadorDias.class
 Controllers\LoginController.class
 Controllers\CadastrarGeneroController.class
 Controllers\ListarLivrosController.class
+Controllers\ListarAutoresController$1.class
 Modelos\Autor.class
 com\mycompany\gerenciadordebiblioteca\App.class
 Controllers\CardListarClienteController.class
@@ -32,5 +36,6 @@ Controllers\ListarEmprestimosAtivosController.class
 InterfacesCRUD\ICRUDCliente.class
 Controllers\ListarEmprestimosAtivosController$2.class
 Modelos\Livro.class
+Controllers\ListarAutoresController$2.class
 InterfacesCRUD\ICRUDLivro.class
 Controllers\ListarFuncionariosController.class

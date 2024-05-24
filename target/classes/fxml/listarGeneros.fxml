@@ -14,8 +14,10 @@
    <children>
       <TableView fx:id="generos" layoutX="276.0" layoutY="111.0" prefHeight="583.0" prefWidth="968.0">
          <columns>
-            <TableColumn fx:id="colunaCodigo" prefWidth="286.0" text="Código" />
-            <TableColumn fx:id="colunaDescricao" prefWidth="681.0" text="Nome" />
+            <TableColumn fx:id="colunaCodigo" prefWidth="188.0" text="Código" />
+            <TableColumn fx:id="colunaDescricao" prefWidth="678.0" text="Nome" />
+            <TableColumn fx:id="colunaEditar" prefWidth="50.0" />
+            <TableColumn fx:id="colunaApagar" prefWidth="50.0" />
          </columns>
       </TableView>
       <GridPane layoutX="578.0" layoutY="39.0" prefHeight="58.0" prefWidth="364.0">

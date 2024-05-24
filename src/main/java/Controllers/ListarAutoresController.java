@@ -2,6 +2,7 @@ package Controllers;
 
 import Banco.Database;
 import Modelos.Autor;
+import Modelos.Emprestimo;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -9,11 +10,15 @@ import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -37,6 +42,12 @@ public class ListarAutoresController{
     
      @FXML
     private TableColumn<Autor, String> colunaNome;
+     
+    @FXML
+    private TableColumn<Autor, Image> colunaEditar;
+
+    @FXML
+    private TableColumn<Autor, Image> colunaApagar;
     
     public void initialize() {
           try
@@ -81,12 +92,49 @@ public class ListarAutoresController{
         // Define as propriedades das colunas da tabela
         colunaCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        colunaEditar.setCellValueFactory(new PropertyValueFactory<>("editar"));
+        colunaApagar.setCellValueFactory(new PropertyValueFactory<>("apagar"));
         
-        
+        carregarImagens();
+                
         // Define os itens da tabela
         autores.setItems(linha);   
     }
 
+    private void carregarImagens() {
+        colunaEditar.setCellFactory(param -> new TableCell<Autor, Image>() {
+            private final ImageView imageView = new ImageView();
+
+            @Override
+            protected void updateItem(Image imagem, boolean vazio) {
+                super.updateItem(imagem, vazio);
+                if (vazio || imagem == null) {
+                    setGraphic(null);
+                } else {
+                    imageView.setImage(imagem);
+                    setGraphic(imageView);
+                    setAlignment(Pos.CENTER);
+                }
+            }
+        });
+        
+        colunaApagar.setCellFactory(param -> new TableCell<Autor, Image>() {
+            private final ImageView imageView = new ImageView();
+
+            @Override
+            protected void updateItem(Image imagem, boolean vazio) {
+                super.updateItem(imagem, vazio);
+                if (vazio || imagem == null) {
+                    setGraphic(null);
+                } else {
+                    imageView.setImage(imagem);
+                    setGraphic(imageView);
+                    setAlignment(Pos.CENTER);
+                }
+            }
+        });
+    }
+    
     @FXML
     private void pesquisar(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
