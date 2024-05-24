@@ -66,14 +66,12 @@ public class CadastrarEmprestimoController {
                 String cliente = inputCliente.getValue();
                 String livro = inputLivro.getValue();
                 LocalDate devolucao = inputDevolucao.getValue();
-
-                String query = "SELECT cpf FROM cliente WHERE nome LIKE '" + cliente + "'";
+                
+                //Pega o cpf que está escrito entre parênteses depois do nome
+                cliente = cliente.substring(cliente.indexOf("(") + 1, cliente.indexOf(")"));
+                
+                String query = "SELECT id FROM livro WHERE descricao LIKE '" + livro + "'";
                 ResultSet rs = Database.executarSelect(query);
-                if (rs.next())
-                    cliente = rs.getString("cpf");
-
-                query = "SELECT id FROM livro WHERE descricao LIKE '" + livro + "'";
-                rs = Database.executarSelect(query);
                 if (rs.next())
                     livro = rs.getString("id");
 
@@ -108,62 +106,12 @@ public class CadastrarEmprestimoController {
         }
     }
 
-    private void atualizarQtdLivro(String livro) {
-        try {
-            String query = "UPDATE LIVRO SET QTD_ESTOQUE = QTD_ESTOQUE - 1 WHERE ID = '" + livro + "'";
-            Database.executarQuery(query);
-        } catch (SQLException | ClassNotFoundException ex) {
-            messageLabel.setTextFill(Color.color(1, 0, 0));
-            messageLabel.setText(ex.getMessage());
-        }
-    }
-
-    private int verificaQtdLivroEstoque(String livro) {
-        int qtd = 0;
-        try {
-            // Consulta a quantidade em estoque pelo ID do livro
-            String query = "SELECT QTD_ESTOQUE FROM LIVRO WHERE ID = '" + livro + "'";
-            ResultSet rs = Database.executarSelect(query);
-            if (rs.next()) {
-                qtd = rs.getInt("QTD_ESTOQUE");
-            }
-        } catch (SQLException | ClassNotFoundException ex) {
-            messageLabel.setTextFill(Color.color(1, 0, 0));
-            messageLabel.setText(ex.getMessage());
-        }
-        return qtd;
-    }
-
-    private int verificaQtdLivrosEmprestadosCliente(String cliente) {
-        int qtd = 0;
-        try {
-            String query = "SELECT NUM_LIVROS_EMPRESTADOS FROM CLIENTE WHERE CPF = '" + cliente + "'";
-            ResultSet rs = Database.executarSelect(query);
-            if (rs.next())
-                qtd = rs.getInt("NUM_LIVROS_EMPRESTADOS");
-        } catch (SQLException | ClassNotFoundException ex) {
-            messageLabel.setTextFill(Color.color(1, 0, 0));
-            messageLabel.setText(ex.getMessage());
-        }
-        return qtd;
-    }
-
-    private void atualizarQtdEmprestimoCliente(String cliente) {
-        try {
-            String query = "UPDATE cliente SET NUM_LIVROS_EMPRESTADOS = NUM_LIVROS_EMPRESTADOS + 1 WHERE CPF = '" + cliente + "'";
-            Database.executarQuery(query);
-        } catch (SQLException | ClassNotFoundException ex) {
-            messageLabel.setTextFill(Color.color(1, 0, 0));
-            messageLabel.setText(ex.getMessage());
-        }
-    }
-
     private void carregarComboBox() {
         try {
-            String query = "SELECT nome FROM cliente";
+            String query = "SELECT cpf, nome FROM cliente";
             ResultSet rs = Database.executarSelect(query);
             while (rs.next())
-                inputCliente.getItems().add(rs.getString("nome"));
+                inputCliente.getItems().add(rs.getString("nome") + " (" + rs.getString("cpf") + ")");
         } catch (SQLException | ClassNotFoundException ex) {
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText(ex.getMessage());
@@ -179,8 +127,82 @@ public class CadastrarEmprestimoController {
             messageLabel.setText(ex.getMessage());
         }
     }
+    
+    private void atualizarQtdLivro(String livro) {
+        try {
+            String query = "UPDATE livro SET qtd_estoque = qtd_estoque - 1 WHERE id = '" + livro + "'";
+            Database.executarQuery(query);
+        } catch (SQLException | ClassNotFoundException ex) {
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText(ex.getMessage());
+        }
+    }
 
-    // Método chamado quando o mouse passa por cima de um elemento
+    private int verificaQtdLivroEstoque(String livro) {
+        int qtd = 0;
+        try {
+            // Consulta a quantidade em estoque pelo ID do livro
+            String query = "SELECT qtd_estoque FROM livro WHERE id = '" + livro + "'";
+            ResultSet rs = Database.executarSelect(query);
+            if (rs.next()) {
+                qtd = rs.getInt("qtd_estoque");
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText(ex.getMessage());
+        }
+        return qtd;
+    }
+
+    private int verificaQtdLivrosEmprestadosCliente(String cliente) {
+        int qtd = 0;
+        try {
+            String query = "SELECT num_livros_emprestados FROM cliente WHERE cpf LIKE '" + cliente + "'";
+            ResultSet rs = Database.executarSelect(query);
+            if (rs.next())
+                qtd = rs.getInt("num_livros_emprestados");
+        } catch (SQLException | ClassNotFoundException ex) {
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText(ex.getMessage());
+        }
+        return qtd;
+    }
+
+    private void atualizarQtdEmprestimoCliente(String cliente) {
+        try {
+            String query = "UPDATE cliente SET num_livros_emprestados = num_livros_emprestados + 1 WHERE cpf = '" + cliente + "'";
+            Database.executarQuery(query);
+        } catch (SQLException | ClassNotFoundException ex) {
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText(ex.getMessage());
+        }
+    }
+    
+    private boolean ehCaloteiro(String cliente) throws SQLException, ClassNotFoundException {
+        String query = "SELECT caloteiro FROM cliente WHERE cpf ='" + cliente + "'";
+        ResultSet rs = Database.executarSelect(query);
+        if (rs.next()) {
+            boolean caloteiro = rs.getBoolean("caloteiro");
+            if (caloteiro) {
+                return true;
+            } else {
+                query = "SELECT id_livro FROM emprestimo WHERE id_cliente = '" + cliente + "' AND data_devolucao < CURRENT_DATE";
+                rs = Database.executarSelect(query);
+                if (rs.next()) {
+                    atualizarCaloteiro(cliente);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private void atualizarCaloteiro(String cliente) throws SQLException, ClassNotFoundException {
+        String query = "UPDATE cliente SET caloteiro = TRUE WHERE cpf = '" + cliente + "'";
+        Database.executarQuery(query);
+    }
+    
+        // Método chamado quando o mouse passa por cima de um elemento
     @FXML
     private void setAtivo(MouseEvent event) {
         App.setCursorMaozinha(event);
@@ -198,36 +220,6 @@ public class CadastrarEmprestimoController {
         if (event.getCode() == KeyCode.ENTER) {
             cadastrar();
         }
-    }
-
-    private boolean ehCaloteiro(String cliente) throws SQLException, ClassNotFoundException {
-        String query = "SELECT CALOTEIRO FROM CLIENTE WHERE CPF ='" + cliente + "'";
-        ResultSet rs = Database.executarSelect(query);
-        if (rs.next()) {
-            boolean caloteiro = rs.getBoolean("CALOTEIRO");
-            if (caloteiro) {
-                return true;
-            } else {
-                query = "SELECT ID_LIVRO FROM EMPRESTIMO WHERE ID_CLIENTE = '" + cliente + "' AND STATUS = 'ATRASADO'";
-                rs = Database.executarSelect(query);
-                if (rs.next()) {
-                    return true;
-                } else {
-                    query = "SELECT ID_LIVRO FROM EMPRESTIMO WHERE ID_CLIENTE = '" + cliente + "' AND DATA_DEVOLUCAO < CURRENT_DATE";
-                    rs = Database.executarSelect(query);
-                    if (rs.next()) {
-                        atualizarCaloteiro(cliente);
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    private void atualizarCaloteiro(String cliente) throws SQLException, ClassNotFoundException {
-        String query = "UPDATE CLIENTE SET CALOTEIRO = TRUE WHERE CPF = '" + cliente + "'";
-        Database.executarQuery(query);
     }
 }
 

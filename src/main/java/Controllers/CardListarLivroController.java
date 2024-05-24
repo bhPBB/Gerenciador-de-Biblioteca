@@ -39,6 +39,9 @@ public class CardListarLivroController {
 
     @FXML
     private Label autor;
+    
+    @FXML
+    private Label genero;
 
     private Livro modelo;
 
@@ -47,7 +50,8 @@ public class CardListarLivroController {
         this.titulo.setText(titulo);
         this.qtdEstoque.setText("Qtd: " + qtdEstoque);
         this.autor.setText(getAutores(id));
-
+        this.genero.setText(getGeneros(id));
+        
         try {
             byte[] imageBytes = getImagem(id);
             if (imageBytes != null) {

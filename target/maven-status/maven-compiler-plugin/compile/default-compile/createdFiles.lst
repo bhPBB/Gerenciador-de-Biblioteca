@@ -30,6 +30,7 @@ Controllers\ListarGenerosController.class
 Banco\Database.class
 Controllers\ListarEmprestimosAtivosController.class
 InterfacesCRUD\ICRUDCliente.class
+Controllers\ListarEmprestimosAtivosController$2.class
 Modelos\Livro.class
 InterfacesCRUD\ICRUDLivro.class
 Controllers\ListarFuncionariosController.class

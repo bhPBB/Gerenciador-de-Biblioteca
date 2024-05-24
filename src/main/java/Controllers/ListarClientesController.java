@@ -66,7 +66,7 @@ public class ListarClientesController{
             
             if(!pesquisa.isEmpty()){
                 query = "SELECT nome, cpf FROM cliente WHERE (LOWER(nome) LIKE "
-                        + "LOWER('%" + pesquisa + "%') OR cpf LIKE '" + pesquisa +"')";
+                        + "LOWER('%" + pesquisa + "%') OR cpf LIKE '%" + pesquisa +"%')";
             }
             else{
                 query = "SELECT nome, cpf FROM cliente";

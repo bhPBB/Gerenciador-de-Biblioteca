@@ -3,15 +3,12 @@ package Controllers;
 import Banco.Database;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 
 public class DashboardController{

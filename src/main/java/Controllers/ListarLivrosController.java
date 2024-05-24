@@ -34,11 +34,6 @@ public class ListarLivrosController{
     private TextField inputPesquisar;
 
     private static final int QTDCOLUNA = 3;
-
-    @FXML
-    public void pesquisar(ActionEvent event) {
-        // a implementar.
-    }
     
     public void initialize() throws SQLException, ClassNotFoundException {
         try
@@ -71,8 +66,12 @@ public class ListarLivrosController{
             String query;
             
             if(!pesquisa.isEmpty()){
-                query = "SELECT id, descricao, qtd_estoque FROM livro WHERE LOWER(descricao) LIKE "
-                        + "LOWER('%" + pesquisa + "%')";
+                query = "SELECT DISTINCT(id), descricao, qtd_estoque FROM livro INNER JOIN "
+                + "livros_autores a ON id = a.id_livro INNER JOIN livros_generos "
+                + "g ON id = g.id_livro WHERE (LOWER(descricao) LIKE LOWER('%"
+                + pesquisa + "%') OR id_autor IN(SELECT id FROM autor WHERE LOWER(nome) "
+                + "LIKE LOWER('%" + pesquisa + "%')) OR id_genero IN(SELECT id FROM genero "
+                + "WHERE LOWER(descricao) LIKE LOWER('%" + pesquisa + "%')))";
             }
             else{
                 query = "SELECT id, descricao, qtd_estoque FROM livro";

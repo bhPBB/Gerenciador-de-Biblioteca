@@ -8,10 +8,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -26,13 +30,13 @@ public class CadastrarLivroController{
     private AnchorPane background;
     
     @FXML
-    private ComboBox<String> inputAutor;
+    private ListView<String> inputAutor;
+
+    @FXML
+    private ListView<String> inputGenero;
     
     @FXML
     private Button inputImagem;
-
-    @FXML
-    private ComboBox<String> inputGenero;
 
     @FXML
     private Label nomeImagem;
@@ -62,8 +66,22 @@ public class CadastrarLivroController{
                     "<-", 
                     "listarLivros",
                     background
-            );
-            
+            );   
+        }
+        catch (IOException ex)
+        {
+            var msg = "Erro ao carregar sidebar e/ou header: " + ex.getMessage();
+            System.out.println(msg);
+        }
+        
+        carregarListView();
+    }   
+
+    private void carregarListView(){
+        inputAutor.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        inputGenero.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        
+        try {
             String query = "SELECT descricao FROM genero";
             // Carrega os gêneros disponíveis no banco de dados
             ResultSet rsGenero = Database.executarSelect(query);
@@ -76,29 +94,21 @@ public class CadastrarLivroController{
             while(rsAutor.next())
                 inputAutor.getItems().add(rsAutor.getString("nome"));
             
-        } 
-        catch (SQLException | ClassNotFoundException ex) 
-        {
-            messageLabel.setTextFill(Color.color(1, 0, 0));
-            messageLabel.setText(ex.getMessage());
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
         }
-        catch (IOException ex)
-        {
-            var msg = "Erro ao carregar sidebar e/ou header: " + ex.getMessage();
-            System.out.println(msg);
-        }
-    }   
+    }
     
     // Método chamado quando o botão de cadastro é clicado
     @FXML
     private void cadastrar(){
       String titulo = inputTitulo.getText();
-        String autor = inputAutor.getValue();
-        String genero = inputGenero.getValue();
+        ObservableList<String> autores = inputAutor.getSelectionModel().getSelectedItems();
+        ObservableList<String> generos = inputGenero.getSelectionModel().getSelectedItems();
         String qtd = inputQtdEstoque.getText();
 
         // Verifica se todos os campos estão preenchidos
-        if (titulo.isEmpty() || qtd.isEmpty() || imagem == null || autor == null || genero == null) {
+        if (titulo.isEmpty() || qtd.isEmpty() || imagem == null || autores == null || generos == null) {
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Por favor, preencha todos os campos.");
         } else try {
@@ -111,14 +121,19 @@ public class CadastrarLivroController{
                 Database.executarQuery(query);
                 
                 // Associa o autor ao livro
-                query = ("INSERT INTO livros_autores(id_livro, id_autor) VALUES ((SELECT id FROM livro "
-                        + "WHERE descricao = '" + titulo +"'),(SELECT id FROM autor WHERE nome = '" + autor + "'))");
-                Database.executarQuery(query);
-                
+                for(String autor : autores) {
+                    query = ("INSERT INTO livros_autores(id_livro, id_autor) VALUES ((SELECT id FROM livro "
+                    + "WHERE descricao = '" + titulo + "'),(SELECT id FROM autor WHERE nome = '" + autor + "'))");
+                    
+                    Database.executarQuery(query);
+                }
                 // Associa o gênero ao livro
-                query = ("INSERT INTO livros_generos(id_livro, id_genero) VALUES ((SELECT id FROM livro "
-                        + "WHERE descricao = '" + titulo +"'),(SELECT id FROM genero WHERE descricao = '" + genero + "'))");
-                Database.executarQuery(query);
+                for(String genero : generos) {
+                    query = ("INSERT INTO livros_generos(id_livro, id_genero) VALUES ((SELECT id FROM livro "
+                    + "WHERE descricao = '" + titulo + "'),(SELECT id FROM genero WHERE descricao = '" + genero + "'))");
+                    
+                    Database.executarQuery(query);
+                }
 
                 messageLabel.setTextFill(Color.color(0, 1, 0));
                 messageLabel.setText("Livro cadastrado com sucesso.");
