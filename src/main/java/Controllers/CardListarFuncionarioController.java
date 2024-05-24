@@ -1,6 +1,7 @@
 package Controllers;
 
 import Banco.Database;
+import Modelos.Funcionario;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.sql.ResultSet;
@@ -26,6 +27,8 @@ public class CardListarFuncionarioController{
     
     @FXML
     private Label cpf;
+    
+    private Funcionario modelo;
 
     // Método para criar e exibir um card com as informações do cliente
     @FXML
@@ -46,6 +49,26 @@ public class CardListarFuncionarioController{
         } catch (Exception ex) {
             System.out.println("Erro ao definir a imagem no ImageView: " + ex.getMessage());
         }
+        
+        // Configure o modelo
+        modelo = new Funcionario();
+        modelo.setCpf(cpf);
+        modelo.setNome(nome);
+        modelo.setEmail(getEmail(cpf));
+        modelo.setFoto(getFoto(cpf));
+    }
+    
+    private String getEmail(String cpf){
+        String email = null;
+        String query = "SELECT EMAIL FROM FUNCIONARIO WHERE CPF = '" + cpf + "'";
+        try{
+            ResultSet rs = Database.executarSelect(query);
+            if(rs.next())
+                email = rs.getString("EMAIL");
+        }catch(SQLException | ClassNotFoundException ex){
+            System.out.println(ex);
+        }
+        return email;
     }
     
     private byte[] getFoto(String cpf){
