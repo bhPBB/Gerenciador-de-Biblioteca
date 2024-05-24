@@ -9,14 +9,14 @@
 
 <AnchorPane id="AnchorPane" fx:id="background" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" stylesheets="@listar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ListarEmprestimosAtivosController">
    <children>
-      <TableView fx:id="emprestimos" layoutX="241.0" layoutY="111.0" prefHeight="583.0" prefWidth="1020.0">
+      <TableView fx:id="emprestimos" layoutX="248.0" layoutY="111.0" prefHeight="583.0" prefWidth="1013.0">
         <columns>
           <TableColumn fx:id="colunaLivro" prefWidth="226.0" text="Livro" />
             <TableColumn fx:id="colunaCliente" minWidth="0.0" prefWidth="200.0" text="Cliente" />
-            <TableColumn fx:id="colunaFuncionario" maxWidth="277.0" prefWidth="173.0" text="Funcionário" />
-            <TableColumn fx:id="colunaDataEmprestimo" prefWidth="131.0" text="Data do Empréstimo" />
-            <TableColumn fx:id="colunaDataDevolucao" prefWidth="131.0" text="Data para Devolução" />
-            <TableColumn fx:id="colunaStatus" prefWidth="97.0" text="Status" />
+            <TableColumn fx:id="colunaFuncionario" maxWidth="277.0" prefWidth="180.0" text="Funcionário" />
+            <TableColumn fx:id="colunaDataEmprestimo" prefWidth="123.0" text="Data do Empréstimo" />
+            <TableColumn fx:id="colunaDataDevolucao" prefWidth="123.0" text="Data para Devolução" />
+            <TableColumn fx:id="colunaStatus" prefWidth="99.0" text="Status" />
             <TableColumn fx:id="colunaEditar" prefWidth="30.0" />
             <TableColumn fx:id="colunaApagar" prefWidth="30.0" />
         </columns>
