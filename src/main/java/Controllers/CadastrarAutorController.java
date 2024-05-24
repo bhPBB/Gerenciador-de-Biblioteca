@@ -3,7 +3,10 @@ package Controllers;
 import Banco.Database;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -54,8 +57,10 @@ public class CadastrarAutorController{
         if(autor.isEmpty()){
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Por favor, preencha todos os campos.");
-        }   
-        else{
+        }else if(existe(autor)){
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText("Este autor já foi cadastrado.");
+        }else{
             try {
                 String query = "INSERT INTO autor(nome) VALUES ('" + autor + "')";
                 
@@ -68,6 +73,20 @@ public class CadastrarAutorController{
                 messageLabel.setText(ex.getMessage());
             }
         }
+    }
+    
+    private boolean existe(String autor){
+        try {
+            String query = "SELECT id FROM autor WHERE nome LIKE '" + autor + "'";
+            
+            ResultSet rs = Database.executarSelect(query);
+            if(rs.next())
+                return true;
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        return false;
     }
     
     //Limita a quantidade de caracteres

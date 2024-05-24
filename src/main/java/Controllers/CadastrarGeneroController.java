@@ -3,6 +3,7 @@ package Controllers;
 import Banco.Database;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -54,8 +55,10 @@ public class CadastrarGeneroController{
         if(genero.isEmpty()){
             messageLabel.setTextFill(Color.color(1, 0, 0));
             messageLabel.setText("Por favor, preencha todos os campos.");
-        }   
-        else{
+        } else if(existe(genero)){
+            messageLabel.setTextFill(Color.color(1, 0, 0));
+            messageLabel.setText("Este gênero já foi cadastrado.");
+        }else{
             try {
                 String query = "INSERT INTO genero(descricao) VALUES ('" + genero + "')";
                 
@@ -68,6 +71,20 @@ public class CadastrarGeneroController{
                 messageLabel.setText(ex.getMessage());
             }
         }
+    }
+    
+    private boolean existe(String genero){
+        try {
+            String query = "SELECT id FROM genero WHERE descricao LIKE '" + genero + "'";
+            
+            ResultSet rs = Database.executarSelect(query);
+            if(rs.next())
+                return true;
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        return false;
     }
     
     //Limita a quantidade de caracteres

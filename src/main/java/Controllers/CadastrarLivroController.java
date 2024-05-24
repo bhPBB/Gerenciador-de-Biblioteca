@@ -8,8 +8,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -79,7 +77,9 @@ public class CadastrarLivroController{
 
     private void carregarListView(){
         inputAutor.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        inputAutor.setPlaceholder(new Label("Autores não encontrados!"));
         inputGenero.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        inputGenero.setPlaceholder(new Label("Gêneros não encontrados!"));
         
         try {
             String query = "SELECT descricao FROM genero";
