@@ -96,11 +96,11 @@ public class CardListarClienteController {
     
     private String getEmail(String cpf){
         String email = null;
-        String query = "SELECT EMAIL FROM CLIENTE WHERE CPF = '" + cpf + "'";
+        String query = "SELECT email FROM cliente WHERE cpf LIKE '" + cpf + "'";
         try{
             ResultSet rs = Database.executarSelect(query);
             if(rs.next())
-                email = rs.getString("EMAIL");
+                email = rs.getString("email");
         }catch(SQLException | ClassNotFoundException ex){
             System.out.println(ex);
         }
@@ -109,11 +109,11 @@ public class CardListarClienteController {
     
     private String getCep(String cpf){
         String cep = null;
-        String query = "SELECT CEP FROM CLIENTE WHERE CPF = '" + cpf + "'";
+        String query = "SELECT cep FROM cliente WHERE cpf LIKE '" + cpf + "'";
         try{
             ResultSet rs = Database.executarSelect(query);
             if(rs.next())
-                cep = rs.getString("CEP");
+                cep = rs.getString("cep");
         }catch(SQLException | ClassNotFoundException ex){
             System.out.println(ex);
         }

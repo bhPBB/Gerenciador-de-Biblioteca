@@ -60,11 +60,11 @@ public class CardListarFuncionarioController{
     
     private String getEmail(String cpf){
         String email = null;
-        String query = "SELECT EMAIL FROM FUNCIONARIO WHERE CPF = '" + cpf + "'";
+        String query = "SELECT email FROM funcionario WHERE cpf LIKE '" + cpf + "'";
         try{
             ResultSet rs = Database.executarSelect(query);
             if(rs.next())
-                email = rs.getString("EMAIL");
+                email = rs.getString("email");
         }catch(SQLException | ClassNotFoundException ex){
             System.out.println(ex);
         }
