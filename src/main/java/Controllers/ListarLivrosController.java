@@ -67,8 +67,8 @@ public class ListarLivrosController{
             
             if(!pesquisa.isEmpty()){
                 query = "SELECT DISTINCT(id), descricao, qtd_estoque FROM livro INNER JOIN "
-                + "livros_autores a ON id = a.id_livro INNER JOIN livros_generos "
-                + "g ON id = g.id_livro WHERE (LOWER(descricao) LIKE LOWER('%"
+                + "livros_autores ON id = livros_autores.id_livro INNER JOIN livros_generos "
+                + "ON id = livros_generos.id_livro WHERE (LOWER(descricao) LIKE LOWER('%"
                 + pesquisa + "%') OR id_autor IN(SELECT id FROM autor WHERE LOWER(nome) "
                 + "LIKE LOWER('%" + pesquisa + "%')) OR id_genero IN(SELECT id FROM genero "
                 + "WHERE LOWER(descricao) LIKE LOWER('%" + pesquisa + "%')))";

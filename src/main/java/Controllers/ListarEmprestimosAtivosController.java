@@ -132,7 +132,6 @@ public class ListarEmprestimosAtivosController {
         
         // Define os itens da tabela
         emprestimos.setItems(linha);
-        
     }
 
     private void carregarImagens() {
