@@ -1,7 +1,9 @@
 Controllers\ListarEmprestimosAtivosController$3.class
 Modelos\Emprestimo.class
 Controllers\CardListarFuncionarioController.class
+Modelos\Cliente.class
 Controllers\DashboardController.class
+Controllers\DetalhesClienteController.class
 Controllers\SidebarController.class
 Controllers\TituloHeaderController.class
 Controllers\ListarGenerosController$1.class
@@ -37,5 +39,6 @@ InterfacesCRUD\ICRUDCliente.class
 Controllers\ListarEmprestimosAtivosController$2.class
 Modelos\Livro.class
 Controllers\ListarAutoresController$2.class
+Controllers\DetalhesFuncionarioController.class
 InterfacesCRUD\ICRUDLivro.class
 Controllers\ListarFuncionariosController.class
