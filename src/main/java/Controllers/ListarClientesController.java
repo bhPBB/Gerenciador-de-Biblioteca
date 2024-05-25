@@ -52,7 +52,7 @@ public class ListarClientesController{
             System.out.println(msg);
         }
         
-        String query = "SELECT nome, cpf FROM cliente";
+        String query = "SELECT nome, cpf, cep FROM cliente";
         
         carregarTabela(query);
 
@@ -65,11 +65,11 @@ public class ListarClientesController{
             String query;
             
             if(!pesquisa.isEmpty()){
-                query = "SELECT nome, cpf FROM cliente WHERE (LOWER(nome) LIKE "
+                query = "SELECT nome, cpf, cep FROM cliente WHERE (LOWER(nome) LIKE "
                         + "LOWER('%" + pesquisa + "%') OR cpf LIKE '%" + pesquisa +"%')";
             }
             else{
-                query = "SELECT nome, cpf FROM cliente";
+                query = "SELECT nome, cpf, cep FROM cliente";
             }
             carregarTabela(query);
         }
@@ -105,7 +105,8 @@ public class ListarClientesController{
                     //Passa os dados
                     cardController.criarCard(
                             rs.getString("nome"),
-                            rs.getString("cpf")
+                            rs.getString("cpf"),
+                            rs.getString("cep")
                     );
                     //Insere os cards no container
                     containerClientes.add(card, col, lin);
