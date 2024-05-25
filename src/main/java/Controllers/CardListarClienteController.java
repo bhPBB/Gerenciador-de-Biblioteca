@@ -35,18 +35,14 @@ public class CardListarClienteController {
     @FXML
     private Label cpf;
     
-    @FXML
-    private Label cep;
-    
     private Cliente modelo;
 
     // Método para criar e exibir um card com as informações do cliente
     @FXML
-    public void criarCard(String nome, String cpf, String cep) {
+    public void criarCard(String nome, String cpf) {
         // Define o nome do cliente no label
         this.nome.setText(nome);
         this.cpf.setText(cpf);
-        this.cep.setText(cep);
                 
         try {
             byte[] imageBytes = getFoto(cpf);
