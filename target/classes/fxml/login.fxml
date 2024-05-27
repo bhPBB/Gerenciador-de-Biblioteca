@@ -54,7 +54,7 @@
                   <Insets left="10.0" />
                </padding>
             </PasswordField>
-            <Button fx:id="logarFuncionario" alignment="CENTER" mnemonicParsing="false" onAction="#login" prefHeight="52.0" prefWidth="254.0" stylesheets="@login.css" text="Entrar" textFill="#ff1800" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+            <Button fx:id="logarFuncionario" alignment="CENTER" mnemonicParsing="false" onAction="#login" prefHeight="52.0" prefWidth="254.0" stylesheets="@login.css" text="Entrar" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
                <font>
                   <Font name="DejaVu Sans Bold" size="18.0" />
                </font>
@@ -76,7 +76,7 @@
                   <Insets bottom="10.0" />
                </padding>
             </Label>
-            <Label blendMode="SRC_ATOP" stylesheets="@login.css" text="Login" textFill="#d90000" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Label blendMode="SRC_ATOP" stylesheets="@login.css" text="Login" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font name="DejaVu Sans Bold" size="36.0" />
                </font>
@@ -84,7 +84,7 @@
                   <Insets top="15.0" />
                </GridPane.margin>
             </Label>
-            <ImageView blendMode="OVERLAY" fitHeight="28.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <ImageView fitHeight="28.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <image>
                   <Image url="@../Imagens/envelope-regular-24.png" />
                </image>
@@ -92,7 +92,7 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </ImageView>
-            <ImageView blendMode="OVERLAY" fitHeight="28.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <ImageView fitHeight="28.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <image>
                   <Image url="@../Imagens/lock-alt-regular-24.png" />
                </image>
@@ -100,7 +100,7 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </ImageView>
-            <ImageView blendMode="OVERLAY" fitHeight="46.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" smooth="false" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+            <ImageView fitHeight="46.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" smooth="false" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                <image>
                   <Image url="@../Imagens/user-regular-40.png" />
                </image>

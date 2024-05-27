@@ -6,7 +6,11 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -86,6 +90,28 @@ public class CardListarFuncionarioController{
 
         }
         return foto;
+    }
+    
+    @FXML
+    public void deletar(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmar Exclusão");
+        alert.setHeaderText(null);
+        alert.setContentText("Você realmente deseja excluir este item?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                String id = modelo.getCpf();
+                String query = "DELETE FROM livro WHERE id = " + id;
+                Database.executarQuery(query);
+                System.out.println("Item excluído.");
+            } catch (SQLException | ClassNotFoundException ex) {
+                System.out.println("Erro ao excluir o item: " + ex.getMessage());
+            }
+        } else {
+            System.out.println("Exclusão cancelada.");
+        }
     }
     
 }

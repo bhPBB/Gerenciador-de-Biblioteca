@@ -4,13 +4,17 @@ import Banco.Database;
 import Modelos.Emprestimo;
 import Modelos.Genero;
 import com.mycompany.gerenciadordebiblioteca.App;
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -48,6 +52,8 @@ public class ListarGenerosController{
 
     @FXML
     private TableColumn<Genero, Image> colunaApagar;
+    
+    private Genero modelo;
 
     public void initialize() {
           try
@@ -84,6 +90,7 @@ public class ListarGenerosController{
                 linha.add(new Genero(rs.getString("id"), 
                         rs.getString("descricao") 
                 ));
+                modelo = new Genero(rs.getString("id"), rs.getString("descricao"));
             }
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex);
@@ -148,6 +155,27 @@ public class ListarGenerosController{
                 query = "SELECT * FROM genero";
             }
             carregarTabela(query);
+        }
+    }
+    
+     private void deletar(ActionEvent event){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmar Exclusão");
+        alert.setHeaderText(null);
+        alert.setContentText("Você realmente deseja excluir este item?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                String id = modelo.getCodigo();
+                String query = "DELETE FROM autor WHERE id = " + id;
+                Database.executarQuery(query);
+                System.out.println("Item excluído.");
+            } catch (SQLException | ClassNotFoundException ex) {
+                System.out.println("Erro ao excluir o item: " + ex.getMessage());
+            }
+        } else {
+            System.out.println("Exclusão cancelada.");
         }
     }
     

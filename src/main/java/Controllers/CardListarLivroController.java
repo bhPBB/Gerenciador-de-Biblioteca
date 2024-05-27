@@ -19,6 +19,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import Modelos.Livro;
+import java.util.Optional;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 public class CardListarLivroController {
 
@@ -92,7 +95,24 @@ public class CardListarLivroController {
 
     @FXML
     public void deletar(ActionEvent event) {
-        // A implementar
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmar Exclusão");
+        alert.setHeaderText(null);
+        alert.setContentText("Você realmente deseja excluir este item?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                int id = modelo.getId();
+                String query = "DELETE FROM livro WHERE id = " + id;
+                Database.executarQuery(query);
+                System.out.println("Item excluído.");
+            } catch (SQLException | ClassNotFoundException ex) {
+                System.out.println("Erro ao excluir o item: " + ex.getMessage());
+            }
+        } else {
+            System.out.println("Exclusão cancelada.");
+        }
     }
 
     public void info(ActionEvent event) {
