@@ -11,7 +11,7 @@ public class Database {
     private static final String PORTA = "5432";
     private static final String DATABASE = "biblioteca";
     private static final String USUARIO = "postgres";
-    private static final String SENHA = "123";
+    private static final String SENHA = "12345";
     private static final String URL = "jdbc:" + SGBD + "://" + SERVER + ":" + PORTA + "/"+ DATABASE;
     private static Connection con = null;
     

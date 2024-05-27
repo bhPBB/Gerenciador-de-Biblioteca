@@ -168,14 +168,11 @@ public class ListarGenerosController{
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
                 String id = modelo.getCodigo();
-                String query = "DELETE FROM autor WHERE id = " + id;
+                String query = "DELETE FROM autor WHERE id = '" + id + "'";
                 Database.executarQuery(query);
-                System.out.println("Item excluído.");
             } catch (SQLException | ClassNotFoundException ex) {
                 System.out.println("Erro ao excluir o item: " + ex.getMessage());
             }
-        } else {
-            System.out.println("Exclusão cancelada.");
         }
     }
     

@@ -106,12 +106,9 @@ public class CardListarLivroController {
                 int id = modelo.getId();
                 String query = "DELETE FROM livro WHERE id = " + id;
                 Database.executarQuery(query);
-                System.out.println("Item excluído.");
             } catch (SQLException | ClassNotFoundException ex) {
                 System.out.println("Erro ao excluir o item: " + ex.getMessage());
             }
-        } else {
-            System.out.println("Exclusão cancelada.");
         }
     }
 

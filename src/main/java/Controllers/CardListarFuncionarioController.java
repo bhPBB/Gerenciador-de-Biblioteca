@@ -102,15 +102,12 @@ public class CardListarFuncionarioController{
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
-                String id = modelo.getCpf();
-                String query = "DELETE FROM livro WHERE id = " + id;
+                String id = cpf.getText();
+                String query = "DELETE FROM funcionario WHERE cpf = '" + id + "'";
                 Database.executarQuery(query);
-                System.out.println("Item excluído.");
             } catch (SQLException | ClassNotFoundException ex) {
                 System.out.println("Erro ao excluir o item: " + ex.getMessage());
             }
-        } else {
-            System.out.println("Exclusão cancelada.");
         }
     }
     

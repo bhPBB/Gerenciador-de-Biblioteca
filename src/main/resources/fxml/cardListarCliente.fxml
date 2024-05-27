@@ -31,5 +31,6 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <Button layoutX="170.0" layoutY="298.0" mnemonicParsing="false" onAction="#deletar" prefHeight="23.0" prefWidth="32.0" style="-fx-background-color: transparent;" text="Button" />
    </children>
 </AnchorPane>

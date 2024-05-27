@@ -47,7 +47,7 @@
          </padding>
       </Label>
       <Button layoutX="147.0" layoutY="298.0" mnemonicParsing="false" onAction="#info" onMouseEntered="#cursorMaozinha" onMouseExited="#cursorPadrao" prefHeight="36.0" prefWidth="34.0" style="-fx-background-color: transparent;" translateX="-10.0" />
-      <Button layoutX="181.0" layoutY="298.0" mnemonicParsing="false" onMouseEntered="#cursorMaozinha" onMouseExited="#cursorPadrao" prefHeight="36.0" prefWidth="34.0" style="-fx-background-color: transparent;" />
+      <Button layoutX="181.0" layoutY="298.0" mnemonicParsing="false" onAction="#deletar" onMouseEntered="#cursorMaozinha" onMouseExited="#cursorPadrao" prefHeight="36.0" prefWidth="34.0" style="-fx-background-color: transparent;" />
       <Label fx:id="genero" layoutX="4.0" layoutY="281.0" prefHeight="25.0" prefWidth="109.0" text="Gênero">
          <font>
             <Font name="Chilanka Regular" size="12.0" />
