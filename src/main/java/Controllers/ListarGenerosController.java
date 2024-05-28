@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -56,29 +57,26 @@ public class ListarGenerosController{
     private Genero modelo;
 
     public void initialize() {
-          try
-        {
+        try {
             //Carrega a sidebar e o header
             App.inicialzarSidebarHeader(
-                    "listarGeneros", 
-                    "Gêneros Cadastrados", 
-                    "+", 
-                    "cadastrarGenero", 
+                    "listarGeneros",
+                    "Gêneros Cadastrados",
+                    "+",
+                    "cadastrarGenero",
                     background
-            );  
-        }
-        catch (IOException ex)
-        {
-            var msg = "Erro ao carregar a sideber e/ou header: " + ex.getMessage();
+            );
+        } catch (IOException ex) {
+            var msg = "Erro ao carregar a sidebar e/ou header: " + ex.getMessage();
             System.out.println(msg);
         }
-          
+
         generos.setPlaceholder(new Label("Gêneros não encontrados!"));
-          
+
         String query = "SELECT * FROM genero";
-        
         carregarTabela(query);
-    }
+        carregarImagens();
+}
 
     private void carregarTabela(String query) {
         linha.clear();
@@ -109,38 +107,45 @@ public class ListarGenerosController{
     }
 
     private void carregarImagens() {
-        colunaEditar.setCellFactory(param -> new TableCell<Genero, Image>() {
-            private final ImageView imageView = new ImageView();
+    colunaEditar.setCellFactory(param -> new TableCell<Genero, Image>() {
+        private final ImageView imageView = new ImageView();
 
-            @Override
-            protected void updateItem(Image imagem, boolean vazio) {
-                super.updateItem(imagem, vazio);
-                if (vazio || imagem == null) {
-                    setGraphic(null);
-                } else {
-                    imageView.setImage(imagem);
-                    setGraphic(imageView);
-                    setAlignment(Pos.CENTER);
-                }
+        @Override
+        protected void updateItem(Image imagem, boolean vazio) {
+            super.updateItem(imagem, vazio);
+            if (vazio || imagem == null) {
+                setGraphic(null);
+            } else {
+                imageView.setImage(imagem);
+                setGraphic(imageView);
+                setAlignment(Pos.CENTER);
             }
-        });
-        
-        colunaApagar.setCellFactory(param -> new TableCell<Genero, Image>() {
-            private final ImageView imageView = new ImageView();
+        }
+    });
 
-            @Override
-            protected void updateItem(Image imagem, boolean vazio) {
-                super.updateItem(imagem, vazio);
-                if (vazio || imagem == null) {
-                    setGraphic(null);
-                } else {
-                    imageView.setImage(imagem);
-                    setGraphic(imageView);
-                    setAlignment(Pos.CENTER);
-                }
+    colunaApagar.setCellFactory(param -> new TableCell<Genero, Image>() {
+        private final ImageView imageView = new ImageView();
+        private final Button btnDelete = new Button();
+
+        @Override
+        protected void updateItem(Image imagem, boolean vazio) {
+            super.updateItem(imagem, vazio);
+            if (vazio || imagem == null) {
+                setGraphic(null);
+            } else {
+                imageView.setImage(imagem);
+                btnDelete.setGraphic(imageView);
+                btnDelete.setStyle("-fx-background-color: transparent;"); // Torna o botão invisível
+                btnDelete.setOnAction(event -> {
+                    Genero genero = getTableView().getItems().get(getIndex());
+                    deletar(genero);
+                });
+                setGraphic(btnDelete);
+                setAlignment(Pos.CENTER);
             }
-        });
-    }
+        }
+    });
+}
     
     @FXML
     private void pesquisar(KeyEvent event) {
@@ -158,7 +163,7 @@ public class ListarGenerosController{
         }
     }
     
-     private void deletar(ActionEvent event){
+    private void deletar(Genero genero) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmar Exclusão");
         alert.setHeaderText(null);
@@ -167,13 +172,14 @@ public class ListarGenerosController{
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
-                String id = modelo.getCodigo();
-                String query = "DELETE FROM autor WHERE id = '" + id + "'";
+                String id = genero.getCodigo();
+                String query = "DELETE FROM genero WHERE id = '" + id + "'";
                 Database.executarQuery(query);
+                carregarTabela("SELECT * FROM genero");
             } catch (SQLException | ClassNotFoundException ex) {
                 System.out.println("Erro ao excluir o item: " + ex.getMessage());
             }
-        }
     }
+}
     
 }

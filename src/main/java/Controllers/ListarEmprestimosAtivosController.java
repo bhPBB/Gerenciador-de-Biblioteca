@@ -10,10 +10,14 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
+import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -135,38 +139,45 @@ public class ListarEmprestimosAtivosController {
     }
 
     private void carregarImagens() {
-        colunaEditar.setCellFactory(param -> new TableCell<Emprestimo, Image>() {
-            private final ImageView imageView = new ImageView();
+    colunaEditar.setCellFactory(param -> new TableCell<Emprestimo, Image>() {
+        private final ImageView imageView = new ImageView();
 
-            @Override
-            protected void updateItem(Image imagem, boolean vazio) {
-                super.updateItem(imagem, vazio);
-                if (vazio || imagem == null) {
-                    setGraphic(null);
-                } else {
-                    imageView.setImage(imagem);
-                    setGraphic(imageView);
-                    setAlignment(Pos.CENTER);
-                }
+        @Override
+        protected void updateItem(Image imagem, boolean vazio) {
+            super.updateItem(imagem, vazio);
+            if (vazio || imagem == null) {
+                setGraphic(null);
+            } else {
+                imageView.setImage(imagem);
+                setGraphic(imageView);
+                setAlignment(Pos.CENTER);
             }
-        });
-        
-        colunaApagar.setCellFactory(param -> new TableCell<Emprestimo, Image>() {
-            private final ImageView imageView = new ImageView();
+        }
+    });
 
-            @Override
-            protected void updateItem(Image imagem, boolean vazio) {
-                super.updateItem(imagem, vazio);
-                if (vazio || imagem == null) {
-                    setGraphic(null);
-                } else {
-                    imageView.setImage(imagem);
-                    setGraphic(imageView);
-                    setAlignment(Pos.CENTER);
-                }
+    colunaApagar.setCellFactory(param -> new TableCell<Emprestimo, Image>() {
+        private final ImageView imageView = new ImageView();
+        private final Button btnDelete = new Button();
+
+        @Override
+        protected void updateItem(Image imagem, boolean vazio) {
+            super.updateItem(imagem, vazio);
+            if (vazio || imagem == null) {
+                setGraphic(null);
+            } else {
+                imageView.setImage(imagem);
+                btnDelete.setGraphic(imageView);
+                btnDelete.setStyle("-fx-background-color: transparent;"); // Torna o botão invisível
+                btnDelete.setOnAction(event -> {
+                    Emprestimo emprestimo = getTableView().getItems().get(getIndex());
+                    deletar(emprestimo);
+                });
+                setGraphic(btnDelete);
+                setAlignment(Pos.CENTER);
             }
-        });
-    }
+        }
+    });
+}
 
     // Método para mudar a cor das linhas com empréstimos vencidos
     private void mudarCor() {
@@ -212,5 +223,53 @@ public class ListarEmprestimosAtivosController {
             }
             carregarTabela(query);
         }
+    }
+    
+    private void deletar(Emprestimo emprestimo) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmar Exclusão");
+        alert.setHeaderText(null);
+        alert.setContentText("Você realmente deseja excluir este item?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                int idLivro = getIdLivroByName(emprestimo.getLivro());  
+                String idCliente = getIdClienteByName(emprestimo.getCliente());  
+                String query = "DELETE FROM emprestimo WHERE id_livro = '" + idLivro + "' AND id_cliente = '" + idCliente + "'";
+                Database.executarQuery(query);
+                carregarTabela("SELECT descricao AS livro, cliente.nome AS cliente, funcionario.nome AS funcionario, data_emprestimo, data_devolucao FROM emprestimo INNER JOIN livro ON emprestimo.id_livro = livro.id INNER JOIN cliente ON emprestimo.id_cliente = cliente.cpf INNER JOIN funcionario ON emprestimo.id_funcionario = funcionario.cpf WHERE status LIKE 'Em aberto'");
+            } catch (SQLException | ClassNotFoundException ex) {
+                System.out.println("Erro ao excluir o item: " + ex.getMessage());
+            }
+        }
+    }
+    
+    private int getIdLivroByName(String nome) {
+        int id = 0;
+        try {
+            String query = "SELECT id FROM livro WHERE descricao = '" + nome + "'";
+            ResultSet rs = Database.executarSelect(query);
+            if (rs.next()) {  // Move o cursor para a primeira linha
+                id = rs.getInt("id");
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println("Erro ao buscar id do livro: " + ex.getMessage());
+        }
+        return id;
+    }
+
+    private String getIdClienteByName(String cliente) {
+        String id = null;
+        try {
+            String query = "SELECT cpf FROM cliente WHERE nome = '" + cliente + "'";
+            ResultSet rs = Database.executarSelect(query);
+            if (rs.next()) {  // Move o cursor para a primeira linha
+                id = rs.getString("cpf");
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println("Erro ao buscar id do cliente: " + ex.getMessage());
+        }
+        return id;
     }
 }
