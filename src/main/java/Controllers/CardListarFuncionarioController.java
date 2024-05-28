@@ -70,7 +70,7 @@ public class CardListarFuncionarioController{
     
     public void info(ActionEvent event) {
         try {
-            URL fxmlUrl = getClass().getResource("C:/Users/Vinícius/Documents/Gerenciador-de-Biblioteca/target/classes/fxml/detalhesFuncionarios.fxml");
+            URL fxmlUrl = getClass().getResource("/fxml/detalhesFuncionarios.fxml");
             if (fxmlUrl == null) {
                 System.out.println("ERRO: 'detalhesFuncionarios.fxml' não encontrado.");
                 return;
