@@ -66,6 +66,7 @@ public class CardListarClienteController {
         modelo.setFoto(getFoto(cpf));
         modelo.setEmail(getEmail(cpf));
         modelo.setCep(getCep(cpf));
+        modelo.setCpf(cpf);
     }
     
     public void info(ActionEvent event) {

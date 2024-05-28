@@ -2,18 +2,24 @@ package Controllers;
 
 import Banco.Database;
 import Modelos.Funcionario;
+import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 public class CardListarFuncionarioController{
 
@@ -60,6 +66,35 @@ public class CardListarFuncionarioController{
         modelo.setNome(nome);
         modelo.setEmail(getEmail(cpf));
         modelo.setFoto(getFoto(cpf));
+    }
+    
+    public void info(ActionEvent event) {
+        try {
+            URL fxmlUrl = getClass().getResource("C:/Users/Vinícius/Documents/Gerenciador-de-Biblioteca/target/classes/fxml/detalhesFuncionarios.fxml");
+            if (fxmlUrl == null) {
+                System.out.println("ERRO: 'detalhesFuncionarios.fxml' não encontrado.");
+                return;
+            } else {
+                System.out.println("SUCESSO: 'detalhesFuncionarios.fxml' encontrado.");
+            }
+            FXMLLoader fxmlLoader = new FXMLLoader(fxmlUrl);
+            AnchorPane fxml = fxmlLoader.load();
+
+            // Passa as informações ao controller
+            DetalhesFuncionarioController c = fxmlLoader.getController();
+            if (modelo != null) {
+                c.setDetalhes(modelo);
+            } else {
+                System.out.println("ERRO: O modelo está vazio.");
+            }
+
+            // Renderiza a view
+            Scene cena = new Scene(fxml);
+            App.getStage().setScene(cena);
+            App.getStage().show();
+        } catch (IOException ex) {
+            System.out.print("ERRO: Não foi possível carregar 'detalhesFuncionarios.fxml'. " + ex.getMessage());
+        }
     }
     
     private String getEmail(String cpf){

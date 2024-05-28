@@ -4,7 +4,7 @@ import java.sql.*;
 import javax.sql.rowset.*;
 
 public class Database {
-    //Para facilitar em usos futuros decidi colocar em variaveis
+    //Para facilitar em usos futuros decidi colocar em variaveiss
     private static final String DRIVER = "org.postgresql.Driver";
     private static final String SGBD = "postgresql";
     private static final String SERVER = "localhost";
