@@ -19,15 +19,21 @@ public class Emprestimo {
     private final ObjectProperty<Image> editar = new SimpleObjectProperty();
     private final ObjectProperty<Image> apagar = new SimpleObjectProperty();
 
-    public Emprestimo(String livro, String cliente, String funcionario, LocalDate dataEmprestimo, LocalDate dataDevolucao) {
+    public Emprestimo(String livro, String cliente, String funcionario, LocalDate dataEmprestimo, LocalDate dataDevolucao, String status) {
         this.livro.set(livro);
         this.cliente.set(cliente);
         this.funcionario.set(funcionario);
         this.dataEmprestimo.set(setData(dataEmprestimo));
         this.dataDevolucao.set(setData(dataDevolucao));
-        this.status.set(setStatus(dataDevolucao));
         editar.set(new Image(getClass().getResourceAsStream("/Imagens/edit-regular-12.png")));
         apagar.set(new Image(getClass().getResourceAsStream("/Imagens/trash-regular-12.png")));
+        
+        if(status.contains("Fechado")){
+            this.status.set(status);
+        } else{
+            this.status.set(setStatus(dataDevolucao));
+        }
+        
     }
 
     public String getLivro() {
@@ -63,13 +69,13 @@ public class Emprestimo {
     }
 
     private String setStatus(LocalDate dataDevolucao) {
-                long dias = ChronoUnit.DAYS.between(LocalDate.now(), dataDevolucao);
-                
-                if(dias >= 0){
-                    return (dias + " dia(s) restante(s)");
-                }else{
-                    return (dias*-1 + " dia(s) atrasado");
-                }
+        long dias = ChronoUnit.DAYS.between(LocalDate.now(), dataDevolucao);
+
+        if(dias >= 0){
+            return (dias + " dia(s) restante(s)");
+        }else{
+            return (dias*-1 + " dia(s) atrasado");
+        }
     }
 
     private String setData(LocalDate data){

@@ -1,10 +1,8 @@
 package Controllers;
 
 import Banco.Database;
-import Modelos.Emprestimo;
 import Modelos.Genero;
 import com.mycompany.gerenciadordebiblioteca.App;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +10,6 @@ import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -41,9 +38,6 @@ public class ListarGenerosController{
     
     @FXML
     private ObservableList<Genero> linha = FXCollections.observableArrayList();
-
-    @FXML
-    private TableColumn<Genero, String> colunaCodigo;
     
      @FXML
     private TableColumn<Genero, String> colunaDescricao;
@@ -95,7 +89,6 @@ public class ListarGenerosController{
         }
         
         // Define as propriedades das colunas da tabela
-        colunaCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
         colunaDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
         colunaEditar.setCellValueFactory(new PropertyValueFactory<>("editar"));
         colunaApagar.setCellValueFactory(new PropertyValueFactory<>("apagar"));
@@ -118,7 +111,6 @@ public class ListarGenerosController{
             } else {
                 imageView.setImage(imagem);
                 setGraphic(imageView);
-                setAlignment(Pos.CENTER);
             }
         }
     });
@@ -140,8 +132,13 @@ public class ListarGenerosController{
                     Genero genero = getTableView().getItems().get(getIndex());
                     deletar(genero);
                 });
+                btnDelete.setOnMouseEntered(event -> {
+                    App.setCursorMaozinha(event);
+                });
+                btnDelete.setOnMouseExited(event -> {
+                    App.setCursorPadrao(event);
+                });
                 setGraphic(btnDelete);
-                setAlignment(Pos.CENTER);
             }
         }
     });

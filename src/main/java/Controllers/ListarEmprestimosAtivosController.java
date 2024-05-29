@@ -14,7 +14,6 @@ import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -90,10 +89,11 @@ public class ListarEmprestimosAtivosController {
         
         emprestimos.setPlaceholder(new Label("Empréstimos não encontrados!"));
         
-        String query = "SELECT descricao AS livro, cliente.nome AS cliente, funcionario.nome AS funcionario, data_emprestimo, data_devolucao \n" +
+        String query = "SELECT descricao AS livro, cliente.nome AS cliente, funcionario.nome "
+        + "AS funcionario, data_emprestimo, data_devolucao, status \n" +
         "FROM emprestimo INNER JOIN livro ON emprestimo.id_livro = livro.id INNER JOIN \n" +
         "cliente ON emprestimo.id_cliente = cliente.cpf INNER JOIN funcionario ON\n" +
-        "emprestimo.id_funcionario = funcionario.cpf WHERE status LIKE 'Em aberto'";
+        "emprestimo.id_funcionario = funcionario.cpf WHERE status LIKE 'Em aberto' ORDER BY data_devolucao";
         
         carregarTabela(query); 
     }    
@@ -109,7 +109,8 @@ public class ListarEmprestimosAtivosController {
                         rs.getString("cliente"), 
                         rs.getString("funcionario"), 
                         rs.getDate("data_emprestimo").toLocalDate(), 
-                        rs.getDate("data_devolucao").toLocalDate()
+                        rs.getDate("data_devolucao").toLocalDate(),
+                        rs.getString("status")
                 ));    
             }
         } catch (SQLException | ClassNotFoundException ex) {
@@ -150,7 +151,6 @@ public class ListarEmprestimosAtivosController {
             } else {
                 imageView.setImage(imagem);
                 setGraphic(imageView);
-                setAlignment(Pos.CENTER);
             }
         }
     });
@@ -171,9 +171,14 @@ public class ListarEmprestimosAtivosController {
                 btnDelete.setOnAction(event -> {
                     Emprestimo emprestimo = getTableView().getItems().get(getIndex());
                     deletar(emprestimo);
+                });               
+                btnDelete.setOnMouseEntered(event -> {
+                    App.setCursorMaozinha(event);
+                });
+                btnDelete.setOnMouseExited(event -> {
+                    App.setCursorPadrao(event);
                 });
                 setGraphic(btnDelete);
-                setAlignment(Pos.CENTER);
             }
         }
     });
@@ -189,6 +194,8 @@ public class ListarEmprestimosAtivosController {
                     if (!vazio) {
                         if (emprestimo.getStatus().contains("dia(s) atrasado")) {
                             setStyle("-fx-background-color: rgb(246, 167, 162);");
+                        } else if(emprestimo.getStatus().contains("Fechado")){
+                            setStyle("-fx-background-color: rgb(163, 163, 163);");
                         } else {
                             setStyle(" ");
                         }

@@ -19,6 +19,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class CardListarClienteController {
@@ -160,4 +161,13 @@ public class CardListarClienteController {
         }
     }
     
+    @FXML
+    private void cursorMaozinha(MouseEvent event) {
+        App.setCursorMaozinha(event);
+    }
+
+    @FXML
+    private void cursorPadrao(MouseEvent event) {
+        App.setCursorPadrao(event);
+    }
 }

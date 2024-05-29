@@ -105,11 +105,6 @@
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label prefHeight="16.0" prefWidth="214.0" text="editar" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
-                     <font>
-                        <Font name="DejaVu Sans Bold" size="12.0" />
-                     </font>
-                  </Label>
                   <Button fx:id="botaoEditar" alignment="CENTER" mnemonicParsing="false" onAction="#editar" onMouseEntered="#cursorMaozinha" onMouseExited="#cursorPadrao" prefHeight="48.0" prefWidth="155.0" styleClass="botao" stylesheets="@cadastrar.css" text="Editar" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <font>
                         <Font size="18.0" />

@@ -119,15 +119,18 @@ public class DetalhesClienteController {
             Image image = new Image(inputStream);
             foto.setImage(image);
         }
+        
+        carregarTabela();
     }
     
     private void carregarTabela() {
         linha.clear();
         
-        String query = "SELECT descricao AS livro, cliente.nome AS cliente, funcionario.nome AS funcionario, data_emprestimo, data_devolucao \n" +
-        "FROM emprestimo INNER JOIN livro ON emprestimo.id_livro = livro.id INNER JOIN \n" +
+        String query = "SELECT descricao AS livro, cliente.nome AS cliente, funcionario.nome AS funcionario, data_emprestimo, "
+        + "data_devolucao, status FROM emprestimo INNER JOIN livro ON emprestimo.id_livro = livro.id INNER JOIN \n" +
         "cliente ON emprestimo.id_cliente = cliente.cpf INNER JOIN funcionario ON\n" +
-        "emprestimo.id_funcionario = funcionario.cpf WHERE cliente.cpf LIKE '" + labelCpf.getText() + "'";
+        "emprestimo.id_funcionario = funcionario.cpf WHERE cliente.cpf LIKE '" + labelCpf.getText() + 
+        "' ORDER BY data_devolucao";
         
         try {
             
@@ -137,7 +140,8 @@ public class DetalhesClienteController {
                         rs.getString("cliente"), 
                         rs.getString("funcionario"), 
                         rs.getDate("data_emprestimo").toLocalDate(), 
-                        rs.getDate("data_devolucao").toLocalDate()
+                        rs.getDate("data_devolucao").toLocalDate(),
+                        rs.getString("status")
                 ));    
             }
         } catch (SQLException | ClassNotFoundException ex) {
@@ -210,6 +214,8 @@ public class DetalhesClienteController {
                     if (!vazio) {
                         if (emprestimo.getStatus().contains("dia(s) atrasado")) {
                             setStyle("-fx-background-color: rgb(246, 167, 162);");
+                        } else if(emprestimo.getStatus().contains("Fechado")){
+                            setStyle("-fx-background-color: rgb(163, 163, 163);");
                         } else {
                             setStyle(" ");
                         }

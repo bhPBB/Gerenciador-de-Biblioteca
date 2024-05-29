@@ -2,7 +2,6 @@ package Controllers;
 
 import Banco.Database;
 import Modelos.Autor;
-import Modelos.Emprestimo;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -12,7 +11,6 @@ import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -40,9 +38,6 @@ public class ListarAutoresController{
     
     @FXML
     private ObservableList<Autor> linha = FXCollections.observableArrayList();
-
-    @FXML
-    private TableColumn<Autor, String> colunaCodigo;
     
      @FXML
     private TableColumn<Autor, String> colunaNome;
@@ -74,7 +69,7 @@ public class ListarAutoresController{
         }
         
         autores.setPlaceholder(new Label("Autores não encontrados!"));
-          
+        
         String query = "SELECT * FROM autor";
         
         carregarTabela(query);
@@ -97,7 +92,6 @@ public class ListarAutoresController{
         }
         
         // Define as propriedades das colunas da tabela
-        colunaCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colunaEditar.setCellValueFactory(new PropertyValueFactory<>("editar"));
         colunaApagar.setCellValueFactory(new PropertyValueFactory<>("apagar"));
@@ -107,7 +101,7 @@ public class ListarAutoresController{
         // Define os itens da tabela
         autores.setItems(linha);   
     }
-
+    
     private void carregarImagens() {
         colunaEditar.setCellFactory(param -> new TableCell<Autor, Image>() {
             private final ImageView imageView = new ImageView();
@@ -120,7 +114,6 @@ public class ListarAutoresController{
                 } else {
                     imageView.setImage(imagem);
                     setGraphic(imageView);
-                    setAlignment(Pos.CENTER);
                 }
             }
         });
@@ -136,7 +129,6 @@ public class ListarAutoresController{
                 } else {
                     imageView.setImage(imagem);
                     setGraphic(imageView);
-                    setAlignment(Pos.CENTER);
                 }
             }
         });
@@ -175,5 +167,6 @@ public class ListarAutoresController{
             }
         }
     }
+
     
 }

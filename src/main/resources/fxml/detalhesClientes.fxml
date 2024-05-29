@@ -30,12 +30,6 @@
             <Insets left="15.0" />
          </padding>
       </HBox>
-      <TableView fx:id="emprestimos" layoutX="240.0" layoutY="430.0" prefHeight="260.0" prefWidth="960.0" translateX="40.0" translateY="10.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="Cliente" />
-          <TableColumn prefWidth="75.0" text="Usuário" />
-        </columns>
-      </TableView>
       <HBox layoutX="240.0" layoutY="80.0" prefHeight="100.0" prefWidth="960.0" translateX="40.0" translateY="10.0">
          <children>
             <ImageView fx:id="foto" fitHeight="280.0" fitWidth="328.0" pickOnBounds="true" preserveRatio="true" />
@@ -105,11 +99,6 @@
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label prefHeight="16.0" prefWidth="214.0" text="editar" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
-                     <font>
-                        <Font name="DejaVu Sans Bold" size="12.0" />
-                     </font>
-                  </Label>
                   <Button fx:id="botaoEditar" alignment="CENTER" mnemonicParsing="false" onAction="#editar" onMouseEntered="#cursorMaozinha" onMouseExited="#cursorPadrao" prefHeight="48.0" prefWidth="146.0" styleClass="botao" stylesheets="@cadastrar.css" text="Editar" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <font>
                         <Font size="18.0" />
@@ -128,5 +117,16 @@
             </GridPane>
          </children>
       </HBox>
+      <TableView fx:id="emprestimos" layoutX="258.0" layoutY="432.0" prefHeight="272.0" prefWidth="1013.0">
+         <columns>
+            <TableColumn fx:id="colunaLivro" prefWidth="302.0" text="Livro" />
+            <TableColumn fx:id="colunaFuncionario" maxWidth="278.0" prefWidth="302.0" text="Funcionário" />
+            <TableColumn fx:id="colunaDataEmprestimo" minWidth="0.0" prefWidth="125.0" text="Data do Empréstimo" />
+            <TableColumn fx:id="colunaDataDevolucao" prefWidth="125.0" text="Data para Devolução" />
+            <TableColumn fx:id="colunaStatus" prefWidth="122.0" text="Status" />
+            <TableColumn fx:id="colunaEditar" minWidth="0.0" prefWidth="30.0" />
+            <TableColumn fx:id="colunaApagar" prefWidth="30.0" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

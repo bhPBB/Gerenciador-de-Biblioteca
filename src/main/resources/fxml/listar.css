@@ -14,6 +14,11 @@
     -fx-border-radius: 25px;
 }
 
-.imagem {
+.imagem, #emprestimos .table-column {
     -fx-alignment: center ;
+}
+
+#autores .table-column, #generos .table-column{
+  -fx-alignment: center;
+  -fx-font-size: 17px;
 }

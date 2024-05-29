@@ -11,14 +11,14 @@
    <children>
       <TableView fx:id="emprestimos" layoutX="248.0" layoutY="111.0" prefHeight="583.0" prefWidth="1013.0">
         <columns>
-          <TableColumn fx:id="colunaLivro" prefWidth="226.0" text="Livro" />
+          <TableColumn fx:id="colunaLivro" prefWidth="215.0" text="Livro" />
             <TableColumn fx:id="colunaCliente" minWidth="0.0" prefWidth="200.0" text="Cliente" />
-            <TableColumn fx:id="colunaFuncionario" maxWidth="277.0" prefWidth="180.0" text="Funcionário" />
+            <TableColumn fx:id="colunaFuncionario" maxWidth="277.0" prefWidth="160.0" text="Funcionário" />
             <TableColumn fx:id="colunaDataEmprestimo" prefWidth="123.0" text="Data do Empréstimo" />
             <TableColumn fx:id="colunaDataDevolucao" prefWidth="123.0" text="Data para Devolução" />
-            <TableColumn fx:id="colunaStatus" prefWidth="99.0" text="Status" />
-            <TableColumn fx:id="colunaEditar" prefWidth="30.0" />
-            <TableColumn fx:id="colunaApagar" prefWidth="30.0" />
+            <TableColumn fx:id="colunaStatus" prefWidth="100.0" text="Status" />
+            <TableColumn fx:id="colunaEditar" prefWidth="45.0" />
+            <TableColumn fx:id="colunaApagar" prefWidth="45.0" />
         </columns>
       </TableView>
       <TextField fx:id="inputPesquisar" layoutX="580.0" layoutY="34.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#pesquisar" prefHeight="46.0" prefWidth="361.0" promptText="Pesquisar">

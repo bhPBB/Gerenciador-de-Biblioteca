@@ -141,16 +141,6 @@ public class CardListarLivroController {
     }
 }
 
-    @FXML
-    private void cursorMaozinha(MouseEvent event) {
-        App.setCursorMaozinha(event);
-    }
-
-    @FXML
-    private void cursorPadrao(MouseEvent event) {
-        App.setCursorPadrao(event);
-    }
-
     private String getAutores(int id) {
         ArrayList<String> autores = new ArrayList<>();
         try {
@@ -185,5 +175,15 @@ public class CardListarLivroController {
             System.out.println(ex);
         }
         return String.join(", ", generos);
+    }
+    
+    @FXML
+    private void cursorMaozinha(MouseEvent event) {
+        App.setCursorMaozinha(event);
+    }
+
+    @FXML
+    private void cursorPadrao(MouseEvent event) {
+        App.setCursorPadrao(event);
     }
 }
