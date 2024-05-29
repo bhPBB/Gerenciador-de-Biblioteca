@@ -50,6 +50,8 @@ public class ListarAutoresController{
     
     private Autor modelo;
     
+    private String queryPadrao = "SELECT * FROM autor";
+    
     public void initialize() {
           try
         {
@@ -70,9 +72,7 @@ public class ListarAutoresController{
         
         autores.setPlaceholder(new Label("Autores não encontrados!"));
         
-        String query = "SELECT * FROM autor";
-        
-        carregarTabela(query);
+        carregarTabela(queryPadrao);
     }
 
     private void carregarTabela(String query) {
@@ -144,7 +144,7 @@ public class ListarAutoresController{
                 query = "SELECT * FROM autor WHERE LOWER(nome) LIKE LOWER('%" + pesquisa + "%')";
             }
             else{
-                query = "SELECT * FROM autor";
+                query = queryPadrao;
             }
             carregarTabela(query);
         }

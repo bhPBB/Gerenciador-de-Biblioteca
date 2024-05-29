@@ -32,6 +32,8 @@ public class ListarFuncionariosController {
     
     private static final int QTDCOLUNA = 3;
     
+    private String queryPadrao = "SELECT nome, cpf FROM funcionario";
+    
     public void initialize() {
         try
         {
@@ -49,10 +51,8 @@ public class ListarFuncionariosController {
             var msg = "Erro ao carregar a sideber e/ou header: " + ex.getMessage();
             System.out.println(msg);
         }
-        
-        String query = "SELECT nome, cpf FROM funcionario";
-        
-        carregarTabela(query);
+
+        carregarTabela(queryPadrao);
 
     }
     
@@ -67,7 +67,7 @@ public class ListarFuncionariosController {
                         + "LOWER('%" + pesquisa + "%') OR cpf LIKE '" + pesquisa +"')";
             }
             else{
-                query = "SELECT nome, cpf FROM funcionario";
+                query = queryPadrao;
             }
             carregarTabela(query);
         }

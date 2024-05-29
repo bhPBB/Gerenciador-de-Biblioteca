@@ -34,6 +34,8 @@ public class ListarClientesController{
     
     private static final int QTDCOLUNA = 3;
 
+    private String queryPadrao = "SELECT nome, cpf FROM cliente";
+    
     public void initialize() {
         try
         {
@@ -52,9 +54,7 @@ public class ListarClientesController{
             System.out.println(msg);
         }
         
-        String query = "SELECT nome, cpf FROM cliente";
-        
-        carregarTabela(query);
+        carregarTabela(queryPadrao);
 
     }
     
@@ -69,7 +69,7 @@ public class ListarClientesController{
                         + "LOWER('%" + pesquisa + "%') OR cpf LIKE '%" + pesquisa +"%')";
             }
             else{
-                query = "SELECT nome, cpf FROM cliente";
+                query = queryPadrao;
             }
             carregarTabela(query);
         }

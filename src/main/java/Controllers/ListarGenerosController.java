@@ -49,6 +49,8 @@ public class ListarGenerosController{
     private TableColumn<Genero, Image> colunaApagar;
     
     private Genero modelo;
+    
+    private String queryPadrao = "SELECT * FROM genero";
 
     public void initialize() {
         try {
@@ -67,8 +69,7 @@ public class ListarGenerosController{
 
         generos.setPlaceholder(new Label("Gêneros não encontrados!"));
 
-        String query = "SELECT * FROM genero";
-        carregarTabela(query);
+        carregarTabela(queryPadrao);
         carregarImagens();
 }
 
@@ -154,7 +155,7 @@ public class ListarGenerosController{
                 query = "SELECT * FROM genero WHERE LOWER(descricao) LIKE LOWER('%" + pesquisa + "%')";
             }
             else{
-                query = "SELECT * FROM genero";
+                query = queryPadrao;
             }
             carregarTabela(query);
         }
@@ -172,7 +173,7 @@ public class ListarGenerosController{
                 String id = genero.getCodigo();
                 String query = "DELETE FROM genero WHERE id = '" + id + "'";
                 Database.executarQuery(query);
-                carregarTabela("SELECT * FROM genero");
+                carregarTabela(queryPadrao);
             } catch (SQLException | ClassNotFoundException ex) {
                 System.out.println("Erro ao excluir o item: " + ex.getMessage());
             }

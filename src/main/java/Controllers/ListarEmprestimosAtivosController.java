@@ -67,6 +67,12 @@ public class ListarEmprestimosAtivosController {
 
     @FXML
     private TableColumn<Emprestimo, Image> colunaApagar;
+    
+    private String queryPadrao = "SELECT descricao AS livro, cliente.nome AS cliente, funcionario.nome "
+    + "AS funcionario, data_emprestimo, data_devolucao, status \n" +
+    "FROM emprestimo INNER JOIN livro ON emprestimo.id_livro = livro.id INNER JOIN \n" +
+    "cliente ON emprestimo.id_cliente = cliente.cpf INNER JOIN funcionario ON\n" +
+    "emprestimo.id_funcionario = funcionario.cpf WHERE status LIKE 'Em aberto' ORDER BY data_devolucao";
 
     public void initialize() {
 
@@ -88,14 +94,8 @@ public class ListarEmprestimosAtivosController {
         }
         
         emprestimos.setPlaceholder(new Label("Empréstimos não encontrados!"));
-        
-        String query = "SELECT descricao AS livro, cliente.nome AS cliente, funcionario.nome "
-        + "AS funcionario, data_emprestimo, data_devolucao, status \n" +
-        "FROM emprestimo INNER JOIN livro ON emprestimo.id_livro = livro.id INNER JOIN \n" +
-        "cliente ON emprestimo.id_cliente = cliente.cpf INNER JOIN funcionario ON\n" +
-        "emprestimo.id_funcionario = funcionario.cpf WHERE status LIKE 'Em aberto' ORDER BY data_devolucao";
-        
-        carregarTabela(query); 
+
+        carregarTabela(queryPadrao); 
     }    
 
     private void carregarTabela(String query) {
@@ -223,10 +223,7 @@ public class ListarEmprestimosAtivosController {
                 "LOWER('%" + pesquisa + "%'))";
             }
             else{
-                query = "SELECT descricao AS livro, cliente.nome AS cliente, funcionario.nome AS funcionario, data_emprestimo, data_devolucao \n" +
-                "FROM emprestimo INNER JOIN livro ON emprestimo.id_livro = livro.id INNER JOIN \n" +
-                "cliente ON emprestimo.id_cliente = cliente.cpf INNER JOIN funcionario ON\n" +
-                "emprestimo.id_funcionario = funcionario.cpf WHERE status LIKE 'Em aberto'";
+                query = queryPadrao;
             }
             carregarTabela(query);
         }
@@ -245,7 +242,7 @@ public class ListarEmprestimosAtivosController {
                 String idCliente = getIdClienteByName(emprestimo.getCliente());  
                 String query = "DELETE FROM emprestimo WHERE id_livro = '" + idLivro + "' AND id_cliente = '" + idCliente + "'";
                 Database.executarQuery(query);
-                carregarTabela("SELECT descricao AS livro, cliente.nome AS cliente, funcionario.nome AS funcionario, data_emprestimo, data_devolucao FROM emprestimo INNER JOIN livro ON emprestimo.id_livro = livro.id INNER JOIN cliente ON emprestimo.id_cliente = cliente.cpf INNER JOIN funcionario ON emprestimo.id_funcionario = funcionario.cpf WHERE status LIKE 'Em aberto'");
+                carregarTabela(queryPadrao);
             } catch (SQLException | ClassNotFoundException ex) {
                 System.out.println("Erro ao excluir o item: " + ex.getMessage());
             }

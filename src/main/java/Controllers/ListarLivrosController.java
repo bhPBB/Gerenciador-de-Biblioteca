@@ -35,6 +35,8 @@ public class ListarLivrosController{
 
     private static final int QTDCOLUNA = 3;
     
+    private String queryPadrao = "SELECT id, descricao, qtd_estoque FROM livro";
+    
     public void initialize() throws SQLException, ClassNotFoundException {
         try
         {
@@ -52,10 +54,8 @@ public class ListarLivrosController{
             var msg = "Erro ao carregar a sideber e/ou header: " + ex.getMessage();
             System.out.println(msg);
         }
-        
-        String query = "SELECT id, descricao, qtd_estoque FROM livro";
-        
-        carregarTabela(query);
+
+        carregarTabela(queryPadrao);
 
     }
     
@@ -74,7 +74,7 @@ public class ListarLivrosController{
                 + "WHERE LOWER(descricao) LIKE LOWER('%" + pesquisa + "%')))";
             }
             else{
-                query = "SELECT id, descricao, qtd_estoque FROM livro";
+                query = queryPadrao;
             }
             carregarTabela(query);
         }
