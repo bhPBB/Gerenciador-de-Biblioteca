@@ -1,4 +1,18 @@
 * {
   -fx-lighter: #F7BA2C;
   -fx-darker: #EA5459;
+  -fx-boxes-2e8: #F75A1C;
+  -fx-boxes-3-1: #FF0F7B;
+  -fx-boxes-3-2: #F89B29;
+  -fx-boxes-4-1: #FF1B6B;
+  -fx-boxes-4-2: #F09B29;
+  -fx-boxes-5: #F7FF9C;
+  -fx-boxes-6-1: #FFAB6B;
+  -fx-boxes-6-2e7: #409B29;
+  -fx-cor-texto: white;
+  -fx-botao-ativo: rgba(255, 255, 255, .90);
+  -fx-ir-para: red;
+  -fx-borda-login: rgba(255,255,255, .7);
+  -fx-label-pagina-atual: white;
+  -fx-label-especial: rgba(0,0,0, .25);
 }

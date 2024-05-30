@@ -2,13 +2,13 @@
 
 }
 .pesquisar {
-    -fx-border-color: black;
+    -fx-border-color: linear-gradient(to left, -fx-darker, -fx-lighter);
     -fx-border-width: 2px;
     -fx-border-style: solid;
     -fx-border-radius: 40px;
 }
 .irPara {
-    -fx-border-color: red;
+    -fx-border-color: -fx-ir-para;
     -fx-border-width: 2px;
     -fx-border-style: solid;
     -fx-border-radius: 25px;
