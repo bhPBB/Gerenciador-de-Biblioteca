@@ -24,7 +24,7 @@
     /*-fx-background-color: #3f0d1b;*/
     -fx-text-fill: -fx-cor-texto;
     -fx-border-width: 2px;
-    -fx-border-color: linear-gradient(to left, --fx-boxes-5-1, -fx-boxes-5-2);
+    -fx-border-color: linear-gradient(to left, -fx-boxes-5-1, -fx-boxes-5-2);
     -fx-border-style: solid;
     -fx-background-radius: 0px;
 }
