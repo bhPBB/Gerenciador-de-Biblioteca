@@ -12,6 +12,7 @@ Controllers\DetalhesClienteController$1.class
 Controllers\CadastrarFuncionarioLoginController.class
 Controllers\CadastrarFuncionarioController.class
 Controllers\DetalhesLivrosController.class
+Controllers\EditarEmprestimosController.class
 Modelos\Genero.class
 InterfacesCRUD\ICRUDFuncionario.class
 Controllers\ListarEmprestimosAtivosController$1.class

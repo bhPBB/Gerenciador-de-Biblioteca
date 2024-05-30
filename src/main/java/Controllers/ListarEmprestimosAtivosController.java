@@ -5,20 +5,15 @@ import Modelos.ComparadorDias;
 import Modelos.Emprestimo;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -159,19 +154,21 @@ public class ListarEmprestimosAtivosController {
                 imageView.setImage(imagem);
                 btnEdit.setGraphic(imageView);
                 btnEdit.setStyle("-fx-background-color: transparent;");
-                btnEdit.setOnAction(event -> {
-                    
-                    try {
-                        App.mudarDeTela("detalhesEmprestimos");
-                    } catch (IOException ex) {
-                        Logger.getLogger(ListarEmprestimosAtivosController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
+                btnEdit.setOnAction(event -> { 
+                try {
+                    App.mudarDeTela("detalhesEmprestimos");
+                } catch (IOException ex) {
+                    System.out.println(ex);
+                }
                 });
-                
+                btnEdit.setOnMouseEntered(event -> {
+                    App.setCursorMaozinha(event);
+                });
+                btnEdit.setOnMouseExited(event -> {
+                    App.setCursorPadrao(event);
+                });
                 setGraphic(btnEdit);
             }
-            
             
         }
     });
