@@ -5,15 +5,20 @@ import Modelos.ComparadorDias;
 import Modelos.Emprestimo;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -142,16 +147,32 @@ public class ListarEmprestimosAtivosController {
     private void carregarImagens() {
     colunaEditar.setCellFactory(param -> new TableCell<Emprestimo, Image>() {
         private final ImageView imageView = new ImageView();
+        private final Button btnEdit = new Button();
 
         @Override
         protected void updateItem(Image imagem, boolean vazio) {
             super.updateItem(imagem, vazio);
+//            URL fxmlUrl = getClass().getResource("/fxml/detalhesEmprestimos.fxml");
             if (vazio || imagem == null) {
                 setGraphic(null);
             } else {
                 imageView.setImage(imagem);
-                setGraphic(imageView);
+                btnEdit.setGraphic(imageView);
+                btnEdit.setStyle("-fx-background-color: transparent;");
+                btnEdit.setOnAction(event -> {
+                    
+                    try {
+                        App.mudarDeTela("detalhesEmprestimos");
+                    } catch (IOException ex) {
+                        Logger.getLogger(ListarEmprestimosAtivosController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                });
+                
+                setGraphic(btnEdit);
             }
+            
+            
         }
     });
 
