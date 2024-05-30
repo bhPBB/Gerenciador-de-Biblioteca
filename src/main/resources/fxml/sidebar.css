@@ -1,3 +1,5 @@
+@import "cores.css";
+
 .mainFxmlClass {
 
 }
@@ -13,7 +15,7 @@
     -fx-text-fill: transparent;
 }
 .background {
-    -fx-background-color: linear-gradient(to bottom, #EA5459, #F7BA2C);
+    -fx-background-color: linear-gradient(to bottom, -fx-darker, -fx-lighter);
     /*-fx-border-radius: 40px;*/
     -fx-text-fill: white;
 }
@@ -26,14 +28,14 @@
 
 .side-bar-ativo {
     -fx-background-color: rgba(255, 255, 255, .90);
-    -fx-text-fill: linear-gradient(to bottom, #EA5459, #F7BA2C);
+    -fx-text-fill: linear-gradient(to bottom, -fx-darker, -fx-lighter);
     -fx-background-radius: 40px;
     -fx-text-alignment: left;
     -fx-alignment: center-left;
 }
 .login-ativo {
     -fx-background-color: rgba(255, 255, 255, .90);
-    -fx-text-fill: linear-gradient(to bottom, #EA5459, #F7BA2C);
+    -fx-text-fill: linear-gradient(to bottom, -fx-darker, -fx-lighter);
     -fx-background-radius: 0px;
     -fx-text-alignment: left;
     -fx-alignment: center-left;

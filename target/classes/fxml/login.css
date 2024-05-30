@@ -1,6 +1,4 @@
-/*
- * Empty Stylesheet file.
- */
+@import "cores.css";
 
 .mainFxmlClass {
     -fx-text-fill: rgb(255,255,255);
@@ -33,7 +31,7 @@
     -fx-border-radius: 40px;
 }
 .fundo {
-    -fx-background-color: linear-gradient(to top, #F7BA2C, #EA5459);
+    -fx-background-color: linear-gradient(to top, -fx-lighter, -fx-darker);
 }
 /*.cadastre-se {
     -fx-text-fill: white;
