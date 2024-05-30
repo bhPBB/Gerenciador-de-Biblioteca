@@ -2,7 +2,7 @@
 
 }
 .card-borda {
-    -fx-border-color: black;
+    -fx-border-color: linear-gradient(to top, #F7BA2C, #EA5459);
     -fx-border-width: 2px;
     /*-fx-border-radius: 20px;*/
     -fx-border-style: solid;
