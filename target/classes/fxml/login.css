@@ -5,7 +5,7 @@
 }
 .inputs {
     -fx-border-width: 2px;
-    -fx-border-color: -fx-cor-texto, .7; /*mudar pra 255,255,255, .2 depois.*/
+    -fx-border-color: -fx-borda-login; /*mudar pra 255,255,255, .2 depois.*/
     -fx-border-style: solid;
     -fx-border-radius: 40px;
     -fx-outline: none;
@@ -14,7 +14,7 @@
 }
 .button {
     -fx-border-width: 2px;
-    -fx-border-color: -fx-cor-texto, .7; /*mudar pra 255,255,255, .2 depois.*/
+    -fx-border-color: -fx-borda-login; /*mudar pra 255,255,255, .2 depois.*/
     -fx-border-style: solid;
     -fx-border-radius: 40px;
     -fx-outline: none;
@@ -22,7 +22,7 @@
 }
 .grid-form {
     -fx-border-width: 2px;
-    -fx-border-color: -fx-cor-texto, .7; /*mudar pra 255,255,255, .2 depois.*/
+    -fx-border-color: -fx-borda-login; /*mudar pra 255,255,255, .2 depois.*/
     -fx-border-style: solid;
     -fx-border-radius: 20px;
     -fx-background-color: transparent;

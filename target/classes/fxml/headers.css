@@ -30,17 +30,17 @@
     -fx-background-radius: 0px;*/
 
     -fx-background-color: transparent;
-    -fx-text-fill: white;
+    -fx-text-fill: -fx-cor-texto;
     -fx-text-alignment: left;
     /*-fx-alignment: left;*/
 }
 .botao-ativo {
-    fx-background-color: rgba(255, 255, 255, .90);
+    -fx-background-color: -fx-botao-ativo;
     -fx-text-fill: linear-gradient(to bottom, -fx-darker, -fx-lighter);
     /*-fx-background-radius: 40px;*/
     -fx-alignment: center-left;
 }
 .background-botao {
     -fx-background-color: linear-gradient(to left, -fx-darker, -fx-lighter);
-    -fx-text-fill: white;
+    -fx-text-fill: -fx-cor-texto;
 }

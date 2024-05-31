@@ -4,37 +4,37 @@
 
 }
 .buttons {
-    -fx-text-fill: white;
+    -fx-text-fill: -fx-cor-texto;
     -fx-background-color: transparent;
     -fx-text-alignment: left;
     -fx-alignment: center-left;
 }
 .label_pagina_atual_e_select {
-    -fx-background-color: white;
+    -fx-background-color: -fx-label-pagina-atual;
     -fx-border-radius: 40px;
     -fx-text-fill: transparent;
 }
 .background {
     -fx-background-color: linear-gradient(to bottom, -fx-darker, -fx-lighter);
     /*-fx-border-radius: 40px;*/
-    -fx-text-fill: white;
+    -fx-text-fill: -fx-cor-texto;
 }
 .label_especial {
-    -fx-background-color: rgba(0,0,0, .25);
-    -fx-text-fill: white;
+    -fx-background-color: -fx-label-especial;
+    -fx-text-fill: -fx-cor-texto;
     -fx-text-alignment: left;
     -fx-alignment: center-left;
 }
 
 .side-bar-ativo {
-    -fx-background-color: rgba(255, 255, 255, .90);
+    -fx-background-color: -fx-botao-ativo;
     -fx-text-fill: linear-gradient(to bottom, -fx-darker, -fx-lighter);
     -fx-background-radius: 40px;
     -fx-text-alignment: left;
     -fx-alignment: center-left;
 }
 .login-ativo {
-    -fx-background-color: rgba(255, 255, 255, .90);
+    -fx-background-color: -fx-botao-ativo;
     -fx-text-fill: linear-gradient(to bottom, -fx-darker, -fx-lighter);
     -fx-background-radius: 0px;
     -fx-text-alignment: left;

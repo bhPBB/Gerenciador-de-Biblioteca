@@ -48,8 +48,6 @@ public class ListarGenerosController{
     @FXML
     private TableColumn<Genero, Image> colunaApagar;
     
-    private Genero modelo;
-    
     private String queryPadrao = "SELECT * FROM genero";
 
     public void initialize() {
@@ -83,7 +81,6 @@ public class ListarGenerosController{
                 linha.add(new Genero(rs.getString("id"), 
                         rs.getString("descricao") 
                 ));
-                modelo = new Genero(rs.getString("id"), rs.getString("descricao"));
             }
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex);
@@ -177,7 +174,7 @@ public class ListarGenerosController{
             } catch (SQLException | ClassNotFoundException ex) {
                 System.out.println("Erro ao excluir o item: " + ex.getMessage());
             }
-    }
+        }
 }
     
 }

@@ -18,7 +18,7 @@
 .botao{
     -fx-background-color: linear-gradient(to right, -fx-lighter, -fx-darker);
     -fx-background-radius: 40px;
-    -fx-text-fill: white;
+    -fx-text-fill: -fx-cor-texto;
     -fx-border-width: 2px;
     -fx-border-color: linear-gradient(to left, -fx-darker, -fx-lighter);
     -fx-border-style: solid;
