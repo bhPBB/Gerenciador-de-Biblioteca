@@ -34,7 +34,7 @@ public class App extends Application {
         stage.setTitle("Gerenciador de Biblioteca");
         stage.getIcons().add(new Image(App.class.getResourceAsStream("/Imagens/icon.png")));
         stage.setResizable(false);
-        scene = new Scene(loadFXML("login"));
+        scene = new Scene(loadFXML("dashboard"));
         stage.setScene(scene);
         stage.show();
         App.stage = stage;
@@ -93,7 +93,7 @@ public class App extends Application {
     }
     
     public static void inicializarTituloHeader(String titulo, AnchorPane backgroundTela) throws IOException {
-         //Define o título da página 
+        //Define o título da página 
         var tituloLoader = new FXMLLoader(App.class.getResource("/fxml/tituloHeader.fxml"));
         AnchorPane anchorTituloTela = tituloLoader.load();
         

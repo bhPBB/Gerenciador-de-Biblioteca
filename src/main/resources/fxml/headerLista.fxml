@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="80.0" prefWidth="982.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="Controllers.HeaderListaController">
+<AnchorPane id="AnchorPane" prefHeight="80.0" prefWidth="982.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HeaderListaController">
     <stylesheets>
         <URL value="@headerLista.css" />
     </stylesheets>
@@ -30,7 +30,7 @@
                         <Insets left="25.0" top="32.0" />
                      </HBox.margin>
                   </TextField>
-                  <ImageView fitHeight="38.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="33.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" translateX="-43.0" translateY="5.0">
                      <image>
                         <Image url="@../Imagens/search-regular-40.png" />
                      </image>

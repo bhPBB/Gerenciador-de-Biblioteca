@@ -4,10 +4,10 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="background" prefHeight="720.0" prefWidth="1280.0" styleClass="mainFxmlClass" stylesheets="@listar.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ListarAutoresController">
@@ -19,15 +19,9 @@
             <TableColumn fx:id="colunaApagar" prefWidth="50.0" />
          </columns>
       </TableView>
-      <GridPane layoutX="578.0" layoutY="39.0" prefHeight="58.0" prefWidth="364.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <HBox layoutX="580.0" layoutY="18.0" prefHeight="58.0" prefWidth="361.0">
          <children>
-            <TextField fx:id="inputPesquisar" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#pesquisar" prefHeight="46.0" prefWidth="361.0" promptText="Pesquisar">
+            <TextField fx:id="inputPesquisar" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#pesquisar" prefHeight="46.0" prefWidth="361.0" promptText="Pesquisar" styleClass="adicionar" stylesheets="@headerLista.css">
                <font>
                   <Font name="Chilanka Regular" size="22.0" />
                </font>
@@ -35,7 +29,12 @@
                   <Insets />
                </opaqueInsets>
             </TextField>
+            <ImageView fitHeight="33.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" translateX="-43.0" translateY="9.0">
+               <image>
+                  <Image url="@../Imagens/search-regular-40.png" />
+               </image>
+            </ImageView>
          </children>
-      </GridPane>
+      </HBox>
    </children>
 </AnchorPane>
