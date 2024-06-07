@@ -258,6 +258,8 @@ public class ListarEmprestimosAtivosController {
             try {
                 int idLivro = getIdLivroByName(emprestimo.getLivro());  
                 String idCliente = getIdClienteByName(emprestimo.getCliente());  
+                atualizaLivroQtdEstoque(idLivro);
+                atualizaClienteNumLivrosEmprestados(idCliente);
                 String query = "DELETE FROM emprestimo WHERE id_livro = '" + idLivro + "' AND id_cliente = '" + idCliente + "'";
                 Database.executarQuery(query);
                 carregarTabela(queryPadrao);
@@ -293,5 +295,15 @@ public class ListarEmprestimosAtivosController {
             System.out.println("Erro ao buscar id do cliente: " + ex.getMessage());
         }
         return id;
+    }
+    
+    private void atualizaLivroQtdEstoque(int livro) throws SQLException, ClassNotFoundException{
+        String query = "UPDATE LIVRO SET QTD_ESTOQUE = QTD_ESTOQUE + 1 WHERE ID = '" + livro + "'";
+        Database.executarQuery(query);
+    }
+    
+    private void atualizaClienteNumLivrosEmprestados(String cliente) throws SQLException, ClassNotFoundException{
+        String query = "UPDATE CLIENTE SET NUM_LIVROS_EMPRESTADOS = NUM_LIVROS_EMPRESTADOS - 1 WHERE CPF = '" + cliente + "'";
+        Database.executarQuery(query);
     }
 }

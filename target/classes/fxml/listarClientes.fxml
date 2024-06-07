@@ -16,7 +16,7 @@
          <content>
             <Label fx:id="naoEncontrado" alignment="CENTER" contentDisplay="CENTER" prefHeight="581.0" prefWidth="966.0" text="Clientes não encontrados!" />
          </content></ScrollPane>
-      <HBox layoutX="580.0" layoutY="11.0" prefHeight="71.0" prefWidth="361.0">
+      <HBox layoutX="580.0" layoutY="18.0" prefHeight="71.0" prefWidth="361.0">
          <children>
             <TextField fx:id="inputPesquisar" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#pesquisar" prefHeight="46.0" prefWidth="361.0" promptText="Pesquisar" styleClass="adicionar" stylesheets="@headerLista.css">
                <font>
