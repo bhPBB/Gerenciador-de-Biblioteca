@@ -101,9 +101,9 @@ public class CadastrarFuncionarioController{
                 
                     String query = "INSERT INTO funcionario (nome, cpf, email, senha, foto) VALUES "
                     + "('" + nome + "','" + cpf + "','" + email + "','" + crypto + "', decode('" + hexImagem + "', 'hex'))";
-                    
                     Database.executarQuery(query);
-                    App.mudarDeTela("login");
+                    messageLabel.setTextFill(Color.color(0, 1, 0));
+                    messageLabel.setText("Funcionário cadastrado com sucesso.");
                 } catch (SQLException | ClassNotFoundException ex) {
                     messageLabel.setTextFill(Color.color(1, 0, 0));
                     messageLabel.setText(ex.getMessage());
