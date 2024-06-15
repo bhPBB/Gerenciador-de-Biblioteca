@@ -34,7 +34,7 @@ public class App extends Application {
         stage.setTitle("Gerenciador de Biblioteca");
         stage.getIcons().add(new Image(App.class.getResourceAsStream("/Imagens/icon.png")));
         stage.setResizable(false);
-        scene = new Scene(loadFXML("dashboard"));
+        scene = new Scene(loadFXML("login"));
         stage.setScene(scene);
         stage.show();
         App.stage = stage;
