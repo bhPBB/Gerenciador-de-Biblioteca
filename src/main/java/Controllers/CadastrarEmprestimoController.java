@@ -86,8 +86,8 @@ public class CadastrarEmprestimoController {
                                 Database.executarQuery(query);
                                 atualizarQtdLivro(livro);
                                 atualizarQtdEmprestimoCliente(cliente);
-                                messageLabel.setTextFill(Color.color(0, 1, 0));
-                                messageLabel.setText("Empréstimo realizado com sucesso.");
+                                
+                                feedback();
                             } else {
                                 messageLabel.setTextFill(Color.color(1, 0, 0));
                                 messageLabel.setText("Empréstimo consta como ativo.");
@@ -119,6 +119,15 @@ public class CadastrarEmprestimoController {
         }else{
             return false;
         }
+    }
+    
+    private void feedback(){
+        inputCliente = null;
+        inputDevolucao = null;
+        inputLivro = null;
+        
+        messageLabel.setTextFill(Color.color(0, 1, 0));
+        messageLabel.setText("Empréstimo realizado com sucesso.");
     }
 
     private void carregarComboBox() {

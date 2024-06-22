@@ -64,8 +64,7 @@ public class CadastrarGeneroController{
                 
                 Database.executarQuery(query);
                 
-                messageLabel.setTextFill(Color.color(0, 1, 0));
-                messageLabel.setText("Gênero cadastrado com sucesso.");
+                feedback();
             } catch (SQLException | ClassNotFoundException ex) {
                 messageLabel.setTextFill(Color.color(1, 0, 0));
                 messageLabel.setText(ex.getMessage());
@@ -85,6 +84,13 @@ public class CadastrarGeneroController{
             System.out.println(ex);
         }
         return false;
+    }
+    
+    private void feedback(){
+        inputGenero.setText("");
+        
+        messageLabel.setTextFill(Color.color(0, 1, 0));
+        messageLabel.setText("Gênero cadastrado com sucesso.");
     }
     
     //Limita a quantidade de caracteres

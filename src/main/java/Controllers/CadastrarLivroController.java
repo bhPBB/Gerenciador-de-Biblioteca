@@ -32,9 +32,6 @@ public class CadastrarLivroController{
 
     @FXML
     private ListView<String> inputGenero;
-    
-    @FXML
-    private Button inputImagem;
 
     @FXML
     private Label nomeImagem;
@@ -135,13 +132,24 @@ public class CadastrarLivroController{
                     Database.executarQuery(query);
                 }
 
-                messageLabel.setTextFill(Color.color(0, 1, 0));
-                messageLabel.setText("Livro cadastrado com sucesso.");
+                feedback();
             } catch (SQLException | ClassNotFoundException ex) {
                 messageLabel.setTextFill(Color.color(1, 0, 0));
                 messageLabel.setText("Erro ao cadastrar o livro: " + ex.getMessage());
             }
-        }
+    }
+    
+    private void feedback(){
+        inputAutor.getSelectionModel().clearSelection();
+        inputGenero.getSelectionModel().clearSelection();
+        nomeImagem.setText("");
+        imagem = null;
+        inputQtdEstoque.setText("");
+        inputTitulo.setText("");
+    
+        messageLabel.setTextFill(Color.color(0, 1, 0));
+        messageLabel.setText("Livro cadastrado com sucesso.");
+    }
     
     @FXML
     private void limitarTitulo(KeyEvent event){

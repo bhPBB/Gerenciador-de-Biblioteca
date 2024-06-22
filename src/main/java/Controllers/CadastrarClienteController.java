@@ -26,9 +26,6 @@ public class CadastrarClienteController{
 
     @FXML
     private Button cadastrar;
-
-    @FXML
-    private Button inputImagem;
     
     @FXML
     private Label nomeImagem;
@@ -106,8 +103,8 @@ public class CadastrarClienteController{
                 +  cep + "','" + funcionario.getCpf() + "','" + email + "', decode('" + hexImagem + "', 'hex'))";
 
                 Database.executarQuery(query);
-                messageLabel.setTextFill(Color.color(0, 1, 0));
-                messageLabel.setText("Cliente cadastrado com sucesso.");
+                
+                feedback();
             } catch (SQLException | ClassNotFoundException ex) { 
                 // Em caso de erro, exibe a mensagem de erro na label
                 messageLabel.setTextFill(Color.color(1, 0, 0));
@@ -156,6 +153,18 @@ public class CadastrarClienteController{
     
     private boolean verificarEmail(String email) {
         return !(email.contains("@") && email.contains("mail.com"));
+    }
+    
+    private void feedback(){
+        nomeImagem.setText("");
+        imagem = null;
+        inputCPF.setText("");
+        inputEmail.setText("");
+        inputNome.setText("");
+        inputCEP.setText("");
+        
+        messageLabel.setTextFill(Color.color(0, 1, 0));
+        messageLabel.setText("Cliente cadastrado com sucesso.");
     }
     
     // Método chamado quando o botão para escolher a imagem é clicado
