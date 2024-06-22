@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Label;
@@ -53,6 +54,20 @@ public class DetalhesClienteController {
 
     @FXML
     private Label labelCpf;
+    
+    @FXML
+    private ComboBox<String> boxNome;
+
+    @FXML
+    private ComboBox<String> boxEmail;
+
+    @FXML
+    private ComboBox<String> boxCep;
+
+    @FXML
+    private ComboBox<String> boxCpf;
+    
+    private ComboBox<String> comboBox;
     
     @FXML
     private TableView<Emprestimo> emprestimos; 
@@ -104,7 +119,51 @@ public class DetalhesClienteController {
 
     @FXML
     public void editar(ActionEvent event) {
-        // A implementar
+        if (labelNome.isVisible()) {
+            labelNome.setVisible(false);
+            labelNome.setManaged(false);
+            boxNome.setVisible(true);
+            boxNome.setManaged(true);
+            
+            labelEmail.setVisible(false);
+            labelEmail.setManaged(false);
+            boxEmail.setVisible(true);
+            boxEmail.setManaged(true);
+            
+            labelCep.setVisible(false);
+            labelCep.setManaged(false);
+            boxCep.setVisible(true);
+            boxCep.setManaged(true);
+            
+            labelCpf.setVisible(false);
+            labelCpf.setManaged(false);
+            boxCpf.setVisible(true);
+            boxCpf.setManaged(true);
+            
+            botaoEditar.setText("Salvar");
+        } else {
+            boxNome.setVisible(false);
+            boxNome.setManaged(false);
+            labelNome.setVisible(true);
+            labelNome.setManaged(true);
+            
+            boxEmail.setVisible(false);
+            boxEmail.setManaged(false);
+            labelEmail.setVisible(true);
+            labelEmail.setManaged(true);
+            
+            boxCep.setVisible(false);
+            boxCep.setManaged(false);
+            labelCep.setVisible(true);
+            labelCep.setManaged(true);
+            
+            boxCpf.setVisible(false);
+            boxCpf.setManaged(false);
+            labelCpf.setVisible(true);
+            labelCpf.setManaged(true);
+            
+            botaoEditar.setText("Editar");
+        }
     }
 
     void setDetalhes(Modelos.Cliente cliente) {
