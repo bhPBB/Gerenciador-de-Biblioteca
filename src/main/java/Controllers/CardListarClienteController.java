@@ -143,7 +143,7 @@ public class CardListarClienteController {
     }
     
     @FXML
-    public void deletar(ActionEvent event) {
+    public void deletar(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmar Exclusão");
         alert.setHeaderText(null);
@@ -155,6 +155,7 @@ public class CardListarClienteController {
                 String id = cpf.getText();
                 String query = "DELETE FROM cliente WHERE cpf = '" + id + "'";
                 Database.executarQuery(query);
+                App.mudarDeTela("listarClientes");
             } catch (SQLException | ClassNotFoundException ex) {
                 System.out.println("Erro ao excluir o item: " + ex.getMessage());
             }
