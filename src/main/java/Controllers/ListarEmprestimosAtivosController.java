@@ -108,7 +108,7 @@ public class ListarEmprestimosAtivosController {
                 linha.add(new Emprestimo(rs.getString("livro"), 
                         rs.getString("cliente"), 
                         rs.getString("funcionario"), 
-                        rs.getDate("data_emprestimo").toLocalDate(), 
+                        rs.getDate("data_emprestimo").toLocalDate(),
                         rs.getDate("data_devolucao").toLocalDate(),
                         rs.getString("status")
                 ));    

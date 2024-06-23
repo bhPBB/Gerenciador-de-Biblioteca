@@ -18,7 +18,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Label;
@@ -26,6 +25,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -56,18 +56,16 @@ public class DetalhesClienteController {
     private Label labelCpf;
     
     @FXML
-    private ComboBox<String> boxNome;
+    private TextField inputNome;
 
     @FXML
-    private ComboBox<String> boxEmail;
+    private TextField inputEmail;
 
     @FXML
-    private ComboBox<String> boxCep;
-
-    @FXML
-    private ComboBox<String> boxCpf;
+    private TextField inputCep;
     
-    private ComboBox<String> comboBox;
+    private Modelos.Cliente cliente;
+
     
     @FXML
     private TableView<Emprestimo> emprestimos; 
@@ -105,6 +103,8 @@ public class DetalhesClienteController {
                 "listarClientes",
                 background
         );
+        
+        esconderInput();
     }
     
     @FXML
@@ -116,62 +116,87 @@ public class DetalhesClienteController {
     private void cursorPadrao(MouseEvent event) {
         App.setCursorPadrao(event);
     }
+    
+    public void esconderInput(){
+        inputNome.setVisible(false);
+        inputNome.setManaged(false);
 
+        inputEmail.setVisible(false);
+        inputEmail.setManaged(false);
+
+        inputCep.setVisible(false);
+        inputCep.setManaged(false);
+
+    }
+    
     @FXML
-    public void editar(ActionEvent event) {
+    public void editar(ActionEvent event) throws SQLException, ClassNotFoundException {
         if (labelNome.isVisible()) {
             labelNome.setVisible(false);
             labelNome.setManaged(false);
-            boxNome.setVisible(true);
-            boxNome.setManaged(true);
+            inputNome.setVisible(true);
+            inputNome.setManaged(true);
             
             labelEmail.setVisible(false);
             labelEmail.setManaged(false);
-            boxEmail.setVisible(true);
-            boxEmail.setManaged(true);
+            inputEmail.setVisible(true);
+            inputEmail.setManaged(true);
             
             labelCep.setVisible(false);
             labelCep.setManaged(false);
-            boxCep.setVisible(true);
-            boxCep.setManaged(true);
+            inputCep.setVisible(true);
+            inputCep.setManaged(true);
             
-            labelCpf.setVisible(false);
-            labelCpf.setManaged(false);
-            boxCpf.setVisible(true);
-            boxCpf.setManaged(true);
             
             botaoEditar.setText("Salvar");
         } else {
-            boxNome.setVisible(false);
-            boxNome.setManaged(false);
+            inputNome.setVisible(false);
+            inputNome.setManaged(false);
             labelNome.setVisible(true);
             labelNome.setManaged(true);
             
-            boxEmail.setVisible(false);
-            boxEmail.setManaged(false);
+            inputEmail.setVisible(false);
+            inputEmail.setManaged(false);
             labelEmail.setVisible(true);
             labelEmail.setManaged(true);
             
-            boxCep.setVisible(false);
-            boxCep.setManaged(false);
+            inputCep.setVisible(false);
+            inputCep.setManaged(false);
             labelCep.setVisible(true);
             labelCep.setManaged(true);
             
-            boxCpf.setVisible(false);
-            boxCpf.setManaged(false);
-            labelCpf.setVisible(true);
-            labelCpf.setManaged(true);
             
             botaoEditar.setText("Editar");
+            
+            String query = "UPDATE cliente SET nome ='" + inputNome.getText() + "', email = '" + inputEmail.getText() + "', cep = '" + inputCep.getText() + "'  WHERE cpf ='" + labelCpf.getText() + "';";
+            
+            Database.executarQuery(query);
+            
+            cliente.setNome(inputNome.getText());
+            cliente.setEmail(inputEmail.getText());
+            cliente.setCep(inputCep.getText());
+            
+            labelNome.setText(cliente.getNome());
+            labelEmail.setText(cliente.getEmail());
+            labelCep.setText(cliente.getCep());
+            
         }
     }
 
     void setDetalhes(Modelos.Cliente cliente) {
+        
+        this.cliente = cliente;
+        
         labelNome.setText(cliente.getNome());
         labelEmail.setText(cliente.getEmail());
         labelCep.setText(cliente.getCep());
         labelCpf.setText(cliente.getCpf());
-
+        
+        inputNome.setText(cliente.getNome());
+        inputEmail.setText(cliente.getEmail());
+        inputCep.setText(cliente.getCep());
+        
+        
         byte[] imageBytes = cliente.getFoto();
         if (imageBytes != null) {
             InputStream inputStream = new ByteArrayInputStream(imageBytes);
