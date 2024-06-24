@@ -56,8 +56,7 @@ public class DetalhesClienteController {
     private TextField inputCpf;
     
     private Modelos.Cliente cliente;
-
-    
+  
     @FXML
     private TableView<Emprestimo> emprestimos; 
     

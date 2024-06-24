@@ -120,7 +120,7 @@
             <TableColumn fx:id="colunaLivro" prefWidth="302.0" text="Livro" />
             <TableColumn fx:id="colunaFuncionario" maxWidth="278.0" prefWidth="302.0" text="Funcionário" />
             <TableColumn fx:id="colunaDataEmprestimo" minWidth="0.0" prefWidth="125.0" text="Data do Empréstimo" />
-            <TableColumn fx:id="colunaDataDevolucao" prefWidth="125.0" text="Data para Devolução" />
+            <TableColumn fx:id="colunaDataDevolucao" prefWidth="124.0" text="Data para Devolução" />
             <TableColumn fx:id="colunaStatus" prefWidth="122.0" text="Status" />
             <TableColumn fx:id="colunaEditar" minWidth="0.0" prefWidth="30.0" />
             <TableColumn fx:id="colunaApagar" prefWidth="30.0" />
