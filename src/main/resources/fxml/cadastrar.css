@@ -1,5 +1,3 @@
-@import "cores.css";
-
 .mainFxmlClass {
 
 }
@@ -9,18 +7,18 @@
     -fx-border-color: black;
     -fx-border-radius: 40px;*/
     -fx-border-width: 2px;
-    -fx-border-color: linear-gradient(to left, -fx-darker, -fx-lighter);
+    -fx-border-color: linear-gradient(to left, #EA5459, #F7BA2C);
     -fx-border-style: solid;
     -fx-border-radius: 40px;
     -fx-padding: 0px 10px;
     -fx-background-radius: 40px;
 }
 .botao{
-    -fx-background-color: linear-gradient(to right, -fx-lighter, -fx-darker);
+    -fx-background-color: linear-gradient(to right, #F7BA2C, #EA5459);
     -fx-background-radius: 40px;
-    -fx-text-fill: -fx-cor-texto;
+    -fx-text-fill: white;
     -fx-border-width: 2px;
-    -fx-border-color: linear-gradient(to left, -fx-darker, -fx-lighter);
+    -fx-border-color: linear-gradient(to left, #EA5459, #F7BA2C);
     -fx-border-style: solid;
     -fx-border-radius: 40px;
     -fx-padding: 0px 10px;

@@ -9,7 +9,7 @@
    <children>
       <Label fx:id="labelTitulo" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="80.0" prefWidth="405.0" styleClass="titulo" stylesheets="@headers.css" text="Sem Título" textAlignment="CENTER">
          <font>
-            <Font name="DejaVu Sans Bold" size="20.0" />
+            <Font name="DejaVu Sans Bold" size="26.0" />
          </font>
          <padding>
             <Insets left="25.0" />
