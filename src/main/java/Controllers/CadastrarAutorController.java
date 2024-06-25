@@ -66,7 +66,8 @@ public class CadastrarAutorController{
                 
                 Database.executarQuery(query);
                 
-                feedback();
+                messageLabel.setTextFill(Color.color(0, 1, 0));
+                messageLabel.setText("Autor cadastrado com sucesso.");
             } catch (SQLException | ClassNotFoundException ex) {
                 messageLabel.setTextFill(Color.color(1, 0, 0));
                 messageLabel.setText(ex.getMessage());
@@ -86,12 +87,6 @@ public class CadastrarAutorController{
             System.out.println(ex);
         }
         return false;
-    }
-    
-    private void feedback(){
-        inputAutor.setText("");
-        messageLabel.setTextFill(Color.color(0, 1, 0));
-        messageLabel.setText("Autor cadastrado com sucesso.");
     }
     
     //Limita a quantidade de caracteres

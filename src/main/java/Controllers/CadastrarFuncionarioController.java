@@ -32,6 +32,9 @@ public class CadastrarFuncionarioController{
 
     @FXML
     private TextField inputEmail;
+
+    @FXML
+    private Button inputImagem;
     
     @FXML
     private Label nomeImagem;
@@ -98,9 +101,9 @@ public class CadastrarFuncionarioController{
                 
                     String query = "INSERT INTO funcionario (nome, cpf, email, senha, foto) VALUES "
                     + "('" + nome + "','" + cpf + "','" + email + "','" + crypto + "', decode('" + hexImagem + "', 'hex'))";
-                    Database.executarQuery(query);
                     
-                    feedback();
+                    Database.executarQuery(query);
+                    App.mudarDeTela("login");
                 } catch (SQLException | ClassNotFoundException ex) {
                     messageLabel.setTextFill(Color.color(1, 0, 0));
                     messageLabel.setText(ex.getMessage());
@@ -170,18 +173,6 @@ public class CadastrarFuncionarioController{
     
     private boolean verificarEmail(String email) {
         return !(email.contains("@") && email.contains("mail.com"));
-    }
-    
-    private void feedback(){
-        nomeImagem.setText("");
-        imagem = null;
-        inputCPF.setText("");
-        inputEmail.setText("");
-        inputNome.setText("");
-        inputSenha.setText("");      
-        
-        messageLabel.setTextFill(Color.color(0, 1, 0));
-        messageLabel.setText("Funcionário cadastrado com sucesso.");
     }
     
     // Método chamado quando o botão para escolher a imagem é clicado

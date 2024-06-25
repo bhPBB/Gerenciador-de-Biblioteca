@@ -79,19 +79,14 @@ public class CadastrarEmprestimoController {
                 if (verificaQtdLivroEstoque(livro) > 0) {
                     if (verificaQtdLivrosEmprestadosCliente(cliente) <= 2) {
                         if (!ehCaloteiro(cliente)) {
-                            if(!verificaEmprestimoRepetido(livro, cliente)){
-                                // Insere o empréstimo no banco de dados
-                                query = "INSERT INTO emprestimo (id_livro, id_cliente, id_funcionario, data_emprestimo, data_devolucao) "
-                                        + "VALUES (" + livro + ", '" + cliente + "', '" + funcionario.getCpf() + "', CURRENT_DATE, '" + devolucao + "')";
-                                Database.executarQuery(query);
-                                atualizarQtdLivro(livro);
-                                atualizarQtdEmprestimoCliente(cliente);
-                                
-                                feedback();
-                            } else {
-                                messageLabel.setTextFill(Color.color(1, 0, 0));
-                                messageLabel.setText("Empréstimo consta como ativo.");
-                            }
+                            // Insere o empréstimo no banco de dados
+                            query = "INSERT INTO emprestimo (id_livro, id_cliente, id_funcionario, data_emprestimo, data_devolucao) "
+                                    + "VALUES (" + livro + ", '" + cliente + "', '" + funcionario.getCpf() + "', CURRENT_DATE, '" + devolucao + "')";
+                            Database.executarQuery(query);
+                            atualizarQtdLivro(livro);
+                            atualizarQtdEmprestimoCliente(cliente);
+                            messageLabel.setTextFill(Color.color(0, 1, 0));
+                            messageLabel.setText("Empréstimo realizado com sucesso.");
                         } else {
                             messageLabel.setTextFill(Color.color(1, 0, 0));
                             messageLabel.setText("Cliente Inadimplente.");
@@ -109,25 +104,6 @@ public class CadastrarEmprestimoController {
                 messageLabel.setText(ex.getMessage());
             }
         }
-    }
-    
-    private boolean verificaEmprestimoRepetido(String livro, String cliente) throws SQLException, ClassNotFoundException{
-        String query = "SELECT ID_CLIENTE, ID_LIVRO FROM EMPRESTIMO WHERE ID_CLIENTE = '" + cliente + "' AND ID_LIVRO = '" + livro + "'";
-        ResultSet rs = Database.executarSelect(query);
-        if(rs.next()){
-            return true;
-        }else{
-            return false;
-        }
-    }
-    
-    private void feedback(){
-        inputCliente = null;
-        inputDevolucao = null;
-        inputLivro = null;
-        
-        messageLabel.setTextFill(Color.color(0, 1, 0));
-        messageLabel.setText("Empréstimo realizado com sucesso.");
     }
 
     private void carregarComboBox() {

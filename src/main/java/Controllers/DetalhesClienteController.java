@@ -25,7 +25,6 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -42,21 +41,19 @@ public class DetalhesClienteController {
 
     @FXML
     private ImageView foto;
+
+    @FXML
+    private Label labelNome;
+
+    @FXML
+    private Label labelEmail;
+
+    @FXML
+    private Label labelCep;
+
+    @FXML
+    private Label labelCpf;
     
-    @FXML
-    private TextField inputNome;
-
-    @FXML
-    private TextField inputEmail;
-
-    @FXML
-    private TextField inputCep;
-
-    @FXML
-    private TextField inputCpf;
-    
-    private Modelos.Cliente cliente;
-  
     @FXML
     private TableView<Emprestimo> emprestimos; 
     
@@ -93,8 +90,6 @@ public class DetalhesClienteController {
                 "listarClientes",
                 background
         );
-        
-        leitura();
     }
     
     @FXML
@@ -106,67 +101,18 @@ public class DetalhesClienteController {
     private void cursorPadrao(MouseEvent event) {
         App.setCursorPadrao(event);
     }
-    
-    public void leitura(){
-        inputNome.setEditable(false);
-        inputEmail.setEditable(false);
-        inputCep.setEditable(false);
-        inputCpf.setEditable(false);
-        
 
-        inputNome.setStyle("-fx-background-color: #f0f0f0;");
-        inputEmail.setStyle("-fx-background-color: #f0f0f0;");
-        inputCep.setStyle("-fx-background-color: #f0f0f0;");
-        inputCpf.setStyle("-fx-background-color: #f0f0f0;");
-    }
-    
-    public void editavel(){
-        inputNome.setEditable(true);
-        inputEmail.setEditable(true);
-        inputCep.setEditable(true);
-        inputCpf.setEditable(true);
-        
-        inputNome.setStyle("-fx-background-color: white;");
-        inputEmail.setStyle("-fx-background-color: white;");
-        inputCep.setStyle("-fx-background-color: white;");
-        inputCpf.setStyle("-fx-background-color: white;");
-    }
-    
     @FXML
-    public void editar(ActionEvent event) throws SQLException, ClassNotFoundException {
-        if (botaoEditar.getText().contains("Editar")) {
-            editavel();
-            botaoEditar.setText("Salvar");
-        } else {
-            leitura();
-            botaoEditar.setText("Editar");
-            
-            String nome = inputNome.getText();
-            String email = inputEmail.getText();
-            String cep = inputCep.getText();
-            String cpf = inputCpf.getText();
-            
-            String query = "UPDATE cliente SET nome ='" + nome + "', email = '" + email + "', cep = '" + cep + "'  WHERE cpf ='" + cpf + "';";
-            
-            Database.executarQuery(query);
-            
-            cliente.setNome(nome);
-            cliente.setEmail(email);
-            cliente.setCep(cep);
-            cliente.setCpf(cpf);      
-        }
+    public void editar(ActionEvent event) {
+        // A implementar
     }
 
     void setDetalhes(Modelos.Cliente cliente) {
-        
-        this.cliente = cliente;
-        
-        inputNome.setText(cliente.getNome());
-        inputEmail.setText(cliente.getEmail());
-        inputCep.setText(cliente.getCep());
-        inputCpf.setText(cliente.getCpf());
-        
-        
+        labelNome.setText(cliente.getNome());
+        labelEmail.setText(cliente.getEmail());
+        labelCep.setText(cliente.getCep());
+        labelCpf.setText(cliente.getCpf());
+
         byte[] imageBytes = cliente.getFoto();
         if (imageBytes != null) {
             InputStream inputStream = new ByteArrayInputStream(imageBytes);
@@ -183,7 +129,7 @@ public class DetalhesClienteController {
         String query = "SELECT descricao AS livro, cliente.nome AS cliente, funcionario.nome AS funcionario, data_emprestimo, "
         + "data_devolucao, status FROM emprestimo INNER JOIN livro ON emprestimo.id_livro = livro.id INNER JOIN \n" +
         "cliente ON emprestimo.id_cliente = cliente.cpf INNER JOIN funcionario ON\n" +
-        "emprestimo.id_funcionario = funcionario.cpf WHERE cliente.cpf LIKE '" + inputCpf.getText() + 
+        "emprestimo.id_funcionario = funcionario.cpf WHERE cliente.cpf LIKE '" + labelCpf.getText() + 
         "' ORDER BY data_devolucao";
         
         try {
@@ -283,5 +229,21 @@ public class DetalhesClienteController {
     
     public ImageView getFoto() {
         return foto;
+    }
+
+    public Label getLabelNome() {
+        return labelNome;
+    }
+
+    public Label getLabelEmail() {
+        return labelEmail;
+    }
+
+    public Label getLabelCep() {
+        return labelCep;
+    }
+
+    public Label getLabelCpf() {
+        return labelCpf;
     }
 }

@@ -12,7 +12,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -49,6 +48,8 @@ public class ListarAutoresController{
     @FXML
     private TableColumn<Autor, Image> colunaApagar;
     
+    private Autor modelo;
+    
     private String queryPadrao = "SELECT * FROM autor";
     
     public void initialize() {
@@ -84,6 +85,7 @@ public class ListarAutoresController{
                 linha.add(new Autor(rs.getString("id"), 
                         rs.getString("nome") 
                 ));
+                modelo = new Autor(rs.getString("id"), rs.getString("nome"));
             }
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex);
@@ -101,10 +103,8 @@ public class ListarAutoresController{
     }
     
     private void carregarImagens() {
-        // Configurar coluna de edição
         colunaEditar.setCellFactory(param -> new TableCell<Autor, Image>() {
             private final ImageView imageView = new ImageView();
-            private final Button btnEdit = new Button();
 
             @Override
             protected void updateItem(Image imagem, boolean vazio) {
@@ -113,18 +113,13 @@ public class ListarAutoresController{
                     setGraphic(null);
                 } else {
                     imageView.setImage(imagem);
-                    btnEdit.setGraphic(imageView);
-                    btnEdit.setStyle("-fx-background-color: transparent;");
-                    // Aqui você pode adicionar a lógica para o botão de edição se necessário
-                    setGraphic(btnEdit);
+                    setGraphic(imageView);
                 }
             }
         });
-
-        // Configurar coluna de apagar
+        
         colunaApagar.setCellFactory(param -> new TableCell<Autor, Image>() {
             private final ImageView imageView = new ImageView();
-            private final Button btnDelete = new Button();
 
             @Override
             protected void updateItem(Image imagem, boolean vazio) {
@@ -133,15 +128,7 @@ public class ListarAutoresController{
                     setGraphic(null);
                 } else {
                     imageView.setImage(imagem);
-                    btnDelete.setGraphic(imageView);
-                    btnDelete.setStyle("-fx-background-color: transparent;");
-                    btnDelete.setOnAction(event -> {
-                        Autor autor = getTableView().getItems().get(getIndex());
-                        deletar(autor);
-                    });
-                    btnDelete.setOnMouseEntered(event -> App.setCursorMaozinha(event));
-                    btnDelete.setOnMouseExited(event -> App.setCursorPadrao(event));
-                    setGraphic(btnDelete);
+                    setGraphic(imageView);
                 }
             }
         });
@@ -163,8 +150,8 @@ public class ListarAutoresController{
         }
     }
     
-    private void deletar(Autor autor){
-         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    private void deletar(ActionEvent event){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmar Exclusão");
         alert.setHeaderText(null);
         alert.setContentText("Você realmente deseja excluir este item?");
@@ -172,10 +159,9 @@ public class ListarAutoresController{
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
-                String id = autor.getCodigo();
+                String id = modelo.getCodigo();
                 String query = "DELETE FROM autor WHERE id = '" + id + "'";
                 Database.executarQuery(query);
-                carregarTabela(queryPadrao);
             } catch (SQLException | ClassNotFoundException ex) {
                 System.out.println("Erro ao excluir o item: " + ex.getMessage());
             }

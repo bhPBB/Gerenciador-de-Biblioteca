@@ -5,15 +5,20 @@ import Modelos.ComparadorDias;
 import Modelos.Emprestimo;
 import com.mycompany.gerenciadordebiblioteca.App;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -108,7 +113,7 @@ public class ListarEmprestimosAtivosController {
                 linha.add(new Emprestimo(rs.getString("livro"), 
                         rs.getString("cliente"), 
                         rs.getString("funcionario"), 
-                        rs.getDate("data_emprestimo").toLocalDate(),
+                        rs.getDate("data_emprestimo").toLocalDate(), 
                         rs.getDate("data_devolucao").toLocalDate(),
                         rs.getString("status")
                 ));    
@@ -154,12 +159,19 @@ public class ListarEmprestimosAtivosController {
                 imageView.setImage(imagem);
                 btnEdit.setGraphic(imageView);
                 btnEdit.setStyle("-fx-background-color: transparent;");
-                btnEdit.setOnAction(event -> { 
-                try {
-                    App.mudarDeTela("detalhesEmprestimos");
-                } catch (IOException ex) {
-                    System.out.println(ex);
-                }
+                btnEdit.setOnAction(event -> {
+                    
+                    try {
+                        URL fxmlUrl = getClass().getResource("/fxml/detalhesEmprestimos.fxml");
+                        FXMLLoader fxmlLoader = new FXMLLoader(fxmlUrl);
+                        AnchorPane fxml = fxmlLoader.load();
+                        Scene cena = new Scene(fxml);
+                        App.getStage().setScene(cena);
+                        App.getStage().show();
+                    } catch (IOException ex) {
+                        Logger.getLogger(ListarEmprestimosAtivosController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                 });
                 btnEdit.setOnMouseEntered(event -> {
                     App.setCursorMaozinha(event);
@@ -167,8 +179,10 @@ public class ListarEmprestimosAtivosController {
                 btnEdit.setOnMouseExited(event -> {
                     App.setCursorPadrao(event);
                 });
+                
                 setGraphic(btnEdit);
             }
+            
             
         }
     });
@@ -258,8 +272,6 @@ public class ListarEmprestimosAtivosController {
             try {
                 int idLivro = getIdLivroByName(emprestimo.getLivro());  
                 String idCliente = getIdClienteByName(emprestimo.getCliente());  
-                atualizaLivroQtdEstoque(idLivro);
-                atualizaClienteNumLivrosEmprestados(idCliente);
                 String query = "DELETE FROM emprestimo WHERE id_livro = '" + idLivro + "' AND id_cliente = '" + idCliente + "'";
                 Database.executarQuery(query);
                 carregarTabela(queryPadrao);
@@ -295,15 +307,5 @@ public class ListarEmprestimosAtivosController {
             System.out.println("Erro ao buscar id do cliente: " + ex.getMessage());
         }
         return id;
-    }
-    
-    private void atualizaLivroQtdEstoque(int livro) throws SQLException, ClassNotFoundException{
-        String query = "UPDATE LIVRO SET QTD_ESTOQUE = QTD_ESTOQUE + 1 WHERE ID = '" + livro + "'";
-        Database.executarQuery(query);
-    }
-    
-    private void atualizaClienteNumLivrosEmprestados(String cliente) throws SQLException, ClassNotFoundException{
-        String query = "UPDATE CLIENTE SET NUM_LIVROS_EMPRESTADOS = NUM_LIVROS_EMPRESTADOS - 1 WHERE CPF = '" + cliente + "'";
-        Database.executarQuery(query);
     }
 }

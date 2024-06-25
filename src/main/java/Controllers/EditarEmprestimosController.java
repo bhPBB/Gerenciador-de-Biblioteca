@@ -33,25 +33,17 @@ public class EditarEmprestimosController {
     @FXML
     private AnchorPane background;
     
-    public void initialize(){
-        try
-        {
-            //Carrega a sidebar e o header
-            App.inicialzarSidebarHeader(
-                "detalhesEmprestimos",
-                "Editar Empréstimo",
+    public void initialize() throws IOException {
+        // Inicializando a sidebar
+        App.inicialzarSidebarHeader(
+                "EditarEmprestimos",
+                "Editar emprestimo",
                 "<-",
-                "listarEmprestimosAtivos",
+                "detalhesEmprestimos",
                 background
-            );  
-        }
-        catch (IOException ex)
-        {
-            var msg = "Erro ao carregar a sideber e/ou header: " + ex.getMessage();
-            System.out.println(msg);
-        }
+        );
         
-        carregarComboBox();
+//        carregarComboBox();
     }
     
     
