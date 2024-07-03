@@ -30,6 +30,6 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="174.0" layoutY="293.0" mnemonicParsing="false" onAction="#deletar" onMouseEntered="#cursorMaozinha" onMouseExited="#cursorPadrao" prefHeight="35.0" prefWidth="32.0" style="-fx-background-color: transparent;" />
+      <Button layoutX="178.0" layoutY="298.0" mnemonicParsing="false" onAction="#deletar" onMouseEntered="#cursorMaozinha" onMouseExited="#cursorPadrao" prefHeight="22.0" prefWidth="21.0" style="-fx-background-color: transparent;" />
    </children>
 </AnchorPane>

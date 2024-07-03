@@ -1,44 +1,42 @@
-@import "cores.css";
-
 .mainFxmlClass {
 
 }
 .boxes {
     /*-fx-background-color: #3f0d1b;*/
-    -fx-text-fill: -fx-cor-texto;
+    -fx-text-fill: white;
     -fx-border-width: 2px;
-    -fx-border-color: linear-gradient(to right, -fx-darker, -fx-lighter);
+    -fx-border-color: linear-gradient(to right, #EA5459, #F7BA2C);
     -fx-border-style: solid;
     -fx-background-radius: 0px;
 }
 .boxes_2 {
-    -fx-background-color: linear-gradient(to right, -fx-boxes-2-1, -fx-boxes-2-2);
+    -fx-background-color: linear-gradient(to right, #F7BA2C, #F75A1C);
 }
 .boxes_3 {
-    -fx-background-color: linear-gradient(to bottom, -fx-boxes-3-1, -fx-boxes-3-2);
+    -fx-background-color: linear-gradient(to bottom, #ff0f7b, #f89b29);
 }
 .boxes_4 {
-    -fx-background-color: linear-gradient(to left, -fx-boxes-4-1, -fx-boxes-4-2);
+    -fx-background-color: linear-gradient(to left, #ff1b6b, #f09b29);
 }
 .boxes_5 {
     /*-fx-background-color: #3f0d1b;*/
-    -fx-text-fill: -fx-cor-texto;
+    -fx-text-fill: white;
     -fx-border-width: 2px;
-    -fx-border-color: linear-gradient(to left, -fx-boxes-5-1, -fx-boxes-5-2);
+    -fx-border-color: linear-gradient(to left, #EA5459, #F7FF9C);
     -fx-border-style: solid;
     -fx-background-radius: 0px;
 }
 .boxes_6 {
-    -fx-background-color: linear-gradient(to left, -fx-boxes-6-1, -fx-boxes-6-2);
+    -fx-background-color: linear-gradient(to left, #ffAb6b, #409b29);
 }
 .boxes_7 {
     /*-fx-background-color: #3f0d1b;*/
-    -fx-text-fill: -fx-cor-texto;
+    -fx-text-fill: white;
     -fx-border-width: 2px;
-    -fx-border-color: linear-gradient(to right, -fx-boxes-7-1, -fx-boxes-7-2);
+    -fx-border-color: linear-gradient(to right, #EA5459, #409b29);
     -fx-border-style: solid;
     -fx-background-radius: 0px;
 }
 .boxes_8 {
-    -fx-background-color: linear-gradient(to left, -fx-boxes-8-1, -fx-boxes-8-2);
+    -fx-background-color: linear-gradient(to left, #F7BA2C, #F75A1C);
 }

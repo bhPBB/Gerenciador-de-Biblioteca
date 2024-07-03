@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -53,20 +52,52 @@
                         <Font name="DejaVu Sans Bold" size="12.0" />
                      </font>
                   </Label>
+                  <Label fx:id="labelNome" prefHeight="45.0" prefWidth="338.0" styleClass="inputs" stylesheets="@cadastrar.css" text="Nome" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="26.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </GridPane.margin>
+                  </Label>
                   <Label prefHeight="16.0" prefWidth="214.0" text="CEP" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <font>
                         <Font name="DejaVu Sans Bold" size="12.0" />
                      </font>
+                  </Label>
+                  <Label fx:id="labelCep" prefHeight="45.0" prefWidth="214.0" styleClass="inputs" stylesheets="@cadastrar.css" text="CEP" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </GridPane.margin>
                   </Label>
                   <Label prefHeight="16.0" prefWidth="214.0" text="E-mail" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                      <font>
                         <Font name="DejaVu Sans Bold" size="12.0" />
                      </font>
                   </Label>
+                  <Label fx:id="labelEmail" prefHeight="45.0" prefWidth="338.0" styleClass="inputs" stylesheets="@cadastrar.css" text="E-mail" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </GridPane.margin>
+                  </Label>
                   <Label prefHeight="16.0" prefWidth="214.0" text="CPF" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                      <font>
                         <Font name="DejaVu Sans Bold" size="12.0" />
                      </font>
+                  </Label>
+                  <Label fx:id="labelCpf" prefHeight="45.0" prefWidth="190.0" styleClass="inputs" stylesheets="@cadastrar.css" text="CPF" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </GridPane.margin>
                   </Label>
                   <Button fx:id="botaoEditar" alignment="CENTER" mnemonicParsing="false" onAction="#editar" onMouseEntered="#cursorMaozinha" onMouseExited="#cursorPadrao" prefHeight="48.0" prefWidth="146.0" styleClass="botao" stylesheets="@cadastrar.css" text="Editar" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <font>
@@ -76,35 +107,6 @@
                         <Insets left="10.0" right="10.0" />
                      </GridPane.margin>
                   </Button>
-                  <TextField fx:id="inputNome" maxWidth="338.0" prefHeight="45.0" prefWidth="338.0" styleClass="inputs" stylesheets="@cadastrar.css" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets left="10.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font size="26.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="inputEmail" maxWidth="338.0" prefHeight="45.0" prefWidth="338.0" styleClass="inputs" stylesheets="@cadastrar.css" GridPane.rowIndex="3">
-                     <GridPane.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="inputCep" maxWidth="214.0" prefHeight="45.0" prefWidth="214.0" styleClass="inputs" stylesheets="@cadastrar.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <GridPane.margin>
-                        <Insets left="10.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="inputCpf" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="190.0" styleClass="inputs" GridPane.rowIndex="5">
-                     <GridPane.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </GridPane.margin>
-                  </TextField>
                </children>
                <padding>
                   <Insets left="15.0" />

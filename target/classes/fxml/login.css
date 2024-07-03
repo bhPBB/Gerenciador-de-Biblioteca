@@ -1,11 +1,13 @@
-@import "cores.css";
+/*
+ * Empty Stylesheet file.
+ */
 
 .mainFxmlClass {
-    -fx-text-fill: -fx-cor-texto;
+    -fx-text-fill: rgb(255,255,255);
 }
 .inputs {
     -fx-border-width: 2px;
-    -fx-border-color: -fx-borda-login; /*mudar pra 255,255,255, .2 depois.*/
+    -fx-border-color: rgba(255,255,255, .7); /*mudar pra 255,255,255, .2 depois.*/
     -fx-border-style: solid;
     -fx-border-radius: 40px;
     -fx-outline: none;
@@ -14,7 +16,7 @@
 }
 .button {
     -fx-border-width: 2px;
-    -fx-border-color: -fx-borda-login; /*mudar pra 255,255,255, .2 depois.*/
+    -fx-border-color: rgba(255,255,255, .7); /*mudar pra 255,255,255, .2 depois.*/
     -fx-border-style: solid;
     -fx-border-radius: 40px;
     -fx-outline: none;
@@ -22,7 +24,7 @@
 }
 .grid-form {
     -fx-border-width: 2px;
-    -fx-border-color: -fx-borda-login; /*mudar pra 255,255,255, .2 depois.*/
+    -fx-border-color: rgba(255,255,255, .7); /*mudar pra 255,255,255, .2 depois.*/
     -fx-border-style: solid;
     -fx-border-radius: 20px;
     -fx-background-color: transparent;
@@ -31,7 +33,7 @@
     -fx-border-radius: 40px;
 }
 .fundo {
-    -fx-background-color: linear-gradient(to top, -fx-lighter, -fx-darker);
+    -fx-background-color: linear-gradient(to top, #F7BA2C, #EA5459);
 }
 /*.cadastre-se {
     -fx-text-fill: white;

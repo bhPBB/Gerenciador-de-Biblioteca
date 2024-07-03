@@ -1,12 +1,14 @@
+@import "cores.css";
+
 .mainFxmlClass {
 
 }
 .adicionar {
-    /*-fx-background-color: linear-gradient(to top, #F7BA2C, #EA5459);*/
+    -fx-background-color: transparent;
     -fx-border-radius: 20px;
     -fx-border-width: 4px;
     /*-fx-border-color: white;*/
-    -fx-border-color: linear-gradient(to top, #F7BA2C, #EA5459);
+    -fx-border-color: linear-gradient(to top, -fx-lighter, -fx-darker);
     -fx-border-style: solid;
     /*-fx-text-fill: white;*/
 }

@@ -1,8 +1,10 @@
+@import "cores.css";
+
 .mainFxmlClass {
 
 }
 .card-borda {
-    -fx-border-color: black;
+    -fx-border-color: linear-gradient(to top, -fx-lighter, -fx-darker);
     -fx-border-width: 2px;
     /*-fx-border-radius: 20px;*/
     -fx-border-style: solid;
