@@ -145,7 +145,7 @@ public class DetalhesClienteController {
             String cep = inputCep.getText();
             String cpf = inputCpf.getText();
             
-            String query = "UPDATE cliente SET nome ='" + nome + "', email = '" + email + "', cep = '" + cep + "'  WHERE cpf ='" + cpf + "';";
+            String query = "UPDATE cliente SET nome ='" + nome + "', email = '" + email + "', cep = '" + cep + "', cpf = '" + cpf + "'  WHERE cpf ='" + cliente.getCpf() + "';";
             
             Database.executarQuery(query);
             

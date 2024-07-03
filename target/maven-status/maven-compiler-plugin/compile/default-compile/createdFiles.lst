@@ -1,6 +1,7 @@
 Controllers\CardListarFuncionarioController.class
 Controllers\DetalhesClienteController$1.class
 Controllers\CadastrarFuncionarioController.class
+Controllers\DetalhesLivrosController$1.class
 Controllers\DetalhesLivrosController.class
 Controllers\ListarEmprestimosAtivosController$1.class
 Controllers\HeaderListaController.class
@@ -15,10 +16,13 @@ Controllers\ListarGenerosController.class
 Banco\Database.class
 InterfacesCRUD\ICRUDCliente.class
 Controllers\ListarEmprestimosAtivosController$2.class
+Controllers\DetalhesLivrosController$2.class
 Controllers\DetalhesClienteController$3.class
 InterfacesCRUD\ICRUDLivro.class
 Controllers\ListarEmprestimosAtivosController$3.class
+Controllers\DetalhesEmprestimosController.class
 Modelos\Emprestimo.class
+Controllers\DetalhesLivrosController$3.class
 Modelos\Cliente.class
 Controllers\DashboardController.class
 Controllers\DetalhesClienteController.class
@@ -27,7 +31,6 @@ Controllers\TituloHeaderController.class
 Controllers\ListarGenerosController$1.class
 Controllers\CadastrarLivroController.class
 Controllers\CadastrarFuncionarioLoginController.class
-Controllers\EditarEmprestimosController.class
 Modelos\Genero.class
 InterfacesCRUD\ICRUDFuncionario.class
 Controllers\ListarGenerosController$2.class
