@@ -3,7 +3,6 @@ package Controllers;
 import Banco.Database;
 import Modelos.Autor;
 import com.mycompany.gerenciadordebiblioteca.App;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -54,8 +53,6 @@ public class ListarAutoresController{
     @FXML
     private TableColumn<Autor, Image> colunaApagar;
     
-    private Autor modelo;
-    
     private String queryPadrao = "SELECT * FROM autor";
     
     public void initialize() {
@@ -86,12 +83,11 @@ public class ListarAutoresController{
         
         try {
             
-            ResultSet rs = Database.executarSelect(query);
-            while(rs.next()){
+        ResultSet rs = Database.executarSelect(query);
+        while(rs.next()){
                 linha.add(new Autor(rs.getString("id"), 
                         rs.getString("nome") 
                 ));
-                modelo = new Autor(rs.getString("id"), rs.getString("nome"));
             }
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex);
@@ -110,7 +106,7 @@ public class ListarAutoresController{
     
     private void carregarImagens() {
         colunaEditar.setCellFactory(param -> new TableCell<Autor, Image>() {
-            private final ImageView imageView = new ImageView();
+        private final ImageView imageView = new ImageView();
         private final Button btnEdit = new Button();
 
         @Override
@@ -150,15 +146,28 @@ public class ListarAutoresController{
         
         colunaApagar.setCellFactory(param -> new TableCell<Autor, Image>() {
             private final ImageView imageView = new ImageView();
-
+            private final Button btnDelete = new Button();
+        
             @Override
             protected void updateItem(Image imagem, boolean vazio) {
                 super.updateItem(imagem, vazio);
                 if (vazio || imagem == null) {
                     setGraphic(null);
                 } else {
-                    imageView.setImage(imagem);
-                    setGraphic(imageView);
+                imageView.setImage(imagem);
+                btnDelete.setGraphic(imageView);
+                btnDelete.setStyle("-fx-background-color: transparent;"); // Torna o botão invisível
+                btnDelete.setOnAction(event -> {
+                    Autor autor = getTableView().getItems().get(getIndex());
+                    deletar(autor);
+                });               
+                btnDelete.setOnMouseEntered(event -> {
+                    App.setCursorMaozinha(event);
+                });
+                btnDelete.setOnMouseExited(event -> {
+                    App.setCursorPadrao(event);
+                });
+                setGraphic(btnDelete);
                 }
             }
         });
@@ -180,7 +189,7 @@ public class ListarAutoresController{
         }
     }
     
-    private void deletar(ActionEvent event){
+    private void deletar(Autor autor){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmar Exclusão");
         alert.setHeaderText(null);
@@ -189,7 +198,7 @@ public class ListarAutoresController{
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
-                String id = modelo.getCodigo();
+                String id = autor.getCodigo();
                 String query = "DELETE FROM autor WHERE id = '" + id + "'";
                 Database.executarQuery(query);
             } catch (SQLException | ClassNotFoundException ex) {
